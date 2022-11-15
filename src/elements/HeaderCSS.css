@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+::before, ::after {
+    box-sizing: border-box;
+}
+ul {
+    list-style: none;
+}
+
+
+/*---- header -----*/
+
+
+.divMain{
+    width: 100%;
+    height: 80px;
+    border: 3px solid;
+    display: flex;
+    justify-content: space-between;
+}
+
+    /*-- header LogoAndNav --*/
+.divMain .LogoAndNav {
+    margin-left: 20px;
+    width: 40%;
+}
+.divMain .LogoAndNav ul{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.divMain .LogoAndNav ul li:first-child a{
+   color: black;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    font-size: 24px;
+}
+.divMain .LogoAndNav ul a{
+    color: darkgrey;
+    font-weight: 500;
+}
+.divMain .LogoAndNav ul a:hover{
+    color: black;
+    font-weight: 200;
+}
+    /*-- header ButtonsNav --*/
+.divMain .ButtonsNav{
+    margin-right: 20px;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.divMain .ButtonsNav input:last-child{
+    color: azure;
+    border: none;
+    background: fuchsia;
+    border-radius: 10px;
+    height: 40px;
+    width: 70px;
+}
+.divMain .ButtonsNav input:last-child:hover{
+    background: fuchsia;
+    opacity: 0.7;
+
+
+}
+.divMain .ButtonsNav:before{
+    content: "\2315";
+    border: 3px solid;
+}
