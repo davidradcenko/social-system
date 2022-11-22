@@ -2,8 +2,15 @@ import React, {useCallback} from 'react';
 import {dataType, social} from "./API/api";
 import HeaderHtml from "./elements/HeaderHtml";
 import Main from "./elements/MainHtml";
+import {Navigate, Route, Routes} from "react-router-dom";
 
 
+function Hello() {
+    return (<>
+        <HeaderHtml/>
+        <Main/>
+    </>);
+}
 
 function App() {
     const me = () => {
@@ -17,8 +24,13 @@ function App() {
 
     return (
         <div className="App">
-            <HeaderHtml/>
-            <Main/>
+            <Routes>
+                <Route path="/" element={  <Hello/>}/>
+
+                <Route path="/404" element={<h1>404. Page not found</h1> }/>
+                <Route path="*" element={<Navigate to="/404"/>}/>
+            </Routes>
+
         </div>
     );
 }

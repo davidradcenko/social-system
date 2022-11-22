@@ -7,9 +7,9 @@ function Main() {
             <main>
                 <div className={"Banner"}>
                     <div className={"infoBanner"}>
-                        <div className="SkillUsed">
+                        <div className={"SkillUsed"}>
                             <ul>
-                                <li><a href="#">React</a></li>
+                                <li className={"Intarget"}><a href="#">React</a></li>
                                 <li><a href="#">Redux</a></li>
                                 <li><a href="#">Thunk</a></li>
                                 <li><a href="#">Router</a></li>
