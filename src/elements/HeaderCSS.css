@@ -78,3 +78,46 @@ ul {
     content: "\2315";
     border: 3px solid;
 }
+
+/*----- main -----*/
+.Banner{
+    height: 550px;
+    width: 100%;
+    background: url("../img/CSS-Background-Pattern-2.jpg") no-repeat;
+    background-size: cover;
+    /*opacity: 0.5;*/
+}
+.Banner .infoBanner{
+    margin: 0 auto;
+    height: 100%;
+    width: 60%;
+}
+.Banner .infoBanner .SkillUsed{
+    width: 100%;
+    height: 100px;
+    background-color:azure;
+}
+.Banner .infoBanner .SkillUsed ul{
+    display: flex;
+    justify-content: space-around;
+}
+.Banner .infoBanner .SkillUsed ul li{
+
+    border-radius: 25%;
+    border: 1px solid;
+    margin-top: 40px;
+    font-size: 24px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+
+}
+.Banner .infoBanner .SkillUsed ul li a{
+    color: azure;
+    width: 100px;
+    height: 40px;
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    /*height: 50%;*/
+    font-size: 18px;
+}

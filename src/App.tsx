@@ -1,6 +1,9 @@
 import React, {useCallback} from 'react';
 import {dataType, social} from "./API/api";
 import HeaderHtml from "./elements/HeaderHtml";
+import Main from "./elements/MainHtml";
+
+
 
 function App() {
     const me = () => {
@@ -15,6 +18,7 @@ function App() {
     return (
         <div className="App">
             <HeaderHtml/>
+            <Main/>
         </div>
     );
 }
