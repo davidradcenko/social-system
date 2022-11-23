@@ -5,7 +5,7 @@ import {Navigate} from "react-router-dom";
 function HeaderHtml() {
 
     const ToredirektForLogin=()=>{
-        return  <Navigate  to={"/Login"} />
+        <Navigate  to={"/Login"} />
     }
 
     return (

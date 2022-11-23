@@ -9,7 +9,7 @@ function Login() {
 
         <div className={"MainLoginForm"}>
             <div className={"ButtonNav"}>
-                <input type={"button"} value={"LOGIN"}/>
+                <input className={"SelectMetodINSIGIN"} type={"button"} value={"LOGIN"}/>
                 <input type={"button"} value={"REGISTER"}/>
             </div>
             <div className={"FormLog"}>
@@ -20,10 +20,12 @@ function Login() {
                             <p>or:</p>
                         </div>
                     </div>
-                    <input type="text"/>
-                    <input type="text"/>
-                    <input type={"button"}/>
-                    <p>Not a member? <a href="#">Register</a></p>
+                    <div className={"ButtionsLogin"}>
+                        <input type="text" placeholder={"Email or username"}/>
+                        <input type="text" placeholder={"Password"}/>
+                        <input type={"button"} value={"SIGN IN"}/>
+                    </div>
+                    <p className={"LinkForRegist"}>Not a member? <a href="#">Register</a></p>
                 </form>
             </div>
         </div>
