@@ -3,7 +3,8 @@
     margin: 0;
     border: none;
 }
-
+.Mainblok{
+}
 .MainLoginForm {
     width: 500px;
     margin: 0 auto;
@@ -58,7 +59,7 @@
     width: 100%;
     margin-top: 20px;
 }
-.MainLoginForm .FormLog .ButtionsLogin input:not([type="button"]){
+.MainLoginForm .FormLog .ButtionsLogin input:not([type="submit"]){
 border: 1px solid darkgrey;
 }
 

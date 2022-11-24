@@ -8,18 +8,18 @@ const instance = axios.create({
     withCredentials: true,
 })
 
-export const social={
+export const LoginApi={
     authMe(){
         return instance.get("/auth/me")
     },
-    loginMe(data:dataType){
+    loginMe(data:LoginParamType){
         return instance.post("/auth/login",data)
     }
 }
 
 
 //types
-export type dataType={
+export type LoginParamType={
     email:string,
     password:string,
     rememberMe:boolean,
