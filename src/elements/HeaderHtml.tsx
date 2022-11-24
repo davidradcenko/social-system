@@ -1,8 +1,19 @@
 import * as React from 'react';
 import "./HeaderCSS.css"
 import {Navigate} from "react-router-dom";
+import {RootState, useAppDispatch} from "../store/store";
+import {useSelector} from "react-redux";
+import {useEffect} from "react";
+import {loginOut} from "../Reducers/LoginReducer";
 
 function HeaderHtml() {
+    const dispatch = useAppDispatch()
+    const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
+
+
+const logoutHandler = useEffect(()=>{
+    dispatch(loginOut())
+},[])
 
     const ToredirektForLogin=()=>{
         <Navigate  to={"/Login"} />
@@ -25,8 +36,9 @@ function HeaderHtml() {
 
                 <div className={"ButtonsNav"}>
                     <img src="" alt=""/>
-                    <input onClick={ToredirektForLogin} type={"button"} value={"Sign in"}/>
-                    <input type={"button"} value={"Sign up"}/>
+                    <input onClick={logoutHandler} type={"button"} value={"Sign up"}/>
+
+                    {isLoginIn && <input onClick={ToredirektForLogin} type={"button"} value={"Sign in"}/>}
                 </div>
             </div>
         </header>

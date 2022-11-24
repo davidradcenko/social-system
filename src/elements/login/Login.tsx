@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {useFormik} from "formik";
 import {loginIn} from "../../Reducers/LoginReducer";
-import {Checkbox} from "@mui/material";
 
 function Login() {
     type FormikErrorType = {
