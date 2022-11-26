@@ -14,6 +14,9 @@ export const LoginApi={
     },
     loginMe(data:LoginParamType){
         return instance.post("/auth/login",data)
+    },
+    authMeOut(){
+        return instance.delete("/auth/login")
     }
 }
 

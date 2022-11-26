@@ -3,41 +3,44 @@ import "./HeaderCSS.css"
 import {Navigate} from "react-router-dom";
 import {RootState, useAppDispatch} from "../store/store";
 import {useSelector} from "react-redux";
-import {useEffect} from "react";
-import {loginOut} from "../Reducers/LoginReducer";
+import {useCallback, useEffect} from "react";
+import {LoginOut} from "../Reducers/LoginReducer";
 
-function HeaderHtml() {
+type HeaderType ={
+    isLoginIn?:boolean
+}
+
+function HeaderHtml(props:HeaderType) {
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
 
+    const logoutHandler = useCallback(() => {
+        dispatch(LoginOut())
+    }, [])
 
-const logoutHandler = useEffect(()=>{
-    dispatch(loginOut())
-},[])
-
-    const ToredirektForLogin=()=>{
-        <Navigate  to={"/Login"} />
+    const ToredirektForLogin = () => {
+        <Navigate to={"/Login"}/>
     }
 
     return (
         <header>
             <div className={"divMain"}>
                 <nav className={"LogoAndNav"}>
-                        <ul>
-                            <li><a href="#">Social-system</a></li>
-                            <li><a href="#">Inspritol</a></li>
-                            <li><a href="#">Lofmew</a></li>
-                            <li><a href="#">Mifosn</a></li>
-                            <li><a href="#">Reispvanv</a></li>
-                            <li><a href="#">Fmwksd</a></li>
-                            <li><a href="#">Dwefwiqfpw</a></li>
-                        </ul>
+                    <ul>
+                        <li><a href="#">Social-system</a></li>
+                        <li><a href="#">Inspritol</a></li>
+                        <li><a href="#">Lofmew</a></li>
+                        <li><a href="#">Mifosn</a></li>
+                        <li><a href="#">Reispvanv</a></li>
+                        <li><a href="#">Fmwksd</a></li>
+                        <li><a href="#">Dwefwiqfpw</a></li>
+                    </ul>
                 </nav>
 
                 <div className={"ButtonsNav"}>
                     <img src="" alt=""/>
-                    <input onClick={logoutHandler} type={"button"} value={"Sign up"}/>
 
+                    {isLoginIn && <input onClick={logoutHandler} type={"button"} value={"Sign Out"}/>}
                     {isLoginIn && <input onClick={ToredirektForLogin} type={"button"} value={"Sign in"}/>}
                 </div>
             </div>

@@ -31,9 +31,18 @@ export const loginIn = (data: LoginParamType) => {
         })
     }
 }
-export const loginOut = () => {
+export const initializeAppTC = () => {
     return (dispatch: Dispatch<ActionTypes>) => {
         LoginApi.authMe().then(res => {
+            dispatch(setIsLogin(false))
+        }).catch((error) => {
+            console.error(error, dispatch)
+        })
+    }
+}
+export const LoginOut = () => {
+    return (dispatch: Dispatch<ActionTypes>) => {
+        LoginApi.authMeOut().then(res => {
             dispatch(setIsLogin(false))
         }).catch((error) => {
             console.error(error, dispatch)
@@ -46,5 +55,5 @@ type ActionTypes =
     ReturnType<typeof setIsLogin>
 
 type InitialStateType = {
-    isLoginIn: boolean,
+        isLoginIn: boolean,
 }
