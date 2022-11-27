@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dispatch} from "redux";
 import {LoginApi, LoginParamType} from "../API/api";
+import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
 
 
 const initialState: InitialStateType = {
@@ -23,7 +24,8 @@ const setIsLogin = (value: boolean) => ({type: "login/SET-IS-LOGIN-IN", value}) 
 
 //thunks
 export const loginIn = (data: LoginParamType) => {
-    return (dispatch: Dispatch<ActionTypes>) => {
+    return (dispatch: Dispatch<ActionTypes| StatusUserActionType>) => {
+        dispatch(statusUserAC("loading"))
         LoginApi.loginMe(data).then(res => {
             dispatch(setIsLogin(true))
         }).catch((error) => {
@@ -31,19 +33,13 @@ export const loginIn = (data: LoginParamType) => {
         })
     }
 }
-export const initializeAppTC = () => {
-    return (dispatch: Dispatch<ActionTypes>) => {
-        LoginApi.authMe().then(res => {
-            dispatch(setIsLogin(false))
-        }).catch((error) => {
-            console.error(error, dispatch)
-        })
-    }
-}
+
 export const LoginOut = () => {
-    return (dispatch: Dispatch<ActionTypes>) => {
+    return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
+        dispatch(statusUserAC("loading"))
         LoginApi.authMeOut().then(res => {
             dispatch(setIsLogin(false))
+            dispatch(statusUserAC("succeeded"))
         }).catch((error) => {
             console.error(error, dispatch)
         })
@@ -53,6 +49,7 @@ export const LoginOut = () => {
 //types
 type ActionTypes =
     ReturnType<typeof setIsLogin>
+
 
 type InitialStateType = {
         isLoginIn: boolean,
