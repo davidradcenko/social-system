@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./HeaderCSS.css"
-import {Navigate} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {RootState, useAppDispatch} from "../store/store";
 import {useSelector} from "react-redux";
 import {useCallback, useEffect} from "react";
@@ -41,7 +41,7 @@ function HeaderHtml(props:HeaderType) {
                     <img src="" alt=""/>
 
                     {isLoginIn && <input onClick={logoutHandler} type={"button"} value={"Sign Out"}/>}
-                    {isLoginIn && <input onClick={ToredirektForLogin} type={"button"} value={"Sign in"}/>}
+                    {!isLoginIn && <Link to={"/Login"} >Sign in</Link>}
                 </div>
             </div>
         </header>

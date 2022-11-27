@@ -20,7 +20,6 @@ export const LoginApi={
     }
 }
 
-
 //types
 export type LoginParamType={
     email:string,
