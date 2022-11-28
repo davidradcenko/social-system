@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+/*-- MainBlocCoverAccount --*/
+.MainBlocCoverAccount{
+    display: flex;
+}
+
+/*-- MenuAccount --*/
+.MenuAccount{
+    width: 25%;
+    background-color: aliceblue;
+}
+.MenuAccount .imgFrofil img{
+    width: 70px;
+    height: 70px;
+}
+
+/*-- MainBlockAccount --*/
+.MainBlockAccount{
+    width: 50%;
+    background-color: dodgerblue;
+}
+
+/*-- Users --*/
+.Users{
+    width: 25%;
+    background-color: darkgrey;
+}
