@@ -13,6 +13,8 @@ export const Account=()=>{
     }
 return <>
     <HeaderHtml/>
-<p>Heelow in Account</p>
+    <div className={"MenuAccount"}></div>
+    <div className={"MainBlockAccount"}></div>
+    <div className={"Users"}></div>
 </>
 }
