@@ -15,22 +15,51 @@
 
 /*-- MenuAccount --*/
 .MenuAccount{
-    width: 25%;
+    width: 20%;
     background-color: aliceblue;
+    border: 1px solid;
+    padding-left: 50px;
 }
 .MenuAccount .imgFrofil img{
-    width: 70px;
-    height: 70px;
+    margin-top: 10px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+.MenuAccount .InfoUserInMenu{
+    margin-top: 20px;
+
+}
+.MenuAccount .InfoUserInMenu p{
+    font-size: 18px;
+   margin-top: 10px;
+}
+.MenuAccount .InfoUserInMenu p .status-work{
+    font-weight: bold;
+    color: black;
+}
+.MenuAccount .linksMenu{
+    margin-top: 15px;
+}
+.MenuAccount .linksMenu ul li{
+    margin-top:5px ;
+
+}
+.MenuAccount .linksMenu ul li a{
+    color: darkgrey;
+}
+.MenuAccount .linksMenu ul li .InSelect{
+    color: black;
 }
 
 /*-- MainBlockAccount --*/
 .MainBlockAccount{
-    width: 50%;
+    width: 60%;
     background-color: dodgerblue;
 }
 
 /*-- Users --*/
 .Users{
-    width: 25%;
+    width: 20%;
     background-color: darkgrey;
 }
