@@ -16,7 +16,7 @@ export const Account = () => {
     }
 
     const logoutHandler = useCallback(() => {
-        dispatch(getProfile()())
+        dispatch(getProfile ()())
     }, [])
     return <>
         <HeaderHtml/>
