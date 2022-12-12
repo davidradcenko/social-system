@@ -1,18 +1,23 @@
 import HeaderHtml from "../HeaderHtml";
 import {Navigate} from "react-router-dom";
-import React from "react";
+import React, {useCallback} from "react";
 import {RootState, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
 import testimg from "../../img/imgTest.jpeg.jpg"
 import "./Account.css"
+import {LoginOut, setIsLogin} from "../../Reducers/LoginReducer";
+import {getProfile} from "../../Reducers/profilReducer";
 
 export const Account = () => {
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
-
     if (!isLoginIn) {
         return <Navigate to={'/Login'}/>
     }
+
+    const logoutHandler = useCallback(() => {
+        dispatch(getProfile()())
+    }, [])
     return <>
         <HeaderHtml/>
         <div className={"MainBlocCoverAccount"}>
@@ -32,7 +37,24 @@ export const Account = () => {
                     </ul>
                 </div>
             </div>
-            <div className={"MainBlockAccount"}></div>
+            <div className={"MainBlockAccount"}>
+                <p>aboutMe:</p>
+                <h1>contacts:</h1>
+                <ul>
+                    <li>facebook:</li>
+                    <li>github:</li>
+                    <li>instagram:</li>
+                    <li>mainLink:</li>
+                    <li>twitter:</li>
+                    <li>vk:</li>
+                    <li>website:</li>
+                    <li>youtube:</li>
+                </ul>
+
+                <p>lookingForAJob</p>
+                <p>lookingForAJobDescription</p>
+                <p>fullName</p>
+            </div>
             <div className={"Users"}></div>
         </div>
     </>

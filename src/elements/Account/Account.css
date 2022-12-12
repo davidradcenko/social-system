@@ -57,6 +57,20 @@
     width: 60%;
     background-color: dodgerblue;
 }
+.MainBlockAccount h1{
+    margin: 10px 10px;
+    margin-left: 20px;
+}
+.MainBlockAccount p{
+    margin: 10px 10px;
+    margin-left: 20px;
+}
+.MainBlockAccount ul{
+
+    margin: 10px 10px;
+    margin-left: 60px;
+    list-style-type: disc;
+}
 
 /*-- Users --*/
 .Users{
