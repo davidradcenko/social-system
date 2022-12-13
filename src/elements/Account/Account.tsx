@@ -5,19 +5,22 @@ import {RootState, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
 import testimg from "../../img/imgTest.jpeg.jpg"
 import "./Account.css"
-import {LoginOut, setIsLogin} from "../../Reducers/LoginReducer";
-import {getProfile} from "../../Reducers/profilReducer";
+import {profilGetTK} from "../../Reducers/profilReducer";
 
 export const Account = () => {
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
+    const mainUserId = useSelector<RootState, string>(state => state.initialazed.mainUserId)
+
+
+     const logoutHandler=()=> {
+        dispatch(profilGetTK(Number(mainUserId)))
+        console.log("eeeeeeeeeewwefwfwefew")
+    }
+
     if (!isLoginIn) {
         return <Navigate to={'/Login'}/>
     }
-
-    const logoutHandler = useCallback(() => {
-        dispatch(getProfile ()())
-    }, [])
     return <>
         <HeaderHtml/>
         <div className={"MainBlocCoverAccount"}>
@@ -31,7 +34,7 @@ export const Account = () => {
                 </div>
                 <div className="linksMenu">
                     <ul>
-                        <li><a className={"InSelect"} href="">My profile</a></li>
+                        <li><button onClick={logoutHandler} className={"InSelect"} >My profile</button></li>
                         <li><a href="">Messages</a></li>
                         <li><a href="">Users in app</a></li>
                     </ul>

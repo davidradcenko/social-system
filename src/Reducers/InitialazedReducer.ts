@@ -5,7 +5,8 @@ import {setIsLogin, SetIsLoginActionCreater} from "./LoginReducer";
 const Initial: InitialazedType = {
     initialazUser: false,
     error: null,
-    status: 'idle'
+    status: 'idle',
+    mainUserId:"1"
 
 }
 export const initialazedReducer = (state: InitialazedType = Initial, action: actionTypes): InitialazedType => {
@@ -18,7 +19,8 @@ export const initialazedReducer = (state: InitialazedType = Initial, action: act
 
         case 'STATUS-USER':
             return {...state, status: action.value}
-
+        case 'SET-MAIN-USER-ID':
+            return {...state,mainUserId:action.idMainUser}
         default: return state
     }
 }
@@ -30,6 +32,7 @@ export const initializeAppTC = () => {
         LoginApi.authMe().then(res => {
             if (res.data.resultCode===0){
                 dispatch(initializedUserAC(true))
+                dispatch(mainUserIDAC(res.data.data.id))
                 dispatch(setIsLogin(true))
                 dispatch(statusUserAC("succeeded"))
             }
@@ -47,16 +50,19 @@ export const initializeAppTC = () => {
 export const initializedUserAC = (value: boolean) => ({type: "INITIALAZED-USER", value}) as const
 export const errorUserAC = (value: string | null) => ({type: "ERROR-USER", value}) as const
 export const statusUserAC = (value: statusType) => ({type: "STATUS-USER", value}) as const
+export const mainUserIDAC = (idMainUser: string) => ({type: "SET-MAIN-USER-ID", idMainUser}) as const
 
 //types
 type InitialazedType = {
     initialazUser: boolean,
     error: string | null,
-    status: statusType
+    status: statusType,
+    mainUserId:string
 }
 export type StatusUserActionType = ReturnType<typeof statusUserAC>
 export type statusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 type actionTypes =
+    | ReturnType<typeof mainUserIDAC>
     | ReturnType<typeof initializedUserAC>
     | ReturnType<typeof errorUserAC>
     | ReturnType<typeof statusUserAC>

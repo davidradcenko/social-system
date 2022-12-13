@@ -19,7 +19,11 @@ export const LoginApi={
         return instance.delete("/auth/login")
     }
 }
-
+export const ProfileApi={
+    profileGet(id:number){
+        return instance.get("/profile/"+id)
+    }
+}
 //types
 export type LoginParamType={
     email:string,

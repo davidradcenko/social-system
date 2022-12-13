@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {StatusUserActionType} from "./InitialazedReducer";
+import {ProfileApi} from "../API/api";
 
 
 const initialState:initialStateType={
@@ -29,12 +32,21 @@ export const profilReducer = (state:initialStateType=initialState,action:actionT
 
 
 //thunk
+export const profilGetTK=(id:number)=>{
+    return(dispatch:Dispatch)=>{
+        ProfileApi.profileGet(id).then(res=>{
+            dispatch(getProfileAC(res.data))
+        }).catch((error)=>{
+            console.error(error, dispatch)
+        })
+    }
+}
 
 //action
-export const getProfile = (value:initialStateType) => ({type: "GET-PROFILE",value}) as const
+export const getProfileAC = (value:initialStateType) => ({type: "GET-PROFILE",value}) as const
 
 //types
-type actionType=ReturnType<typeof getProfile>
+type actionType=ReturnType<typeof getProfileAC>
 
 type ContaksType={
     facebook: string | null,
