@@ -1,9 +1,9 @@
 import {Dispatch} from "redux";
-import {StatusUserActionType} from "./InitialazedReducer";
-import {ProfileApi} from "../API/api";
+import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
+import {initialStateProfileType, ProfileApi} from "../API/api";
 
 
-const initialState:initialStateType={
+const initialState:initialStateProfileType={
     aboutMe: "aboutMe",
     contacts: {
         facebook: "facebook",
@@ -19,9 +19,12 @@ const initialState:initialStateType={
     lookingForAJobDescription: "lookingForAJobDescription",
     fullName: "fullName"
 }
-export const profilReducer = (state:initialStateType=initialState,action:actionType):initialStateType => {
+export const profilReducer = (state:initialStateProfileType=initialState, action:actionType):initialStateProfileType => {
     switch (action.type) {
         case "GET-PROFILE":{
+            return {...state,...action.value}
+        }
+        case "PUT-PROFILE-CHANGE":{
             return {...state,...action.value}
         }
         default:
@@ -33,9 +36,22 @@ export const profilReducer = (state:initialStateType=initialState,action:actionT
 
 //thunk
 export const profilGetTK=(id:number)=>{
-    return(dispatch:Dispatch)=>{
+    return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
         ProfileApi.profileGet(id).then(res=>{
             dispatch(getProfileAC(res.data))
+            dispatch(statusUserAC("succeeded"))
+        }).catch((error)=>{
+            console.error(error, dispatch)
+        })
+    }
+}
+export const profilChangeTK=(value:initialStateProfileType)=>{
+    return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
+        ProfileApi.profileChenge(value).then(res=>{
+            dispatch(ProfileChangeAC(value))
+            dispatch(statusUserAC("succeeded"))
         }).catch((error)=>{
             console.error(error, dispatch)
         })
@@ -43,25 +59,11 @@ export const profilGetTK=(id:number)=>{
 }
 
 //action
-export const getProfileAC = (value:initialStateType) => ({type: "GET-PROFILE",value}) as const
+export const getProfileAC = (value:initialStateProfileType) => ({type: "GET-PROFILE",value}) as const
+export const ProfileChangeAC = (value:initialStateProfileType) => ({type: "PUT-PROFILE-CHANGE",value}) as const
 
 //types
-type actionType=ReturnType<typeof getProfileAC>
+type actionType=
+    | ReturnType<typeof getProfileAC>
+    | ReturnType<typeof ProfileChangeAC>
 
-type ContaksType={
-    facebook: string | null,
-    github: string | null,
-    instagram:string | null,
-    mainLink: string | null,
-    twitter: string | null,
-    vk: string | null,
-    website: string | null,
-    youtube: string | null
-}
-type initialStateType={
-    aboutMe: string,
-    contacts: ContaksType,
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string,
-    fullName: string
-}
