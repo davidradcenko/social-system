@@ -1,6 +1,6 @@
 import HeaderHtml from "../HeaderHtml";
 import {Navigate} from "react-router-dom";
-import React, {useCallback} from "react";
+import React, {useCallback, useState} from "react";
 import {RootState, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
 import testimg from "../../img/imgTest.jpeg.jpg"
@@ -14,11 +14,17 @@ export const Account = () => {
     const mainUserId = useSelector<RootState, string>(state => state.initialazed.mainUserId)
     const profileData = useSelector<RootState, initialStateProfileType>(state => state.profil)
 
-    const formik=useFormik({
-        validate:(values)=>{
-            const errors={}
+    const [stateChenge,setStateChande] = useState(false)
+
+
+
+
+
+    const formik = useFormik({
+        validate: (values) => {
+            const errors = {}
             if (values.)
-        }
+                }
     })
 
     const logoutHandler = () => {
@@ -51,9 +57,9 @@ export const Account = () => {
                     </ul>
                 </div>
             </div>
-                <div className={"MainBlockAccount"}>
-                    <form onSubmit={formik.handleSubmit}>
-                    <p>aboutMe: <span> {profileData.aboutMe} </span></p>
+            <div className={"MainBlockAccount"}>
+                <form onSubmit={formik.handleSubmit}>
+                    <p>aboutMe: <span onDoubleClick={chengeState}> {profileData.aboutMe} </span></p>
                     <h1>contacts:</h1>
                     <ul>
                         <li>facebook: <span> {profileData.contacts.facebook} </span></li>
@@ -66,8 +72,8 @@ export const Account = () => {
                         <li>youtube: <span> {profileData.contacts.youtube} </span></li>
                     </ul>
                     <p>lookingForAJobDescription: <span> {profileData.lookingForAJobDescription} </span></p>
-                    </form>
-                </div>
+                </form>
+            </div>
             <div className={"Users"}></div>
         </div>
     </>
