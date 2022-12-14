@@ -5,8 +5,10 @@ import {RootState, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
 import testimg from "../../img/imgTest.jpeg.jpg"
 import "./Account.css"
-import {initialStateProfileType, profilGetTK} from "../../Reducers/profilReducer";
+import {profilChangeTK, profilGetTK} from "../../Reducers/profilReducer";
 import {useFormik} from "formik";
+import {initialStateProfileType} from "../../API/api";
+import {loginIn} from "../../Reducers/LoginReducer";
 
 export const Account = () => {
     const dispatch = useAppDispatch()
@@ -17,14 +19,70 @@ export const Account = () => {
     const [stateChenge,setStateChande] = useState(false)
 
 
+const chengeState=(value:boolean)=>{
+    setStateChande(value)
+}
 
+    type FormikErrorType = {
+        aboutMe?: string
+        lookingForAJob?: boolean,
+        lookingForAJobDescription?: string,
+        fullName?: string
 
-
+        facebook?: string | null,
+        github?: string | null,
+        instagram?: string | null,
+        mainLink?: string | null,
+        twitter?: string | null,
+        vk?: string | null,
+        website?: string | null,
+        youtube?: string | null
+    }
     const formik = useFormik({
         validate: (values) => {
-            const errors = {}
-            if (values.)
-                }
+            const errors: FormikErrorType = {};
+
+            if (values.aboutMe.length >= 100) {
+                errors.aboutMe = 'Invalid aboutMe input, max literal 100';
+            }
+            if (values.lookingForAJobDescription.length >= 100) {
+                errors.lookingForAJobDescription = 'Invalid aboutMe input, max literal 100';
+            }
+            if (values.fullName.length >= 100) {
+                errors.fullName = 'Invalid aboutMe input, max literal 100';
+            }
+            if (values.facebook.length >= 100) {
+                errors.facebook = 'Invalid aboutMe input, max literal 100';
+            }
+            if (values.aboutMe.length >= 100) {
+                errors.aboutMe = 'Invalid aboutMe input, max literal 100';
+            }
+
+
+
+
+
+            return errors;
+        },
+
+        initialValues: {
+            aboutMe: profileData.aboutMe,
+            lookingForAJob: profileData.lookingForAJob,
+            lookingForAJobDescription: profileData.lookingForAJobDescription,
+            fullName: profileData.fullName,
+
+            facebook: profileData.contacts.facebook,
+            github:profileData.contacts.github,
+            instagram: profileData.contacts.instagram,
+            mainLink: profileData.contacts.mainLink,
+            twitter: profileData.contacts.twitter,
+            vk:profileData.contacts.vk,
+            website: profileData.contacts.website,
+            youtube: profileData.contacts.youtube
+        },
+        onSubmit: values => {
+            //dispatch(profilChangeTK(values))
+        },
     })
 
     const logoutHandler = () => {
@@ -59,7 +117,8 @@ export const Account = () => {
             </div>
             <div className={"MainBlockAccount"}>
                 <form onSubmit={formik.handleSubmit}>
-                    <p>aboutMe: <span onDoubleClick={chengeState}> {profileData.aboutMe} </span></p>
+                    <p>aboutMe:{stateChenge == false? <span> {profileData.aboutMe} </span> : <input {...formik.getFieldProps("aboutMe")} type="text"/>}</p>
+                    {formik.errors.aboutMe ? <div>{formik.errors.aboutMe}</div> : null}
                     <h1>contacts:</h1>
                     <ul>
                         <li>facebook: <span> {profileData.contacts.facebook} </span></li>
@@ -73,6 +132,7 @@ export const Account = () => {
                     </ul>
                     <p>lookingForAJobDescription: <span> {profileData.lookingForAJobDescription} </span></p>
                 </form>
+                {stateChenge == false ? <button type={'submit'}  onClick={()=>chengeState(true)}>Change</button>: <button type={'submit'}  onClick={()=>chengeState(false)}>Save</button>}
             </div>
             <div className={"Users"}></div>
         </div>
