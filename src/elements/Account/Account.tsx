@@ -52,7 +52,7 @@ const chengeState=(value:boolean)=>{
                 errors.fullName = 'Invalid aboutMe input, max literal 100';
             }
             if (values.facebook.length >= 100) {
-                errors.facebook = 'Invalid aboutMe input, max literal 100';
+                errors.facebook = 'Invalid aboutMe input, ma x literal 100';
             }
             if (values.aboutMe.length >= 100) {
                 errors.aboutMe = 'Invalid aboutMe input, max literal 100';
