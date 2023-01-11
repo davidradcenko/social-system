@@ -1,0 +1,42 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background: #AAA7A7;
+}
+.Main-block {
+    max-width: 1980px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+}
+
+.Navigation-block {
+    width: 20%;
+    height: 1616px;
+    border-left: 1px solid #B5B2B2;
+    border-bottom: 1px solid #B5B2B2;
+}
+
+.Content-block {
+    width: 80%;
+    height: 1616px;
+    border-bottom: 1px solid #B5B2B2;
+}
+.elements-navigation{
+    padding-left: 65px;
+    padding-top: 71px;
+}
+.Shot-data-user{
+    padding-top: 46px;
+}
+.Shot-data-user img{
+    border-radius: 100px;
+    width: 73px;
+    height: 73px;
+}
+.Shot-data-user img{
+
+}
