@@ -1,10 +1,13 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: 'Roboto';
 }
-body{
+
+body {
 
 }
+
 .Main-block {
     border: 1px solid red;
     max-width: 1980px;
@@ -14,13 +17,54 @@ body{
 
 .Navigation-block {
     border: 1px solid dodgerblue;
-    width: 20%;
+    width: 509px;
     height: 1616px;
-    border-left: 1px solid #B5B2B2;
-    border-bottom: 1px solid #B5B2B2;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
 }
-.all-elements-nav{
+
+.all-elements-nav {
     padding-left: 61px;
-    padding-top: 71px   ;
+    padding-top: 71px;
+}
+.profile{
+    padding-top: 46px;
+    display: flex;
+    align-items: center;
+}
+.profile img{
+    border-radius: 100%;
+    border: 1px solid red;
+    width: 73px;
+    height: 73px;
+}
+.profile p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-left: 10px;
+}
+.main-navi{
+    padding-top: 90px;
+}
+.ProfilIcon{
+    display: flex;
+}
+.ProfilIcon-text{
+    font-style: normal;
+    font-weight: 200;
+    font-size: 40px;
+    line-height: 47px;
+}
+.ProfilIcon-text p:last-child{
+    padding-top: 36px;
+}
+
+/* main-content */
+.Main-content{
+
 }
 
