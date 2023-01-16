@@ -6,17 +6,17 @@ export  const ProfileUser = ()=>{
     return(
         <div className={"Main-block"}>
             <div className={"Navigation-block"}>
-                <div className={'elements-navigation'}>
-                    <div className={"Logo"}>
+                <div className="all-elements-nav">
+                    <div className="logo-profil">
                         <img src="../../img/common.png" alt="common"/>
-                    </div>
-                    <div className={"Shot-data-user"}>
-                        <img src="" alt="img User"/>
-                        <p className={'Name-user'}>David Radchenko</p>
+                        <div className="profile">
+                            <div><img src="" alt="User img"/></div>
+                            <div><p>David Radchenko</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className={"Content-block"}></div>
+            <div className={"Main-block"}></div>
         </div>
     )
 }
