@@ -55,13 +55,15 @@ body {
     padding-top: 90px;
 
 }
-.AlseIcons{
+
+.AlseIcons {
     transition: 1s;
     margin-top: 72px;
     display: flex;
     align-items: start;
 }
-.AlseIcons p{
+
+.AlseIcons p {
     padding-left: 40px;
     font-family: 'Roboto';
     font-style: normal;
@@ -69,6 +71,7 @@ body {
     font-size: 40px;
     line-height: 47px;
 }
+
 .ProfilIcon {
     display: flex;
     align-items: start;
@@ -129,6 +132,7 @@ body {
     transform: rotate(180deg);
 
 }
+
 .VectorFals:hover {
     width: 18px;
     height: 18px;
@@ -140,3 +144,101 @@ body {
 
 }
 
+.mainChaend {
+    padding-top: 115px;
+    padding-left: 98px;
+}
+
+.main-info {
+    display: flex;
+}
+
+.lardge-foto img {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    border: 10px solid;
+    background: conic-gradient(from 149.25deg at 50% 50%, #00F536 -109.67deg, #3ED1FF 29.46deg, #FC037B 171.8deg, #00F536 250.33deg, #3ED1FF 389.46deg);
+    border-image-source: conic-gradient(from 149.25deg at 50% 50%, #00F536 -109.67deg, #3ED1FF 29.46deg, #FC037B 171.8deg, #00F536 250.33deg, #3ED1FF 389.46deg);
+}
+.info-profil{
+    padding-left: 100px;
+    text-align: center;
+    width: 754px;
+}
+.Name-InfoProfil{
+    font-family: 'Bruno Ace';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 58px;
+}
+.JobSearch-InfoProfil{
+    padding-top: 26px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #201F1F;
+}
+.Checkbox-InfoProfil{
+    display: inline-block;
+    background: #FDFDFD;
+    border: 1px solid rgba(81, 80, 80, 0.56);
+    border-radius: 5px;
+}
+.ProfessionSkils-InfoProfil{
+    padding-top: 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #201F1F;
+}
+.ProfessionsSkils-text-InfoProfil{
+    padding-top: 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: #0E0E0E;
+}
+.About-InfoProfil{
+    padding-top: 7px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #000000;
+}
+.About-text-InfoProfil{
+    color: #201F1F;
+    padding-top: 13px;
+    width: 754px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+}
+.Menu-recomen{
+    width: 1354px;
+    padding-top: 77px;
+    display: flex;
+    justify-content: space-between;
+}
+.seatch-menu{
+    width: 328px;
+    height: 40px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+.one-pas img{
+padding-top: 30px;
+}
