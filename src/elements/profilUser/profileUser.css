@@ -27,18 +27,21 @@ body {
     padding-left: 61px;
     padding-top: 71px;
 }
-.profile{
+
+.profile {
     padding-top: 46px;
     display: flex;
     align-items: center;
 }
-.profile img{
+
+.profile img {
     border-radius: 100%;
     border: 1px solid red;
     width: 73px;
     height: 73px;
 }
-.profile p{
+
+.profile p {
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -47,24 +50,93 @@ body {
     text-transform: uppercase;
     padding-left: 10px;
 }
-.main-navi{
+
+.main-navi {
     padding-top: 90px;
+
 }
-.ProfilIcon{
+.AlseIcons{
+    transition: 1s;
+    margin-top: 72px;
     display: flex;
+    align-items: start;
 }
-.ProfilIcon-text{
+.AlseIcons p{
+    padding-left: 40px;
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 200;
     font-size: 40px;
     line-height: 47px;
 }
-.ProfilIcon-text p:last-child{
+.ProfilIcon {
+    display: flex;
+    align-items: start;
+
+}
+
+.ProfilIcon-text {
+    padding-top: 20px;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 40px;
+    padding-left: 40px;
+    position: relative;
+}
+
+.ProfileIcpn-Test-p-false {
+    display: none;
+}
+
+.ProfileIcpn-Test-p-true {
     padding-top: 36px;
+    transition: 2s;
+    animation: ani 1s forwards;
+}
+
+@keyframes ani {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 100%
+    }
+}
+
+.VectorTrue {
+    position: absolute;
+    animation: ani 2s forwards;
+    width: 22px;
+    height: 22px;
+    right: -50px;
+    top: 33px;
+
+}
+
+.VectorTrue:hover {
+    width: 18px;
+    height: 18px;
+    transition: 1s;
+}
+
+.VectorFals {
+    position: absolute;
+    animation: ani 2s forwards;
+    width: 22px;
+    height: 22px;
+    right: -50px;
+    top: 113px;
+    transform: rotate(180deg);
+
+}
+.VectorFals:hover {
+    width: 18px;
+    height: 18px;
+    transition: 1s;
 }
 
 /* main-content */
-.Main-content{
+.Main-content {
 
 }
 
