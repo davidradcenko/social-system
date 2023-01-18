@@ -18,9 +18,16 @@ import vaiber from "../../img/icons-profel/Social-2.png";
 
 import customization from "../../img/icons-profel/customizachen.png";
 
+import testInfoBlockImg from "../../img/icons-profel/Ellipse 17.png";
+
 export const ProfileUser = () => {
     const [TextPapap, SetTextPapap] = useState(false)
     const [Vector, SetVector] = useState(true)
+    const [PapapSelection, SetPapapSelection] = useState(false)
+
+    const changeSetPapapSelection= ()=>{
+        SetPapapSelection(!PapapSelection)
+    }
 
     const changeSettextPapap = () => {
         SetTextPapap(!TextPapap)
@@ -80,7 +87,8 @@ export const ProfileUser = () => {
                         <div className={"info-profil"}>
                             <p className="Name-InfoProfil">DAVID RADCHENKO</p>
                             {/*Status-InfoProfil*/}
-                            <p className="JobSearch-InfoProfil">Job search: <input className={"Checkbox-InfoProfil"} type={"checkbox"}/></p>
+                            <p className="JobSearch-InfoProfil">Job search: <input className={"Checkbox-InfoProfil"}
+                                                                                   type={"checkbox"}/></p>
 
                             <p className="ProfessionSkils-InfoProfil">Frofessional skills:</p>
                             <p className="ProfessionsSkils-text-InfoProfil">React, Redux,CSS, My Sql,Oracle Databases,
@@ -101,13 +109,219 @@ export const ProfileUser = () => {
                     </div>
                     <div className="Menu-recomen">
                         <div className={"one-pas"}>
-                            <input className={"seatch-menu"} type="text"/>
-                            <img  src={customization} alt="customization"/>
+                            <input className={"seatch-menu"} type="text" placeholder={"Seach"}/>
+                            <img src={customization} alt="customization"/>
+                            <div className={"one-pass-customisazia"}>
+                                {/*<p className={"name-custom"}>Sort by:</p>*/}
+                                <div className="change-customizat">
+                                    <div>
+                                        <p>Status</p>
+                                        <p>Professional skills</p>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox"/>
+                                        <input type="checkbox"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className={"two-pas"}>
-                            <p className="recomend-menu"> <img src={customization} alt="customization"/>Recommendations</p>
+                            <img src={customization} alt="customization"/>
+                            <p className="recomend-menu"> Recommendations</p>
                         </div>
                     </div>
+
+
+                </div>
+
+                <div className={"content-functional"}>
+                    {/*one-pass*/}
+                    <div className={"one-pass-block-content"}>
+                        <div className="one-pass-info-black">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"one-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="one-pass-info-black">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"one-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="one-pass-info-black">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"one-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="one-pass-info-black">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"one-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="one-pass-info-black">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"one-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="one-pass-info-black">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"one-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                    </div>
+                    {/*two pass*/}
+                    <div className={"two-pas-block-content"}>
+                        <div className="two-pass-info-block">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"two-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="two-pass-info-block">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"two-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="two-pass-info-block">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"two-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="two-pass-info-block">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"two-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="two-pass-info-block">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"two-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                        <div className="two-pass-info-block">
+                            <div className={"one-pas-info"}>
+                                <div className={"one-pass-info-img"}>
+                                    <img src={testInfoBlockImg} alt="My followers litle img"/>
+                                </div>
+                                <div className={"one-pas-info-text"}>
+                                    <p className={"one-pas-info-text-name"}>Amanda Dius
+                                        <input type={"checkbox"}/></p>
+                                    <p className={"one-pas-info-text-qvalete"}>React, Redux,CSS</p>
+                                </div>
+                            </div>
+                            <div className={"two-pas-function"}>
+                                <input type="button" value={"Delete"}/>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
