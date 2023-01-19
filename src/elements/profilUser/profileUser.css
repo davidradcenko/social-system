@@ -367,12 +367,13 @@ body {
     text-align: center;
     color: #0E0E0E;
 }
-.one-pas-function input{
+
+.one-pas-function input {
     width: 227.17px;
     height: 40px;
     background: #D6D6D6;
     border-radius: 6px;
-    border: none ;
+    border: none;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 300;
@@ -383,7 +384,7 @@ body {
     color: #000000;
 }
 
-.two-pas-function input{
+.two-pas-function input {
     width: 227px;
     height: 40px;
     background: #80E3FF;
@@ -396,7 +397,8 @@ body {
     line-height: 28px;
     text-align: center;
 }
-.two-pass-info-block{
+
+.two-pass-info-block {
     padding: initial;
     /*margin: 40px 15px 10px 14px;*/
     margin: 35px 15px 45px 14px;
@@ -404,19 +406,71 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+
 /* customiza select*/
-.one-pass-customisazia{
+.one-pass-customisazia {
     width: 317px;
     height: 231px;
     background: #D9D9D9;
     position: absolute;
     right: -327px;
     top: -200px;
-    display: flex;
     z-index: 1;
 }
-.change-customizat{
-    display: flex;
-    w
-    padding: 37px 20px 40px 40px;
+.one-pass-customisazia-none{
+    display: none;
+}
+
+.change-customizat {
+    margin: 37px 20px 40px 40px;
+
+}
+
+.Customizasia-Status {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+.Customizasia-Status-NoCheked{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+.Customizasia-Profesion-Skills{
+    padding-top: 30px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+.Customizasia-Profesion-Skills-Cheked{
+    padding-top: 30px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 28px;
+    color: #000000;
+}
+.name-custom{
+    margin: 37px 97px 40px 40px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 24px;
+    line-height: 28px;
+}
+.Profesion-Skils-button{
+    margin-left: 48px;
+}
+.Status-button{
+    margin-left: 160px;
 }

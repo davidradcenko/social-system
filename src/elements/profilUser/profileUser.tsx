@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./profileUser.css";
 import ImgLogo from "../../img/common.png";
 
@@ -19,12 +19,17 @@ import vaiber from "../../img/icons-profel/Social-2.png";
 import customization from "../../img/icons-profel/customizachen.png";
 
 import testInfoBlockImg from "../../img/icons-profel/Ellipse 17.png";
+import {isBooleanObject} from "util/types";
 
 export const ProfileUser = () => {
     const [TextPapap, SetTextPapap] = useState(false)
     const [Vector, SetVector] = useState(true)
     const [PapapSelection, SetPapapSelection] = useState(false)
+    const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
 
+    const changeSetCheckboxStat=(valer:boolean)=>{
+        SetCheckboxStat(valer)
+    }
     const changeSetPapapSelection= ()=>{
         SetPapapSelection(!PapapSelection)
     }
@@ -33,6 +38,8 @@ export const ProfileUser = () => {
         SetTextPapap(!TextPapap)
         SetVector(!Vector)
     }
+
+
     return (
         <div className={"Main-block"}>
             <div className={"Navigation-block"}>
@@ -110,18 +117,13 @@ export const ProfileUser = () => {
                     <div className="Menu-recomen">
                         <div className={"one-pas"}>
                             <input className={"seatch-menu"} type="text" placeholder={"Seach"}/>
-                            <img src={customization} alt="customization"/>
-                            <div className={"one-pass-customisazia"}>
-                                {/*<p className={"name-custom"}>Sort by:</p>*/}
-                                <div className="change-customizat">
-                                    <div>
-                                        <p>Status</p>
-                                        <p>Professional skills</p>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox"/>
-                                        <input type="checkbox"/>
-                                    </div>
+                            <img onClick={changeSetPapapSelection} src={customization} alt="customization"/>
+                            {/*className={"one-pass-customisazia"}*/}
+                             <div className={PapapSelection== true? "one-pass-customisazia" : "one-pass-customisazia-none"} >
+                                <p className={"name-custom"}>Sort by:</p>
+                                <div onBlur={changeSetPapapSelection} className="change-customizat">
+                                    <p className={CheckboxStat==true? "Customizasia-Status":"Customizasia-Status-NoCheked"}>Status   <input className={"Status-button"} checked={CheckboxStat==true} onChange={()=>changeSetCheckboxStat(true)} name={"radio-customez"}  type="radio"/></p>
+                                    <p className={CheckboxStat==false?"Customizasia-Profesion-Skills-Cheked":"Customizasia-Profesion-Skills"}>Professional skills<input className={"Profesion-Skils-button"} checked={CheckboxStat==false} onChange={()=>changeSetCheckboxStat(false)} name={"radio-customez"}   type="radio"/></p>
                                 </div>
                             </div>
                         </div>
