@@ -136,8 +136,8 @@ export const ProfileUser = () => {
                                     <img src={website} alt="website"/>
                                 </div>
                                 <div className={"Edit-mode-social-inputs"}>
-                                    <input className={"Edit-mode-input-types"} type="text"/>
-                                    <img src="" alt=""/>
+                                    <input id={"Edit-mode-input-types"} type="text"/>
+                                    <img src={} alt=""/>
                                 </div>
                             </div>
 
