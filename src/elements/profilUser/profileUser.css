@@ -568,23 +568,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
     background: conic-gradient(from 149.25deg at 50% 50%, #00F536 -109.67deg, #3ED1FF 29.46deg, #FC037B 171.8deg, #00F536 250.33deg, #3ED1FF 389.46deg);
     box-shadow: -1px 9px 9px 0px rgba(0, 0, 0, 0.25);
     filter: drop-shadow(-1px 9px 9px rgba(0, 0, 0, 0.25));
 }
 .Edit-mode-Frofil img {
-    width: 170px;
-    height: 170px;
+    width: 140px;
+    height: 140px;
     border-radius: 100%;
 }
 
 .Edit-mode-Inputs{
-
     width: 436.41px;
-    margin-top:  15px;
+    margin-top:  0px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -653,6 +652,8 @@ body {
     transition: 1s;
 }
 .Edit-mode-social-inputs{
+    display: flex;
+    justify-content: space-between;
     width: 436px;
     height: 65px;
     left: 50px;
@@ -660,6 +661,12 @@ body {
     background: #FFFCFC;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 20px;
+}
+.Edit-mode-social-inputs img{
+    width: 31px;
+    height: 31px;
+    margin-top: 18px;
+    margin-right: 24px;
 }
 
 #Edit-mode-input-types{
@@ -672,4 +679,12 @@ body {
     background: #FFFCFC;
     border: 1px solid #949494;
     border-radius: 4px;
+}
+.Edit-mode-looking-for-job{
+    display: flex;
+}
+.Edit-mode-looking-for-job input{
+    margin-left: 40px;
+    width: 20px;
+    height: 20px;
 }

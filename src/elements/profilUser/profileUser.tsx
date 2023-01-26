@@ -29,7 +29,6 @@ import instagram from "../../img/nav-icons/icons-sosial/inst.png";
 import twiter from "../../img/nav-icons/icons-sosial/twiter.png";
 import website from "../../img/nav-icons/icons-sosial/www.png";
 import youtube from "../../img/nav-icons/icons-sosial/utub.png";
-
 export const ProfileUser = () => {
     const [TextPapap, SetTextPapap] = useState(false)
     const [Vector, SetVector] = useState(true)
@@ -60,6 +59,14 @@ export const ProfileUser = () => {
     const [EditModeProfil, SetEditModeProfil] = useState<boolean>(false)
     const changeSetEditModeProfil = () => {
         SetEditModeProfil(!EditModeProfil)
+    }
+
+    type typeIcons= "none"| typeof github | typeof vk | typeof facebook | typeof instagram | typeof twiter | typeof website | typeof youtube;
+
+    const [objectIconsState,SetObjectIconsState]= useState<typeIcons>(facebook)
+
+    const changeSetObjectIconsState=(value:typeIcons)=>{
+        SetObjectIconsState(value)
     }
 
     return (
@@ -121,23 +128,24 @@ export const ProfileUser = () => {
                             <div className="Edit-mode-Inputs">
                                 <p>Name:</p>
                                 <input id={"Edit-mode-Name"}  type="text"/>
-                                <p>Name:</p>
+                                <p className={"Edit-mode-looking-for-job"}>Job search: <input name={"dd"} type="checkbox"/></p>
+                                <p>Professional skills:</p>
                                 <input type="text"/>
                                 <p>About:</p>
                                 <textarea ></textarea>
                                 <p>Choose:</p>
                                 <div className={"Edit-mode-sosial"}>
-                                    <img src={twiter} alt="twiter"/>
-                                    <img src={facebook} alt="facebook"/>
-                                    <img src={vk} alt="vk"/>
-                                    <img src={instagram} alt="instagram"/>
-                                    <img src={youtube} alt="youtube"/>
-                                    <img src={github} alt="github"/>
-                                    <img src={website} alt="website"/>
+                                    <img onClick={()=>changeSetObjectIconsState(twiter)} src={twiter} alt="twiter"/>
+                                    <img onClick={()=>changeSetObjectIconsState(facebook)} src={facebook} alt="facebook"/>
+                                    <img onClick={()=>changeSetObjectIconsState(vk)} src={vk} alt="vk"/>
+                                    <img onClick={()=>changeSetObjectIconsState(instagram)} src={instagram} alt="instagram"/>
+                                    <img onClick={()=>changeSetObjectIconsState(youtube)} src={youtube} alt="youtube"/>
+                                    <img onClick={()=>changeSetObjectIconsState(github)} src={github} alt="github"/>
+                                    <img onClick={()=>changeSetObjectIconsState(website)} src={website} alt="website"/>
                                 </div>
                                 <div className={"Edit-mode-social-inputs"}>
                                     <input id={"Edit-mode-input-types"} type="text"/>
-                                    <img src={} alt=""/>
+                                    <img src={objectIconsState} alt=""/>
                                 </div>
                             </div>
 
