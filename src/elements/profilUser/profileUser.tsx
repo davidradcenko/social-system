@@ -12,10 +12,6 @@ import imgVector from "../../img/nav-icons/Vector 1.jpg";
 import testForo from "../../img/unsplash_ILip77SbmOE.png";
 
 
-
-
-
-
 import VectopCloseEditWindow from "../../img/Vector-close-Edit-profil.png";
 
 import customization from "../../img/icons-profel/customizachen.png";
@@ -29,6 +25,7 @@ import instagram from "../../img/nav-icons/icons-sosial/inst.png";
 import twiter from "../../img/nav-icons/icons-sosial/twiter.png";
 import website from "../../img/nav-icons/icons-sosial/www.png";
 import youtube from "../../img/nav-icons/icons-sosial/utub.png";
+
 export const ProfileUser = () => {
     const [TextPapap, SetTextPapap] = useState(false)
     const [Vector, SetVector] = useState(true)
@@ -42,7 +39,11 @@ export const ProfileUser = () => {
     const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
     const [PapapSelection2, SetPapapSelection2] = useState(false)
     const [CheckboxStat2, SetCheckboxStat2] = useState<boolean>()
+    const [SeatchFormActivated, SetSeatchFormActivated] = useState<boolean>(false)
 
+    const changesActivatedSeatch = () => {
+        SetSeatchFormActivated(!SeatchFormActivated)
+    }
     const changeSetCheckboxStat2 = (valer: boolean) => {
         SetCheckboxStat2(valer)
     }
@@ -61,11 +62,19 @@ export const ProfileUser = () => {
         SetEditModeProfil(!EditModeProfil)
     }
 
-    type typeIcons= "none"| typeof github | typeof vk | typeof facebook | typeof instagram | typeof twiter | typeof website | typeof youtube;
+    type typeIcons =
+        "none"
+        | typeof github
+        | typeof vk
+        | typeof facebook
+        | typeof instagram
+        | typeof twiter
+        | typeof website
+        | typeof youtube;
 
-    const [objectIconsState,SetObjectIconsState]= useState<typeIcons>(facebook)
+    const [objectIconsState, SetObjectIconsState] = useState<typeIcons>(facebook)
 
-    const changeSetObjectIconsState=(value:typeIcons)=>{
+    const changeSetObjectIconsState = (value: typeIcons) => {
         SetObjectIconsState(value)
     }
 
@@ -107,7 +116,7 @@ export const ProfileUser = () => {
                         </div>
                         <div className={"AlseIcons"}>
                             <img src={SeachIcon} alt="SeachIcon"/>
-                            <p>Seach</p>
+                            <p onClick={changesActivatedSeatch}>Seach</p>
                         </div>
                         <div className={"AlseIcons"}>
                             <img src={SetingsIcon} alt="SetingsIcon"/>
@@ -125,35 +134,53 @@ export const ProfileUser = () => {
                         <p>Edit profile</p>
                         <div className="EditMode-classfotoFrofel-gradient"><img src={testForo} alt="testForo"/></div>
 
-                            <div className="Edit-mode-Inputs">
-                                <p>Name:</p>
-                                <input id={"Edit-mode-Name"}  type="text"/>
-                                <p className={"Edit-mode-looking-for-job"}>Job search: <input name={"dd"} type="checkbox"/></p>
-                                <p>Professional skills:</p>
-                                <input type="text"/>
-                                <p>About:</p>
-                                <textarea ></textarea>
-                                <p>Choose:</p>
-                                <div className={"Edit-mode-sosial"}>
-                                    <img onClick={()=>changeSetObjectIconsState(twiter)} src={twiter} alt="twiter"/>
-                                    <img onClick={()=>changeSetObjectIconsState(facebook)} src={facebook} alt="facebook"/>
-                                    <img onClick={()=>changeSetObjectIconsState(vk)} src={vk} alt="vk"/>
-                                    <img onClick={()=>changeSetObjectIconsState(instagram)} src={instagram} alt="instagram"/>
-                                    <img onClick={()=>changeSetObjectIconsState(youtube)} src={youtube} alt="youtube"/>
-                                    <img onClick={()=>changeSetObjectIconsState(github)} src={github} alt="github"/>
-                                    <img onClick={()=>changeSetObjectIconsState(website)} src={website} alt="website"/>
-                                </div>
-                                <div className={"Edit-mode-social-inputs"}>
-                                    <input id={"Edit-mode-input-types"} type="text"/>
-                                    <img src={objectIconsState} alt=""/>
-                                </div>
+                        <div className="Edit-mode-Inputs">
+                            <p>Name:</p>
+                            <input id={"Edit-mode-Name"} type="text"/>
+                            <p className={"Edit-mode-looking-for-job"}>Job search: <input name={"dd"} type="checkbox"/>
+                            </p>
+                            <p>Professional skills:</p>
+                            <input type="text"/>
+                            <p>About:</p>
+                            <textarea></textarea>
+                            <p>Choose:</p>
+                            <div className={"Edit-mode-sosial"}>
+                                <img onClick={() => changeSetObjectIconsState(twiter)} src={twiter} alt="twiter"/>
+                                <img onClick={() => changeSetObjectIconsState(facebook)} src={facebook} alt="facebook"/>
+                                <img onClick={() => changeSetObjectIconsState(vk)} src={vk} alt="vk"/>
+                                <img onClick={() => changeSetObjectIconsState(instagram)} src={instagram}
+                                     alt="instagram"/>
+                                <img onClick={() => changeSetObjectIconsState(youtube)} src={youtube} alt="youtube"/>
+                                <img onClick={() => changeSetObjectIconsState(github)} src={github} alt="github"/>
+                                <img onClick={() => changeSetObjectIconsState(website)} src={website} alt="website"/>
                             </div>
+                            <div className={"Edit-mode-social-inputs"}>
+                                <input value={"https://"} id={"Edit-mode-input-types"} type="text"/>
+                                <img src={objectIconsState} alt=""/>
+                            </div>
+                        </div>
 
                     </div>
-                    {/*Edit mode close*/}
-
                 </div>
-                <div className={EditModeProfil == true ? "boground-Shadow" : "boground-Shadow-none"}></div>
+                <div className={SeatchFormActivated == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
+                    <img onClick={changesActivatedSeatch} className={"VectopCloseEditWindow"}
+                         src={VectopCloseEditWindow} alt="VectopCloseEditWindow"/>
+                    {/*Edit Menu start*/}
+                    <div className="Edit-mode-Frofil">
+                        <p>Search</p>
+                        <div className="Search-mode-Inputs">
+                            <p>Name:</p>Edit-mode-Inputs
+                            <input id={"Edit-mode-Name"} type="text"/>
+                            <input id={"ButtonForSearch"} value={"Apply"} type="button"/>
+                            <p>Professional skills:</p>
+                            <input type="text"/>
+                            <input id={"ButtonForSearch"} value={"Apply"} type="button"/>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div className={EditModeProfil || SeatchFormActivated  == true ? "boground-Shadow" : "boground-Shadow-none"}></div>
                 <div className="mainChaend">
                     <div className="main-info">
                         <div className={"lardge-foto"}>

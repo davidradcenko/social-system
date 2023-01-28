@@ -688,3 +688,19 @@ body {
     width: 20px;
     height: 20px;
 }
+/*search form*/
+#ButtonForSearch{
+    margin-top: 15px;
+    width: 225px;
+    height: 40px;
+    background: #FCCD54;
+    border-radius: 6px;
+}
+.Search-mode-Inputs{
+    width: 436.41px;
+    margin-top:  0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+}
