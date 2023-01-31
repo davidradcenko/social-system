@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./profileUser.css";
 import ImgLogo from "../../img/common.png";
 
@@ -26,6 +26,11 @@ import twiter from "../../img/nav-icons/icons-sosial/twiter.png";
 import website from "../../img/nav-icons/icons-sosial/www.png";
 import youtube from "../../img/nav-icons/icons-sosial/utub.png";
 
+
+
+import {SeatchUsersComponent} from "./componenst/Seatch-usersComponent";
+import {EditModeProfilWind} from "./componenst/Edit-mode-profil-wind";
+
 export const ProfileUser = () => {
     const [TextPapap, SetTextPapap] = useState(false)
     const [Vector, SetVector] = useState(true)
@@ -43,6 +48,9 @@ export const ProfileUser = () => {
 
     const changesActivatedSeatch = () => {
         SetSeatchFormActivated(!SeatchFormActivated)
+        if(!SeatchFormActivated==true){
+            SetEditModeProfil(false)
+        }
     }
     const changeSetCheckboxStat2 = (valer: boolean) => {
         SetCheckboxStat2(valer)
@@ -60,6 +68,9 @@ export const ProfileUser = () => {
     const [EditModeProfil, SetEditModeProfil] = useState<boolean>(false)
     const changeSetEditModeProfil = () => {
         SetEditModeProfil(!EditModeProfil)
+        if(!EditModeProfil==true){
+            SetSeatchFormActivated(false)
+        }
     }
 
     type typeIcons =
@@ -78,7 +89,11 @@ export const ProfileUser = () => {
         SetObjectIconsState(value)
     }
 
-    return (
+
+
+
+
+    return(
         <div className={"Main-block"}>
             <div className={"Navigation-block"}>
                 <div className="all-elements-nav">
@@ -100,7 +115,7 @@ export const ProfileUser = () => {
                                     <img className={"VectorFals"} onClick={changeSettextPapap} src={imgVector}
                                          alt="imgVector"/>}
                                 {TextPapap == true ? <p onClick={changeSetEditModeProfil}
-                                                        className={EditModeProfil == true ? "ProfileIcpn-Test-p-true BlackOnCliked" : "ProfileIcpn-Test-p-true"}>Edit
+                                                        className={EditModeProfil == true ? "ProfileIcpn-Test-p-trueBlackOnCliked" : "ProfileIcpn-Test-p-true"}>Edit
                                         profile</p> :
                                     <p className={"ProfileIcpn-Test-p-false"}>Edit profile</p>}
                             </div>
@@ -116,7 +131,7 @@ export const ProfileUser = () => {
                         </div>
                         <div className={"AlseIcons"}>
                             <img src={SeachIcon} alt="SeachIcon"/>
-                            <p onClick={changesActivatedSeatch}>Seach</p>
+                            <p className={SeatchFormActivated == true? "SeatchFormActive" : "" } onClick={changesActivatedSeatch} >Seach</p>
                         </div>
                         <div className={"AlseIcons"}>
                             <img src={SetingsIcon} alt="SetingsIcon"/>
@@ -126,61 +141,17 @@ export const ProfileUser = () => {
                 </div>
             </div>
             <div className={"Main-content"}>
-                <div className={EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
-                    <img onClick={changeSetEditModeProfil} className={"VectopCloseEditWindow"}
-                         src={VectopCloseEditWindow} alt="VectopCloseEditWindow"/>
-                    {/*Edit Menu start*/}
-                    <div className="Edit-mode-Frofil">
-                        <p>Edit profile</p>
-                        <div className="EditMode-classfotoFrofel-gradient"><img src={testForo} alt="testForo"/></div>
 
-                        <div className="Edit-mode-Inputs">
-                            <p>Name:</p>
-                            <input id={"Edit-mode-Name"} type="text"/>
-                            <p className={"Edit-mode-looking-for-job"}>Job search: <input name={"dd"} type="checkbox"/>
-                            </p>
-                            <p>Professional skills:</p>
-                            <input type="text"/>
-                            <p>About:</p>
-                            <textarea></textarea>
-                            <p>Choose:</p>
-                            <div className={"Edit-mode-sosial"}>
-                                <img onClick={() => changeSetObjectIconsState(twiter)} src={twiter} alt="twiter"/>
-                                <img onClick={() => changeSetObjectIconsState(facebook)} src={facebook} alt="facebook"/>
-                                <img onClick={() => changeSetObjectIconsState(vk)} src={vk} alt="vk"/>
-                                <img onClick={() => changeSetObjectIconsState(instagram)} src={instagram}
-                                     alt="instagram"/>
-                                <img onClick={() => changeSetObjectIconsState(youtube)} src={youtube} alt="youtube"/>
-                                <img onClick={() => changeSetObjectIconsState(github)} src={github} alt="github"/>
-                                <img onClick={() => changeSetObjectIconsState(website)} src={website} alt="website"/>
-                            </div>
-                            <div className={"Edit-mode-social-inputs"}>
-                                <input value={"https://"} id={"Edit-mode-input-types"} type="text"/>
-                                <img src={objectIconsState} alt=""/>
-                            </div>
-                        </div>
+                <EditModeProfilWind objectIconsState={objectIconsState}
+                                    changeSetObjectIconsState={changeSetObjectIconsState}
+                                    EditModeProfil={EditModeProfil} changeSetEditModeProfil={changeSetEditModeProfil}/>
 
-                    </div>
-                </div>
-                <div className={SeatchFormActivated == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
-                    <img onClick={changesActivatedSeatch} className={"VectopCloseEditWindow"}
-                         src={VectopCloseEditWindow} alt="VectopCloseEditWindow"/>
-                    {/*Edit Menu start*/}
-                    <div className="Edit-mode-Frofil">
-                        <p>Search</p>
-                        <div className="Search-mode-Inputs">
-                            <p>Name:</p>Edit-mode-Inputs
-                            <input id={"Edit-mode-Name"} type="text"/>
-                            <input id={"ButtonForSearch"} value={"Apply"} type="button"/>
-                            <p>Professional skills:</p>
-                            <input type="text"/>
-                            <input id={"ButtonForSearch"} value={"Apply"} type="button"/>
+                <SeatchUsersComponent SeatchFormActivated={SeatchFormActivated}
+                                      changesActivatedSeatch={changesActivatedSeatch}/>
 
-                        </div>
 
-                    </div>
-                </div>
-                <div className={EditModeProfil || SeatchFormActivated  == true ? "boground-Shadow" : "boground-Shadow-none"}></div>
+                <div
+                    className={EditModeProfil || SeatchFormActivated == true ? "boground-Shadow" : "boground-Shadow-none"}></div>
                 <div className="mainChaend">
                     <div className="main-info">
                         <div className={"lardge-foto"}>

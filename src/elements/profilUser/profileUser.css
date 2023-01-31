@@ -16,8 +16,8 @@ body {
 
 .Navigation-block {
     border: 1px solid #B5B2B2;
-    width: 509px;
-    height: 1616px;
+    max-width: 509px;
+    /*height: 1616px;*/
     border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
@@ -92,10 +92,20 @@ body {
 
 .ProfileIcpn-Test-p-true {
     padding-top: 36px;
-    transition: 2s;
+    -webkit-transition: font-size  1s;
     animation: ani 1s forwards;
 }
-
+.ProfileIcpn-Test-p-trueBlackOnCliked{
+    padding-top: 36px;
+    font-weight: 500 !important;
+    -webkit-transition: font-size  1s;
+    animation:   ani 1s forwards;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 32px;
+    line-height: 38px;
+    color: #000000;
+}
 @keyframes ani {
     0% {
         opacity: 0
@@ -160,7 +170,8 @@ body {
 .main-info {
     display: flex;
 }
-.Foto-classfotoFrofel-gradient{
+
+.Foto-classfotoFrofel-gradient {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,11 +182,13 @@ body {
     box-shadow: -1px 9px 9px 0px rgba(0, 0, 0, 0.25);
     filter: drop-shadow(-1px 9px 9px rgba(0, 0, 0, 0.25));
 }
-.Foto-classfotoFrofel-gradient img{
+
+.Foto-classfotoFrofel-gradient img {
     width: 320px;
     height: 320px;
     border-radius: 100%;
 }
+
 .info-profil {
     padding-left: 100px;
     text-align: center;
@@ -524,7 +537,16 @@ body {
     z-index: 101;
     border: 1px solid #3ED1FF;
 }
-
+.Seatch-profil-menu{
+    position: absolute;
+    width: 628px;
+    height: 880px;
+    background: #FFFFFF;
+    top: 90px;
+    left: 85px;
+    z-index: 101;
+    border: 1px solid #3ED1FF;
+}
 .VectopCloseEditWindow {
     position: absolute;
     top: -24px;
@@ -553,7 +575,7 @@ body {
 }
 
 .Edit-mode-Frofil p {
-   margin-top: 25px;
+    margin-top: 25px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
@@ -563,7 +585,8 @@ body {
     text-transform: uppercase;
     color: rgba(14, 14, 14, 0.6);
 }
-.EditMode-classfotoFrofel-gradient{
+
+.EditMode-classfotoFrofel-gradient {
     margin-top: 30px;
     display: flex;
     justify-content: center;
@@ -575,21 +598,23 @@ body {
     box-shadow: -1px 9px 9px 0px rgba(0, 0, 0, 0.25);
     filter: drop-shadow(-1px 9px 9px rgba(0, 0, 0, 0.25));
 }
+
 .Edit-mode-Frofil img {
     width: 140px;
     height: 140px;
     border-radius: 100%;
 }
 
-.Edit-mode-Inputs{
+.Edit-mode-Inputs {
     width: 436.41px;
-    margin-top:  0px;
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
 }
-.Edit-mode-Inputs p{
+
+.Edit-mode-Inputs p {
     dfont-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
@@ -599,7 +624,8 @@ body {
 
     color: rgba(32, 31, 31, 0.5);
 }
-.Edit-mode-Inputs input{
+
+.Edit-mode-Inputs input {
     padding-left: 15px;
     border: 1px solid #949494;
     border-radius: 4px;
@@ -612,7 +638,8 @@ body {
     font-size: 20px;
     line-height: 23px;
 }
-.Edit-mode-Inputs textarea{
+
+.Edit-mode-Inputs textarea {
     width: 100%;
     height: 148.44px;
     resize: none;
@@ -624,14 +651,16 @@ body {
     line-height: 23px;
     padding-top: 17px;
 }
-#Edit-mode-Name{
+
+#Edit-mode-Name {
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
     color: #000000;
 }
-.Edit-mode-sosial{
+
+.Edit-mode-sosial {
     width: 100%;
     height: 40px;
     padding-top: 10px;
@@ -639,19 +668,22 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-.Edit-mode-sosial img{
+
+.Edit-mode-sosial img {
     width: 30px;
     height: 30px;
     margin-right: 23px;
 }
-.Edit-mode-sosial img:hover{
+
+.Edit-mode-sosial img:hover {
     width: 40px;
     height: 40px;
     margin-right: 23px;
     box-shadow: 10px 10px 10px 0px #00000066;
     transition: 1s;
 }
-.Edit-mode-social-inputs{
+
+.Edit-mode-social-inputs {
     display: flex;
     justify-content: space-between;
     width: 436px;
@@ -662,14 +694,15 @@ body {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 20px;
 }
-.Edit-mode-social-inputs img{
+
+.Edit-mode-social-inputs img {
     width: 31px;
     height: 31px;
     margin-top: 18px;
     margin-right: 24px;
 }
 
-#Edit-mode-input-types{
+#Edit-mode-input-types {
     margin-top: 18px;
     margin-left: 20px;
     width: 320px;
@@ -680,27 +713,195 @@ body {
     border: 1px solid #949494;
     border-radius: 4px;
 }
-.Edit-mode-looking-for-job{
+
+.Edit-mode-looking-for-job {
     display: flex;
 }
-.Edit-mode-looking-for-job input{
+
+.Edit-mode-looking-for-job input {
     margin-left: 40px;
     width: 20px;
     height: 20px;
 }
+
 /*search form*/
-#ButtonForSearch{
+.Seatch-div {
+    display: flex;
+    flex-direction: column;
+    margin: 35px 50px 40px 50px;
+}
+
+.Seatch-div-Search {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(14, 14, 14, 0.6);
+    align-items: center;
+}
+
+.Search-mode-Inputs {
+    padding-top: 30px;
+    width: 527px;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Search-mode-name {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 38px;
+    color: #0E0E0E;
+    padding-left: 17px;
+    margin-top: 3px;
+}
+
+.Seatch-div-Professional-skills {
+    margin-top: 3px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: #0E0E0E;
+    padding-left: 17px;
+}
+
+.Search-mode-Inputs p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: rgba(32, 31, 31, 0.5);
+}
+
+#ButtonForSearch {
+    margin-left: auto;
     margin-top: 15px;
     width: 225px;
     height: 40px;
     background: #FCCD54;
     border-radius: 6px;
+    border: none;
 }
-.Search-mode-Inputs{
-    width: 436.41px;
-    margin-top:  0px;
+
+.Seatch-wind-Status {
+    padding-top: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #0E0E0E !important;
+}
+
+.Seatch-wind-JobSearch {
+    padding-top: 20px;
+}
+
+.Seatch-wind-Status input:first-child {
+    margin-left: 9px;
+}
+
+.Seatch-wind-Status input:last-child {
+    margin-left: 20px;
+}
+
+.Seatch-wind-Status-div {
     display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: start;
+    align-items: center;
+}
+
+.ButtonForSearchmargin {
+    margin-left: auto;
+    margin-top: 15px;
+    width: 225px;
+    height: 40px;
+    background: #FCCD54;
+    border-radius: 6px;
+    border: none;
+    margin-top: 0px;
+}
+
+.Seatch-formAnsve {
+    padding-top: 33px;
+}
+
+.Seatch-Results {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(32, 31, 31, 0.5);
+}
+
+.Seach-Wind-Answs {
+    overflow: auto;
+    height: 380px;
+    border: 1px solid #949494;
+    border-radius: 4px;
+}
+.Seach-Wind-Answs::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+.Seatch-wind-ans {
+    display: flex;
+    align-items: center;
+    padding: 9px 10px 9px 9px;
+}
+
+.Seatch-wind-ans-info {
+    padding-left: 26px;
+}
+
+.Seatch-wind-ans-info p:first-child {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.Seatch-wind-ans-info p:last-child {
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #0E0E0E;
+    white-space: nowrap;
+}
+.Setch-answ-wind-button{
+    width: 227px;
+    height: 40px;
+    background: #80E3FF;
+    border-radius: 6px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #000000;
+    border: none;
+    margin-left: 35px;
+}
+.SeatchFormActive{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 32px;
+    line-height: 38px;
+    color: #000000;
 }
