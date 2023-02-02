@@ -19,8 +19,6 @@ body {
 .Navigation-block {
     border: 1px solid #B5B2B2;
     width: 509px;
-    min-width: 405px;
-    /*height: 1616px;*/
     border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
@@ -79,7 +77,9 @@ body {
     align-items: start;
 
 }
-
+.AlseIcons-HomeIcon{
+    display: none;
+}
 .ProfilIcon-text {
     padding-top: 20px;
     font-style: normal;
@@ -169,7 +169,6 @@ body {
     padding-top: 115px;
     padding-left: 98px;
 }
-
 .main-info {
     display: flex;
 }
@@ -267,7 +266,7 @@ body {
 }
 
 .Menu-recomen {
-    width: 1354px;
+    max-width: 1354px;
     padding-top: 77px;
     display: flex;
     justify-content: space-between;

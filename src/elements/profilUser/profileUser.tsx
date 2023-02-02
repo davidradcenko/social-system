@@ -30,17 +30,6 @@ export const ProfileUser = () => {
 
     return (
         <div className={"Main-block"}>
-            <div>
-                <label>
-                    <input type="checkbox"/>
-                        <span className="menu"> <span className="hamburger"></span> </span>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                </label>
-            </div>
 
             <NavigationBlock
                 SeatchFormActivated={SeatchFormActivated}
@@ -62,7 +51,7 @@ export const ProfileUser = () => {
                     <MainInfo/>
                     <MainBlockFilters/>
                 </div>
-                <MainBlockUsersInfo/>
+                    <MainBlockUsersInfo/>
             </div>
         </div>
     )

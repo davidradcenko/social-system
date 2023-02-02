@@ -33,7 +33,7 @@ export const NavigationBlock = (props:NavigationBlockTypes) => {
         <div className={"Navigation-block"}>
             <div className="all-elements-nav">
                 <div className="logo-profil">
-                    <img src={ImgLogo} alt="common"/>
+                    <img className={'logo-profilLOGO'} src={ImgLogo} alt="common"/>
                     <div className="profile">
                         <img src="" alt="User img"/>
                         <p>David Radchenko</p>
@@ -63,6 +63,10 @@ export const NavigationBlock = (props:NavigationBlockTypes) => {
                         </div>
                     </div>
 
+                    <div className={"AlseIcons-HomeIcon AlseIcons"}>
+                        <img onClick={props.changeSetEditModeProfil} src={HomeIcon} alt="HomeIcon"/>
+                    </div>
+
                     <div className={"AlseIcons"}>
                         <img src={DialogsIcon} alt="DialogsIcon"/>
                         <p>Dialogs</p>
@@ -72,7 +76,7 @@ export const NavigationBlock = (props:NavigationBlockTypes) => {
                         <p>Message</p>
                     </div>
                     <div className={"AlseIcons"}>
-                        <img src={SeachIcon} alt="SeachIcon"/>
+                        <img onClick={props.changesActivatedSeatch} src={SeachIcon} alt="SeachIcon"/>
                         <p className={props.SeatchFormActivated == true ? "SeatchFormActive" : ""}
                            onClick={props.changesActivatedSeatch}>Seach</p>
                     </div>
