@@ -1,9 +1,9 @@
 import * as React from 'react';
+import {useCallback} from 'react';
 import "./HeaderCSS.css"
 import {Link, Navigate} from "react-router-dom";
 import {RootState, useAppDispatch} from "../store/store";
 import {useSelector} from "react-redux";
-import {useCallback, useEffect} from "react";
 import {LoginOut} from "../Reducers/LoginReducer";
 
 type HeaderType ={

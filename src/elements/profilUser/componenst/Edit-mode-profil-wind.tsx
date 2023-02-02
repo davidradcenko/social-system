@@ -7,9 +7,24 @@ import instagram from "../../../img/nav-icons/icons-sosial/inst.png";
 import youtube from "../../../img/nav-icons/icons-sosial/utub.png";
 import github from "../../../img/nav-icons/icons-sosial/github.svg";
 import website from "../../../img/nav-icons/icons-sosial/www.png";
-import React from "react";
+import React, {useState} from "react";
 
-export const EditModeProfilWind=(props)=>{
+export const EditModeProfilWind=(props:any)=>{
+    type typeIcons =
+        "none"
+        | typeof github
+        | typeof vk
+        | typeof facebook
+        | typeof instagram
+        | typeof twiter
+        | typeof website
+        | typeof youtube;
+
+    const [objectIconsState, SetObjectIconsState] = useState<typeIcons>(facebook)
+
+    const changeSetObjectIconsState = (value: typeIcons) => {
+        SetObjectIconsState(value)
+    }
     return(
         <div className={props.EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
             <img onClick={props.changeSetEditModeProfil} className={"VectopCloseEditWindow"}
@@ -30,18 +45,18 @@ export const EditModeProfilWind=(props)=>{
                     <textarea></textarea>
                     <p>Choose:</p>
                     <div className={"Edit-mode-sosial"}>
-                        <img onClick={() => props.changeSetObjectIconsState(twiter)} src={twiter} alt="twiter"/>
-                        <img onClick={() => props.changeSetObjectIconsState(facebook)} src={facebook} alt="facebook"/>
-                        <img onClick={() => props.changeSetObjectIconsState(vk)} src={vk} alt="vk"/>
-                        <img onClick={() => props.changeSetObjectIconsState(instagram)} src={instagram}
+                        <img onClick={() => changeSetObjectIconsState(twiter)} src={twiter} alt="twiter"/>
+                        <img onClick={() =>changeSetObjectIconsState(facebook)} src={facebook} alt="facebook"/>
+                        <img onClick={() => changeSetObjectIconsState(vk)} src={vk} alt="vk"/>
+                        <img onClick={() => changeSetObjectIconsState(instagram)} src={instagram}
                              alt="instagram"/>
-                        <img onClick={() => props.changeSetObjectIconsState(youtube)} src={youtube} alt="youtube"/>
-                        <img onClick={() => props.changeSetObjectIconsState(github)} src={github} alt="github"/>
-                        <img onClick={() => props.changeSetObjectIconsState(website)} src={website} alt="website"/>
+                        <img onClick={() => changeSetObjectIconsState(youtube)} src={youtube} alt="youtube"/>
+                        <img onClick={() => changeSetObjectIconsState(github)} src={github} alt="github"/>
+                        <img onClick={() => changeSetObjectIconsState(website)} src={website} alt="website"/>
                     </div>
                     <div className={"Edit-mode-social-inputs"}>
                         <input value={"https://"} id={"Edit-mode-input-types"} type="text"/>
-                        <img src={props.objectIconsState} alt=""/>
+                        <img src={objectIconsState} alt=""/>
                     </div>
                 </div>
 
