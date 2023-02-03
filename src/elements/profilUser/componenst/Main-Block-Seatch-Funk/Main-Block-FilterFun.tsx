@@ -1,8 +1,9 @@
 import {EditModeProfilWind} from "../Edit-mode-profil-wind";
 import {SeatchUsersComponent} from "../Seatch-usersComponent";
-import React from "react";
+import React, {useState} from "react";
 
 export const MainBlockFilterFun = (props: any) => {
+
     return (<>
 
         <EditModeProfilWind

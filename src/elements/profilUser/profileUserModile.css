@@ -67,9 +67,17 @@
         flex-direction: column;
     }
 }
+@media (min-width: 1506px) {
+    .one-pass-block-content{
+        display: block !important;
+    }
+    .two-pas-block-content{
+        display: block !important;
+    }
+}
 @media (max-width: 1506px) {
     .two-pas-block-content {
-        display: none;
+        min-width: 702px;
     }
     .two-pas{
         display: none;
@@ -91,8 +99,23 @@
     .content-functional{
         justify-content: center;
     }
+    .ChangeReSalt{
+        display: inline-block;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+        color: #201F1F;
+    }
+    .content-functional{
+        margin-left: 0px;
+    }
     .Menu-recomen{
-        justify-content: center;
+        max-width: 702px;
+        margin: 0 auto;
+        justify-content: space-between;
     }
     .one-pass-customisazia{
         right: 45px;
@@ -116,9 +139,8 @@
         width: 211px;
         height: 211px;
     }
-    .Menu-recomen{
-        justify-content: start;
-        padding-left: 20px;
+    .main-info{
+        align-items: center;
     }
     .one-pass-customisazia{
         right: 45px;
@@ -164,7 +186,8 @@
         padding-right: 0px;
     }
     .Menu-recomen{
-        padding-left: 47px
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .profile img{
         width: 30px;
@@ -173,4 +196,7 @@
     .Edit-profil-menu{
         top: 42px;
     }
+}
+@media (max-width: 723px) {
+
 }

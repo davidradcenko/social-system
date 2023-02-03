@@ -1,7 +1,11 @@
 import customization from "../../../img/icons-profel/customizachen.png";
 import React, {useState} from "react";
 
-export const MainBlockFilters=()=>{
+type ResultFilterType={
+    chengeStateResultTable:()=>void,
+    StateResultTable:"Followers" | "Recommendations"
+}
+export const MainBlockFilters=(props:ResultFilterType)=>{
     const [PapapSelection, SetPapapSelection] = useState(false)
     const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
     const [PapapSelection2, SetPapapSelection2] = useState(false)
@@ -18,6 +22,7 @@ export const MainBlockFilters=()=>{
     const changeSetCheckboxStat2 = (valer: boolean) => {
         SetCheckboxStat2(valer)
     }
+
     return(
         <div className="Menu-recomen">
             <div className={"one-pas"}>
@@ -61,6 +66,7 @@ export const MainBlockFilters=()=>{
                     </div>
                 </div>
             </div>
+            <p onClick={props.chengeStateResultTable} className={'ChangeReSalt'}>{props.StateResultTable}</p>
         </div>
     )
 }

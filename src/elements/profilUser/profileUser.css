@@ -172,7 +172,9 @@ body {
 .main-info {
     display: flex;
 }
-
+.ChangeReSalt{
+    display: none;
+}
 .Foto-classfotoFrofel-gradient {
     display: flex;
     justify-content: center;
@@ -292,6 +294,7 @@ body {
 }
 
 .social-InfoProffil img {
+    padding-top: 15px;
     margin-right: 10px;
     height: 38px;
     width: 38px;
@@ -336,7 +339,7 @@ body {
 }
 
 .one-pass-block-content {
-    width: 701px;
+    min-width: 701px;
     background: #FFFFFF;
     border: 1px solid #DFDBDB;
     border-radius: 8px;
@@ -587,7 +590,9 @@ body {
     text-transform: uppercase;
     color: rgba(14, 14, 14, 0.6);
 }
-
+.ClassDisplayNone{
+    display: none;
+}
 .EditMode-classfotoFrofel-gradient {
     margin-top: 30px;
     display: flex;

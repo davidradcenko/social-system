@@ -1,11 +1,13 @@
 import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 import React from "react";
-
-export const MainBlockUsersInfo=()=>{
+type ResultFilterType={
+    StateResultTable:"Followers" | "Recommendations"
+}
+export const MainBlockUsersInfo=(props:ResultFilterType)=>{
     return(
         <div className={"content-functional"}>
             {/*one-pass*/}
-            <div className={"one-pass-block-content"}>
+            <div className={props.StateResultTable=="Followers"?"one-pass-block-content":"one-pass-block-content ClassDisplayNone"}>
                 <div className="one-pass-info-black">
                     <div className={"one-pas-info"}>
                         <div className={"one-pass-info-img"}>
@@ -98,7 +100,7 @@ export const MainBlockUsersInfo=()=>{
                 </div>
             </div>
             {/*two pass*/}
-            <div className={"two-pas-block-content"}>
+            <div className={props.StateResultTable=="Recommendations"?"two-pas-block-content":" two-pas-block-content ClassDisplayNone"}>
                 <div className="two-pass-info-block">
                     <div className={"one-pas-info"}>
                         <div className={"one-pass-info-img"}>
@@ -190,7 +192,6 @@ export const MainBlockUsersInfo=()=>{
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

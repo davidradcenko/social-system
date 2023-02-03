@@ -11,8 +11,11 @@ export const ProfileUser = () => {
 
     const [EditModeProfil, SetEditModeProfil] = useState<boolean>(false)
     const [SeatchFormActivated, SetSeatchFormActivated] = useState<boolean>(false)
+    const [StateResultTable, SetStateResultTable] = useState<"Followers" | "Recommendations">("Followers")
 
-
+    const chengeStateResultTable = () => {
+        SetStateResultTable(StateResultTable == "Followers" ? "Recommendations" : "Followers")
+    }
     const changeSetEditModeProfil = () => {
         SetEditModeProfil(!EditModeProfil)
         if (!EditModeProfil == true) {
@@ -49,9 +52,9 @@ export const ProfileUser = () => {
 
                 <div className="mainChaend">
                     <MainInfo/>
-                    <MainBlockFilters/>
+                    <MainBlockFilters chengeStateResultTable={chengeStateResultTable} StateResultTable={StateResultTable}/>
                 </div>
-                    <MainBlockUsersInfo/>
+                    <MainBlockUsersInfo StateResultTable={StateResultTable}/>
             </div>
         </div>
     )
