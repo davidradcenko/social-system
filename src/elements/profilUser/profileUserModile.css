@@ -322,20 +322,25 @@
         width: 75.06px;
         height: 75.06px;
     }
-    .Foto-classfotoFrofel-gradient{
+
+    .Foto-classfotoFrofel-gradient {
         width: 80.06px;
         height: 80.06px;
     }
-    .ProfessionSkils-InfoProfil,.ProfessionsSkils-text-InfoProfil,.About-InfoProfil,.About-text-InfoProfil,.social-InfoProffil,.lardge-foto,.info-profil{
+
+    .ProfessionSkils-InfoProfil, .ProfessionsSkils-text-InfoProfil, .About-InfoProfil, .About-text-InfoProfil, .social-InfoProffil, .lardge-foto, .info-profil {
         display: none;
     }
-    .mobule-StyleInfoBlock-MainWind,.mobule-social-InfoProffil,.mobule-DdivFoto{
+
+    .mobule-StyleInfoBlock-MainWind, .mobule-social-InfoProffil, .mobule-DdivFoto {
         display: block;
     }
-    .lardge-foto{
+
+    .lardge-foto {
         display: none;
     }
-    .mobule-ProfessionSkils-InfoProfil,.mobule-About-InfoProfil{
+
+    .mobule-ProfessionSkils-InfoProfil, .mobule-About-InfoProfil {
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
@@ -344,28 +349,134 @@
         text-align: center;
         color: #201F1F;
     }
-    .mobule-info-profil{
+
+    .mobule-info-profil {
         display: flex;
         flex-direction: column;
     }
-    .mobule-social-InfoProffil img{
+
+    .mobule-social-InfoProffil img {
         width: 15px;
         height: 15px;
     }
-    .main-info{
+
+    .main-info {
         display: flex;
         flex-direction: column;
     }
-    .Name-InfoProfil{
+
+    .Name-InfoProfil {
         font-family: 'Bruno Ace';
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
+        font-size: 27px;
+        line-height: 29px;
         text-align: center;
         color: #000000;
     }
-    .mobule-Foto-classfotoFrofel-gradient{
+
+    .mobule-DdivFoto {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .mobule-Foto-classfotoFrofel-gradient {
+        margin-right: 40px;
+    }
+
+    .mobule-StyleInfoBlock-MainWind {
+        width: 100%;
+        padding-top: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .mobule-ProfessionSkils-InfoProfil, .mobule-About-InfoProfil {
+        font-size: 20px;
+        padding-left: 10px;
+        padding-right: 20px;
+        white-space: nowrap
+    }
+
+    .mobule-ProfessionsSkils-text-InfoProfil, .mobule-About-text-InfoProfil {
+        line-height: 26px;
+        width: 427px;
+    }
+
+    .Mobule-ferst-Teg-Info, .Mobule-next-Teg-Info {
+        margin-top: 21px;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .mobule-social-InfoProffil {
+        padding-top: 30px;
+    }
+
+    .mobule-About-text-InfoProfil {
+        padding-left: 110px;
+    }
+
+    .mobule-social-InfoProffil img {
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+    }
+
+    .seatch-menu {
+        width: 210px;
+        border: 1px solid #000000;
+        border-radius: 20px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 14px;
+        color: rgba(32, 31, 31, 0.5);
+    }
+
+    .one-pas img {
+        display: none;
+    }
+
+    .Menu-recomen {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ChangeReSalt {
+        font-size: 12px;
+    }
+
+    .Menu-recomen {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .one-pass-block-content {
+        width: auto;
+    }
+
+    .one-pas-function input{
+        width: 110px;
+        height: 30px;
+        background: #FF9D43;
+        border-radius: 6px;
+    }
+    .one-pass-info-black{
+        margin: 0px;
+        margin: 20px 10px;
+    }
+    .one-pass-block-content{
+        min-width: 100%;
+    }
+    .one-pass-info-img img {
+        width: 50px;
+        height: 49.96px;
+    }
 
     }
-}

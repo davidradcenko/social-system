@@ -43,26 +43,24 @@ export const MainInfo = () => {
                     <p className="JobSearch-InfoProfil">Job search: <input className={"Checkbox-InfoProfil"}
                                                                            type={"checkbox"}/></p>
                 </div>
-
             </div>
 
 
             <div className="mobule-StyleInfoBlock-MainWind">
-                <div className={"mobule-info-profil"}>
-                    <span>
+                    <div className={'Mobule-ferst-Teg-Info'}>
                           <p className="mobule-ProfessionSkils-InfoProfil">Frofessional skills:</p>
                             <p className="mobule-ProfessionsSkils-text-InfoProfil">React, Redux,CSS, My Sql,Oracle Databases,
                         JavaEE,Java Spring</p>
-                    </span>
-                    <span>
+                    </div>
+                    <div className={'Mobule-next-Teg-Info'}>
                         <p className="mobule-About-InfoProfil">About:</p>
                         <p className="mobule-About-text-InfoProfil">React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java
                         Spring React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java Spring React, Redux,CSS,
                         My Sql,Oracle Databases, JavaEE,Java Spring</p>
-                    </span>
-
-                </div>
+                    </div>
             </div>
+
+
             <div className="mobule-social-InfoProffil">
                 <img src={twiter} alt="twiter"/>
                 <img src={facebook} alt="facebook"/>
