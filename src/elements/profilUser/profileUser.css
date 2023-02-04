@@ -292,7 +292,13 @@ body {
     width: 30px;
     height: 30px;
 }
+.mobuleTypeIconNavigate {
+    display: none;
+}
 
+.MobuleNavigation{
+    display: none;
+}
 .social-InfoProffil img {
     padding-top: 15px;
     margin-right: 10px;
@@ -441,7 +447,9 @@ body {
     align-items: center;
     justify-content: space-between;
 }
-
+.mobule-StyleInfoBlock-MainWind,.mobule-social-InfoProffil,.mobule-DdivFoto{
+    display: none;
+}
 /* customiza select*/
 .one-pass-customisazia {
     width: 317px;

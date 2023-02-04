@@ -1,4 +1,4 @@
-import ImgLogo from "../../../img/common.png";
+import ImgLogo from "../../../img/module-IMG/common.svg";
 import HomeIcon from "../../../img/nav-icons/home.png";
 import imgVector from "../../../img/nav-icons/Vector 1.jpg";
 import DialogsIcon from "../../../img/nav-icons/Frame.png";
@@ -6,20 +6,18 @@ import MesengerIcon from "../../../img/nav-icons/heart.png";
 import SeachIcon from "../../../img/nav-icons/Group 43.png";
 import SetingsIcon from "../../../img/nav-icons/settings.png";
 import React, {useState} from "react";
-import github from "../../../img/nav-icons/icons-sosial/github.svg";
-import vk from "../../../img/nav-icons/icons-sosial/vk.png";
-import facebook from "../../../img/nav-icons/icons-sosial/facebook.png";
-import instagram from "../../../img/nav-icons/icons-sosial/inst.png";
-import twiter from "../../../img/nav-icons/icons-sosial/twiter.png";
-import website from "../../../img/nav-icons/icons-sosial/www.png";
-import youtube from "../../../img/nav-icons/icons-sosial/utub.png";
-type NavigationBlockTypes={
-    EditModeProfil:boolean,
-    changeSetEditModeProfil:()=>void,
-    SeatchFormActivated:boolean,
-    changesActivatedSeatch:()=>void
+import SeachMobule from "../../../img/module-IMG/Group 72.png";
+import MoonModule from "../../../img/module-IMG/Moon.png";
+import SelectMobule from "../../../img/module-IMG/MeatballMenu.png";
+import moduleFotoTest from "../../../img/nav-icons/foroTest.png";
+
+type NavigationBlockTypes = {
+    EditModeProfil: boolean,
+    changeSetEditModeProfil: () => void,
+    SeatchFormActivated: boolean,
+    changesActivatedSeatch: () => void
 }
-export const NavigationBlock = (props:NavigationBlockTypes) => {
+export const NavigationBlock = (props: NavigationBlockTypes) => {
     const [Vector, SetVector] = useState(true)
     const [TextPapap, SetTextPapap] = useState(false)
 
@@ -37,6 +35,11 @@ export const NavigationBlock = (props:NavigationBlockTypes) => {
                     <div className="profile">
                         <img src="" alt="User img"/>
                         <p>David Radchenko</p>
+                    </div>
+                    <div className={'mobuleTypeIconNavigate'}>
+                        <img src={SeachMobule} alt="SeachMobule"/>
+                        <img src={MoonModule} alt="MoonModule"/>
+                        <img src={SelectMobule} alt="SelectMobule"/>
                     </div>
                 </div>
                 <div className="main-navi">
@@ -62,11 +65,9 @@ export const NavigationBlock = (props:NavigationBlockTypes) => {
                                 <p className={"ProfileIcpn-Test-p-false"}>Edit profile</p>}
                         </div>
                     </div>
-
                     <div className={"AlseIcons-HomeIcon AlseIcons"}>
                         <img onClick={props.changeSetEditModeProfil} src={HomeIcon} alt="HomeIcon"/>
                     </div>
-
                     <div className={"AlseIcons"}>
                         <img src={DialogsIcon} alt="DialogsIcon"/>
                         <p>Dialogs</p>
@@ -83,6 +84,14 @@ export const NavigationBlock = (props:NavigationBlockTypes) => {
                     <div className={"AlseIcons"}>
                         <img src={SetingsIcon} alt="SetingsIcon"/>
                         <p>Settings</p>
+                    </div>
+                    <div className={"MobuleNavigation"}>
+                        <img src={moduleFotoTest} alt="moduleFotoTest"/>
+                        <div className={'NavigatedSeledNameMobule'}>
+                            <p>Advise</p>
+                            <p>Chat</p>
+                            <p>Followers</p>
+                        </div>
                     </div>
                 </div>
             </div>

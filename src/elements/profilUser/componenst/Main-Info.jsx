@@ -5,8 +5,8 @@ import vk from "../../../img/nav-icons/icons-sosial/vk.png";
 import github from "../../../img/nav-icons/icons-sosial/github.svg";
 import React from "react";
 
-export const MainInfo=()=>{
-    return(
+export const MainInfo = () => {
+    return (
         <div className="main-info">
             <div className={"lardge-foto"}>
                 <div className="Foto-classfotoFrofel-gradient"><img src={testForo} alt="large img"/></div>
@@ -33,6 +33,41 @@ export const MainInfo=()=>{
                     <img src={github} alt="vaiber"/>
                 </div>
 
+            </div>
+
+            <div className={'mobule-DdivFoto'}>
+                <div className="Foto-classfotoFrofel-gradient mobule-Foto-classfotoFrofel-gradient"><img src={testForo} alt="large img"/></div>
+                <div className={'mobule-infoblock-Name-Status'}>
+                    <p className="Name-InfoProfil">DAVID RADCHENKO</p>
+                    {/*Status-InfoProfil*/}
+                    <p className="JobSearch-InfoProfil">Job search: <input className={"Checkbox-InfoProfil"}
+                                                                           type={"checkbox"}/></p>
+                </div>
+
+            </div>
+
+
+            <div className="mobule-StyleInfoBlock-MainWind">
+                <div className={"mobule-info-profil"}>
+                    <span>
+                          <p className="mobule-ProfessionSkils-InfoProfil">Frofessional skills:</p>
+                            <p className="mobule-ProfessionsSkils-text-InfoProfil">React, Redux,CSS, My Sql,Oracle Databases,
+                        JavaEE,Java Spring</p>
+                    </span>
+                    <span>
+                        <p className="mobule-About-InfoProfil">About:</p>
+                        <p className="mobule-About-text-InfoProfil">React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java
+                        Spring React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java Spring React, Redux,CSS,
+                        My Sql,Oracle Databases, JavaEE,Java Spring</p>
+                    </span>
+
+                </div>
+            </div>
+            <div className="mobule-social-InfoProffil">
+                <img src={twiter} alt="twiter"/>
+                <img src={facebook} alt="facebook"/>
+                <img src={vk} alt="vk"/>
+                <img src={github} alt="vaiber"/>
             </div>
         </div>
     )

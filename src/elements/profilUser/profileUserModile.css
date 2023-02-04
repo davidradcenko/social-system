@@ -67,39 +67,47 @@
         flex-direction: column;
     }
 }
+
 @media (min-width: 1506px) {
-    .one-pass-block-content{
+    .one-pass-block-content {
         display: block !important;
     }
-    .two-pas-block-content{
+
+    .two-pas-block-content {
         display: block !important;
     }
 }
+
 @media (max-width: 1506px) {
     .two-pas-block-content {
         min-width: 702px;
     }
-    .two-pas{
+
+    .two-pas {
         display: none;
     }
-    .mainChaend{
+
+    .mainChaend {
         padding-left: 5px;
         padding-top: 10px;
     }
-    .info-profil{
+
+    .info-profil {
         width: 100%;
-        padding-left:20px;
+        padding-left: 20px;
     }
-    .About-text-InfoProfil{
+
+    .About-text-InfoProfil {
         align-items: center;
         width: auto;
         padding-right: 20px;
     }
 
-    .content-functional{
+    .content-functional {
         justify-content: center;
     }
-    .ChangeReSalt{
+
+    .ChangeReSalt {
         display: inline-block;
         font-family: 'Roboto';
         font-style: normal;
@@ -109,94 +117,255 @@
         text-align: center;
         color: #201F1F;
     }
-    .content-functional{
+
+    .content-functional {
         margin-left: 0px;
     }
-    .Menu-recomen{
+
+    .Menu-recomen {
         max-width: 702px;
         margin: 0 auto;
         justify-content: space-between;
     }
-    .one-pass-customisazia{
+
+    .one-pass-customisazia {
         right: 45px;
     }
 }
+
 @media (max-width: 902px) {
-    .content-functional{
+    .content-functional {
         margin-left: 0px;
     }
 }
+
 @media (max-width: 877px) {
-    .Seatch-profil-menu{
+    .Seatch-profil-menu {
         top: 45px;
         left: 29px;
     }
-    .Foto-classfotoFrofel-gradient{
+
+    .Foto-classfotoFrofel-gradient {
         width: 222px;
         height: 222px;
     }
-    .Foto-classfotoFrofel-gradient img{
+
+    .Foto-classfotoFrofel-gradient img {
         width: 211px;
         height: 211px;
     }
-    .main-info{
+
+    .main-info {
         align-items: center;
     }
-    .one-pass-customisazia{
+
+    .one-pass-customisazia {
         right: 45px;
     }
 }
+
 @media (max-width: 820px) {
-    .Main-block{
+    .Main-block {
         flex-direction: column;
     }
-    .Navigation-block{
+
+    .Navigation-block {
         width: auto !important;
         padding-top: 5px;
         padding-bottom: 5px;
     }
-    .AlseIcons img{
+
+    .AlseIcons img {
         width: 30px;
         height: 30px;
     }
-    .all-elements-nav{
+
+    .all-elements-nav {
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
         padding-top: 0px;
     }
-    .main-navi{
+
+    .main-navi {
         order: 1;
         padding-top: 0px;
         align-items: center;
         flex-direction: row;
     }
-    .profile{
+
+    .profile {
         padding-top: 0px;
     }
-    .AlseIcons{
+
+    .AlseIcons {
         padding-left: 45px;
         margin-top: 0px;
     }
-    .logo-profil{
+
+    .logo-profil {
         order: 2;
     }
-    .all-elements-nav{
-        padding-left:0px ;
+
+    .all-elements-nav {
+        padding-left: 0px;
         padding-right: 0px;
     }
-    .Menu-recomen{
+
+    .Menu-recomen {
         padding-left: 20px;
         padding-right: 20px;
     }
-    .profile img{
+
+    .profile img {
         width: 30px;
         height: 30px;
     }
-    .Edit-profil-menu{
+
+    .Edit-profil-menu {
         top: 42px;
     }
 }
-@media (max-width: 723px) {
 
+@media (max-width: 725px) {
+    .all-elements-nav {
+        width: auto;
+        background: #57BAD9;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo-profil {
+        width: 100%;
+        order: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-profilLOGO {
+        margin-left: 10px;
+        display: block;
+        width: 158px;
+        height: 14px;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .mobuleTypeIconNavigate {
+        display: block;
+        padding-right: 10px;
+    }
+
+    .Navigation-block {
+        padding-top: 0px;
+    }
+
+    .mobuleTypeIconNavigate img {
+        padding-top: 5px;
+        margin-right: 10px;
+    }
+
+    .ProfilIcon {
+        display: none;
+    }
+
+    .AlseIcons-HomeIcon {
+        display: none;
+    }
+
+    .AlseIcons {
+        display: none;
+    }
+
+    .MobuleNavigation {
+        padding-top: 21px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .main-navi {
+        width: 100%;
+    }
+
+    .NavigatedSeledNameMobule {
+        display: flex;
+        padding-right: 10px;
+    }
+
+    .MobuleNavigation img {
+        margin-left: 10px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .NavigatedSeledNameMobule p {
+        padding-right: 10px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 27px;
+        color: #DCDCDC;
+    }
+
+    .Navigation-block {
+        padding-bottom: 0px;
+    }
+
+    .Foto-classfotoFrofel-gradient img {
+        width: 75.06px;
+        height: 75.06px;
+    }
+    .Foto-classfotoFrofel-gradient{
+        width: 80.06px;
+        height: 80.06px;
+    }
+    .ProfessionSkils-InfoProfil,.ProfessionsSkils-text-InfoProfil,.About-InfoProfil,.About-text-InfoProfil,.social-InfoProffil,.lardge-foto,.info-profil{
+        display: none;
+    }
+    .mobule-StyleInfoBlock-MainWind,.mobule-social-InfoProffil,.mobule-DdivFoto{
+        display: block;
+    }
+    .lardge-foto{
+        display: none;
+    }
+    .mobule-ProfessionSkils-InfoProfil,.mobule-About-InfoProfil{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        color: #201F1F;
+    }
+    .mobule-info-profil{
+        display: flex;
+        flex-direction: column;
+    }
+    .mobule-social-InfoProffil img{
+        width: 15px;
+        height: 15px;
+    }
+    .main-info{
+        display: flex;
+        flex-direction: column;
+    }
+    .Name-InfoProfil{
+        font-family: 'Bruno Ace';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #000000;
+    }
+    .mobule-Foto-classfotoFrofel-gradient{
+
+    }
 }
