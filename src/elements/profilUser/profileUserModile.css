@@ -459,24 +459,66 @@
 
     .one-pass-block-content {
         width: auto;
+        border: none;
     }
 
-    .one-pas-function input{
+    .one-pas-function input {
         width: 110px;
         height: 30px;
         background: #FF9D43;
         border-radius: 6px;
     }
-    .one-pass-info-black{
+
+    .one-pass-info-black {
         margin: 0px;
-        margin: 20px 10px;
+        margin: 20px 15px 20px 15px;
+        /*border-bottom: 1px solid #B5B2B2;*/
     }
-    .one-pass-block-content{
+
+    .one-pass-block-content {
         min-width: 100%;
     }
+
     .one-pass-info-img img {
         width: 50px;
         height: 49.96px;
     }
-
+    .two-pas-function input{
+        width: 110px;
+        height: 30px;
+        background: #FF9D43;
+        border-radius: 6px;
+        font-size: 16px;
     }
+    .two-pas-block-content{
+        min-width: 100%;
+    }
+    .two-pas-block-content{
+        border: none;
+    }
+    .two-pass-info-block{
+        border-bottom: 1px solid #B5B2B2;
+    }
+    .two-pass-info-block{
+        margin: 0px;
+        margin: 20px 15px 20px 15px;
+    }
+}
+
+@media (max-width: 440px) {
+    .one-pas-info-text-qvalete {
+        font-size: 16px;
+    }
+
+    .one-pas-info-text input {
+        width: 15px;
+        height: 15px;
+    }
+
+    .one-pas-info-text-name {
+        font-size: 20px;
+    }
+}
+
+
+
