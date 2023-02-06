@@ -20,6 +20,46 @@ export const LoginApi = {
     }
 }
 
+export const ProfileApi = {
+    profileGet(id: number) {
+        return instance.get("/profile/" + id)
+    },
+    profileChenge(value: initialStateProfileType) {
+        return instance.put("/profile"+value)
+    }
+}
+
+
+//types
+export type LoginParamType = {
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    captcha?: boolean
+}
+
+export type ContaksType = {
+    facebook: string | null,
+    github: string | null,
+    instagram: string | null,
+    mainLink: string | null,
+    twitter: string | null,
+    vk: string | null,
+    website: string | null,
+    youtube: string | null
+}
+export type photosType={
+    large:string,
+    small:string
+}
+export type initialStateProfileType = {
+    aboutMe: string,
+    contacts: ContaksType,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullName: string,
+    photos:photosType
+}
 type profileChengeType = {
     "aboutMe": "я круто чувак 1001%",
     "contacts": {
@@ -36,38 +76,4 @@ type profileChengeType = {
     "lookingForAJobDescription": 'не ищу',
     "fullName": "samurai d"
 
-}
-
-export const ProfileApi = {
-    profileGet(id: number) {
-        return instance.get("/profile/" + id)
-    },
-    profileChenge(value: initialStateProfileType) {
-        return instance.put("/profile"+value)
-    }
-}
-//types
-export type LoginParamType = {
-    email: string,
-    password: string,
-    rememberMe: boolean,
-    captcha?: boolean
-}
-
-type ContaksType = {
-    facebook: string | null,
-    github: string | null,
-    instagram: string | null,
-    mainLink: string | null,
-    twitter: string | null,
-    vk: string | null,
-    website: string | null,
-    youtube: string | null
-}
-export type initialStateProfileType = {
-    aboutMe: string,
-    contacts: ContaksType,
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string,
-    fullName: string
 }

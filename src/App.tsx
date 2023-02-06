@@ -8,6 +8,7 @@ import {RootState, useAppDispatch} from "./store/store";
 import {initializeAppTC, statusType} from "./Reducers/InitialazedReducer";
 import {LinearProgress} from "@mui/material";
 import {useSelector} from "react-redux";
+import {ProfileUser} from "./elements/profilUser/profileUser";
 
 function Hello() {
     const dispatch = useAppDispatch()
@@ -32,7 +33,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Hello/>}/>
                     <Route path="/Login" element={<Login/>}/>
-                    <Route path="/Account" element={<Account/>}/>
+                    <Route path="/Account" element={<ProfileUser/>}/>
 
 
                     <Route path="/404" element={<h1>404. Page not found</h1>}/>

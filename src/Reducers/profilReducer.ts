@@ -17,7 +17,11 @@ const initialState:initialStateProfileType={
     },
     lookingForAJob: true,
     lookingForAJobDescription: "lookingForAJobDescription",
-    fullName: "fullName"
+    fullName: "fullName",
+    photos:{
+        large:'large',
+        small:'small'
+    }
 }
 export const profilReducer = (state:initialStateProfileType=initialState, action:actionType):initialStateProfileType => {
     switch (action.type) {

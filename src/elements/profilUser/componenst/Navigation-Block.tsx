@@ -15,7 +15,9 @@ type NavigationBlockTypes = {
     EditModeProfil: boolean,
     changeSetEditModeProfil: () => void,
     SeatchFormActivated: boolean,
-    changesActivatedSeatch: () => void
+    changesActivatedSeatch: () => void,
+
+    // fotoUser:string
 }
 export const NavigationBlock = (props: NavigationBlockTypes) => {
     const [Vector, SetVector] = useState(true)
@@ -33,7 +35,7 @@ export const NavigationBlock = (props: NavigationBlockTypes) => {
                 <div className="logo-profil">
                     <img className={'logo-profilLOGO'} src={ImgLogo} alt="common"/>
                     <div className="profile">
-                        <img src="" alt="User img"/>
+                        <img src={''} alt="User img"/>
                         <p>David Radchenko</p>
                     </div>
                     <div className={'mobuleTypeIconNavigate'}>

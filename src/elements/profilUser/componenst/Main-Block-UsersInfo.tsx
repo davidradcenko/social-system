@@ -98,6 +98,7 @@ export const MainBlockUsersInfo=(props:ResultFilterType)=>{
                         <input type="button" value={"Delete"}/>
                     </div>
                 </div>
+
             </div>
             {/*two pass*/}
             <div className={props.StateResultTable=="Recommendations"?"two-pas-block-content":" two-pas-block-content ClassDisplayNone"}>
