@@ -18,6 +18,16 @@ body {
 .ImgProfilNone{
     display: none;
 }
+.MainblockCouter{
+    display: flex;
+    justify-content: end;
+}
+.CountFigers{
+    margin-right: 30px;
+}
+.MainblockCouter div button{
+   margin-right: 10px;
+}
 .Navigation-block {
     border: 1px solid #B5B2B2;
     width: 509px;

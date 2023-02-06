@@ -4,11 +4,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {loginReducer} from "../Reducers/LoginReducer";
 import {initialazedReducer} from "../Reducers/InitialazedReducer";
 import {profilReducer} from "../Reducers/profilReducer";
+import {usersReducer} from "../Reducers/UsersReducer";
 
 const rootReducer= combineReducers({
     login:loginReducer,
     initialazed:initialazedReducer,
-    profil:profilReducer
+    profil:profilReducer,
+    users:usersReducer
 })
 export const store=createStore(rootReducer,applyMiddleware(thunk))
 export type RootState= ReturnType<typeof store.getState>

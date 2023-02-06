@@ -28,6 +28,11 @@ export const ProfileApi = {
         return instance.put("/profile"+value)
     }
 }
+export const UsersApi={
+    users(){
+        return instance.get("/users")
+    }
+}
 
 
 //types
@@ -75,5 +80,20 @@ type profileChengeType = {
     "lookingForAJob": true,
     "lookingForAJobDescription": 'не ищу',
     "fullName": "samurai d"
-
+}
+type UserType={
+    name: string ,
+    id: number ,
+    uniqueUrlName:string | null ,
+    photos: {
+        small: string | boolean,
+        large: string | boolean
+    },
+    status: string |boolean,
+    followed: boolean
+}
+export type initialStateUsersType={
+    items:Array<UserType>,
+    totalCount:number,
+    error:string | null
 }

@@ -1,5 +1,6 @@
 import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 import React from "react";
+import {CounterUser} from "./UsersInfo-Couts/CounterUser";
 type ResultFilterType={
     StateResultTable:"Followers" | "Recommendations"
 }
@@ -98,7 +99,7 @@ export const MainBlockUsersInfo=(props:ResultFilterType)=>{
                         <input type="button" value={"Delete"}/>
                     </div>
                 </div>
-
+<CounterUser/>
             </div>
             {/*two pass*/}
             <div className={props.StateResultTable=="Recommendations"?"two-pas-block-content":" two-pas-block-content ClassDisplayNone"}>

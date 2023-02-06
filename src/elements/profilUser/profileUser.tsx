@@ -11,6 +11,7 @@ import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../store/store";
 import {profilGetTK} from "../../Reducers/profilReducer";
 import {initialStateProfileType} from "../../API/api";
+import {GetCountUsers} from "../../Reducers/UsersReducer";
 
 export const ProfileUser = () => {
 
@@ -44,6 +45,7 @@ export const ProfileUser = () => {
 
     useEffect(()=>{
         dispatch(profilGetTK(16939))
+        dispatch(GetCountUsers())
     },[])
 
 
