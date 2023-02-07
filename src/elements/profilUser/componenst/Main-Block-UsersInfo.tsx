@@ -21,6 +21,7 @@ export const MainBlockUsersInfo = (props: ResultFilterType) => {
             <div
                 className={props.StateResultTable == "Followers" ? "one-pass-block-content" : "one-pass-block-content ClassDisplayNone"}>
                 <CounterUser/>
+                <div className={"one-pass-scroll"}>
                 {ActivePageUsers.map(tl=>{
                     return(
                         <div className="one-pass-info-black">
@@ -40,6 +41,7 @@ export const MainBlockUsersInfo = (props: ResultFilterType) => {
                         </div>
                     )
                 })}
+                </div>
             </div>
             {/*two pass*/}
             <div

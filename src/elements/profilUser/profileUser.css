@@ -430,17 +430,19 @@ body {
     margin-left: 85px;
     padding-top: 15px;
 }
-
+.one-pass-scroll{
+    height: 929px;
+    overflow: auto;
+}
 .one-pass-block-content {
     min-width: 701px;
-    height: 929px;
     overflow: auto;
     background: #FFFFFF;
     border: 1px solid #DFDBDB;
     border-radius: 8px;
 
 }
-.one-pass-block-content::-webkit-scrollbar{
+.one-pass-scroll::-webkit-scrollbar{
     width: 0 !important;
 }
 .two-pas-block-content {
