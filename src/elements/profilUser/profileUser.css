@@ -15,19 +15,85 @@ body {
     justify-content: center;
     margin: 0 auto;
 }
-.ImgProfilNone{
+
+.ImgProfilNone {
     display: none;
 }
-.MainblockCouter{
+
+/*.ChangeCurrentTable input{*/
+/*    width: 100px;*/
+/*    height: 25px;*/
+
+/*    margin-right: 15px;*/
+/*    font-size: 15px;*/
+/*}*/
+.ChangeCurrentTable1 {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    font-size: 15px;
+    background-image: url("../../img/imgNavigationPleer/end-button.png") ;
+    transform: rotate(180deg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 6;
+    background-color: white;
+}
+.ChangeCurrentTable2 {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    font-size: 15px;
+    background-image: url("../../img/imgNavigationPleer/next.png");
+    transform: rotate(180deg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 6;
+    background-color: white;
+    /*opacity: 50%;*/
+}
+.abbMardjen{
+    margin-right: 45px;
+}
+.ChangeCurrentTable3 {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    background-color: white;
+    font-size: 15px;
+    background-image: url("../../img/imgNavigationPleer/next.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 6;
+}
+.navigatPlaeerDisable{
+    opacity: 30%;
+}
+.ChangeCurrentTable4 {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    background-color: white;
+    font-size: 15px;
+    background-image: url("../../img/imgNavigationPleer/end-button.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 6;
+}
+
+.MainblockCouter {
     display: flex;
     justify-content: end;
 }
-.CountFigers{
+
+.CountFigers {
     margin-right: 30px;
 }
-.MainblockCouter div button{
-   margin-right: 10px;
+
+.MainblockCouter div button {
+    margin-right: 10px;
 }
+
 .Navigation-block {
     border: 1px solid #B5B2B2;
     width: 509px;
@@ -89,9 +155,11 @@ body {
     align-items: start;
 
 }
-.AlseIcons-HomeIcon{
+
+.AlseIcons-HomeIcon {
     display: none;
 }
+
 .ProfilIcon-text {
     padding-top: 20px;
     font-style: normal;
@@ -107,20 +175,22 @@ body {
 
 .ProfileIcpn-Test-p-true {
     padding-top: 36px;
-    -webkit-transition: font-size  1s;
+    -webkit-transition: font-size 1s;
     animation: ani 1s forwards;
 }
-.ProfileIcpn-Test-p-trueBlackOnCliked{
+
+.ProfileIcpn-Test-p-trueBlackOnCliked {
     padding-top: 36px;
     font-weight: 500 !important;
-    -webkit-transition: font-size  1s;
-    animation:   ani 1s forwards;
+    -webkit-transition: font-size 1s;
+    animation: ani 1s forwards;
     font-family: 'Roboto';
     font-style: normal;
     font-size: 32px;
     line-height: 38px;
     color: #000000;
 }
+
 @keyframes ani {
     0% {
         opacity: 0
@@ -181,12 +251,15 @@ body {
     padding-top: 115px;
     padding-left: 98px;
 }
+
 .main-info {
     display: flex;
 }
-.ChangeReSalt{
+
+.ChangeReSalt {
     display: none;
 }
+
 .Foto-classfotoFrofel-gradient {
     display: flex;
     justify-content: center;
@@ -304,13 +377,15 @@ body {
     width: 30px;
     height: 30px;
 }
+
 .mobuleTypeIconNavigate {
     display: none;
 }
 
-.MobuleNavigation{
+.MobuleNavigation {
     display: none;
 }
+
 .social-InfoProffil img {
     padding-top: 15px;
     margin-right: 10px;
@@ -421,9 +496,11 @@ body {
     text-align: center;
     color: #0E0E0E;
 }
-.two-pass-info-block .one-pas-info-text-qvalete{
+
+.two-pass-info-block .one-pas-info-text-qvalete {
     max-width: 185.438px;
 }
+
 .one-pas-function input {
     width: 227.17px;
     height: 40px;
@@ -462,9 +539,11 @@ body {
     align-items: center;
     justify-content: space-between;
 }
-.mobule-StyleInfoBlock-MainWind,.mobule-social-InfoProffil,.mobule-DdivFoto{
+
+.mobule-StyleInfoBlock-MainWind, .mobule-social-InfoProffil, .mobule-DdivFoto {
     display: none;
 }
+
 /* customiza select*/
 .one-pass-customisazia {
     width: 317px;
@@ -565,7 +644,8 @@ body {
     z-index: 101;
     border: 1px solid #3ED1FF;
 }
-.Seatch-profil-menu{
+
+.Seatch-profil-menu {
     position: absolute;
     width: 628px;
     height: 880px;
@@ -575,6 +655,7 @@ body {
     z-index: 101;
     border: 1px solid #3ED1FF;
 }
+
 .VectopCloseEditWindow {
     position: absolute;
     top: -24px;
@@ -613,9 +694,11 @@ body {
     text-transform: uppercase;
     color: rgba(14, 14, 14, 0.6);
 }
-.ClassDisplayNone{
+
+.ClassDisplayNone {
     display: none;
 }
+
 .EditMode-classfotoFrofel-gradient {
     margin-top: 30px;
     display: flex;
@@ -879,6 +962,7 @@ body {
     border: 1px solid #949494;
     border-radius: 4px;
 }
+
 .Seach-Wind-Answs::-webkit-scrollbar {
     width: 0 !important;
 }
@@ -912,7 +996,8 @@ body {
     color: #0E0E0E;
     white-space: nowrap;
 }
-.Setch-answ-wind-button{
+
+.Setch-answ-wind-button {
     width: 227px;
     height: 40px;
     background: #80E3FF;
@@ -927,7 +1012,8 @@ body {
     border: none;
     margin-left: 35px;
 }
-.SeatchFormActive{
+
+.SeatchFormActive {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500 !important;

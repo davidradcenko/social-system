@@ -483,23 +483,28 @@
         width: 50px;
         height: 49.96px;
     }
-    .two-pas-function input{
+
+    .two-pas-function input {
         width: 110px;
         height: 30px;
         background: #FF9D43;
         border-radius: 6px;
         font-size: 16px;
     }
-    .two-pas-block-content{
+
+    .two-pas-block-content {
         min-width: 100%;
     }
-    .two-pas-block-content{
+
+    .two-pas-block-content {
         border: none;
     }
-    .two-pass-info-block{
+
+    .two-pass-info-block {
         border-bottom: 1px solid #B5B2B2;
     }
-    .two-pass-info-block{
+
+    .two-pass-info-block {
         margin: 0px;
         margin: 20px 15px 20px 15px;
     }
@@ -520,5 +525,10 @@
     }
 }
 
+@media (max-width: 386px) {
+    .abbMardjen {
+        margin-right: 25px;
+    }
+}
 
 

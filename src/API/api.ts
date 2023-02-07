@@ -31,6 +31,9 @@ export const ProfileApi = {
 export const UsersApi={
     users(){
         return instance.get("/users")
+    },
+    usersInPage(idPage:number){
+        return instance.get("/users"+idPage)
     }
 }
 
@@ -95,5 +98,6 @@ type UserType={
 export type initialStateUsersType={
     items:Array<UserType>,
     totalCount:number,
-    error:string | null
+    error:string | null,
+    CurrentPage:number
 }

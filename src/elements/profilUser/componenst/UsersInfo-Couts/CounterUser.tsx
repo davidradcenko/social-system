@@ -1,33 +1,85 @@
 import {RootState, useAppDispatch} from "../../../../store/store";
 import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {SetUsersInPage} from "../../../../Reducers/UsersReducer";
+import endAnfStart from "../../../../img/imgNavigationPleer/end-button.png";
+import nextAndLast from "../../../../img/imgNavigationPleer/next.png";
 
 export const CounterUser = () => {
     const dispatch = useAppDispatch()
     const UsersCount = useSelector<RootState, number>(state => state.users.totalCount)
+    let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPage)
 
-    let maxTable=(UsersCount/10) | 0
-    let curentTable=1
+
+    let maxTable = (UsersCount / 10) | 0
+    let StartTable = 1
+
+    const CurrerntTableInStart = () => {
+        dispatch(SetUsersInPage(1))
+        SetLookMaxAndMinPage("Min")
+    }
+    const CurrentTableMinus = () => {
+        if (CurrentPage == 1) {
+            return SetLookMaxAndMinPage("Min")
+        }
+        dispatch(SetUsersInPage(--CurrentPage))
+        SetLookMaxAndMinPage(CurrentPage == 1 ? "Min" : "Ok")
+
+    }
+
+    const CurrentTablePlus = () => {
+        if (CurrentPage == maxTable) {
+            return SetLookMaxAndMinPage("Max")
+        }
+        dispatch(SetUsersInPage(++CurrentPage))
+        SetLookMaxAndMinPage(CurrentPage == maxTable?"Max":"Ok")
+
+    }
+    const CurrerntTableInEnd = () => {
+        dispatch(SetUsersInPage(maxTable))
+        SetLookMaxAndMinPage("Max")
+    }
+
+
+    const [LookMaxAndMinPage, SetLookMaxAndMinPage] = useState<"Min" | "Max" | "Ok">("Min")
+    const ChangeMaxMin = (value: "Min" | "Max" | "Ok") => {
+        return SetLookMaxAndMinPage(value)
+    }
+
+
+    let ShowCurrentsUsers = CurrentPage * 10
+    let ShowMaxCurrentsUsers = (CurrentPage * 10) + 10
+
+    if (CurrentPage == 1) {
+        ShowCurrentsUsers = 1
+        ShowMaxCurrentsUsers = 10
+    }
+    if (CurrentPage == maxTable) {
+        ShowCurrentsUsers = ShowCurrentsUsers
+        ShowMaxCurrentsUsers = UsersCount
+    }
 
     return <>
         <div className={"CounterUser"}>
             <div className={'MainblockCouter'}>
                 <div className={'CountFigers'}>
-                    <p>1–10 of {UsersCount}</p>
+                    <p>{ShowCurrentsUsers}–{ShowMaxCurrentsUsers} of {UsersCount}</p>
                 </div>
-                <div>
-                    <button type="button">
-                        InStart
-                    </button>
-                    <button type="button">
-                        Onelast
-                    </button>
-                    <button type="button">
-                        Nextone
-                    </button>
+                <div className={"ChangeCurrentTable"}>
 
-                    <button type="button">
-                        InLast
-                    </button>
+                    <input className={LookMaxAndMinPage == "Min" ? "ChangeCurrentTable1 navigatPlaeerDisable" : "ChangeCurrentTable1"}
+                           onClick={CurrerntTableInStart}  type="button"/>
+
+                    <input className={LookMaxAndMinPage == "Min" ? "ChangeCurrentTable2 abbMardjen navigatPlaeerDisable" : "ChangeCurrentTable2 abbMardjen"}
+                           onClick={CurrentTableMinus} type="button"/>
+
+                    <input className={LookMaxAndMinPage == "Max" ? "ChangeCurrentTable3 navigatPlaeerDisable" : "ChangeCurrentTable3"}
+                           onClick={CurrentTablePlus} type="button"/>
+
+                    <input className={LookMaxAndMinPage == "Max" ? "ChangeCurrentTable4 navigatPlaeerDisable" : "ChangeCurrentTable4"}
+                           onClick={CurrerntTableInEnd} type="button"/>
+
+
                 </div>
             </div>
         </div>

@@ -27,7 +27,8 @@ const initialState:initialStateUsersType={
         // }
     ],
     totalCount:0,
-    error:"Same error"
+    error:"Same error",
+    CurrentPage:1
 }
 
 export const usersReducer = (state: initialStateUsersType = initialState, action: actionType): initialStateUsersType => {
@@ -35,18 +36,14 @@ export const usersReducer = (state: initialStateUsersType = initialState, action
         case "GET-USERS":{
             return {...state,totalCount: action.CountUsers}
         }
+        case "GET-USERS-IN-PAGE":{
+            return {...state,CurrentPage:action.IdPage}
+        }
+        case "SET-USERS-IN-PAGE":{
+            return {...state,CurrentPage:action.IdPage}
+        }
         default: return state
-        //     const statyCope = {...state}
-        //     return action.value.items.map(tl=>{
-        //         return{...tl,
-        //             name:tl.name,
-        //             id:tl.id,
-        //             uniqueUrlName:tl.uniqueUrlName,
-        //             photos:[{small: tl.photos.small},{la}],
-        //            status:tl.status,
-        //            followed:tl.followed
-        //     })
-        // }
+
     }
 }
 
@@ -65,8 +62,13 @@ export const GetCountUsers=()=>{
         })
     }
 }
+
 //actions
+export const GetUsersInPage=(IdPage:number)=>({type:"GET-USERS-IN-PAGE",IdPage}) as const
+export const SetUsersInPage=(IdPage:number)=>({type:"SET-USERS-IN-PAGE",IdPage}) as const
 export const GerUsersAC=(CountUsers:number)=>({type: "GET-USERS",CountUsers}) as const
 // types
 type actionType=
+    | ReturnType<typeof GetUsersInPage>
+    | ReturnType<typeof SetUsersInPage>
     | ReturnType<typeof GerUsersAC>
