@@ -1,4 +1,4 @@
-import {initialStateUsersType, UsersApi} from "../API/api";
+import {initialStateUsersType, UsersApi, UserType} from "../API/api";
 import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
 import {Dispatch} from "redux";
 
@@ -27,20 +27,20 @@ const initialState:initialStateUsersType={
         // }
     ],
     totalCount:0,
-    error:"Same error",
+    error:null,
     CurrentPage:1
 }
 
 export const usersReducer = (state: initialStateUsersType = initialState, action: actionType): initialStateUsersType => {
     switch (action.type){
-        case "GET-USERS":{
+        case "GET-TOTAL-COUNT-USERS":{
             return {...state,totalCount: action.CountUsers}
         }
-        case "GET-USERS-IN-PAGE":{
+        case "SET-CURRENT-PAGE-USERS":{
             return {...state,CurrentPage:action.IdPage}
         }
-        case "SET-USERS-IN-PAGE":{
-            return {...state,CurrentPage:action.IdPage}
+        case "GET-ACTIVE-PAGE-USERS":{
+            return {...state,...action.ActivePageUsers}
         }
         default: return state
 
@@ -48,12 +48,12 @@ export const usersReducer = (state: initialStateUsersType = initialState, action
 }
 
 //thunks
-export const GetCountUsers=()=>{
+export const GetTotalCountUsersTC=()=>{
     return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
         UsersApi.users().then(res => {
             if (res.data.error==null){
-                dispatch(GerUsersAC(res.data.totalCount))
+                dispatch(GetTotatCountUsersAC(res.data.totalCount))
                 dispatch(statusUserAC("succeeded"))
             }
         }
@@ -63,12 +63,27 @@ export const GetCountUsers=()=>{
     }
 }
 
+export const GetActivePageUsersTC=(IdPage:number)=>{
+    return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
+        UsersApi.getCurrentPageUsers(IdPage).then(res => {
+                if (res.data.error==null){
+                    dispatch(GetActivePageUsersAC(res.data))
+                    dispatch(statusUserAC("succeeded"))
+                }
+            }
+        ).catch((error) => {
+            console.error(error, dispatch)
+        })
+    }
+}
+
 //actions
-export const GetUsersInPage=(IdPage:number)=>({type:"GET-USERS-IN-PAGE",IdPage}) as const
-export const SetUsersInPage=(IdPage:number)=>({type:"SET-USERS-IN-PAGE",IdPage}) as const
-export const GerUsersAC=(CountUsers:number)=>({type: "GET-USERS",CountUsers}) as const
+export const SetCurrentPageUsers=(IdPage:number)=>({type:"SET-CURRENT-PAGE-USERS",IdPage}) as const
+export const GetTotatCountUsersAC=(CountUsers:number)=>({type: "GET-TOTAL-COUNT-USERS",CountUsers}) as const
+export const GetActivePageUsersAC=(ActivePageUsers:Array<UserType>)=>({type: "GET-ACTIVE-PAGE-USERS",ActivePageUsers}) as const
 // types
 type actionType=
-    | ReturnType<typeof GetUsersInPage>
-    | ReturnType<typeof SetUsersInPage>
-    | ReturnType<typeof GerUsersAC>
+    | ReturnType<typeof SetCurrentPageUsers>
+    | ReturnType<typeof GetActivePageUsersAC>
+    | ReturnType<typeof GetTotatCountUsersAC>

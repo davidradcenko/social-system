@@ -1,7 +1,7 @@
 import {RootState, useAppDispatch} from "../../../../store/store";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {SetUsersInPage} from "../../../../Reducers/UsersReducer";
+import {GetActivePageUsersTC, SetCurrentPageUsers} from "../../../../Reducers/UsersReducer";
 import endAnfStart from "../../../../img/imgNavigationPleer/end-button.png";
 import nextAndLast from "../../../../img/imgNavigationPleer/next.png";
 
@@ -15,14 +15,16 @@ export const CounterUser = () => {
     let StartTable = 1
 
     const CurrerntTableInStart = () => {
-        dispatch(SetUsersInPage(1))
+        dispatch(SetCurrentPageUsers(1))
+        dispatch(GetActivePageUsersTC(1))
         SetLookMaxAndMinPage("Min")
     }
     const CurrentTableMinus = () => {
         if (CurrentPage == 1) {
             return SetLookMaxAndMinPage("Min")
         }
-        dispatch(SetUsersInPage(--CurrentPage))
+        dispatch(SetCurrentPageUsers(--CurrentPage))
+        dispatch(GetActivePageUsersTC(CurrentPage))
         SetLookMaxAndMinPage(CurrentPage == 1 ? "Min" : "Ok")
 
     }
@@ -31,12 +33,15 @@ export const CounterUser = () => {
         if (CurrentPage == maxTable) {
             return SetLookMaxAndMinPage("Max")
         }
-        dispatch(SetUsersInPage(++CurrentPage))
+        dispatch(SetCurrentPageUsers(++CurrentPage))
+        dispatch(GetActivePageUsersTC(CurrentPage))
         SetLookMaxAndMinPage(CurrentPage == maxTable?"Max":"Ok")
 
     }
     const CurrerntTableInEnd = () => {
-        dispatch(SetUsersInPage(maxTable))
+        dispatch(SetCurrentPageUsers(maxTable))
+        debugger
+        dispatch(GetActivePageUsersTC(maxTable))
         SetLookMaxAndMinPage("Max")
     }
 

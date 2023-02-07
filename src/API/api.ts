@@ -32,9 +32,9 @@ export const UsersApi={
     users(){
         return instance.get("/users")
     },
-    usersInPage(idPage:number){
-        return instance.get("/users"+idPage)
-    }
+    getCurrentPageUsers(idPage:number){
+        return instance.get("/users?page="+idPage)
+    },
 }
 
 
@@ -84,12 +84,12 @@ type profileChengeType = {
     "lookingForAJobDescription": 'не ищу',
     "fullName": "samurai d"
 }
-type UserType={
+export type UserType={
     name: string ,
     id: number ,
     uniqueUrlName:string | null ,
     photos: {
-        small: string | boolean,
+        small: string | null,
         large: string | boolean
     },
     status: string |boolean,

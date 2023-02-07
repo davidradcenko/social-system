@@ -433,12 +433,16 @@ body {
 
 .one-pass-block-content {
     min-width: 701px;
+    height: 929px;
+    overflow: auto;
     background: #FFFFFF;
     border: 1px solid #DFDBDB;
     border-radius: 8px;
 
 }
-
+.one-pass-block-content::-webkit-scrollbar{
+    width: 0 !important;
+}
 .two-pas-block-content {
     background: #FFFFFF;
     border: 1px solid #CDC2C2;
