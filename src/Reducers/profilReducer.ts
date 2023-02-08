@@ -1,9 +1,9 @@
 import {Dispatch} from "redux";
 import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
-import {initialStateProfileType, ProfileApi} from "../API/api";
+import {UserProfilType, ProfileApi} from "../API/api";
 
 
-const initialState:initialStateProfileType={
+const initialState:UserProfilType={
     aboutMe: "aboutMe",
     contacts: {
         facebook: "facebook",
@@ -21,9 +21,10 @@ const initialState:initialStateProfileType={
     photos:{
         large:'large',
         small:'small'
-    }
+    },
+    userId:1
 }
-export const profilReducer = (state:initialStateProfileType=initialState, action:actionType):initialStateProfileType => {
+export const profilReducer = (state:UserProfilType=initialState, action:actionType):UserProfilType => {
     switch (action.type) {
         case "GET-PROFILE":{
             return {...state,...action.value}
@@ -39,7 +40,7 @@ export const profilReducer = (state:initialStateProfileType=initialState, action
 
 
 //thunk
-export const profilGetTK=(id:number)=>{
+export const GetMyProfilTK=(id:number)=>{
     return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
         ProfileApi.profileGet(id).then(res=>{
@@ -50,7 +51,7 @@ export const profilGetTK=(id:number)=>{
         })
     }
 }
-export const profilChangeTK=(value:initialStateProfileType)=>{
+export const profilChangeTK=(value:UserProfilType)=>{
     return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
         ProfileApi.profileChenge(value).then(res=>{
@@ -63,8 +64,8 @@ export const profilChangeTK=(value:initialStateProfileType)=>{
 }
 
 //action
-export const getProfileAC = (value:initialStateProfileType) => ({type: "GET-PROFILE",value}) as const
-export const ProfileChangeAC = (value:initialStateProfileType) => ({type: "PUT-PROFILE-CHANGE",value}) as const
+export const getProfileAC = (value:UserProfilType) => ({type: "GET-PROFILE",value}) as const
+export const ProfileChangeAC = (value:UserProfilType) => ({type: "PUT-PROFILE-CHANGE",value}) as const
 
 //types
 type actionType=

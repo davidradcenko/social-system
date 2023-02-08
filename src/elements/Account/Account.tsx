@@ -5,16 +5,16 @@ import {RootState, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
 import testimg from "../../img/imgTest.jpeg.jpg"
 import "./Account.css"
-import {profilChangeTK, profilGetTK} from "../../Reducers/profilReducer";
+import {profilChangeTK, GetMyProfilTK} from "../../Reducers/profilReducer";
 import {useFormik} from "formik";
-import {initialStateProfileType} from "../../API/api";
+import {UserProfilType} from "../../API/api";
 import {loginIn} from "../../Reducers/LoginReducer";
 
 export const Account = () => {
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
     const mainUserId = useSelector<RootState, string>(state => state.initialazed.mainUserId)
-    const profileData = useSelector<RootState, initialStateProfileType>(state => state.profil)
+    const profileData = useSelector<RootState, UserProfilType>(state => state.profil)
 
     const [stateChenge,setStateChande] = useState(false)
 
@@ -81,7 +81,7 @@ const chengeState=(value:boolean)=>{
     })
 
     const logoutHandler = () => {
-        dispatch(profilGetTK(Number(mainUserId)))
+        dispatch(GetMyProfilTK(Number(mainUserId)))
     }
 
     if (!isLoginIn) {

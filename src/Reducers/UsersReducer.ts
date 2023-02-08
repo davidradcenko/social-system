@@ -1,6 +1,7 @@
-import {initialStateProfileType, initialStateUsersType, UsersApi, UserType} from "../API/api";
+import {UserProfilType, initialStateUsersType, ProfileApi, UsersApi, UserType} from "../API/api";
 import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
 import {Dispatch} from "redux";
+import {getProfileAC} from "./profilReducer";
 
 
 const initialState:initialStateUsersType={
@@ -26,7 +27,6 @@ const initialState:initialStateUsersType={
         //     followed: false
         // }
     ],
-    UsersProfil:[],
     totalCount:0,
     error:null,
     CurrentPage:1
@@ -44,7 +44,9 @@ export const usersReducer = (state: initialStateUsersType = initialState, action
             return {...state,...action.ActivePageUsers}
         }
         case "GET-ACTIVE-PAGE-USERS-PROFILE-DATA":{
-            return {...state,UsersProfil[...action.ActivePageUsers]}
+            let stateCopy={...state}
+            stateCopy.items=stateCopy.items.map(tl=>tl.id==action.ActivePageUsers.userId?{...tl,...action.ActivePageUsers}:tl)
+            return stateCopy
         }
         default: return state
 
@@ -66,7 +68,17 @@ export const GetTotalCountUsersTC=()=>{
         })
     }
 }
-
+export const GetUsersProfilTK=(id:number)=>{
+    return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
+        ProfileApi.profileGet(id).then(res=>{
+            dispatch(SetActivePageUsersProfileDataAC(res.data))
+            dispatch(statusUserAC("succeeded"))
+        }).catch((error)=>{
+            console.error(error, dispatch)
+        })
+    }
+}
 export const GetActivePageUsersTC=(IdPage:number)=>{
     return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
@@ -85,8 +97,8 @@ export const GetActivePageUsersTC=(IdPage:number)=>{
 //actions
 export const SetCurrentPageUsers=(IdPage:number)=>({type:"SET-CURRENT-PAGE-USERS",IdPage}) as const
 export const GetTotatCountUsersAC=(CountUsers:number)=>({type: "GET-TOTAL-COUNT-USERS",CountUsers}) as const
-export const GetActivePageUsersAC=(ActivePageUsers:Array<UserType>)=>({type: "GET-ACTIVE-PAGE-USERS",ActivePageUsers}) as const
-export const SetActivePageUsersProfileDataAC=(ActivePageUsers:Array<initialStateProfileType>)=>({type: "GET-ACTIVE-PAGE-USERS-PROFILE-DATA",ActivePageUsers}) as const
+export const GetActivePageUsersAC=(ActivePageUsers:UserType)=>({type: "GET-ACTIVE-PAGE-USERS",ActivePageUsers}) as const
+export const SetActivePageUsersProfileDataAC=(ActivePageUsers:UserProfilType)=>({type: "GET-ACTIVE-PAGE-USERS-PROFILE-DATA",ActivePageUsers}) as const
 // types
 type actionType=
     | ReturnType<typeof SetCurrentPageUsers>

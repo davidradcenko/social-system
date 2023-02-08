@@ -40,7 +40,6 @@ export const CounterUser = () => {
     }
     const CurrerntTableInEnd = () => {
         dispatch(SetCurrentPageUsers(maxTable))
-        debugger
         dispatch(GetActivePageUsersTC(maxTable))
         SetLookMaxAndMinPage("Max")
     }

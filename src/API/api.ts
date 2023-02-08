@@ -24,7 +24,7 @@ export const ProfileApi = {
     profileGet(id: number) {
         return instance.get("/profile/" + id)
     },
-    profileChenge(value: initialStateProfileType) {
+    profileChenge(value: UserProfilType) {
         return instance.put("/profile"+value)
     }
 }
@@ -57,32 +57,17 @@ export type ContaksType = {
     youtube: string | null
 }
 export type photosType={
-    large:string,
+    large:string ,
     small:string
 }
-export type initialStateProfileType = {
+export type UserProfilType = {
     aboutMe: string,
     contacts: ContaksType,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
+    userId:number,
     photos:photosType
-}
-type profileChengeType = {
-    "aboutMe": "я круто чувак 1001%",
-    "contacts": {
-        facebook: "facebook.com",
-        github: "github.com",
-        instagram: "instagra.com/sds",
-        mainLink: null,
-        twitter: "https://twitter.com/@sdf",
-        vk: "vk.com/dimych",
-        website: null,
-        youtube: null
-    },
-    "lookingForAJob": true,
-    "lookingForAJobDescription": 'не ищу',
-    "fullName": "samurai d"
 }
 export type UserType={
     name: string ,
@@ -93,11 +78,11 @@ export type UserType={
         large: string | boolean
     },
     status: string |boolean,
-    followed: boolean
+    followed: boolean,
+    ProfilData:UserProfilType
 }
 export type initialStateUsersType={
     items:Array<UserType>,
-    UsersProfil:Array<initialStateProfileType>
     totalCount:number,
     error:string | null,
     CurrentPage:number

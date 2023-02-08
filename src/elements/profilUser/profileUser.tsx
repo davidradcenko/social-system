@@ -9,15 +9,15 @@ import {MainBlockFilterFun} from "./componenst/Main-Block-Seatch-Funk/Main-Block
 import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../store/store";
-import {profilGetTK} from "../../Reducers/profilReducer";
-import {initialStateProfileType} from "../../API/api";
+import {GetMyProfilTK} from "../../Reducers/profilReducer";
+import {UserProfilType} from "../../API/api";
 import {GetActivePageUsersTC, GetTotalCountUsersTC} from "../../Reducers/UsersReducer";
 
 export const ProfileUser = () => {
 
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
-    const ProfilData = useSelector<RootState, initialStateProfileType >(state => state.profil)
+    const ProfilData = useSelector<RootState, UserProfilType >(state => state.profil)
     const CurrentPageId = useSelector<RootState, number>(state => state.users.CurrentPage)
 
     //FormStates
@@ -44,7 +44,7 @@ export const ProfileUser = () => {
 
 
     useEffect(()=>{
-        dispatch(profilGetTK(16939))
+        dispatch(GetMyProfilTK(16939))
         // dispatch(GetActivePageUsersTC(CurrentPageId))
         dispatch(GetTotalCountUsersTC())
     },[])
