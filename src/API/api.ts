@@ -97,6 +97,7 @@ export type UserType={
 }
 export type initialStateUsersType={
     items:Array<UserType>,
+    UsersProfil:Array<initialStateProfileType>
     totalCount:number,
     error:string | null,
     CurrentPage:number

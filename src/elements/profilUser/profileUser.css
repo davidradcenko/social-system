@@ -421,7 +421,9 @@ body {
     padding-right: 30px;
     position: relative;
 }
-
+.CounterUser{
+    padding-top: 20px;
+}
 /*pass content*/
 .content-functional {
     width: 1354px;
