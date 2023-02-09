@@ -21,6 +21,7 @@ function Hello() {
 }
 
 function App() {
+    console.log("+++++++++++++App  ")
     const dispatch = useAppDispatch()
 
     useEffect(() => {

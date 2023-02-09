@@ -5,7 +5,7 @@ type ResultFilterType={
     chengeStateResultTable:()=>void,
     StateResultTable:"Followers" | "Recommendations"
 }
-export const MainBlockFilters=(props:ResultFilterType)=>{
+export const MainBlockFilters=React.memo((props:ResultFilterType)=>{
     const [PapapSelection, SetPapapSelection] = useState(false)
     const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
     const [PapapSelection2, SetPapapSelection2] = useState(false)
@@ -69,4 +69,4 @@ export const MainBlockFilters=(props:ResultFilterType)=>{
             <p onClick={props.chengeStateResultTable} className={'ChangeReSalt'}>{props.StateResultTable}</p>
         </div>
     )
-}
+})

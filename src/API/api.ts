@@ -33,7 +33,7 @@ export const UsersApi={
         return instance.get("/users")
     },
     getCurrentPageUsers(idPage:number){
-        return instance.get("/users?page="+idPage)
+        return instance.get("/users?count=6&page="+idPage)
     },
 }
 

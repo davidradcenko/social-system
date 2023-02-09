@@ -17,7 +17,8 @@ type MainInfoType = {
     contacts: ContaksType
     photos:photosType
 }
-export const MainInfo = (props: MainInfoType) => {
+export const MainInfo = React.memo((props: MainInfoType) => {
+    console.log("+++++++++++++MainInfo  ")
     let facebookP = props.contacts.facebook
     let githubP = props.contacts.github
     let instagramP = props.contacts.instagram
@@ -139,4 +140,4 @@ export const MainInfo = (props: MainInfoType) => {
             </div>
         </div>
     )
-}
+})

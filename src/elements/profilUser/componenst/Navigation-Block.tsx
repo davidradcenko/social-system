@@ -19,7 +19,8 @@ type NavigationBlockTypes = {
 
     // fotoUser:string
 }
-export const NavigationBlock = (props: NavigationBlockTypes) => {
+export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
+    console.log("+++++++++++++NavigationBlock  ")
     const [Vector, SetVector] = useState(true)
     const [TextPapap, SetTextPapap] = useState(false)
 
@@ -99,4 +100,4 @@ export const NavigationBlock = (props: NavigationBlockTypes) => {
             </div>
         </div>
     )
-}
+})

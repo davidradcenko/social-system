@@ -2,8 +2,8 @@ import {EditModeProfilWind} from "../Edit-mode-profil-wind";
 import {SeatchUsersComponent} from "../Seatch-usersComponent";
 import React, {useState} from "react";
 
-export const MainBlockFilterFun = (props: any) => {
-
+export const MainBlockFilterFun = React.memo((props: any) => {
+    console.log("+++++++++++++MainBlockFilterFun  ")
     return (<>
 
         <EditModeProfilWind
@@ -17,4 +17,4 @@ export const MainBlockFilterFun = (props: any) => {
         <div
             className={props.EditModeProfil || props.SeatchFormActivated == true ? "boground-Shadow" : "boground-Shadow-none"}></div>
     </>)
-}
+})

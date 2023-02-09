@@ -13,11 +13,11 @@ import {GetMyProfilTK} from "../../Reducers/profilReducer";
 import {UserProfilType} from "../../API/api";
 import {GetActivePageUsersTC, GetTotalCountUsersTC} from "../../Reducers/UsersReducer";
 
-export const ProfileUser = () => {
-
+export const ProfileUser = React.memo(() => {
+    console.log("+++++++++++++ProfileUser  ")
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
-    const ProfilData = useSelector<RootState, UserProfilType >(state => state.profil)
+    const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
     const CurrentPageId = useSelector<RootState, number>(state => state.users.CurrentPage)
 
     //FormStates
@@ -41,13 +41,11 @@ export const ProfileUser = () => {
     }
 
 
-
-
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(GetMyProfilTK(16939))
         // dispatch(GetActivePageUsersTC(CurrentPageId))
         dispatch(GetTotalCountUsersTC())
-    },[])
+    }, [])
 
 
     if (!isLoginIn) {
@@ -84,10 +82,18 @@ export const ProfileUser = () => {
                         photos={ProfilData.photos}
 
                     />
-                    <MainBlockFilters  chengeStateResultTable={chengeStateResultTable} StateResultTable={StateResultTable}/>
+                    <MainBlockFilters chengeStateResultTable={chengeStateResultTable}
+                                      StateResultTable={StateResultTable}/>
                 </div>
-                    <MainBlockUsersInfo  StateResultTable={StateResultTable}/>
+                <MainBlockUsersInfo StateResultTable={StateResultTable}/>
+                <Eee/>
             </div>
         </div>
+    )
+})
+const Eee = () => {
+    console.log("+++++++++++++eee  ")
+    return (
+        <></>
     )
 }

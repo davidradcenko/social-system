@@ -1,11 +1,12 @@
 import {RootState, useAppDispatch} from "../../../../store/store";
 import {useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {GetActivePageUsersTC, SetCurrentPageUsers} from "../../../../Reducers/UsersReducer";
 import endAnfStart from "../../../../img/imgNavigationPleer/end-button.png";
 import nextAndLast from "../../../../img/imgNavigationPleer/next.png";
 
-export const CounterUser = () => {
+export const CounterUser = React.memo(() => {
+    console.log("+++++++++++++CounterUser  ")
     const dispatch = useAppDispatch()
     const UsersCount = useSelector<RootState, number>(state => state.users.totalCount)
     let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPage)
@@ -88,4 +89,4 @@ export const CounterUser = () => {
             </div>
         </div>
     </>
-}
+})
