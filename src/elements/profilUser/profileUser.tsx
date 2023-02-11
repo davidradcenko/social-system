@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import "./profileUser.css";
 import "./profileUserModile.css";
 import {NavigationBlock} from "./componenst/Navigation-Block";
@@ -11,14 +11,19 @@ import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../store/store";
 import {GetMyProfilTK} from "../../Reducers/profilReducer";
 import {UserProfilType} from "../../API/api";
-import {GetActivePageUsersTC, GetTotalCountUsersTC} from "../../Reducers/UsersReducer";
+import {
+    GetActivePageFriendTC,
+    GetActivePageNoFriendTC,
+    GetTotalFriendCountTC,
+    GetTotalNoFriendCountTC
+} from "../../Reducers/UsersReducer";
 
 export const ProfileUser = React.memo(() => {
     console.log("+++++++++++++ProfileUser  ")
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
-    const CurrentPageId = useSelector<RootState, number>(state => state.users.CurrentPage)
+    // const CurrentPageId = useSelector<RootState, number>(state => state.users.CurrentPage)
 
     //FormStates
     const [EditModeProfil, SetEditModeProfil] = useState<boolean>(false)
@@ -42,9 +47,16 @@ export const ProfileUser = React.memo(() => {
 
 
     useEffect(() => {
+        //take my profile
         dispatch(GetMyProfilTK(16939))
-        // dispatch(GetActivePageUsersTC(CurrentPageId))
-        dispatch(GetTotalCountUsersTC())
+
+        //take active page users
+        dispatch(GetActivePageNoFriendTC(1))
+        dispatch(GetActivePageFriendTC(1))
+
+        //set total count users
+        dispatch(GetTotalFriendCountTC())
+        dispatch(GetTotalNoFriendCountTC())
     }, [])
 
 
@@ -91,9 +103,19 @@ export const ProfileUser = React.memo(() => {
         </div>
     )
 })
-const Eee = () => {
+//test component
+const Eee = React.memo(() => {
+
+    let [count,setCount]=useState(1)
+
+    const getCa=useCallback(()=>{
+        setCount(++count)
+    },[])
     console.log("+++++++++++++eee  ")
     return (
-        <></>
+        <>
+            <input className={"ChangeCurrentTable2"}
+                   onClick={getCa} value={count} type="button"/>
+        </>
     )
-}
+})

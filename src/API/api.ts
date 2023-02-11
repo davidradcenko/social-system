@@ -29,12 +29,18 @@ export const ProfileApi = {
     }
 }
 export const UsersApi={
-    users(){
-        return instance.get("/users")
+    usersFreids(){
+        return instance.get("/users?friend=true")
     },
-    getCurrentPageUsers(idPage:number){
-        return instance.get("/users?count=6&page="+idPage)
+    usersNoFreids(){
+        return instance.get("/users?friend=false")
     },
+    getCurrentPageFriend(idPage:number){
+        return instance.get("/users?friend=true&page="+idPage)
+    },
+    getCurrentPageNoFriend(idPage:number){
+        return instance.get("/users?friend=false&page="+idPage)
+    }
 }
 
 
@@ -82,8 +88,12 @@ export type UserType={
     ProfilData:UserProfilType
 }
 export type initialStateUsersType={
-    items:Array<UserType>,
-    totalCount:number,
+    itemsFriends:Array<UserType>,
+    itemsNoFriends:Array<UserType>,
+    totalFriendCount:number,
+    totalNoFriendCount:number,
     error:string | null,
-    CurrentPage:number
+    CurrentPageFriends:number,
+    CurrentPageNoFriends:number
+
 }
