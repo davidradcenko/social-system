@@ -11,31 +11,44 @@ type CounterUserType={
 export const CounterNoFriendUser = React.memo((props:CounterUserType) => {
     console.log("+++++++++++++CounterFriendsUser  ")
     const dispatch = useAppDispatch()
+
+    //take current page users
     let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPageNoFriends)
 
-
-
-
+    // state for save min,max
     const [LookMaxAndMinPage, SetLookMaxAndMinPage] = useState<"Min" | "Max" | "Ok">("Min")
+    const ChangeMaxMin = (value: "Min" | "Max" | "Ok") => {
+        return SetLookMaxAndMinPage(value)
+    }
 
+
+
+    //set and count min max
     let maxTable = (props.UsersCount / 10) | 0
     let StartTable = 1
 
+    //plus and go to end
     const CurrerntTableInStart = () => {
         dispatch(SetCurrentPageNoFriends(1))
         dispatch(GetActivePageNoFriendTC(1))
         SetLookMaxAndMinPage("Min")
     }
+    const CurrerntTableInEnd = () => {
+        dispatch(SetCurrentPageNoFriends(maxTable))
+        dispatch(GetActivePageNoFriendTC(maxTable))
+        SetLookMaxAndMinPage("Max")
+    }
+
+    //menus and go to start
     const CurrentTableMinus = () => {
         if (CurrentPage == 1) {
             return SetLookMaxAndMinPage("Min")
         }
         dispatch(SetCurrentPageNoFriends(--CurrentPage))
-        // dispatch(GetActivePageUsersTC(CurrentPage))
+        dispatch(GetActivePageNoFriendTC(CurrentPage))
         SetLookMaxAndMinPage(CurrentPage == 1 ? "Min" : "Ok")
 
     }
-
     const CurrentTablePlus = () => {
         if (CurrentPage == maxTable) {
             return SetLookMaxAndMinPage("Max")
@@ -45,21 +58,10 @@ export const CounterNoFriendUser = React.memo((props:CounterUserType) => {
         SetLookMaxAndMinPage(CurrentPage == maxTable ? "Max" : "Ok")
 
     }
-    const CurrerntTableInEnd = () => {
-        dispatch(SetCurrentPageNoFriends(maxTable))
-        dispatch(GetActivePageNoFriendTC(maxTable))
-        SetLookMaxAndMinPage("Max")
-    }
 
-
-    const ChangeMaxMin = (value: "Min" | "Max" | "Ok") => {
-        return SetLookMaxAndMinPage(value)
-    }
-
-
+    //count current table
     let ShowCurrentsUsers = CurrentPage * 10
     let ShowMaxCurrentsUsers = (CurrentPage * 10) + 10
-
     if (CurrentPage == 1) {
         ShowCurrentsUsers = 1
         ShowMaxCurrentsUsers = 10

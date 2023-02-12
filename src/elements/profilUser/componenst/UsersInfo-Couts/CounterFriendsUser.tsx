@@ -1,9 +1,7 @@
 import {RootState, useAppDispatch} from "../../../../store/store";
 import {useSelector} from "react-redux";
-import React, {useCallback, useEffect, useState} from "react";
-import {GetActivePageNoFriendTC, SetCurrentPageFriends} from "../../../../Reducers/UsersReducer";
-import endAnfStart from "../../../../img/imgNavigationPleer/end-button.png";
-import nextAndLast from "../../../../img/imgNavigationPleer/next.png";
+import React, {useState} from "react";
+import {GetActivePageFriendTC, SetCurrentPageFriends} from "../../../../Reducers/UsersReducer";
 
 type CounterUserType={
     UsersCount:number
@@ -14,46 +12,43 @@ export const CounterFriendsUser = React.memo((props:CounterUserType) => {
     let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPageFriends)
 
 
-
-
-    const [LookMaxAndMinPage, SetLookMaxAndMinPage] = useState<"Min" | "Max" | "Ok">("Min")
+    const [LookMaxAndMinPageFriend, SetLookMaxAndMinPageFriend] = useState<"Min" | "Max" | "Ok">("Min")
 
     let maxTable = (props.UsersCount / 10) | 0
     let StartTable = 1
 
     const CurrerntTableInStart = () => {
         dispatch(SetCurrentPageFriends(1))
-        dispatch(GetActivePageNoFriendTC(1))
-        SetLookMaxAndMinPage("Min")
+        dispatch(GetActivePageFriendTC(1))
+        SetLookMaxAndMinPageFriend("Min")
     }
     const CurrentTableMinus = () => {
         if (CurrentPage == 1) {
-            return SetLookMaxAndMinPage("Min")
+            return SetLookMaxAndMinPageFriend("Min")
         }
         dispatch(SetCurrentPageFriends(--CurrentPage))
-        // dispatch(GetActivePageUsersTC(CurrentPage))
-        SetLookMaxAndMinPage(CurrentPage == 1 ? "Min" : "Ok")
-
+        dispatch(GetActivePageFriendTC(CurrentPage))
+        SetLookMaxAndMinPageFriend(CurrentPage == 1 ? "Min" : "Ok")
     }
 
     const CurrentTablePlus = () => {
         if (CurrentPage == maxTable) {
-            return SetLookMaxAndMinPage("Max")
+            return SetLookMaxAndMinPageFriend("Max")
         }
         dispatch(SetCurrentPageFriends(++CurrentPage))
-        dispatch(GetActivePageNoFriendTC(CurrentPage))
-        SetLookMaxAndMinPage(CurrentPage == maxTable ? "Max" : "Ok")
+        dispatch(GetActivePageFriendTC(CurrentPage))
+        SetLookMaxAndMinPageFriend(CurrentPage == maxTable ? "Max" : "Ok")
 
     }
     const CurrerntTableInEnd = () => {
         dispatch(SetCurrentPageFriends(maxTable))
-        dispatch(GetActivePageNoFriendTC(maxTable))
-        SetLookMaxAndMinPage("Max")
+        dispatch(GetActivePageFriendTC(maxTable))
+        SetLookMaxAndMinPageFriend("Max")
     }
 
 
     const ChangeMaxMin = (value: "Min" | "Max" | "Ok") => {
-        return SetLookMaxAndMinPage(value)
+        return SetLookMaxAndMinPageFriend(value)
     }
 
 
@@ -78,19 +73,19 @@ export const CounterFriendsUser = React.memo((props:CounterUserType) => {
                 <div className={"ChangeCurrentTable"}>
 
                     <input
-                        className={LookMaxAndMinPage == "Min" ? "ChangeCurrentTable1 navigatPlaeerDisable" : "ChangeCurrentTable1"}
+                        className={LookMaxAndMinPageFriend == "Min" ? "ChangeCurrentTable1 navigatPlaeerDisable" : "ChangeCurrentTable1"}
                         onClick={CurrerntTableInStart} type="button"/>
 
                     <input
-                        className={LookMaxAndMinPage == "Min" ? "ChangeCurrentTable2 abbMardjen navigatPlaeerDisable" : "ChangeCurrentTable2 abbMardjen"}
+                        className={LookMaxAndMinPageFriend == "Min" ? "ChangeCurrentTable2 abbMardjen navigatPlaeerDisable" : "ChangeCurrentTable2 abbMardjen"}
                         onClick={CurrentTableMinus} type="button"/>
 
                     <input
-                        className={LookMaxAndMinPage == "Max" ? "ChangeCurrentTable3 navigatPlaeerDisable" : "ChangeCurrentTable3"}
+                        className={LookMaxAndMinPageFriend == "Max" ? "ChangeCurrentTable3 navigatPlaeerDisable" : "ChangeCurrentTable3"}
                         onClick={CurrentTablePlus} type="button"/>
 
                     <input
-                        className={LookMaxAndMinPage == "Max" ? "ChangeCurrentTable4 navigatPlaeerDisable" : "ChangeCurrentTable4"}
+                        className={LookMaxAndMinPageFriend == "Max" ? "ChangeCurrentTable4 navigatPlaeerDisable" : "ChangeCurrentTable4"}
                         onClick={CurrerntTableInEnd} type="button"/>
 
 

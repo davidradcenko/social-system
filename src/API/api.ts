@@ -81,7 +81,7 @@ export type UserType={
     uniqueUrlName:string | null ,
     photos: {
         small: string | null,
-        large: string | boolean
+        large: string | null
     },
     status: string |boolean,
     followed: boolean,
