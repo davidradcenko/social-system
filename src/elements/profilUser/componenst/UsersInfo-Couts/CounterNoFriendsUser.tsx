@@ -26,6 +26,11 @@ export const CounterNoFriendUser = React.memo((props:CounterUserType) => {
     //set and count min max
     let maxTable = (props.UsersCount / 10) | 0
     let StartTable = 1
+    let checkMaxSidth =props.UsersCount % 10
+    if (checkMaxSidth !==0){
+        ++maxTable
+    }
+
 
     //plus and go to end
     const CurrerntTableInStart = () => {
@@ -60,11 +65,14 @@ export const CounterNoFriendUser = React.memo((props:CounterUserType) => {
     }
 
     //count current table
-    let ShowCurrentsUsers = CurrentPage * 10
-    let ShowMaxCurrentsUsers = (CurrentPage * 10) + 10
+    let ShowCurrentsUsers = (CurrentPage-1) * 10
+    let ShowMaxCurrentsUsers = (CurrentPage * 10)
     if (CurrentPage == 1) {
         ShowCurrentsUsers = 1
         ShowMaxCurrentsUsers = 10
+    }
+    if (props.UsersCount<10){
+        ShowMaxCurrentsUsers=props.UsersCount
     }
     if (CurrentPage == maxTable) {
         ShowCurrentsUsers = ShowCurrentsUsers

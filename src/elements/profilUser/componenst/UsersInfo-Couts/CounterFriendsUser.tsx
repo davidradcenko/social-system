@@ -7,21 +7,30 @@ type CounterUserType={
     UsersCount:number
 }
 export const CounterFriendsUser = React.memo((props:CounterUserType) => {
-    console.log("+++++++++++++CounterFriendsUser  ")
     const dispatch = useAppDispatch()
+
+    //take current page users
     let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPageFriends)
 
-
+    // state for save min,max
     const [LookMaxAndMinPageFriend, SetLookMaxAndMinPageFriend] = useState<"Min" | "Max" | "Ok">("Min")
+    const ChangeMaxMin = (value: "Min" | "Max" | "Ok") => {
+        return SetLookMaxAndMinPageFriend(value)
+    }
 
+
+
+    //set and count min max
     let maxTable = (props.UsersCount / 10) | 0
+    let checkMaxSidth =props.UsersCount % 10
+    if (checkMaxSidth !==0){
+        ++maxTable
+    }
+
     let StartTable = 1
 
-    const CurrerntTableInStart = () => {
-        dispatch(SetCurrentPageFriends(1))
-        dispatch(GetActivePageFriendTC(1))
-        SetLookMaxAndMinPageFriend("Min")
-    }
+
+    //menus and go to start
     const CurrentTableMinus = () => {
         if (CurrentPage == 1) {
             return SetLookMaxAndMinPageFriend("Min")
@@ -30,7 +39,13 @@ export const CounterFriendsUser = React.memo((props:CounterUserType) => {
         dispatch(GetActivePageFriendTC(CurrentPage))
         SetLookMaxAndMinPageFriend(CurrentPage == 1 ? "Min" : "Ok")
     }
+    const CurrerntTableInStart = () => {
+        dispatch(SetCurrentPageFriends(1))
+        dispatch(GetActivePageFriendTC(1))
+        SetLookMaxAndMinPageFriend("Min")
+    }
 
+    //plus and go to end
     const CurrentTablePlus = () => {
         if (CurrentPage == maxTable) {
             return SetLookMaxAndMinPageFriend("Max")
@@ -47,17 +62,18 @@ export const CounterFriendsUser = React.memo((props:CounterUserType) => {
     }
 
 
-    const ChangeMaxMin = (value: "Min" | "Max" | "Ok") => {
-        return SetLookMaxAndMinPageFriend(value)
-    }
 
+    //count current table
+    let ShowCurrentsUsers = (CurrentPage-1) * 10
+    let ShowMaxCurrentsUsers = (CurrentPage * 10)
 
-    let ShowCurrentsUsers = CurrentPage * 10
-    let ShowMaxCurrentsUsers = (CurrentPage * 10) + 10
 
     if (CurrentPage == 1) {
         ShowCurrentsUsers = 1
         ShowMaxCurrentsUsers = 10
+    }
+    if (props.UsersCount<10){
+        ShowMaxCurrentsUsers=props.UsersCount
     }
     if (CurrentPage == maxTable) {
         ShowCurrentsUsers = ShowCurrentsUsers

@@ -6,6 +6,7 @@ import {GetActivePageNoFriendTC, GetUsersProfilTK} from "../../../Reducers/Users
 import {useSelector} from "react-redux";
 import {UserType} from "../../../API/api";
 import {Await} from "react-router-dom";
+import {CounterNoFriendUser} from "./UsersInfo-Couts/CounterNoFriendsUser";
 
 type ResultFilterType = {
     StateResultTable: "Followers" | "Recommendations"
@@ -14,7 +15,7 @@ export const MainBlockUsersInfo = React.memo((props: ResultFilterType) => {
     console.log("+++++++++++++MainBlockUsersInfo  ")
     const ActivePageFriend = useSelector<RootState, Array<UserType>>(state => state.users.itemsFriends)
     const ActivePageNoFriend = useSelector<RootState, Array<UserType>>(state => state.users.itemsNoFriends)
-debugger
+
     const UsersFriendCount = useSelector<RootState, number>(state => state.users.totalFriendCount)
     const UsersNoFriendCount = useSelector<RootState, number>(state => state.users.totalNoFriendCount)
 
@@ -25,7 +26,7 @@ debugger
                 <CounterFriendsUser UsersCount={UsersFriendCount}/>
                 <div className={"one-pass-scroll"}>
                     {ActivePageFriend.map(tl => {
-                        debugger
+
                         return <TableFriend key={tl.id} tl={tl}/>
                         //
                     })}
@@ -33,7 +34,7 @@ debugger
             </div>
             {/*two pass*/}
             <div className={props.StateResultTable == "Recommendations" ? "two-pas-block-content" : " two-pas-block-content ClassDisplayNone"}>
-                <CounterFriendsUser UsersCount={UsersNoFriendCount}/>
+                <CounterNoFriendUser UsersCount={UsersNoFriendCount}/>
                 <div className={"one-pass-scroll"}>
                     {ActivePageNoFriend.map(tl => {
                         return <TableNoFriend key={tl.id} tl={tl}/>
@@ -57,7 +58,7 @@ export const TableFriend = React.memo((props: ttt) => {
     useEffect(() => {
         dispatch(GetUsersProfilTK("Friends", props.tl.id))
     }, [])
-    debugger
+
     return (
         <div key={props.tl.id} className="one-pass-info-black">
             <div className={"one-pas-info"}>
