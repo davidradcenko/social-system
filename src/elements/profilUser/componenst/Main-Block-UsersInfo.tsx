@@ -2,7 +2,7 @@ import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {CounterFriendsUser} from "./UsersInfo-Couts/CounterFriendsUser";
 import {RootState, useAppDispatch} from "../../../store/store";
-import {GetActivePageNoFriendTC, GetUsersProfilTK} from "../../../Reducers/UsersReducer";
+import {FollowUserAC, GetActivePageNoFriendTC, GetUsersProfilTK} from "../../../Reducers/UsersReducer";
 import {useSelector} from "react-redux";
 import {UserType} from "../../../API/api";
 import {Await} from "react-router-dom";
@@ -81,6 +81,12 @@ export const TableFriend = React.memo((props: ttt) => {
 })
 export const TableNoFriend=React.memo((props:any)=>{
     const dispatch = useAppDispatch()
+
+
+    const FollowUser=()=>{
+        debugger
+        dispatch(FollowUserAC(props.tl.id))
+    }
     useEffect(() => {
         dispatch(GetUsersProfilTK("NoFriends", props.tl.id))
     }, [])
@@ -98,7 +104,7 @@ export const TableNoFriend=React.memo((props:any)=>{
                 </div>
             </div>
             <div className={"two-pas-function"}>
-                <input type="button" value={"Subscribe"}/>
+                <input type="button" onClick={FollowUser} value={"Subscribe"}/>
             </div>
         </div>
     )

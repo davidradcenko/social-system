@@ -10,6 +10,7 @@ export const MainBlockFilters=React.memo((props:ResultFilterType)=>{
     const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
     const [PapapSelection2, SetPapapSelection2] = useState(false)
     const [CheckboxStat2, SetCheckboxStat2] = useState<boolean>()
+
     const changeSetPapapSelection = () => {
         SetPapapSelection(!PapapSelection)
     }
@@ -27,46 +28,46 @@ export const MainBlockFilters=React.memo((props:ResultFilterType)=>{
         <div className="Menu-recomen">
             <div className={"one-pas"}>
                 <input className={"seatch-menu"} type="text" placeholder={"Seach"}/>
-                <img onClick={changeSetPapapSelection} src={customization} alt="customization"/>
+                {/*<img onClick={changeSetPapapSelection} src={customization} alt="customization"/>*/}
                 {/*className={"one-pass-customisazia"}*/}
 
-                <div
-                    className={PapapSelection == true ? "one-pass-customisazia" : "one-pass-customisazia-none"}>
-                    <p className={"name-custom"}>Sort by:</p>
-                    <div onBlur={changeSetPapapSelection} className="change-customizat">
-                        <p className={CheckboxStat == true ? "Customizasia-Status" : "Customizasia-Status-NoCheked"}>Status <input
-                            className={"Status-button"} checked={CheckboxStat == true}
-                            onChange={() => changeSetCheckboxStat(true)} name={"radio-customez"}
-                            type="radio" readOnly/></p>
-                        <p className={CheckboxStat == false ? "Customizasia-Profesion-Skills-Cheked" : "Customizasia-Profesion-Skills"}>Professional
-                            skills<input className={"Profesion-Skils-button"}
-                                         checked={CheckboxStat == false}
-                                         onChange={() => changeSetCheckboxStat(false)}
-                                         name={"radio-customez"} type="radio" readOnly/></p>
-                    </div>
-                </div>
+                {/*<div*/}
+                {/*    className={PapapSelection == true ? "one-pass-customisazia" : "one-pass-customisazia-none"}>*/}
+                {/*    <p className={"name-custom"}>Sort by:</p>*/}
+                {/*    <div onBlur={changeSetPapapSelection} className="change-customizat">*/}
+                {/*        <p className={CheckboxStat == true ? "Customizasia-Status" : "Customizasia-Status-NoCheked"}>Status <input*/}
+                {/*            className={"Status-button"} checked={CheckboxStat == true}*/}
+                {/*            onChange={() => changeSetCheckboxStat(true)} name={"radio-customez"}*/}
+                {/*            type="radio" readOnly/></p>*/}
+                {/*        <p className={CheckboxStat == false ? "Customizasia-Profesion-Skills-Cheked" : "Customizasia-Profesion-Skills"}>Professional*/}
+                {/*            skills<input className={"Profesion-Skils-button"}*/}
+                {/*                         checked={CheckboxStat == false}*/}
+                {/*                         onChange={() => changeSetCheckboxStat(false)}*/}
+                {/*                         name={"radio-customez"} type="radio" readOnly/></p>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
             <div className={"two-pas"}>
-                <img onClick={changeSetPapapSelection2} src={customization} alt="customization"/>
-                <p className="recomend-menu"> Recommendations</p>
+                {/*<img onClick={changeSetPapapSelection2} src={customization} alt="customization"/>*/}
+                {/*<p className="recomend-menu"> Recommendations</p>*/}
 
-                <div
-                    className={PapapSelection2 == true ? "two-pass-customisazia" : "two-pass-customisazia-none"}>
-                    <p className={"name-custom"}>Sort by:</p>
-                    <div onBlur={changeSetPapapSelection2} className="change-customizat">
-                        <p className={CheckboxStat2 == true ? "Customizasia-Status" : "Customizasia-Status-NoCheked"}>Status <input
-                            className={"Status-button"} checked={CheckboxStat2 == true}
-                            onChange={() => changeSetCheckboxStat2(true)} name={"radio-customez2"}
-                            type="radio" readOnly/></p>
-                        <p className={CheckboxStat2 == false ? "Customizasia-Profesion-Skills-Cheked" : "Customizasia-Profesion-Skills"}>Professional
-                            skills<input className={"Profesion-Skils-button"}
-                                         checked={CheckboxStat2 == false}
-                                         onChange={() => changeSetCheckboxStat2(false)}
-                                         name={"radio-customez2"} type="radio" readOnly/></p>
-                    </div>
-                </div>
+                {/*<div*/}
+                {/*    className={PapapSelection2 == true ? "two-pass-customisazia" : "two-pass-customisazia-none"}>*/}
+                {/*    <p className={"name-custom"}>Sort by:</p>*/}
+                {/*    <div onBlur={changeSetPapapSelection2} className="change-customizat">*/}
+                {/*        <p className={CheckboxStat2 == true ? "Customizasia-Status" : "Customizasia-Status-NoCheked"}>Status <input*/}
+                {/*            className={"Status-button"} checked={CheckboxStat2 == true}*/}
+                {/*            onChange={() => changeSetCheckboxStat2(true)} name={"radio-customez2"}*/}
+                {/*            type="radio" readOnly/></p>*/}
+                {/*        <p className={CheckboxStat2 == false ? "Customizasia-Profesion-Skills-Cheked" : "Customizasia-Profesion-Skills"}>Professional*/}
+                {/*            skills<input className={"Profesion-Skils-button"}*/}
+                {/*                         checked={CheckboxStat2 == false}*/}
+                {/*                         onChange={() => changeSetCheckboxStat2(false)}*/}
+                {/*                         name={"radio-customez2"} type="radio" readOnly/></p>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
-            <p onClick={props.chengeStateResultTable} className={'ChangeReSalt'}>{props.StateResultTable}</p>
+            <p onClick={props.chengeStateResultTable} className={'ChangeReSalt'}>{props.StateResultTable=="Recommendations"?"Followers":"Recommendations"}</p>
         </div>
     )
 })

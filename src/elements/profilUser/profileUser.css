@@ -424,6 +424,10 @@ body {
 .CounterUser{
     padding-top: 20px;
 }
+.CounterUser{
+    display: flex;
+    justify-content: space-between;
+}
 /*pass content*/
 .content-functional {
     width: 1354px;

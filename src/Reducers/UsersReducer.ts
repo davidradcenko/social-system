@@ -56,6 +56,19 @@ export const usersReducer = (state: initialStateUsersType = initialState, action
             return stateCopy
         }
 
+        //follow user
+        case "FOLLOW-USER":{
+            let statyCopy={...state}
+            debugger
+            statyCopy.itemsNoFriends.map((tl,index)=>{
+                if (tl.id == action.IdUser){
+                    debugger
+                    let deletedId=statyCopy.itemsFriends.slice(index,2)
+                    return {...statyCopy,CurrentPageNoFriends:deletedId}
+                }
+            })
+            return {...statyCopy}
+        }
         default: return state
 
     }
@@ -152,9 +165,12 @@ export const GetActivePageNoFriendsAC=(ActivePageUsers:Array<UserType>)=>({type:
 //take users profile data
 export const SetActivePageUsersProfileDataAC=(TypeUsers:"Friends"|"NoFriends",ActivePageUsers:UserProfilType)=>({type: "GET-ACTIVE-PAGE-USERS-PROFILE-DATA",TypeUsers,ActivePageUsers}) as const
 
+//follow user
+export const FollowUserAC=(IdUser:number)=>({type:"FOLLOW-USER",IdUser}) as const
 // types
 type actionType=
     | ReturnType<typeof SetCurrentPageNoFriends>
+    | ReturnType<typeof FollowUserAC>
     | ReturnType<typeof SetCurrentPageFriends>
     | ReturnType<typeof SetTotalNoFriendCountAC>
     | ReturnType<typeof GetActivePageFriendsAC>

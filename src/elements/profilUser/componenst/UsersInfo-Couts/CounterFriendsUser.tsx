@@ -82,6 +82,7 @@ export const CounterFriendsUser = React.memo((props:CounterUserType) => {
 
     return <>
         <div className={"CounterUser"}>
+            <p>Friends</p>
             <div className={'MainblockCouter'}>
                 <div className={'CountFigers'}>
                     <p>{ShowCurrentsUsers}–{ShowMaxCurrentsUsers} of {props.UsersCount}</p>

@@ -81,6 +81,7 @@ export const CounterNoFriendUser = React.memo((props:CounterUserType) => {
 
     return <>
         <div className={"CounterUser"}>
+            <p>Recommendations</p>
             <div className={'MainblockCouter'}>
                 <div className={'CountFigers'}>
                     <p>{ShowCurrentsUsers}–{ShowMaxCurrentsUsers} of {props.UsersCount}</p>
