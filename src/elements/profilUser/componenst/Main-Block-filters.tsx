@@ -37,12 +37,12 @@ export const MainBlockFilters=React.memo((props:ResultFilterType)=>{
                         <p className={CheckboxStat == true ? "Customizasia-Status" : "Customizasia-Status-NoCheked"}>Status <input
                             className={"Status-button"} checked={CheckboxStat == true}
                             onChange={() => changeSetCheckboxStat(true)} name={"radio-customez"}
-                            type="radio"/></p>
+                            type="radio" readOnly/></p>
                         <p className={CheckboxStat == false ? "Customizasia-Profesion-Skills-Cheked" : "Customizasia-Profesion-Skills"}>Professional
                             skills<input className={"Profesion-Skils-button"}
                                          checked={CheckboxStat == false}
                                          onChange={() => changeSetCheckboxStat(false)}
-                                         name={"radio-customez"} type="radio"/></p>
+                                         name={"radio-customez"} type="radio" readOnly/></p>
                     </div>
                 </div>
             </div>
@@ -57,12 +57,12 @@ export const MainBlockFilters=React.memo((props:ResultFilterType)=>{
                         <p className={CheckboxStat2 == true ? "Customizasia-Status" : "Customizasia-Status-NoCheked"}>Status <input
                             className={"Status-button"} checked={CheckboxStat2 == true}
                             onChange={() => changeSetCheckboxStat2(true)} name={"radio-customez2"}
-                            type="radio"/></p>
+                            type="radio" readOnly/></p>
                         <p className={CheckboxStat2 == false ? "Customizasia-Profesion-Skills-Cheked" : "Customizasia-Profesion-Skills"}>Professional
                             skills<input className={"Profesion-Skils-button"}
                                          checked={CheckboxStat2 == false}
                                          onChange={() => changeSetCheckboxStat2(false)}
-                                         name={"radio-customez2"} type="radio"/></p>
+                                         name={"radio-customez2"} type="radio" readOnly/></p>
                     </div>
                 </div>
             </div>

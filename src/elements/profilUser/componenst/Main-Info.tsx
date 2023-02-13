@@ -35,8 +35,8 @@ export const MainInfo = React.memo((props: MainInfoType) => {
             <div className={"info-profil"}>
                 <p className="Name-InfoProfil">{props.FullName}</p>
                 {/*Status-InfoProfil*/}
-                <p className="JobSearch-InfoProfil">Job search: <input className={"Checkbox-InfoProfil"}
-                                                                       type={"checkbox"} checked={props.lokingForAJab}/>
+                <p className="JobSearch-InfoProfil">Job search:
+                    <input className={"Checkbox-InfoProfil"} type={"checkbox"} checked={props.lokingForAJab} readOnly/>
                 </p>
 
                 <p className="ProfessionSkils-InfoProfil">Frofessional skills:</p>

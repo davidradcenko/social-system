@@ -68,7 +68,8 @@ export const TableFriend = React.memo((props: ttt) => {
                 </div>
                 <div className={"one-pas-info-text"}>
                     <p className={"one-pas-info-text-name"}>{props.tl.name}
-                        <input type={"checkbox"} checked={props.tl.lookingForAJob}/></p>
+                        <input type={"checkbox"} onChange={e=>{}} checked={props.tl.lookingForAJob || false} readOnly/>
+                    </p>
                     <p className={"one-pas-info-text-qvalete"}>{props.tl.aboutMe}</p>
                 </div>
             </div>
@@ -91,7 +92,8 @@ export const TableNoFriend=React.memo((props:any)=>{
                 </div>
                 <div className={"one-pas-info-text"}>
                     <p className={"one-pas-info-text-name"}>{props.tl.name}
-                        <input type={"checkbox"} checked={props.tl.lookingForAJob}/></p>
+                        <input type={"checkbox"}  onChange={e=>{}} checked={props.tl.lookingForAJob || false} readOnly/>
+                    </p>
                     <p className={"one-pas-info-text-qvalete"}>{props.tl.aboutMe}</p>
                 </div>
             </div>

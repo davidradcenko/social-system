@@ -764,6 +764,7 @@ body {
     width: 100%;
     height: 148.44px;
     resize: none;
+    border: 1px solid black;
     padding-left: 15px;
     font-family: 'Roboto';
     font-style: normal;

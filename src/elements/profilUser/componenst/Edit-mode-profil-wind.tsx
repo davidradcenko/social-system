@@ -55,7 +55,7 @@ export const EditModeProfilWind=(props:any)=>{
                         <img onClick={() => changeSetObjectIconsState(website)} src={website} alt="website"/>
                     </div>
                     <div className={"Edit-mode-social-inputs"}>
-                        {/*<input value={"https://"} id={"Edit-mode-input-types"} type="text"/>*/}
+                        <input value={"https://"} onChange={e=>{}} id={"Edit-mode-input-types"} type="text"/>
                         <img src={objectIconsState} alt=""/>
                     </div>
                 </div>
