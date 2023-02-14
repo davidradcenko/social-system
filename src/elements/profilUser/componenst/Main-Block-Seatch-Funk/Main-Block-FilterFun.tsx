@@ -8,7 +8,15 @@ export const MainBlockFilterFun = React.memo((props: any) => {
 
         <EditModeProfilWind
             EditModeProfil={props.EditModeProfil}
-            changeSetEditModeProfil={props.changeSetEditModeProfil}/>
+            changeSetEditModeProfil={props.changeSetEditModeProfil}
+
+            FullName={props.FullName}
+            ProfesionSkils={props.ProfesionSkils}
+            AboutUser={props.AboutUser}
+            lokingForAJab={props.lokingForAJab}
+            contacts={props.contacts}
+            photos={props.photos}
+        />
 
         <SeatchUsersComponent
             SeatchFormActivated={props.SeatchFormActivated}

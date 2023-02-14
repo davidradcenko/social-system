@@ -82,6 +82,13 @@ export const ProfileUser = React.memo(() => {
                     changeSetEditModeProfil={changeSetEditModeProfil}
                     SeatchFormActivated={SeatchFormActivated}
                     changesActivatedSeatch={changesActivatedSeatch}
+
+                    FullName={ProfilData.fullName}
+                    ProfesionSkils={ProfilData.lookingForAJobDescription}
+                    AboutUser={ProfilData.aboutMe}
+                    lokingForAJab={ProfilData.lookingForAJob}
+                    contacts={ProfilData.contacts}
+                    photos={ProfilData.photos}
                 />
 
                 <div className="mainChaend">
