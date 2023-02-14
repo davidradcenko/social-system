@@ -10,6 +10,8 @@ import SeachMobule from "../../../img/module-IMG/Group 72.png";
 import MoonModule from "../../../img/module-IMG/Moon.png";
 import SelectMobule from "../../../img/module-IMG/MeatballMenu.png";
 import moduleFotoTest from "../../../img/nav-icons/foroTest.png";
+import {GetMyProfilTK} from "../../../Reducers/profilReducer";
+import {useAppDispatch} from "../../../store/store";
 
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
@@ -21,6 +23,7 @@ type NavigationBlockTypes = {
 }
 export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
     console.log("+++++++++++++NavigationBlock  ")
+    const dispatch = useAppDispatch()
     const [Vector, SetVector] = useState(true)
     const [TextPapap, SetTextPapap] = useState(false)
 
@@ -28,6 +31,9 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
     const changeSettextPapap = () => {
         SetTextPapap(!TextPapap)
         SetVector(!Vector)
+    }
+    const GoToProfil=()=>{
+        dispatch(GetMyProfilTK(16939))
     }
 
     return (
@@ -49,7 +55,7 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                     <div className={"ProfilIcon"}>
                         <img src={HomeIcon} alt="HomeIcon"/>
                         <div className={"ProfilIcon-text"}>
-                            <p>Profil</p>
+                            <p onClick={GoToProfil}>Profil</p>
                             {Vector == true
                                 ?
                                 <img className={"VectorTrue"} onClick={changeSettextPapap} src={imgVector}

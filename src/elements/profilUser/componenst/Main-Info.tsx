@@ -8,6 +8,7 @@ import {ContaksType, photosType} from "../../../API/api";
 import instagram from "../../../img/nav-icons/icons-sosial/inst.png";
 import youtube from "../../../img/nav-icons/icons-sosial/utub.png";
 import website from "../../../img/nav-icons/icons-sosial/www.png";
+import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 
 type MainInfoType = {
     FullName: string
@@ -30,7 +31,7 @@ export const MainInfo = React.memo((props: MainInfoType) => {
     return (
         <div className="main-info">
             <div className={"lardge-foto"}>
-                <div className="Foto-classfotoFrofel-gradient"><img src={props.photos.small} alt="large img"/></div>
+                <div className={"Foto-classfotoFrofel-gradient"}><img className={props.photos.small == null?"Foto-classfotoFrofel-gradient":""} src={props.photos.small == null ? testInfoBlockImg : props.photos.small} alt="large img"/></div>
             </div>
             <div className={"info-profil"}>
                 <p className="Name-InfoProfil">{props.FullName}</p>

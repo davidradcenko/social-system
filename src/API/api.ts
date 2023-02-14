@@ -40,6 +40,18 @@ export const UsersApi={
     },
     getCurrentPageNoFriend(idPage:number){
         return instance.get("/users?friend=false&page="+idPage)
+    },
+    getSearchFriendsUsers(Name:string){
+        return instance.get("/users?friend=true&page=1&term="+Name)
+    },
+    getSearchNoFriendsUsers(Name:string){
+        return instance.get("/users?friend=false&page=1&term="+Name)
+    },
+    follow(Iduser:number){
+        return instance.post(`/follow/`+Iduser)
+    },
+    unfollow(Iduser:number){
+        return instance.delete(`/follow/`+Iduser)
     }
 }
 

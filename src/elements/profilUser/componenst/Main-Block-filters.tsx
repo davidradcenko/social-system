@@ -1,34 +1,45 @@
-import customization from "../../../img/icons-profel/customizachen.png";
-import React, {useState} from "react";
+import search from "../../../img/nav-icons/people.png";
+import React, {InputHTMLAttributes, useState} from "react";
+import {SearchTK} from "../../../Reducers/UsersReducer";
+import {useAppDispatch} from "../../../store/store";
 
-type ResultFilterType={
-    chengeStateResultTable:()=>void,
-    StateResultTable:"Followers" | "Recommendations"
+type ResultFilterType = {
+    chengeStateResultTable: () => void,
+    StateResultTable: "Followers" | "Recommendations"
 }
-export const MainBlockFilters=React.memo((props:ResultFilterType)=>{
-    const [PapapSelection, SetPapapSelection] = useState(false)
-    const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
-    const [PapapSelection2, SetPapapSelection2] = useState(false)
-    const [CheckboxStat2, SetCheckboxStat2] = useState<boolean>()
+export const MainBlockFilters = React.memo((props: ResultFilterType) => {
+    const dispatch = useAppDispatch()
+    // const [PapapSelection, SetPapapSelection] = useState(false)
+    // const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
+    // const [PapapSelection2, SetPapapSelection2] = useState(false)
+    // const [CheckboxStat2, SetCheckboxStat2] = useState<boolean>()
+    // const changeSetPapapSelection = () => {
+    //     SetPapapSelection(!PapapSelection)
+    // }
+    // const changeSetCheckboxStat = (valer: boolean) => {
+    //     SetCheckboxStat(valer)
+    // }
+    // const changeSetPapapSelection2 = () => {
+    //     SetPapapSelection2(!PapapSelection2)
+    // }
+    // const changeSetCheckboxStat2 = (valer: boolean) => {
+    //     SetCheckboxStat2(valer)
+    // }
+    const [Search, SetSearch] = useState<string>("")
 
-    const changeSetPapapSelection = () => {
-        SetPapapSelection(!PapapSelection)
-    }
-    const changeSetCheckboxStat = (valer: boolean) => {
-        SetCheckboxStat(valer)
-    }
-    const changeSetPapapSelection2 = () => {
-        SetPapapSelection2(!PapapSelection2)
-    }
-    const changeSetCheckboxStat2 = (valer: boolean) => {
-        SetCheckboxStat2(valer)
+    const changeInput=(value:any)=>{
+        SetSearch(value)
     }
 
-    return(
+    const SeachUsers = () => {
+        dispatch(SearchTK(Search))
+    }
+
+    return (
         <div className="Menu-recomen">
             <div className={"one-pas"}>
-                <input className={"seatch-menu"} type="text" placeholder={"Seach"}/>
-                {/*<img onClick={changeSetPapapSelection} src={customization} alt="customization"/>*/}
+                <input className={"seatch-menu"}  onChange={e=>changeInput(e.target.value)} type="text" placeholder={"Seach"}/>
+                <img onClick={SeachUsers} src={search} alt="customization"/>
                 {/*className={"one-pass-customisazia"}*/}
 
                 {/*<div*/}
@@ -67,7 +78,8 @@ export const MainBlockFilters=React.memo((props:ResultFilterType)=>{
                 {/*    </div>*/}
                 {/*</div>*/}
             </div>
-            <p onClick={props.chengeStateResultTable} className={'ChangeReSalt'}>{props.StateResultTable=="Recommendations"?"Followers":"Recommendations"}</p>
+            <p onClick={props.chengeStateResultTable}
+               className={'ChangeReSalt'}>{props.StateResultTable == "Recommendations" ? "Followers" : "Recommendations"}</p>
         </div>
     )
 })

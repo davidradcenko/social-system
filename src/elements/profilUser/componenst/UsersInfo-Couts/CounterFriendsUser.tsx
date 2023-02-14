@@ -72,6 +72,10 @@ export const CounterFriendsUser = React.memo((props:CounterUserType) => {
         ShowCurrentsUsers = 1
         ShowMaxCurrentsUsers = 10
     }
+    if (maxTable == 0) {
+        ShowCurrentsUsers = 0
+        ShowMaxCurrentsUsers = 10
+    }
     if (props.UsersCount<10){
         ShowMaxCurrentsUsers=props.UsersCount
     }

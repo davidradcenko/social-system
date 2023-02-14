@@ -2,11 +2,18 @@ import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {CounterFriendsUser} from "./UsersInfo-Couts/CounterFriendsUser";
 import {RootState, useAppDispatch} from "../../../store/store";
-import {FollowUserAC, GetActivePageNoFriendTC, GetUsersProfilTK} from "../../../Reducers/UsersReducer";
+import {
+    FollowTK,
+    FollowUserAC, GetActivePageFriendTC,
+    GetActivePageNoFriendTC,
+    GetTotalFriendCountTC, GetTotalNoFriendCountTC,
+    GetUsersProfilTK, SetCurrentPageFriends, UnFollowTK, UnFollowUserAC
+} from "../../../Reducers/UsersReducer";
 import {useSelector} from "react-redux";
 import {UserType} from "../../../API/api";
 import {Await} from "react-router-dom";
 import {CounterNoFriendUser} from "./UsersInfo-Couts/CounterNoFriendsUser";
+import {GetMyProfilTK} from "../../../Reducers/profilReducer";
 
 type ResultFilterType = {
     StateResultTable: "Followers" | "Recommendations"
@@ -58,7 +65,16 @@ export const TableFriend = React.memo((props: ttt) => {
     useEffect(() => {
         dispatch(GetUsersProfilTK("Friends", props.tl.id))
     }, [])
-
+    let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPageFriends)
+    const unFollowUser=()=>{
+        dispatch(UnFollowTK(props.tl.id))
+        dispatch(GetTotalFriendCountTC())
+        dispatch(GetTotalNoFriendCountTC())
+        dispatch(GetActivePageNoFriendTC(CurrentPage))
+    }
+    const GoToProfil=()=>{
+        dispatch(GetMyProfilTK(props.tl.id))
+    }
     return (
         <div key={props.tl.id} className="one-pass-info-black">
             <div className={"one-pas-info"}>
@@ -67,25 +83,29 @@ export const TableFriend = React.memo((props: ttt) => {
                          alt="My followers litle img"/>
                 </div>
                 <div className={"one-pas-info-text"}>
-                    <p className={"one-pas-info-text-name"}>{props.tl.name}
+                    <p onClick={GoToProfil} className={"one-pas-info-text-name"}>{props.tl.name}
                         <input type={"checkbox"} onChange={e=>{}} checked={props.tl.lookingForAJob || false} readOnly/>
                     </p>
                     <p className={"one-pas-info-text-qvalete"}>{props.tl.aboutMe}</p>
                 </div>
             </div>
             <div className={"one-pas-function"}>
-                <input type="button" value={"Delete"}/>
+                <input onClick={unFollowUser} type="button" value={"Delete"}/>
             </div>
         </div>
     )
 })
 export const TableNoFriend=React.memo((props:any)=>{
     const dispatch = useAppDispatch()
-
-
+    let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPageFriends)
     const FollowUser=()=>{
-        debugger
-        dispatch(FollowUserAC(props.tl.id))
+        dispatch(FollowTK(props.tl.id))
+        dispatch(GetTotalFriendCountTC())
+        dispatch(GetTotalNoFriendCountTC())
+        dispatch(GetActivePageFriendTC(CurrentPage))
+    }
+    const GoToProfil=()=>{
+        dispatch(GetMyProfilTK(props.tl.id))
     }
     useEffect(() => {
         dispatch(GetUsersProfilTK("NoFriends", props.tl.id))
@@ -97,7 +117,7 @@ export const TableNoFriend=React.memo((props:any)=>{
                     <img src={props.tl.photos.small == null ? testInfoBlockImg : props.tl.photos.small} alt="My followers litle img"/>
                 </div>
                 <div className={"one-pas-info-text"}>
-                    <p className={"one-pas-info-text-name"}>{props.tl.name}
+                    <p onClick={GoToProfil} className={"one-pas-info-text-name"}>{props.tl.name}
                         <input type={"checkbox"}  onChange={e=>{}} checked={props.tl.lookingForAJob || false} readOnly/>
                     </p>
                     <p className={"one-pas-info-text-qvalete"}>{props.tl.aboutMe}</p>

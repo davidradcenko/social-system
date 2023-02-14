@@ -56,19 +56,18 @@ export const usersReducer = (state: initialStateUsersType = initialState, action
             return stateCopy
         }
 
-        //follow user
+        //follow user,unFollow
         case "FOLLOW-USER":{
             let statyCopy={...state}
-            debugger
-            statyCopy.itemsNoFriends.map((tl,index)=>{
-                if (tl.id == action.IdUser){
-                    debugger
-                    let deletedId=statyCopy.itemsFriends.slice(index,2)
-                    return {...statyCopy,CurrentPageNoFriends:deletedId}
-                }
-            })
-            return {...statyCopy}
+            let deletedId=statyCopy.itemsNoFriends.filter(el=>el.id!= action.IdUser)
+            return {...statyCopy,itemsNoFriends:deletedId}
         }
+        case "UNFOLLOW-USER":{
+            let statyCopy={...state}
+            let deletedId=statyCopy.itemsFriends.filter(el=>el.id!= action.IdUser)
+            return {...statyCopy,itemsFriends:deletedId}
+        }
+
         default: return state
 
     }
@@ -148,6 +147,62 @@ export const GetActivePageNoFriendTC=(IdPage:number)=>{
     }
 }
 
+//follow, unFollow
+export const FollowTK=(Iduser:number)=>{
+    return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
+        UsersApi.follow(Iduser).then(res => {
+                if (res.data.error==null){
+                    dispatch(FollowUserAC(Iduser))
+                    dispatch(statusUserAC("succeeded"))
+                }
+            }
+        ).catch((error) => {
+            console.error(error, dispatch)
+        })
+    }
+}
+export const UnFollowTK=(Iduser:number)=>{
+    return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
+        UsersApi.unfollow(Iduser).then(res => {
+                if (res.data.error==null){
+                    dispatch(UnFollowUserAC(Iduser))
+                    dispatch(statusUserAC("succeeded"))
+                }
+            }
+        ).catch((error) => {
+            console.error(error, dispatch)
+        })
+    }
+}
+
+//Search users
+export const SearchTK=(Name:string)=>{
+    return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
+        UsersApi.getSearchFriendsUsers(Name).then(res => {
+                if (res.data.error==null){
+                    dispatch(GetActivePageFriendsAC(res.data.items))
+                    dispatch(SetTotalFriendCountAC(res.data.totalCount))
+                    dispatch(statusUserAC("succeeded"))
+                }
+            }
+        ).catch((error) => {
+            console.error(error, dispatch)
+        })
+        UsersApi.getSearchNoFriendsUsers(Name).then(res => {
+                if (res.data.error==null){
+                    dispatch(GetActivePageNoFriendsAC(res.data.items))
+                    dispatch(SetTotalNoFriendCountAC(res.data.totalCount))
+                    dispatch(statusUserAC("succeeded"))
+                }
+            }
+        ).catch((error) => {
+            console.error(error, dispatch)
+        })
+    }
+}
 
 //actions
 //set current page
@@ -165,11 +220,18 @@ export const GetActivePageNoFriendsAC=(ActivePageUsers:Array<UserType>)=>({type:
 //take users profile data
 export const SetActivePageUsersProfileDataAC=(TypeUsers:"Friends"|"NoFriends",ActivePageUsers:UserProfilType)=>({type: "GET-ACTIVE-PAGE-USERS-PROFILE-DATA",TypeUsers,ActivePageUsers}) as const
 
-//follow user
+//follow user,Unfollow
 export const FollowUserAC=(IdUser:number)=>({type:"FOLLOW-USER",IdUser}) as const
+export const UnFollowUserAC=(IdUser:number)=>({type:"UNFOLLOW-USER",IdUser}) as const
+
+
+
+
+
 // types
 type actionType=
     | ReturnType<typeof SetCurrentPageNoFriends>
+    | ReturnType<typeof UnFollowUserAC>
     | ReturnType<typeof FollowUserAC>
     | ReturnType<typeof SetCurrentPageFriends>
     | ReturnType<typeof SetTotalNoFriendCountAC>
