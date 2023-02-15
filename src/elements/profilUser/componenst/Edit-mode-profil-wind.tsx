@@ -18,17 +18,14 @@ import {useAppDispatch} from "../../../store/store";
 
 export const EditModeProfilWind = React.memo((props: any) => {
     const dispatch = useAppDispatch()
-    type typeIcons = {
-    {"none"},
-    [typeof github,user:]
-
-    }"none" | typeof github | typeof vk | typeof facebook | typeof instagram | typeof twiter | typeof website | typeof youtube;
+    type typeIcons = "none" | typeof github | typeof vk | typeof facebook | typeof instagram | typeof twiter | typeof website | typeof youtube;
 
     //state URL social
-    const [objectIconsState, SetObjectIconsState] = useState<Array[{typeIcons}]>(facebook)
-    const changeSetObjectIconsState = (value: typeIcons) => {
-        SetObjectIconsState(value)
+    const [objectIconsState, SetObjectIconsState] = useState<{value:typeIcons,stingName: string}>({value:"none",stingName:""})
+    const changeSetObjectIconsState = (value: typeIcons,stingName:string) => {
+        SetObjectIconsState({value,stingName})
     }
+
 
     //formik
     type initialValues= {
@@ -42,17 +39,17 @@ export const EditModeProfilWind = React.memo((props: any) => {
         validate: (values) => {
             const errors:initialValues = {};
 
-            if (!values.EditModeName) {
-                errors.EditModeName = "Required";
-            } else if (values.EditModeName.length > 30) {
-                errors.EditModeName = 'Must be 30 characters or less';
-            }
-            if (values.About.length > 200) {
-                errors.About = 'Must be 200 characters or less';
-            }
-            if (values.ProfessionalSkills.length > 100) {
-                errors.About = 'Must be 100 characters or less';
-            }
+            // if (!values.EditModeName) {
+            //     errors.EditModeName = "Required";
+            // } else if (values.EditModeName.length > 30) {
+            //     errors.EditModeName = 'Must be 30 characters or less';
+            // }
+            // if (values.About.length > 200) {
+            //     errors.About = 'Must be 200 characters or less';
+            // }
+            // if (values.ProfessionalSkills.length > 100) {
+            //     errors.About = 'Must be 100 characters or less';
+            // }
             if (values.URLSOCIALS.length > 100) {
                 errors.URLSOCIALS = 'Must be 100 characters or less';
             }
@@ -60,15 +57,16 @@ export const EditModeProfilWind = React.memo((props: any) => {
             return errors;
         },
         initialValues: {
-            EditModeName: '',
+            EditModeName: props.FullName,
             JobSearch: '',
             ProfessionalSkills: '',
             URLSOCIALS: '',
             About:''
         },
         onSubmit: values => {
-            // dispatch()
-        },
+            alert("ddsfs  "+values.EditModeName)
+            debugger
+        }
     })
     return (
         <div className={props.EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
@@ -87,47 +85,49 @@ export const EditModeProfilWind = React.memo((props: any) => {
 
                         <p>Name:</p>
                         <input
-                            id={"Edit-mode-Name"}
+                            {...formik.getFieldProps("EditModeName")}
                             name={"EditModeName"}
-                            value={props.FullName}
+                            // value={props.FullName}
                             type="text"/>
 
 
                         <p className={"Edit-mode-looking-for-job"}>Job search:
                             <input
+                                {...formik.getFieldProps("JobSearch")}
                                 checked={props.lokingForAJab}
-                                name={"JobSearch"}
                                 type="checkbox"/>
                         </p>
                         <p>Professional skills:</p>
                         <input
+                            {...formik.getFieldProps("ProfessionalSkills")}
                             value={props.ProfesionSkils}
-                            name={"ProfessionalSkills"}
                             type="text"/>
                         <p>About:</p>
-                        <textarea value={props.AboutUser} name={"About"}></textarea>
+                        <textarea  {...formik.getFieldProps("About")} value={props.AboutUser} ></textarea>
                         <p>Choose:</p>
                         <div className={"Edit-mode-sosial"}>
-                            <img onClick={() => changeSetObjectIconsState(twiter)} src={twiter} alt="twiter"/>
-                            <img onClick={() => changeSetObjectIconsState(facebook)} src={facebook} alt="facebook"/>
-                            <img onClick={() => changeSetObjectIconsState(vk)} src={vk} alt="vk"/>
-                            <img onClick={() => changeSetObjectIconsState(instagram)} src={instagram}
+                            <img onClick={() => changeSetObjectIconsState(twiter,"twitter")} src={twiter} alt="twiter"/>
+                            <img onClick={() => changeSetObjectIconsState(facebook,"facebook")} src={facebook} alt="facebook"/>
+                            <img onClick={() => changeSetObjectIconsState(vk,"vk")} src={vk} alt="vk"/>
+                            <img onClick={() => changeSetObjectIconsState(instagram,"instagram")} src={instagram}
                                  alt="instagram"/>
-                            <img onClick={() => changeSetObjectIconsState(youtube)} src={youtube} alt="youtube"/>
-                            <img onClick={() => changeSetObjectIconsState(github)} src={github} alt="github"/>
-                            <img onClick={() => changeSetObjectIconsState(website)} src={website} alt="website"/>
+                            <img onClick={() => changeSetObjectIconsState(youtube,"youtube")} src={youtube} alt="youtube"/>
+                            <img onClick={() => changeSetObjectIconsState(github,"github")} src={github} alt="github"/>
+                            <img onClick={() => changeSetObjectIconsState(website,"website")} src={website} alt="website"/>
                         </div>
                         <div className={"Edit-mode-social-inputs"}>
+                            {/**/}
                             <input
-                                name={"URLSOCIALS"}
-                                value={"https://"}
-                                onChange={e => {}} id={"Edit-mode-input-types"}
+                                {...formik.getFieldProps("URLSOCIALS")}
+                                value={props.contacts[objectIconsState.stingName] || "https://" }
+                                onChange={e => {}}
+                                id={"Edit-mode-input-types"}
                                 type="text"/>
-                            <img src={objectIconsState} alt=""/>
+                            <img src={objectIconsState.value} alt=""/>
                         </div>
 
                     </div>
-                    <input  type={"submit"} value={"Save"}/>
+                    <input className={"SpecialClassButton"}  type={"submit"} value={"Save"}/>
 
                 </form>
             </div>

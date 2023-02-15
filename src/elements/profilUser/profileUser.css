@@ -644,7 +644,12 @@ body {
 .Status-button {
     margin-left: 160px;
 }
-
+.SpecialClassButton{
+    width: 100%;
+    height: 40px;
+    background-color: #3ED1FF;
+    font-size: 20px;
+}
 /*Edit-profil-menu*/
 .Edit-profil-menu {
     position: absolute;
