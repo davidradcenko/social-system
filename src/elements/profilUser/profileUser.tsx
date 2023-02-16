@@ -19,7 +19,6 @@ import {
 } from "../../Reducers/UsersReducer";
 
 export const ProfileUser = React.memo(() => {
-    console.log("+++++++++++++ProfileUser  ")
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
@@ -63,7 +62,7 @@ export const ProfileUser = React.memo(() => {
     if (!isLoginIn) {
         return <Navigate to={'/Login'}/>
     }
-
+debugger
     return (
         <div className={"Main-block"}>
 
@@ -82,13 +81,6 @@ export const ProfileUser = React.memo(() => {
                     changeSetEditModeProfil={changeSetEditModeProfil}
                     SeatchFormActivated={SeatchFormActivated}
                     changesActivatedSeatch={changesActivatedSeatch}
-
-                    FullName={ProfilData.fullName}
-                    ProfesionSkils={ProfilData.lookingForAJobDescription}
-                    AboutUser={ProfilData.aboutMe}
-                    lokingForAJab={ProfilData.lookingForAJob}
-                    contacts={ProfilData.contacts}
-                    photos={ProfilData.photos}
                 />
 
                 <div className="mainChaend">

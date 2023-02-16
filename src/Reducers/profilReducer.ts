@@ -4,23 +4,23 @@ import {UserProfilType, ProfileApi} from "../API/api";
 
 
 const initialState:UserProfilType={
-    aboutMe: "aboutMe",
+    aboutMe: "",
     contacts: {
-        facebook: "facebook",
-        github: "github",
-        instagram: "instagram",
-        mainLink: "mainLink",
-        twitter: "twitter",
-        vk: "vk",
-        website: "website",
-        youtube: "youtube"
+        facebook: "",
+        github: "",
+        instagram: "",
+        mainLink: "",
+        twitter: "",
+        vk: "",
+        website: "",
+        youtube: ""
     },
     lookingForAJob: true,
-    lookingForAJobDescription: "lookingForAJobDescription",
-    fullName: "fullName",
+    lookingForAJobDescription: "",
+    fullName: "",
     photos:{
-        large:'large',
-        small:'small'
+        large:'',
+        small:''
     },
     userId:1
 }

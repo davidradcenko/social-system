@@ -63,7 +63,7 @@ return <Navigate to={'/Account'} />
                         </div>
                         <div className={"ButtionsLogin"}>
 
-                            <input  {...formik.getFieldProps("email")} type="text" placeholder={"Email or username"}/>
+                            <input  {...formik.getFieldProps("email")}  type="text" placeholder={"Email or username"}/>
                             {formik.errors.email ? <div>{formik.errors.email}</div> : null}
 
                             <input  {...formik.getFieldProps("password")} type="text" placeholder={"Password"}/>
