@@ -29,9 +29,6 @@ export const profilReducer = (state:UserProfilType=initialState, action:actionTy
         case "GET-PROFILE":{
             return {...state,...action.value}
         }
-        case "PUT-PROFILE-CHANGE":{
-            return {...state,...action.value}
-        }
         default:
             return state
     }
@@ -51,13 +48,15 @@ export const GetMyProfilTK=(id:number)=>{
         })
     }
 }
-export const profilChangeTK=(value:UserProfilType)=>{
+export const profilChangeTK=(value:profilChangeType)=>{
     return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
+        debugger
         ProfileApi.profileChenge(value).then(res=>{
-            dispatch(ProfileChangeAC(value))
+            GetMyProfilTK(16939)
             dispatch(statusUserAC("succeeded"))
         }).catch((error)=>{
+            debugger
             console.error(error, dispatch)
         })
     }
@@ -65,10 +64,29 @@ export const profilChangeTK=(value:UserProfilType)=>{
 
 //action
 export const getProfileAC = (value:UserProfilType) => ({type: "GET-PROFILE",value}) as const
-export const ProfileChangeAC = (value:UserProfilType) => ({type: "PUT-PROFILE-CHANGE",value}) as const
+
 
 //types
 type actionType=
     | ReturnType<typeof getProfileAC>
-    | ReturnType<typeof ProfileChangeAC>
+export type profilChangeType={
+    // userId: Number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: {
+        github: string| null,
+        vk: string| null,
+        facebook: string| null,
+        instagram: string| null,
+        twitter: string| null,
+        website: string| null,
+        youtube: string | null,
+        mainLink: string| null
+    }
+    photos:{
+        small: string | null
+        large: string | null
+    }
+}
 

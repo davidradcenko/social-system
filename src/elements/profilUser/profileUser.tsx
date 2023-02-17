@@ -62,7 +62,6 @@ export const ProfileUser = React.memo(() => {
     if (!isLoginIn) {
         return <Navigate to={'/Login'}/>
     }
-debugger
     return (
         <div className={"Main-block"}>
 

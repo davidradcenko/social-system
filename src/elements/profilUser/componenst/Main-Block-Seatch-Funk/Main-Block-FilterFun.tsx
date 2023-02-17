@@ -5,7 +5,13 @@ import React, {useState} from "react";
 export const MainBlockFilterFun = React.memo((props: any) => {
     console.log("+++++++++++++MainBlockFilterFun  ")
     return (<>
-
+        {props.EditModeProfil == true
+            ? <EditModeProfilWind
+                EditModeProfil={props.EditModeProfil}
+                changeSetEditModeProfil={props.changeSetEditModeProfil}
+            />
+            : ""
+        }
         <EditModeProfilWind
             EditModeProfil={props.EditModeProfil}
             changeSetEditModeProfil={props.changeSetEditModeProfil}

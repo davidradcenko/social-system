@@ -1,4 +1,5 @@
 import axios from "axios";
+import {profilChangeType} from "../Reducers/profilReducer";
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -24,8 +25,24 @@ export const ProfileApi = {
     profileGet(id: number) {
         return instance.get("/profile/" + id)
     },
-    profileChenge(value: UserProfilType) {
-        return instance.put("/profile"+value)
+    profileChenge(value: profilChangeType) {
+        return instance.put("/profile/"+{
+            "aboutMe": "я круто чувак 1001%",
+            "contacts": {
+                facebook: "facebook.com",
+                github: "github.com",
+                instagram: "instagra.com/sds",
+                mainLink: null,
+                twitter: "https://twitter.com/@sdf",
+                vk: "vk.com/dimych",
+                website: null,
+                youtube: null
+            },
+            "lookingForAJob": true,
+            "lookingForAJobDescription": 'не ищу',
+            "fullName": "samurai d"
+        }
+        )
     }
 }
 export const UsersApi={
@@ -76,8 +93,8 @@ export type ContaksType = {
     youtube: string | null
 }
 export type photosType={
-    large:string ,
-    small:string
+    large:string | null,
+    small:string | null
 }
 export type UserProfilType = {
     aboutMe: string,

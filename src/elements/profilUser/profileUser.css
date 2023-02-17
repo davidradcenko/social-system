@@ -636,7 +636,12 @@ body {
     font-size: 24px;
     line-height: 28px;
 }
-
+.IMGCenter{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .Profesion-Skils-button {
     margin-left: 48px;
 }
