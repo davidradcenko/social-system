@@ -94,19 +94,19 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
         // },
         onSubmit: values => {
             let data= {
-                // userId:ProfilData.userId,
+                userId:ProfilData.userId,
                 lookingForAJob: values.JobSearch,
                 lookingForAJobDescription: values.ProfessionalSkills,
                 fullName: values.EditModeName,
                 contacts: {
-                    facebook: values.facebook,
-                    github: values.github,
-                    instagram: values.instagram,
-                    mainLink: values.mainLink,
-                    twitter: values.twitter,
-                    vk: values.vk,
-                    website: values.website,
-                    youtube: values.youtube
+                    facebook: values.facebook=="https://"|| ""?null:values.facebook,
+                    github: values.github=="https://"|| ""?null:values.github,
+                    instagram: values.instagram=="https://" || values.instagram==""?null:values.instagram,
+                    mainLink: null,
+                    twitter: values.twitter=="https://"|| ""?null:values.twitter,
+                    vk: values.vk=="https://"|| ""?'':values.vk,
+                    website: values.website=="https://"|| ""?null:values.website,
+                    youtube: values.youtube=="https://" || ""?null:values.youtube
                 },
                 aboutMe: values.About,
                 photos:{

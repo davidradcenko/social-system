@@ -26,23 +26,7 @@ export const ProfileApi = {
         return instance.get("/profile/" + id)
     },
     profileChenge(value: profilChangeType) {
-        return instance.put("/profile/"+{
-            "aboutMe": "я круто чувак 1001%",
-            "contacts": {
-                facebook: "facebook.com",
-                github: "github.com",
-                instagram: "instagra.com/sds",
-                mainLink: null,
-                twitter: "https://twitter.com/@sdf",
-                vk: "vk.com/dimych",
-                website: null,
-                youtube: null
-            },
-            "lookingForAJob": true,
-            "lookingForAJobDescription": 'не ищу',
-            "fullName": "samurai d"
-        }
-        )
+        return instance.put("/profile/", value)
     }
 }
 export const UsersApi={
