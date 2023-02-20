@@ -30,21 +30,27 @@ export const MainInfo = React.memo((props: MainInfoType) => {
     let youtubeP = props.contacts.youtube
     return (
         <div className="main-info">
+
+            {/*--------Main profile img-------------*/}
             <div className={"lardge-foto"}>
-                <div className={"Foto-classfotoFrofel-gradient"}><img className={props.photos.small == null?"Foto-classfotoFrofel-gradient":""} src={props.photos.small == null ? testInfoBlockImg : props.photos.small} alt="large img"/></div>
+                <div className={"Foto-classfotoFrofel-gradient"}>
+                    <img className={props.photos.small == null?"Foto-classfotoFrofel-gradient":""} src={props.photos.small == null ? testInfoBlockImg : props.photos.small} alt="large img"/>
+                </div>
             </div>
+            {/*--------END-------------*/}
+            {/*--------Main profile info-------------*/}
             <div className={"info-profil"}>
-                <p className="Name-InfoProfil">{props.FullName}</p>
+                <p className="Name-InfoProfil">{props.FullName==null?"":props.FullName}</p>
                 {/*Status-InfoProfil*/}
                 <p className="JobSearch-InfoProfil">Job search:
-                    <input className={"Checkbox-InfoProfil"} type={"checkbox"} checked={props.lokingForAJab} readOnly/>
+                    <input className={"Checkbox-InfoProfil"} type={"checkbox"} checked={props.lokingForAJab==null?false:props.lokingForAJab} readOnly/>
                 </p>
 
                 <p className="ProfessionSkils-InfoProfil">Frofessional skills:</p>
-                <p className="ProfessionsSkils-text-InfoProfil">{props.ProfesionSkils}</p>
+                <p className="ProfessionsSkils-text-InfoProfil">{props.ProfesionSkils==null?"":props.ProfesionSkils}</p>
 
                 <p className="About-InfoProfil">About:</p>
-                <p className="About-text-InfoProfil">{props.AboutUser}</p>
+                <p className="About-text-InfoProfil">{props.AboutUser==null?"":props.AboutUser}</p>
 
                 <div className="social-InfoProffil">
 
@@ -79,47 +85,46 @@ export const MainInfo = React.memo((props: MainInfoType) => {
                 </div>
 
             </div>
-
+            {/*--------END-------------*/}
+            {/*--------NAV BAR MODULE-------------*/}
             <div className={'mobule-DdivFoto'}>
-                <div className="Foto-classfotoFrofel-gradient mobule-Foto-classfotoFrofel-gradient"><img src={testForo}
-                                                                                                         alt="large img"/>
+                <div className="Foto-classfotoFrofel-gradient mobule-Foto-classfotoFrofel-gradient">
+                    <img src={testForo} alt="large img"/>
                 </div>
                 <div className={'mobule-infoblock-Name-Status'}>
                     <p className="Name-InfoProfil">DAVID RADCHENKO</p>
-                    {/*Status-InfoProfil*/}
-                    <p className="JobSearch-InfoProfil">Job search: <input className={"Checkbox-InfoProfil"}
-                                                                           type={"checkbox"}/></p>
+                    <p className="JobSearch-InfoProfil">Job search:
+                        <input className={"Checkbox-InfoProfil"} type={"checkbox"}/>
+                    </p>
                 </div>
             </div>
-
-
+            {/*--------END-------------*/}
+            {/*--------MAIN PROFILE INFO MODULE-------------*/}
             <div className="mobule-StyleInfoBlock-MainWind">
                 <div className={'Mobule-ferst-Teg-Info'}>
                     <p className="mobule-ProfessionSkils-InfoProfil">Frofessional skills:</p>
-                    <p className="mobule-ProfessionsSkils-text-InfoProfil">React, Redux,CSS, My Sql,Oracle Databases,
-                        JavaEE,Java Spring</p>
+                    <p className="mobule-ProfessionsSkils-text-InfoProfil">
+                        React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java Spring
+                    </p>
                 </div>
                 <div className={'Mobule-next-Teg-Info'}>
                     <p className="mobule-About-InfoProfil">About:</p>
-                    <p className="mobule-About-text-InfoProfil">React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java
+                    <p className="mobule-About-text-InfoProfil">
+                        React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java
                         Spring React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java Spring React, Redux,CSS,
-                        My Sql,Oracle Databases, JavaEE,Java Spring</p>
+                        My Sql,Oracle Databases, JavaEE,Java Spring
+                    </p>
                 </div>
             </div>
-
-
             <div className="mobule-social-InfoProffil">
-
                 <a className={props.contacts.twitter != null ? "" : "ImgProfilNone"}
                    href={typeof twitterP == "string" ? twitterP : ""}>
                     <img src={twiter} alt="twiter"/>
                 </a>
-
                 <a className={facebookP != null ? "" : "ImgProfilNone"}
                    href={typeof facebookP == "string" ? facebookP : ""}>
                     <img src={facebook} alt="facebook"/>
                 </a>
-
                 <a className={vkP != null ? "" : "ImgProfilNone"} href={typeof vkP == "string" ? vkP : ""}>
                     <img src={vk} alt="vk"/>
                 </a>
@@ -139,6 +144,7 @@ export const MainInfo = React.memo((props: MainInfoType) => {
                     <img src={website} alt="website"/>
                 </a>
             </div>
+            {/*--------END-------------*/}
         </div>
     )
 })

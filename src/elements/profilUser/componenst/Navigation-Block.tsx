@@ -17,8 +17,8 @@ import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
     changeSetEditModeProfil: () => void,
-    SeatchFormActivated: boolean,
-    changesActivatedSeatch: () => void,
+    // SeatchFormActivated: boolean,
+    // changesActivatedSeatch: () => void,
     FullName:string
 
     fotoUser:string | null

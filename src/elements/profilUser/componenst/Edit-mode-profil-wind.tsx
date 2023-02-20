@@ -26,6 +26,7 @@ type EditModeProfilWindType = {
 
 
 export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => {
+    console.log("+++++++++EditModeProfilWind")
     const dispatch = useAppDispatch()
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
     type typeIcons =

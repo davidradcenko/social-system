@@ -20,6 +20,7 @@ import {
 import {InitialazedType} from "../../Reducers/InitialazedReducer";
 
 export const ProfileUser = React.memo(() => {
+    console.log("__________________________ProfileUser")
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
@@ -29,28 +30,28 @@ export const ProfileUser = React.memo(() => {
 
     //FormStates
     const [EditModeProfil, SetEditModeProfil] = useState<boolean>(false)
-    const [SeatchFormActivated, SetSeatchFormActivated] = useState<boolean>(false)
+    // const [SeatchFormActivated, SetSeatchFormActivated] = useState<boolean>(false)
     const [StateResultTable, SetStateResultTable] = useState<"Followers" | "Recommendations">("Followers")
     const chengeStateResultTable = () => {
         SetStateResultTable(StateResultTable == "Followers" ? "Recommendations" : "Followers")
     }
     const changeSetEditModeProfil = () => {
         SetEditModeProfil(!EditModeProfil)
-        if (!EditModeProfil == true) {
-            SetSeatchFormActivated(false)
-        }
+        // if (!EditModeProfil == true) {
+        //     SetSeatchFormActivated(false)
+        // }
     }
-    const changesActivatedSeatch = () => {
-        SetSeatchFormActivated(!SeatchFormActivated)
-        if (!SeatchFormActivated == true) {
-            SetEditModeProfil(false)
-        }
-    }
+    // const changesActivatedSeatch = () => {
+    //     SetSeatchFormActivated(!SeatchFormActivated)
+    //     if (!SeatchFormActivated == true) {
+    //         SetEditModeProfil(false)
+    //     }
+    // }
 
 
     useEffect(() => {
         //take my profile
-        dispatch(GetMyProfilTK(16939))
+        dispatch(GetMyProfilTK(Number(AdminData.mainUserId)))
 
         //take active page users
         dispatch(GetActivePageNoFriendTC(1))
@@ -69,8 +70,8 @@ export const ProfileUser = React.memo(() => {
         <div className={"Main-block"}>
 
             <NavigationBlock
-                SeatchFormActivated={SeatchFormActivated}
-                changesActivatedSeatch={changesActivatedSeatch}
+                // SeatchFormActivated={SeatchFormActivated}
+                // changesActivatedSeatch={changesActivatedSeatch}
                 EditModeProfil={EditModeProfil}
                 changeSetEditModeProfil={changeSetEditModeProfil}
                 // fotoUser={ProfilData.photos.small}
@@ -83,8 +84,8 @@ export const ProfileUser = React.memo(() => {
                 <MainBlockFilterFun
                     EditModeProfil={EditModeProfil}
                     changeSetEditModeProfil={changeSetEditModeProfil}
-                    SeatchFormActivated={SeatchFormActivated}
-                    changesActivatedSeatch={changesActivatedSeatch}
+                    // SeatchFormActivated={SeatchFormActivated}
+                    // changesActivatedSeatch={changesActivatedSeatch}
                 />
 
                 <div className="mainChaend">

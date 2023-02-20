@@ -8,6 +8,7 @@ type ResultFilterType = {
     StateResultTable: "Followers" | "Recommendations"
 }
 export const MainBlockFilters = React.memo((props: ResultFilterType) => {
+    console.log("++++++MainBlockFilters")
     const dispatch = useAppDispatch()
     // const [PapapSelection, SetPapapSelection] = useState(false)
     // const [CheckboxStat, SetCheckboxStat] = useState<boolean>()
