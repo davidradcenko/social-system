@@ -17,11 +17,14 @@ import {
     GetTotalFriendCountTC,
     GetTotalNoFriendCountTC
 } from "../../Reducers/UsersReducer";
+import {InitialazedType} from "../../Reducers/InitialazedReducer";
 
 export const ProfileUser = React.memo(() => {
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
+    const AdminData = useSelector<RootState, InitialazedType>(state => state.initialazed)
+
     // const CurrentPageId = useSelector<RootState, number>(state => state.users.CurrentPage)
 
     //FormStates
@@ -71,6 +74,8 @@ export const ProfileUser = React.memo(() => {
                 EditModeProfil={EditModeProfil}
                 changeSetEditModeProfil={changeSetEditModeProfil}
                 // fotoUser={ProfilData.photos.small}
+                FullName={AdminData.name}
+                fotoUser={AdminData.foto}
             />
 
             <div className={"Main-content"}>
@@ -96,24 +101,7 @@ export const ProfileUser = React.memo(() => {
                                       StateResultTable={StateResultTable}/>
                 </div>
                 <MainBlockUsersInfo StateResultTable={StateResultTable}/>
-                <Eee/>
             </div>
         </div>
-    )
-})
-//test component
-const Eee = React.memo(() => {
-
-    let [count,setCount]=useState(1)
-
-    const getCa=useCallback(()=>{
-        setCount(++count)
-    },[])
-    console.log("+++++++++++++eee  ")
-    return (
-        <>
-            <input className={"ChangeCurrentTable2"}
-                   onClick={getCa} value={count} type="button"/>
-        </>
     )
 })

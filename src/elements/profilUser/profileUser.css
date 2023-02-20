@@ -636,7 +636,11 @@ body {
     font-size: 24px;
     line-height: 28px;
 }
+.InvalidP{
+    align-items: center;
+}
 .IMGCenter{
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -720,8 +724,15 @@ body {
 .ClassDisplayNone {
     display: none;
 }
+#downloadImg{
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    z-index: 201;
 
+}
 .EditMode-classfotoFrofel-gradient {
+    position: relative;
     margin-top: 30px;
     display: flex;
     justify-content: center;
@@ -818,7 +829,9 @@ body {
     box-shadow: 10px 10px 10px 0px #00000066;
     transition: 1s;
 }
+.HovwrImgDounload:before{
 
+}
 .Edit-mode-social-inputs {
     display: flex;
     justify-content: space-between;
@@ -829,6 +842,7 @@ body {
     background: #FFFCFC;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 20px;
+    align-items: center;
 }
 
 .Edit-mode-social-inputs img {

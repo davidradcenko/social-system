@@ -29,6 +29,9 @@ export const profilReducer = (state:UserProfilType=initialState, action:actionTy
         case "GET-PROFILE":{
             return {...state,...action.value}
         }
+        case "SET-FOTO-PROFILE":{
+          return   {...state,photos:action.value}
+        }
         default:
             return state
     }
@@ -51,9 +54,20 @@ export const GetMyProfilTK=(id:number)=>{
 export const profilChangeTK=(value:profilChangeType)=>{
     return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
-        debugger
         ProfileApi.profileChenge(value).then(res=>{
             GetMyProfilTK(16939)
+            dispatch(statusUserAC("succeeded"))
+        }).catch((error)=>{
+            console.error(error, dispatch)
+        })
+    }
+}
+export const SaveFotoTK=(file:any)=>{
+    return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
+        dispatch(statusUserAC("loading"))
+        ProfileApi.saveFoto(file).then(res=>{
+            dispatch(setFotoAC(res.data.data.photos))
+            debugger
             dispatch(statusUserAC("succeeded"))
         }).catch((error)=>{
             debugger
@@ -61,14 +75,15 @@ export const profilChangeTK=(value:profilChangeType)=>{
         })
     }
 }
-
 //action
 export const getProfileAC = (value:UserProfilType) => ({type: "GET-PROFILE",value}) as const
+export const setFotoAC = (value:any) => ({type: "SET-FOTO-PROFILE",value}) as const
 
 
 //types
 type actionType=
     | ReturnType<typeof getProfileAC>
+    | ReturnType<typeof setFotoAC>
 export type profilChangeType={
     // userId: Number
     lookingForAJob: boolean

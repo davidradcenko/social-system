@@ -18,6 +18,9 @@ export const LoginApi = {
     },
     authMeOut() {
         return instance.delete("/auth/login")
+    },
+    getFotoAdmin(id:string) {
+        return instance.get(`profile/${id}`)
     }
 }
 
@@ -27,6 +30,15 @@ export const ProfileApi = {
     },
     profileChenge(value: profilChangeType) {
         return instance.put("/profile/", value)
+    },
+    saveFoto(file:any) {
+        const fotmData = new FormData();
+        fotmData.append("image", file)
+        return instance.put(`profile/photo`, fotmData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
     }
 }
 export const UsersApi={

@@ -12,14 +12,16 @@ import SelectMobule from "../../../img/module-IMG/MeatballMenu.png";
 import moduleFotoTest from "../../../img/nav-icons/foroTest.png";
 import {GetMyProfilTK} from "../../../Reducers/profilReducer";
 import {useAppDispatch} from "../../../store/store";
+import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
     changeSetEditModeProfil: () => void,
     SeatchFormActivated: boolean,
     changesActivatedSeatch: () => void,
+    FullName:string
 
-    // fotoUser:string
+    fotoUser:string | null
 }
 export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
     console.log("+++++++++++++NavigationBlock  ")
@@ -40,10 +42,9 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
         <div className={"Navigation-block"}>
             <div className="all-elements-nav">
                 <div className="logo-profil">
-                    <img className={'logo-profilLOGO'} src={ImgLogo} alt="common"/>
                     <div className="profile">
-                        <img src={''} alt="User img"/>
-                        <p>David Radchenko</p>
+                        <img onClick={GoToProfil} src={props.fotoUser==null? testInfoBlockImg :props.fotoUser} alt="User img"/>
+                        <p onClick={GoToProfil} >{props.FullName}</p>
                     </div>
                     <div className={'mobuleTypeIconNavigate'}>
                         <img src={SeachMobule} alt="SeachMobule"/>
@@ -55,23 +56,7 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                     <div className={"ProfilIcon"}>
                         <img src={HomeIcon} alt="HomeIcon"/>
                         <div className={"ProfilIcon-text"}>
-                            <p onClick={GoToProfil}>Profil</p>
-                            {Vector == true
-                                ?
-                                <img className={"VectorTrue"} onClick={changeSettextPapap} src={imgVector}
-                                     alt="imgVector"/>
-                                :
-                                <img className={"VectorFals"} onClick={changeSettextPapap} src={imgVector}
-                                     alt="imgVector"/>}
-
-                            {TextPapap == true
-                                ?
-                                <p onClick={props.changeSetEditModeProfil}
-                                   className={props.EditModeProfil == true
-                                       ? "ProfileIcpn-Test-p-trueBlackOnCliked"
-                                       : "ProfileIcpn-Test-p-true"}>Edit profile</p>
-                                :
-                                <p className={"ProfileIcpn-Test-p-false"}>Edit profile</p>}
+                            <p onClick={props.changeSetEditModeProfil}>Edit profile</p>
                         </div>
                     </div>
                     <div className={"AlseIcons-HomeIcon AlseIcons"}>
@@ -85,11 +70,11 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                         <img src={MesengerIcon} alt="MesengerIcon"/>
                         <p>Message</p>
                     </div>
-                    <div className={"AlseIcons"}>
-                        <img onClick={props.changesActivatedSeatch} src={SeachIcon} alt="SeachIcon"/>
-                        <p className={props.SeatchFormActivated == true ? "SeatchFormActive" : ""}
-                           onClick={props.changesActivatedSeatch}>Seach</p>
-                    </div>
+                    {/*<div className={"AlseIcons"}>*/}
+                    {/*    <img onClick={props.changesActivatedSeatch} src={SeachIcon} alt="SeachIcon"/>*/}
+                    {/*    <p className={props.SeatchFormActivated == true ? "SeatchFormActive" : ""}*/}
+                    {/*       onClick={props.changesActivatedSeatch}>Seach</p>*/}
+                    {/*</div>*/}
                     <div className={"AlseIcons"}>
                         <img src={SetingsIcon} alt="SetingsIcon"/>
                         <p>Settings</p>

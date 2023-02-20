@@ -7,13 +7,14 @@ import instagram from "../../../img/nav-icons/icons-sosial/inst.png";
 import youtube from "../../../img/nav-icons/icons-sosial/utub.png";
 import github from "../../../img/nav-icons/icons-sosial/github.svg";
 import website from "../../../img/nav-icons/icons-sosial/www.png";
-import React, {useState} from "react";
+import download from "../../../img/icons8-downloaded-25.png";
+import React, {useEffect, useState} from "react";
 import {useFormik} from "formik";
 import {loginIn} from "../../../Reducers/LoginReducer";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {ContaksType, photosType, UserProfilType} from "../../../API/api";
 import {useSelector} from "react-redux";
-import {profilChangeTK} from "../../../Reducers/profilReducer";
+import {profilChangeTK, SaveFotoTK} from "../../../Reducers/profilReducer";
 import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 
 
@@ -53,14 +54,121 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
         JobSearch?: string,
         ProfessionalSkills?: string,
         URLSOCIALS?: string,
-        About?: string
+        About?: string,
+        facebook?: string | null,
+        github?: string | null,
+        instagram?: string | null,
+        twitter?: string | null,
+        vk?: string | null,
+        website?: string | null,
+        youtube?: string | null
     }
+
     const formik = useFormik({
         initialValues: {
+            EditModeName: "",
+            JobSearch: false,
+            ProfessionalSkills: "",
+            About: "",
+
+            facebook: "",
+            github: "",
+            instagram: "",
+            mainLink: "",
+            twitter: "",
+            vk: "",
+            website: "",
+            youtube: ""
+        },
+        validate: (values) => {
+            const errors: initialValues = {};
+
+            if (!values.EditModeName) {
+                errors.EditModeName = "Required";
+            } else if (values.EditModeName.length > 30) {
+                errors.EditModeName = 'Must be 30 characters or less';
+            }
+            if (values.About.length > 100) {
+                errors.About = 'Must be 100 characters or less';
+            }
+            if (values.ProfessionalSkills.length > 100) {
+                errors.About = 'Must be 100 characters or less';
+            }
+            if (values.EditModeName.length > 100) {
+                errors.EditModeName = 'Must be 100 characters or less';
+            }
+
+
+
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
+                errors.website = 'Invalid website';
+            }else if(values.website=="" || values.website=="https://"){
+                errors.website = 'Required';
+            }
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.youtube)) {
+                errors.youtube = 'Invalid youtube';
+            }else if(values.youtube=="" || values.youtube=="https://"){
+                errors.youtube = 'Required';
+            }
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.vk)) {
+                errors.vk = ' Invalid vk ';
+            }else if(values.vk=="" || values.vk=="https://"){
+                errors.vk = 'Required';
+            }
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.twitter)) {
+                errors.twitter = 'Invalid twitter';
+            }else if(values.twitter=="" || values.twitter=="https://"){
+                errors.twitter = 'Required';
+            }
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.instagram)) {
+                errors.instagram = 'Invalid instagram';
+            }else if(values.instagram=="" || values.instagram=="https://"){
+                errors.instagram = 'Required';
+            }
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.github)) {
+                errors.github = 'Invalid github';
+            }else if(values.github=="" || values.github=="https://"){
+                errors.github = 'Required';
+            }
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.facebook)) {
+                errors.facebook = 'Invalid facebook';
+            }else if(values.facebook=="" || values.facebook=="https://"){
+                errors.facebook = 'Required';
+            }
+
+            return errors;
+        },
+        onSubmit: values => {
+            let data = {
+                userId: ProfilData.userId,
+                lookingForAJob: values.JobSearch,
+                lookingForAJobDescription: values.ProfessionalSkills,
+                fullName: values.EditModeName,
+                contacts: {
+                    facebook: values.facebook == "https://" || values.facebook == "" ? null : values.facebook,
+                    github: values.github == "https://" || values.github == "" ? null : values.github,
+                    instagram: values.instagram == "https://" || values.instagram == "" ? null : values.instagram,
+                    mainLink: null,
+                    twitter: values.twitter == "https://" || values.twitter == "" ? null : values.twitter,
+                    vk: values.vk == "https://" || values.vk == "" ? null : values.vk,
+                    website: values.website == "https://" || values.website == "" ? null : values.website,
+                    youtube: values.youtube == "https://" || values.youtube == "" ? null : values.youtube
+                },
+                aboutMe: values.About,
+                photos: {
+                    small: ProfilData.photos.small,
+                    large: ProfilData.photos.large
+                }
+            }
+            dispatch(profilChangeTK(data))
+        }
+    })
+    useEffect(() => {
+        formik.setValues({
             EditModeName: ProfilData.fullName,
             JobSearch: ProfilData.lookingForAJob,
             ProfessionalSkills: ProfilData.lookingForAJobDescription,
-
+            About: ProfilData.aboutMe,
             facebook: ProfilData.contacts.facebook == null ? "https://" : ProfilData.contacts.facebook,
             github: ProfilData.contacts.github == null ? "https://" : ProfilData.contacts.github,
             instagram: ProfilData.contacts.instagram == null ? "https://" : ProfilData.contacts.instagram,
@@ -68,59 +176,17 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
             twitter: ProfilData.contacts.twitter == null ? "https://" : ProfilData.contacts.twitter,
             vk: ProfilData.contacts.vk == null ? "https://" : ProfilData.contacts.vk,
             website: ProfilData.contacts.website == null ? "https://" : ProfilData.contacts.website,
-            youtube: ProfilData.contacts.youtube == null ? "https://" : ProfilData.contacts.youtube,
+            youtube: ProfilData.contacts.youtube == null ? "https://" : ProfilData.contacts.youtube
+        })
+    }, [ProfilData])
 
-            About: ProfilData.aboutMe
-        },
-        // validate: (values) => {
-        //     const errors:initialValues = {};
-        //
-        //     // if (!values.EditModeName) {
-        //     //     errors.EditModeName = "Required";
-        //     // } else if (values.EditModeName.length > 30) {
-        //     //     errors.EditModeName = 'Must be 30 characters or less';
-        //     // }
-        //     // if (values.About.length > 200) {
-        //     //     errors.About = 'Must be 200 characters or less';
-        //     // }
-        //     // if (values.ProfessionalSkills.length > 100) {
-        //     //     errors.About = 'Must be 100 characters or less';
-        //     // }
-        //     if (values.EditModeName.length > 100) {
-        //         errors.EditModeName = 'Must be 100 characters or less';
-        //     }
-        //
-        //     return errors;
-        // },
-        onSubmit: values => {
-            let data= {
-                userId:ProfilData.userId,
-                lookingForAJob: values.JobSearch,
-                lookingForAJobDescription: values.ProfessionalSkills,
-                fullName: values.EditModeName,
-                contacts: {
-                    facebook: values.facebook=="https://"|| ""?null:values.facebook,
-                    github: values.github=="https://"|| ""?null:values.github,
-                    instagram: values.instagram=="https://" || values.instagram==""?null:values.instagram,
-                    mainLink: null,
-                    twitter: values.twitter=="https://"|| ""?null:values.twitter,
-                    vk: values.vk=="https://"|| ""?'':values.vk,
-                    website: values.website=="https://"|| ""?null:values.website,
-                    youtube: values.youtube=="https://" || ""?null:values.youtube
-                },
-                aboutMe: values.About,
-                photos:{
-                    small: ProfilData.photos.small,
-                    large: ProfilData.photos.large
-                }
-            }
-            console.log(data)
-            dispatch(profilChangeTK(data))
+    const onMainFotoSelection = (e:any) => {
+        if (e.target.files.length) {
+            dispatch(SaveFotoTK(e.target.files[0]))
         }
-    })
-    //Edit-profil-menu-none
+    }
     return (
-        <div className={props.EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu"}>
+        <div className={props.EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
 
             <img onClick={props.changeSetEditModeProfil} className={"VectopCloseEditWindow"}
                  src={VectopCloseEditWindow} alt="VectopCloseEditWindow"/>
@@ -130,7 +196,9 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                     <p>Edit profile</p>
                     <div className={"IMGCenter"}>
                         <div className="EditMode-classfotoFrofel-gradient">
-                            <img src={ProfilData.photos.small == null ? testInfoBlockImg :ProfilData.photos.small} alt="testForo"/>
+                            <img className={"HovwrImgDounload"} src={ProfilData.photos.small == null ? testInfoBlockImg : ProfilData.photos.small}
+                                 alt="testForo"/>
+                            <input onChange={onMainFotoSelection} id={"downloadImg"}  type="file" />
                         </div>
                     </div>
                     <div className="Edit-mode-Inputs">
@@ -178,6 +246,7 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                             <img onClick={() => changeSetObjectIconsState(website, "website")} src={website}
                                  alt="website"/>
                         </div>
+
                         <div className={"Edit-mode-social-inputs"}>
                             {/**/}
                             <input
@@ -186,6 +255,7 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                                 value={formik.values[objectIconsState.stingName]}
                                 type="text"
                             />
+                            <p className={"InvalidP"}>{formik.errors[objectIconsState.stingName]}</p>
                             <img src={objectIconsState.value} alt=""/>
                         </div>
                     </div>
