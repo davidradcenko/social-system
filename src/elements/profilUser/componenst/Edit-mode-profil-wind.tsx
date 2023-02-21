@@ -100,42 +100,68 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
             }
 
 
-
+            //website
             if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
+                if (values.website == "" || values.website == "https://") {
+                    return
+                }
                 errors.website = 'Invalid website';
-            }else if(values.website=="" || values.website=="https://"){
-                errors.website = 'Required';
             }
+
+
+            //youtube
             if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.youtube)) {
+                if (values.youtube == "" || values.youtube == "https://") {
+                    return
+                }
                 errors.youtube = 'Invalid youtube';
-            }else if(values.youtube=="" || values.youtube=="https://"){
-                errors.youtube = 'Required';
             }
+
+
+            //vk
             if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.vk)) {
+                if (values.vk == "" || values.vk == "https://") {
+                    return
+                }
                 errors.vk = ' Invalid vk ';
-            }else if(values.vk=="" || values.vk=="https://"){
-                errors.vk = 'Required';
             }
+
+
+            //twitter
             if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.twitter)) {
+                if (values.twitter == "" || values.twitter == "https://") {
+                    return
+                }
                 errors.twitter = 'Invalid twitter';
-            }else if(values.twitter=="" || values.twitter=="https://"){
-                errors.twitter = 'Required';
             }
+
+
+            //instagram
             if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.instagram)) {
+                if (values.instagram == "" || values.instagram == "https://") {
+                    return
+                }
                 errors.instagram = 'Invalid instagram';
-            }else if(values.instagram=="" || values.instagram=="https://"){
-                errors.instagram = 'Required';
             }
+
+
+            //github
             if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.github)) {
+                if (values.github == "" || values.github == "https://") {
+                    return
+                }
                 errors.github = 'Invalid github';
-            }else if(values.github=="" || values.github=="https://"){
-                errors.github = 'Required';
             }
+
+
+            //facebook
             if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.facebook)) {
+                if (values.facebook == "" || values.facebook == "https://") {
+                    return
+                }
                 errors.facebook = 'Invalid facebook';
-            }else if(values.facebook=="" || values.facebook=="https://"){
-                errors.facebook = 'Required';
             }
+
 
             return errors;
         },
@@ -181,7 +207,7 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
         })
     }, [ProfilData])
 
-    const onMainFotoSelection = (e:any) => {
+    const onMainFotoSelection = (e: any) => {
         if (e.target.files.length) {
             dispatch(SaveFotoTK(e.target.files[0]))
         }
@@ -197,9 +223,10 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                     <p>Edit profile</p>
                     <div className={"IMGCenter"}>
                         <div className="EditMode-classfotoFrofel-gradient">
-                            <img className={"HovwrImgDounload"} src={ProfilData.photos.small == null ? testInfoBlockImg : ProfilData.photos.small}
+                            <img className={"HovwrImgDounload"}
+                                 src={ProfilData.photos.small == null ? testInfoBlockImg : ProfilData.photos.small}
                                  alt="testForo"/>
-                            <input onChange={onMainFotoSelection} id={"downloadImg"}  type="file" />
+                            <input onChange={onMainFotoSelection} id={"downloadImg"} type="file"/>
                         </div>
                     </div>
                     <div className="Edit-mode-Inputs">

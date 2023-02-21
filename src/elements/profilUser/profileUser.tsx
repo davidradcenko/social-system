@@ -26,28 +26,16 @@ export const ProfileUser = React.memo(() => {
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
     const AdminData = useSelector<RootState, InitialazedType>(state => state.initialazed)
 
-    // const CurrentPageId = useSelector<RootState, number>(state => state.users.CurrentPage)
 
     //FormStates
     const [EditModeProfil, SetEditModeProfil] = useState<boolean>(false)
-    // const [SeatchFormActivated, SetSeatchFormActivated] = useState<boolean>(false)
     const [StateResultTable, SetStateResultTable] = useState<"Followers" | "Recommendations">("Followers")
     const chengeStateResultTable = () => {
         SetStateResultTable(StateResultTable == "Followers" ? "Recommendations" : "Followers")
     }
     const changeSetEditModeProfil = () => {
         SetEditModeProfil(!EditModeProfil)
-        // if (!EditModeProfil == true) {
-        //     SetSeatchFormActivated(false)
-        // }
     }
-    // const changesActivatedSeatch = () => {
-    //     SetSeatchFormActivated(!SeatchFormActivated)
-    //     if (!SeatchFormActivated == true) {
-    //         SetEditModeProfil(false)
-    //     }
-    // }
-
 
     useEffect(() => {
         //take my profile
@@ -70,11 +58,8 @@ export const ProfileUser = React.memo(() => {
         <div className={"Main-block"}>
 
             <NavigationBlock
-                // SeatchFormActivated={SeatchFormActivated}
-                // changesActivatedSeatch={changesActivatedSeatch}
                 EditModeProfil={EditModeProfil}
                 changeSetEditModeProfil={changeSetEditModeProfil}
-                // fotoUser={ProfilData.photos.small}
                 FullName={AdminData.name}
                 fotoUser={AdminData.foto}
             />
@@ -84,8 +69,6 @@ export const ProfileUser = React.memo(() => {
                 <MainBlockFilterFun
                     EditModeProfil={EditModeProfil}
                     changeSetEditModeProfil={changeSetEditModeProfil}
-                    // SeatchFormActivated={SeatchFormActivated}
-                    // changesActivatedSeatch={changesActivatedSeatch}
                 />
 
                 <div className="mainChaend">

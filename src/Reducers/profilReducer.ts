@@ -67,10 +67,8 @@ export const SaveFotoTK=(file:any)=>{
         dispatch(statusUserAC("loading"))
         ProfileApi.saveFoto(file).then(res=>{
             dispatch(setFotoAC(res.data.data.photos))
-            debugger
             dispatch(statusUserAC("succeeded"))
         }).catch((error)=>{
-            debugger
             console.error(error, dispatch)
         })
     }

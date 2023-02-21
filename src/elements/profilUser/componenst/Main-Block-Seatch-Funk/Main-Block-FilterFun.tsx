@@ -15,11 +15,6 @@ export const MainBlockFilterFun = React.memo((props: MainBlockFilterFunType) => 
             changeSetEditModeProfil={props.changeSetEditModeProfil}
         />
 
-        {/*<SeatchUsersComponent*/}
-        {/*    SeatchFormActivated={props.SeatchFormActivated}*/}
-        {/*    changesActivatedSeatch={props.changesActivatedSeatch}*/}
-        {/*/>*/}
-
         <div className={props.EditModeProfil == true ? "boground-Shadow" : "boground-Shadow-none"}></div>
     </>)
 })

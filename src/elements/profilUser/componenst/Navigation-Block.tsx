@@ -17,8 +17,6 @@ import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
     changeSetEditModeProfil: () => void,
-    // SeatchFormActivated: boolean,
-    // changesActivatedSeatch: () => void,
     FullName:string
 
     fotoUser:string | null
@@ -70,11 +68,6 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                         <img src={MesengerIcon} alt="MesengerIcon"/>
                         <p>Message</p>
                     </div>
-                    {/*<div className={"AlseIcons"}>*/}
-                    {/*    <img onClick={props.changesActivatedSeatch} src={SeachIcon} alt="SeachIcon"/>*/}
-                    {/*    <p className={props.SeatchFormActivated == true ? "SeatchFormActive" : ""}*/}
-                    {/*       onClick={props.changesActivatedSeatch}>Seach</p>*/}
-                    {/*</div>*/}
                     <div className={"AlseIcons"}>
                         <img src={SetingsIcon} alt="SetingsIcon"/>
                         <p>Settings</p>
