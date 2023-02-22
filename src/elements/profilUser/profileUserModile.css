@@ -530,5 +530,57 @@
         margin-right: 25px;
     }
 }
-
-
+@media (max-width: 676px) {
+    .Edit-profil-menu{
+        left:15px;
+    }
+}
+@media (max-width: 602px) {
+    .Edit-profil-menu{
+        width: 100%;
+        left: 0;
+    }
+    .Edit-mode-Inputs input{
+        width: 100%;
+        max-width: 436px;
+    }
+    .VectopCloseEditWindow{
+        right:10px
+    }
+    .Edit-profil-menu{
+    border: none;
+    }
+}
+@media (max-width: 479px) {
+    .Edit-mode-Inputs{
+        width: 100%;
+    }
+    .Edit-mode-Inputs input{
+        padding: 0px;
+    }
+    #About{
+        padding: 0px;
+    }
+    .Edit-mode-Frofil form{
+        width: 100%;
+    }
+    .Edit-mode-social-inputs{
+        width: 100%;
+    }
+}
+.LoagingDIv{
+    padding: 0px;
+    position: fixed;
+    z-index: 10001;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(27, 15, 15, 0.5);
+}
+.Loaging{
+    width: 150px;
+    height: 150px;
+}

@@ -89,15 +89,19 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
             } else if (values.EditModeName.length > 30) {
                 errors.EditModeName = 'Must be 30 characters or less';
             }
+
+            if (!values.About==null){
             if (values.About.length > 100) {
                 errors.About = 'Must be 100 characters or less';
-            }
+            }}
+            if (!values.ProfessionalSkills==null){
             if (values.ProfessionalSkills.length > 100) {
                 errors.About = 'Must be 100 characters or less';
-            }
+            }}
+            if (!values.EditModeName==null){
             if (values.EditModeName.length > 100) {
                 errors.EditModeName = 'Must be 100 characters or less';
-            }
+            }}
 
 
             //website

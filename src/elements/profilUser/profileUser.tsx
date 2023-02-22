@@ -18,6 +18,7 @@ import {
     GetTotalNoFriendCountTC
 } from "../../Reducers/UsersReducer";
 import {InitialazedType} from "../../Reducers/InitialazedReducer";
+import {CircularProgress} from "@mui/material";
 
 export const ProfileUser = React.memo(() => {
     console.log("__________________________ProfileUser")
@@ -56,6 +57,15 @@ export const ProfileUser = React.memo(() => {
     }
     return (
         <div className={"Main-block"}>
+
+            {AdminData.status=='loading'
+                ?
+                <div className={"LoagingDIv"}>
+                    <CircularProgress size={100} />
+                </div>
+                :null}
+
+
 
             <NavigationBlock
                 EditModeProfil={EditModeProfil}

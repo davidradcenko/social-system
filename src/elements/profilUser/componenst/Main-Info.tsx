@@ -89,12 +89,12 @@ export const MainInfo = React.memo((props: MainInfoType) => {
             {/*--------NAV BAR MODULE-------------*/}
             <div className={'mobule-DdivFoto'}>
                 <div className="Foto-classfotoFrofel-gradient mobule-Foto-classfotoFrofel-gradient">
-                    <img src={testForo} alt="large img"/>
+                    <img src={props.photos.small==null?testInfoBlockImg:props.photos.small} alt="large img"/>
                 </div>
                 <div className={'mobule-infoblock-Name-Status'}>
-                    <p className="Name-InfoProfil">DAVID RADCHENKO</p>
+                    <p className="Name-InfoProfil">{props.FullName==null?"":props.FullName}</p>
                     <p className="JobSearch-InfoProfil">Job search:
-                        <input className={"Checkbox-InfoProfil"} type={"checkbox"}/>
+                        <input className={"Checkbox-InfoProfil"} checked={props.lokingForAJab==null?false:props.lokingForAJab} type={"checkbox"} readOnly/>
                     </p>
                 </div>
             </div>
@@ -104,15 +104,13 @@ export const MainInfo = React.memo((props: MainInfoType) => {
                 <div className={'Mobule-ferst-Teg-Info'}>
                     <p className="mobule-ProfessionSkils-InfoProfil">Frofessional skills:</p>
                     <p className="mobule-ProfessionsSkils-text-InfoProfil">
-                        React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java Spring
+                        {props.ProfesionSkils==null?"":props.ProfesionSkils}
                     </p>
                 </div>
                 <div className={'Mobule-next-Teg-Info'}>
                     <p className="mobule-About-InfoProfil">About:</p>
                     <p className="mobule-About-text-InfoProfil">
-                        React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java
-                        Spring React, Redux,CSS, My Sql,Oracle Databases, JavaEE,Java Spring React, Redux,CSS,
-                        My Sql,Oracle Databases, JavaEE,Java Spring
+                        {props.AboutUser==null?"":props.AboutUser}
                     </p>
                 </div>
             </div>

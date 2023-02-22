@@ -11,8 +11,10 @@ import MoonModule from "../../../img/module-IMG/Moon.png";
 import SelectMobule from "../../../img/module-IMG/MeatballMenu.png";
 import moduleFotoTest from "../../../img/nav-icons/foroTest.png";
 import {GetMyProfilTK} from "../../../Reducers/profilReducer";
-import {useAppDispatch} from "../../../store/store";
+import {RootState, useAppDispatch} from "../../../store/store";
 import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
+import {useSelector} from "react-redux";
+import {InitialazedType} from "../../../Reducers/InitialazedReducer";
 
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
@@ -24,6 +26,7 @@ type NavigationBlockTypes = {
 export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
     console.log("+++++++++++++NavigationBlock  ")
     const dispatch = useAppDispatch()
+    const AdminData = useSelector<RootState, InitialazedType>(state => state.initialazed)
     const [Vector, SetVector] = useState(true)
     const [TextPapap, SetTextPapap] = useState(false)
 
@@ -33,7 +36,7 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
         SetVector(!Vector)
     }
     const GoToProfil=()=>{
-        dispatch(GetMyProfilTK(16939))
+        dispatch(GetMyProfilTK(Number(AdminData.mainUserId)))
     }
 
     return (
@@ -44,11 +47,11 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                         <img onClick={GoToProfil} src={props.fotoUser==null? testInfoBlockImg :props.fotoUser} alt="User img"/>
                         <p onClick={GoToProfil} >{props.FullName}</p>
                     </div>
-                    <div className={'mobuleTypeIconNavigate'}>
-                        <img src={SeachMobule} alt="SeachMobule"/>
-                        <img src={MoonModule} alt="MoonModule"/>
-                        <img src={SelectMobule} alt="SelectMobule"/>
-                    </div>
+                    {/*<div className={'mobuleTypeIconNavigate'}>*/}
+                    {/*    <img src={SeachMobule} alt="SeachMobule"/>*/}
+                    {/*    <img src={MoonModule} alt="MoonModule"/>*/}
+                    {/*    <img src={SelectMobule} alt="SelectMobule"/>*/}
+                    {/*</div>*/}
                 </div>
                 <div className="main-navi">
                     <div className={"ProfilIcon"}>
@@ -73,11 +76,11 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                         <p>Settings</p>
                     </div>
                     <div className={"MobuleNavigation"}>
-                        <img src={moduleFotoTest} alt="moduleFotoTest"/>
+                        <img onClick={GoToProfil} src={props.fotoUser==null? testInfoBlockImg:props.fotoUser} alt="User img"/>
                         <div className={'NavigatedSeledNameMobule'}>
-                            <p>Advise</p>
+                            <p onClick={props.changeSetEditModeProfil}>Edit Profile</p>
                             <p>Chat</p>
-                            <p>Followers</p>
+                            <p>Login-out</p>
                         </div>
                     </div>
                 </div>
