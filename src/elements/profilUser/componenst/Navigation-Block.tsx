@@ -56,7 +56,7 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                 <div className="main-navi">
                     <div className={"ProfilIcon"}>
                         <img src={HomeIcon} alt="HomeIcon"/>
-                        <div className={"ProfilIcon-text"}>
+                        <div onClick={GoToProfil} className={"ProfilIcon-text"}>
                             <p onClick={props.changeSetEditModeProfil}>Edit profile</p>
                         </div>
                     </div>

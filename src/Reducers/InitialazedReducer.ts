@@ -6,7 +6,7 @@ const Initial: InitialazedType = {
     initialazUser: false,
     error: null,
     status: 'idle',
-    mainUserId: "1",
+    mainUserId: 0,
     name: '',
     foto: '' || null
 }
@@ -46,14 +46,17 @@ export const initializeAppTC = () => {
                         dispatch(statusUserAC("succeeded"))
 
                 }).catch((error) => {
+                    dispatch(errorUserAC(error))
                     console.error(error, dispatch)
                 })
                 dispatch(statusUserAC("succeeded"))
             } else {
                 console.error(res.data, dispatch)
+                dispatch(errorUserAC(res.data))
                 dispatch(statusUserAC("succeeded"))
             }
         }).catch((error) => {
+            dispatch(errorUserAC(error))
             console.error(error, dispatch)
         })
     }
@@ -63,7 +66,7 @@ export const initializeAppTC = () => {
 export const initializedUserAC = (value: boolean) => ({type: "INITIALAZED-USER", value}) as const
 export const errorUserAC = (value: string | null) => ({type: "ERROR-USER", value}) as const
 export const statusUserAC = (value: statusType) => ({type: "STATUS-USER", value}) as const
-export const mainUserIDAC = (idMainUser: string, name: string) => ({
+export const mainUserIDAC = (idMainUser: number, name: string) => ({
     type: "SET-MAIN-USER-ID",
     idMainUser,
     name
@@ -78,11 +81,12 @@ export type InitialazedType = {
     initialazUser: boolean,
     error: string | null,
     status: statusType,
-    mainUserId: string,
+    mainUserId: number,
     name: string,
     foto: string | null
 }
 export type StatusUserActionType = ReturnType<typeof statusUserAC>
+export type setErrorAC = ReturnType<typeof errorUserAC>
 export type statusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 type actionTypes =
     | ReturnType<typeof mainUserIDAC>

@@ -89,7 +89,6 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
             } else if (values.EditModeName.length > 30) {
                 errors.EditModeName = 'Must be 30 characters or less';
             }
-
             if (!values.About==null){
             if (values.About.length > 100) {
                 errors.About = 'Must be 100 characters or less';
@@ -105,7 +104,7 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
 
 
             //website
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
+            if (/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
                 if (values.website == "" || values.website == "https://") {
                     return
                 }
@@ -191,7 +190,9 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                     large: ProfilData.photos.large
                 }
             }
-            dispatch(profilChangeTK(data))
+            alert(formik.errors.website)
+            debugger
+            dispatch(profilChangeTK(data,ProfilData.userId))
         }
     })
     useEffect(() => {
@@ -278,7 +279,7 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                             <img onClick={() => changeSetObjectIconsState(website, "website")} src={website}
                                  alt="website"/>
                         </div>
-
+                        <p className={"InvalidP"}>{formik.errors[objectIconsState.stingName]}</p>
                         <div className={"Edit-mode-social-inputs"}>
                             {/**/}
                             <input
@@ -287,7 +288,6 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                                 value={formik.values[objectIconsState.stingName]}
                                 type="text"
                             />
-                            <p className={"InvalidP"}>{formik.errors[objectIconsState.stingName]}</p>
                             <img src={objectIconsState.value} alt=""/>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ import {loginIn} from "../../Reducers/LoginReducer";
 export const Account = () => {
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
-    const mainUserId = useSelector<RootState, string>(state => state.initialazed.mainUserId)
+    const mainUserId = useSelector<RootState, number>(state => state.initialazed.mainUserId)
     const profileData = useSelector<RootState, UserProfilType>(state => state.profil)
 
     const [stateChenge,setStateChande] = useState(false)

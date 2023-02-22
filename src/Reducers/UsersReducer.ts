@@ -1,5 +1,5 @@
 import {UserProfilType, initialStateUsersType, ProfileApi, UsersApi, UserType} from "../API/api";
-import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
+import {errorUserAC, setErrorAC, statusUserAC, StatusUserActionType} from "./InitialazedReducer";
 import {Dispatch} from "redux";
 import {getProfileAC} from "./profilReducer";
 
@@ -82,9 +82,14 @@ export const GetTotalFriendCountTC=()=>{
             if (res.data.error==null){
                 dispatch(SetTotalFriendCountAC(res.data.totalCount))
                 dispatch(statusUserAC("succeeded"))
+            }else {
+                dispatch(errorUserAC(res.data.error))
+                dispatch(statusUserAC("succeeded"))
             }
         }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -96,9 +101,14 @@ export const GetTotalNoFriendCountTC=()=>{
                 if (res.data.error==null){
                     dispatch(SetTotalNoFriendCountAC(res.data.totalCount))
                     dispatch(statusUserAC("succeeded"))
+                }else {
+                    dispatch(errorUserAC(res.data.error))
+                    dispatch(statusUserAC("succeeded"))
                 }
             }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -111,7 +121,10 @@ export const GetUsersProfilTK=(TypeUsers:"Friends"|"NoFriends",id:number)=>{
         ProfileApi.profileGet(id).then(res=>{
             dispatch(SetActivePageUsersProfileDataAC(TypeUsers,res.data))
             dispatch(statusUserAC("succeeded"))
+
         }).catch((error)=>{
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -125,9 +138,14 @@ export const GetActivePageFriendTC=(IdPage:number)=>{
                 if (res.data.error==null){
                     dispatch(GetActivePageFriendsAC(res.data.items))
                     dispatch(statusUserAC("succeeded"))
+                } else{
+                    dispatch(errorUserAC(res.data.error))
+                    dispatch(statusUserAC("succeeded"))
                 }
             }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -139,9 +157,14 @@ export const GetActivePageNoFriendTC=(IdPage:number)=>{
                 if (res.data.error==null){
                     dispatch(GetActivePageNoFriendsAC(res.data.items))
                     dispatch(statusUserAC("succeeded"))
+                }else {
+                    dispatch(errorUserAC(res.data.error))
+                    dispatch(statusUserAC("succeeded"))
                 }
             }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -152,12 +175,17 @@ export const FollowTK=(Iduser:number)=>{
     return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
         UsersApi.follow(Iduser).then(res => {
-                if (res.data.error==null){
+                if (res.data.resultCode === 0){
                     dispatch(FollowUserAC(Iduser))
+                    dispatch(statusUserAC("succeeded"))
+                }else {
+                    dispatch(errorUserAC(res.data.messages))
                     dispatch(statusUserAC("succeeded"))
                 }
             }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -166,12 +194,17 @@ export const UnFollowTK=(Iduser:number)=>{
     return (dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
         UsersApi.unfollow(Iduser).then(res => {
-                if (res.data.error==null){
+                if (res.data.resultCode === 0){
                     dispatch(UnFollowUserAC(Iduser))
+                    dispatch(statusUserAC("succeeded"))
+                }else {
+                    dispatch(errorUserAC(res.data.messages))
                     dispatch(statusUserAC("succeeded"))
                 }
             }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -186,9 +219,14 @@ export const SearchTK=(Name:string)=>{
                     dispatch(GetActivePageFriendsAC(res.data.items))
                     dispatch(SetTotalFriendCountAC(res.data.totalCount))
                     dispatch(statusUserAC("succeeded"))
+                }else {
+                    dispatch(errorUserAC(res.data.error))
+                    dispatch(statusUserAC("succeeded"))
                 }
             }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
         UsersApi.getSearchNoFriendsUsers(Name).then(res => {
@@ -196,9 +234,14 @@ export const SearchTK=(Name:string)=>{
                     dispatch(GetActivePageNoFriendsAC(res.data.items))
                     dispatch(SetTotalNoFriendCountAC(res.data.totalCount))
                     dispatch(statusUserAC("succeeded"))
+                }else {
+                    dispatch(errorUserAC(res.data.error))
+                    dispatch(statusUserAC("succeeded"))
                 }
             }
         ).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -230,6 +273,7 @@ export const UnFollowUserAC=(IdUser:number)=>({type:"UNFOLLOW-USER",IdUser}) as 
 
 // types
 type actionType=
+    |  setErrorAC
     | ReturnType<typeof SetCurrentPageNoFriends>
     | ReturnType<typeof UnFollowUserAC>
     | ReturnType<typeof FollowUserAC>

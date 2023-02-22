@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
+import {errorUserAC, setErrorAC, statusUserAC, StatusUserActionType} from "./InitialazedReducer";
 import {UserProfilType, ProfileApi} from "../API/api";
 
 
@@ -47,17 +47,34 @@ export const GetMyProfilTK=(id:number)=>{
             dispatch(getProfileAC(res.data))
             dispatch(statusUserAC("succeeded"))
         }).catch((error)=>{
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
 }
-export const profilChangeTK=(value:profilChangeType)=>{
+export const profilChangeTK=(value:profilChangeType,AdminId:number)=>{
     return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
         ProfileApi.profileChenge(value).then(res=>{
-            GetMyProfilTK(16939)
-            dispatch(statusUserAC("succeeded"))
+
+            if (res.data.resultCode === 0) {
+                ProfileApi.profileGet(AdminId).then(resID => {
+                        dispatch(getProfileAC(resID.data))
+                        dispatch(statusUserAC("succeeded"))
+                }).catch((errorresID) => {
+                    dispatch(errorUserAC(errorresID))
+                    dispatch(statusUserAC("succeeded"))
+                    console.error(errorresID, dispatch)
+                })
+            }else {
+                dispatch(errorUserAC(res.data.messages))
+                dispatch(statusUserAC("succeeded"))
+            }
+
         }).catch((error)=>{
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
@@ -66,22 +83,29 @@ export const SaveFotoTK=(file:any)=>{
     return(dispatch:Dispatch<actionType | StatusUserActionType>)=>{
         dispatch(statusUserAC("loading"))
         ProfileApi.saveFoto(file).then(res=>{
-            dispatch(setFotoAC(res.data.data.photos))
-            dispatch(statusUserAC("succeeded"))
+            if (res.data.resultCode === 0) {
+                dispatch(setFotoAC(res.data.data.photos))
+                dispatch(statusUserAC("succeeded"))
+            }else {
+                dispatch(errorUserAC(res.data.messages))
+                dispatch(statusUserAC("succeeded"))
+            }
         }).catch((error)=>{
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
 }
+
+
 //action
 export const getProfileAC = (value:UserProfilType) => ({type: "GET-PROFILE",value}) as const
 export const setFotoAC = (value:any) => ({type: "SET-FOTO-PROFILE",value}) as const
 
 
 //types
-type actionType=
-    | ReturnType<typeof getProfileAC>
-    | ReturnType<typeof setFotoAC>
+
 export type profilChangeType={
     // userId: Number
     lookingForAJob: boolean
@@ -102,4 +126,7 @@ export type profilChangeType={
         large: string | null
     }
 }
-
+type actionType=
+    | ReturnType<typeof getProfileAC>
+    | ReturnType<typeof setFotoAC>
+    | setErrorAC

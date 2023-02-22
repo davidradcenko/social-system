@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {LoginApi, LoginParamType} from "../API/api";
-import {statusUserAC, StatusUserActionType} from "./InitialazedReducer";
+import {errorUserAC, setErrorAC, statusUserAC, StatusUserActionType} from "./InitialazedReducer";
 
 const initialState: InitialStateType = {
     isLoginIn: false
@@ -16,37 +16,54 @@ export const loginReducer = (state: InitialStateType = initialState, action: Act
     }
 }
 
-//action
-export const setIsLogin = (value: boolean) => ({type: "login/SET-IS-LOGIN-IN", value}) as const
 
 //thunks
 export const loginIn = (data: LoginParamType) => {
-    return (dispatch: Dispatch<ActionTypes| StatusUserActionType>) => {
+    return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         LoginApi.loginMe(data).then(res => {
-            dispatch(setIsLogin(true))
-            dispatch(statusUserAC("succeeded"))
+            if (res.data.resultCode === 0) {
+                dispatch(setIsLogin(true))
+                dispatch(statusUserAC("succeeded"))
+            }else {
+                dispatch(errorUserAC(res.data.messages))
+                dispatch(statusUserAC("succeeded"))
+            }
         }).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
 }
-
 export const LoginOut = () => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         LoginApi.authMeOut().then(res => {
-            dispatch(setIsLogin(false))
-            dispatch(statusUserAC("succeeded"))
+            if (res.data.resultCode === 0) {
+                dispatch(setIsLogin(false))
+                dispatch(statusUserAC("succeeded"))
+            }else{
+                dispatch(errorUserAC(res.data.messages))
+                dispatch(statusUserAC("succeeded"))
+            }
         }).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
             console.error(error, dispatch)
         })
     }
 }
 
+//action
+export const setIsLogin = (value: boolean) => ({type: "login/SET-IS-LOGIN-IN", value}) as const
+
 //types
-type ActionTypes = SetIsLoginActionCreater
 export type SetIsLoginActionCreater = ReturnType<typeof setIsLogin>
 type InitialStateType = {
-        isLoginIn: boolean,
+    isLoginIn: boolean,
 }
+type ActionTypes =
+    | SetIsLoginActionCreater
+    | setErrorAC
+
