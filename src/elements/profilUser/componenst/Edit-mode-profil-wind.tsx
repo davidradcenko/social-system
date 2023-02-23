@@ -23,27 +23,28 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import {TextField} from "@mui/material";
 
 type EditModeProfilWindType = {
     EditModeProfil: boolean,
     changeSetEditModeProfil: () => void
 
 }
-
+export type typeIcons =
+    "none"
+    | typeof github
+    | typeof vk
+    | typeof facebook
+    | typeof instagram
+    | typeof twiter
+    | typeof website
+    | typeof youtube;
 
 export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => {
     console.log("+++++++++EditModeProfilWind")
     const dispatch = useAppDispatch()
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
-    type typeIcons =
-        "none"
-        | typeof github
-        | typeof vk
-        | typeof facebook
-        | typeof instagram
-        | typeof twiter
-        | typeof website
-        | typeof youtube;
+
 
     //state URL social
     const [objectIconsState, SetObjectIconsState] = useState<{ value: typeIcons, stingName: "facebook" | "github" | "instagram" | "mainLink" | "twitter" | "vk" | "website" | "youtube" }>({
@@ -54,23 +55,113 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
         SetObjectIconsState({value, stingName: stingName})
     }
 
+    const onMainFotoSelection = (e: any) => {
+        if (e.target.files.length) {
+            dispatch(SaveFotoTK(e.target.files[0]))
+        }
+    }
 
     //formik
     type initialValues = {
-        EditModeName: string| null,
-        JobSearch: string| null,
-        ProfessionalSkills: string| null,
-        About: string| null ,
-        facebook: string | null,
-        github: string | null,
-        instagram: string | null,
-        twitter: string | null,
-        vk: string | null,
-        website: string | null,
-        youtube: string | null
+        EditModeName?: string | null,
+        JobSearch?: string | null,
+        ProfessionalSkills?: string | null,
+        About?: string | null,
+        facebook?: string | null,
+        github?: string | null,
+        instagram?: string | null,
+        twitter?: string | null,
+        vk?: string | null,
+        website?: string | null,
+        youtube?: string | null
     }
-
     const formik = useFormik({
+        validate: (values) => {
+            const errors: initialValues = {};
+
+            if (!values.EditModeName) {
+                errors.EditModeName = "Required";
+            } else if (values.EditModeName.length > 30) {
+                errors.EditModeName = 'Must be 30 characters or less';
+            }
+            if (!values.About == null) {
+                if (values.About.length > 100) {
+                    errors.About = 'Must be 100 characters or less';
+                }
+            }
+            if (!values.ProfessionalSkills == null) {
+                if (values.ProfessionalSkills.length > 100) {
+                    errors.About = 'Must be 100 characters or less';
+                }
+            }
+            if (!values.EditModeName == null) {
+                if (values.EditModeName.length > 100) {
+                    errors.EditModeName = 'Must be 100 characters or less';
+                }
+            }
+
+
+            //website
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
+                errors.website = 'Invalid website';
+                if (values.website == "" || values.website == "https://") {
+                    delete errors.website
+                }
+            }
+
+            //youtube
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.youtube)) {
+                errors.youtube = 'Invalid youtube';
+                if (values.youtube == "" || values.youtube == "https://") {
+                    delete  errors.youtube
+                }
+            }
+
+            //vk
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.vk)) {
+                errors.vk = ' Invalid vk ';
+                if (values.vk == "" || values.vk == "https://") {
+                    delete errors.vk
+                }
+            }
+
+            //twitter
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.twitter)) {
+                errors.twitter = 'Invalid twitter';
+                if (values.twitter == "" || values.twitter == "https://") {
+                    delete errors.twitter
+                }
+
+            }
+
+            //instagram
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.instagram)) {
+                errors.instagram = 'Invalid instagram';
+                if (values.instagram == "" || values.instagram == "https://") {
+                    delete errors.instagram
+                }
+
+            }
+
+            //github
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.github)) {
+                errors.github = 'Invalid github';
+                if (values.github == "" || values.github == "https://") {
+                    delete errors.github
+                }
+            }
+
+            //facebook
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.facebook)) {
+                errors.facebook = 'Invalid facebook';
+                if (values.facebook == "" || values.facebook == "https://") {
+                    delete errors.facebook
+                }
+            }
+
+
+            return errors;
+        },
         initialValues: {
             EditModeName: "",
             JobSearch: false,
@@ -87,6 +178,7 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
             youtube: ""
         },
         onSubmit: values => {
+            debugger
             let data = {
                 userId: ProfilData.userId,
                 lookingForAJob: values.JobSearch,
@@ -108,106 +200,9 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                     large: ProfilData.photos.large
                 }
             }
-            debugger
-            dispatch(profilChangeTK(data,ProfilData.userId))
+            dispatch(profilChangeTK(data, ProfilData.userId))
         },
-        validate: (values) => {
-            const errors: initialValues = {
-                EditModeName:null,
-                twitter:null,
-                About:null,
-                github:null,
-                website:null,
-                JobSearch:null,
-                ProfessionalSkills:null,
-                facebook:null,
-                instagram:null,
-                vk:null,
-                youtube:null,
-            };
 
-            if (!values.EditModeName) {
-                errors.EditModeName = "Required";
-            } else if (values.EditModeName.length > 30) {
-                errors.EditModeName = 'Must be 30 characters or less';
-            }
-            if (!values.About==null){
-            if (values.About.length > 100) {
-                errors.About = 'Must be 100 characters or less';
-            }}
-            if (!values.ProfessionalSkills==null){
-            if (values.ProfessionalSkills.length > 100) {
-                errors.About = 'Must be 100 characters or less';
-            }}
-            if (!values.EditModeName==null){
-            if (values.EditModeName.length > 100) {
-                errors.EditModeName = 'Must be 100 characters or less';
-            }}
-
-
-            //website
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
-                errors.website = 'Invalid website';
-                if (values.website == "" || values.website == "https://") {
-                    errors.website = null;
-                }
-            }
-
-            //youtube
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.youtube)) {
-                errors.youtube = 'Invalid youtube';
-                if (values.youtube == "" || values.youtube == "https://") {
-                    errors.youtube = null;
-                }
-            }
-
-            //vk
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.vk)) {
-                errors.vk = ' Invalid vk ';
-                if (values.vk == "" || values.vk == "https://") {
-                    errors.vk = null;
-                }
-            }
-
-            //twitter
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.twitter)) {
-                errors.twitter = 'Invalid twitter';
-                if (values.twitter == "" || values.twitter == "https://") {
-                    errors.twitter=null
-                }
-
-            }
-
-            //instagram
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.instagram)) {
-                errors.instagram = 'Invalid instagram';
-                if (values.instagram == "" || values.instagram == "https://") {
-                    errors.instagram = null;
-                }
-
-            }
-
-            //github
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.github)) {
-                errors.github = 'Invalid github';
-                if (values.github == "" || values.github == "https://") {
-                    errors.github = null;
-                }
-            }
-
-            //facebook
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.facebook)) {
-                errors.facebook = 'Invalid facebook';
-                if (values.facebook == "" || values.facebook == "https://") {
-                    errors.facebook = null;
-                }
-            }
-
-
-
-            debugger
-            return errors;
-        },
     })
     useEffect(() => {
         formik.setValues({
@@ -226,11 +221,8 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
         })
     }, [ProfilData])
 
-    const onMainFotoSelection = (e: any) => {
-        if (e.target.files.length) {
-            dispatch(SaveFotoTK(e.target.files[0]))
-        }
-    }
+
+
     return (
         <div className={props.EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
 
@@ -293,17 +285,14 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                             <img onClick={() => changeSetObjectIconsState(website, "website")} src={website}
                                  alt="website"/>
                         </div>
-                        <p id={"InvalidP"}>{formik.errors[objectIconsState.stingName]}</p>
-                        <div className={"Edit-mode-social-inputs"}>
-                            {/**/}
-                            {/*<input*/}
-                            {/*    id={objectIconsState.stingName}*/}
-                            {/*    onChange={formik.handleChange}*/}
-                            {/*    value={formik.values[objectIconsState.stingName]}*/}
-                            {/*    type="text"*/}
-                            {/*/>*/}
-                            <CustomizedInputBase/>
-                            {/*<img src={objectIconsState.value} alt=""/>*/}
+                        <div id={"Edit-mode-social-inputs"} className={"Edit-mode-social-inputs"}>
+                            <CustomizedInputBase
+                                id={objectIconsState.stingName}
+                                onChange={formik.handleChange}
+                                value={formik.values[objectIconsState.stingName]}
+                                img={objectIconsState.value}
+                                error={formik.errors[objectIconsState.stingName]}
+                            />
                         </div>
                     </div>
                     <input className={"SpecialClassButton"} type={"submit"} value={"Save"}/>
@@ -314,20 +303,35 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
 })
 
 
-
-export default function CustomizedInputBase() {
+type CustomizedInputBaseType = {
+    id: string,
+    onChange: any,
+    value: string
+    img: typeIcons,
+    error:string | undefined
+}
+export const CustomizedInputBase = (props: CustomizedInputBaseType) => {
     return (
         <Paper
             component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 600 }}
+            sx={{p: '0px 0px', display: 'flex', alignItems: 'center', width: 600}}
         >
-            <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Search Google Maps"
-                inputProps={{ 'aria-label': 'search google maps' }}
+            <TextField
+                error={props.error !== undefined?true:false}
+                id={props.id}
+                onChange={props.onChange}
+                value={props.value}
+                sx={{ml: 1, flex: 1}}
+                label={"For example: https://facebook.com "}
+                placeholder="Type a link"
+                helperText={props.error}
+                inputProps={{'aria-label': 'search google maps'}}
+                focused
             />
-            <IconButton  color="primary" sx={{ p: '10px',display:'flex',alignItems:'center',justifyContent:'center' }} aria-label="directions">
-                <img src={github}  alt=""/>
+            <IconButton color="primary"
+                        sx={{p: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                        aria-label="directions">
+                <img src={props.img} alt=""/>
                 {/*<DirectionsIcon/>*/}
             </IconButton>
         </Paper>

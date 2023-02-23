@@ -836,20 +836,28 @@ body {
     display: flex;
     justify-content: space-between;
     width: 436px;
-    height: 65px;
+    /*height: 65px;*/
     left: 50px;
     top: 791px;
     background: #FFFCFC;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 20px;
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);*/
     align-items: center;
+    margin-top: 20px;
 }
-
+.Edit-mode-social-inputs p{
+    margin: 0px;
+    text-align: left;
+    margin-top: 10px;
+}
 .Edit-mode-social-inputs img {
+
     width: 31px;
     height: 31px;
 }
-
+#Edit-mode-social-inputs input{
+  height: 0px;
+    border: none;
+}
 #Edit-mode-input-types {
     margin-top: 18px;
     margin-left: 20px;
