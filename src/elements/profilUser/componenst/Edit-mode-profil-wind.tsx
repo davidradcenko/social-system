@@ -51,18 +51,17 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
 
     //formik
     type initialValues = {
-        EditModeName?: string,
-        JobSearch?: string,
-        ProfessionalSkills?: string,
-        URLSOCIALS?: string,
-        About?: string,
-        facebook?: string | null,
-        github?: string | null,
-        instagram?: string | null,
-        twitter?: string | null,
-        vk?: string | null,
-        website?: string | null,
-        youtube?: string | null
+        EditModeName: string| null,
+        JobSearch: string| null,
+        ProfessionalSkills: string| null,
+        About: string| null ,
+        facebook: string | null,
+        github: string | null,
+        instagram: string | null,
+        twitter: string | null,
+        vk: string | null,
+        website: string | null,
+        youtube: string | null
     }
 
     const formik = useFormik({
@@ -80,93 +79,6 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
             vk: "",
             website: "",
             youtube: ""
-        },
-        validate: (values) => {
-            const errors: initialValues = {};
-
-            if (!values.EditModeName) {
-                errors.EditModeName = "Required";
-            } else if (values.EditModeName.length > 30) {
-                errors.EditModeName = 'Must be 30 characters or less';
-            }
-            if (!values.About==null){
-            if (values.About.length > 100) {
-                errors.About = 'Must be 100 characters or less';
-            }}
-            if (!values.ProfessionalSkills==null){
-            if (values.ProfessionalSkills.length > 100) {
-                errors.About = 'Must be 100 characters or less';
-            }}
-            if (!values.EditModeName==null){
-            if (values.EditModeName.length > 100) {
-                errors.EditModeName = 'Must be 100 characters or less';
-            }}
-
-
-            //website
-            if (/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
-                if (values.website == "" || values.website == "https://") {
-                    return
-                }
-                errors.website = 'Invalid website';
-            }
-
-
-            //youtube
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.youtube)) {
-                if (values.youtube == "" || values.youtube == "https://") {
-                    return
-                }
-                errors.youtube = 'Invalid youtube';
-            }
-
-
-            //vk
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.vk)) {
-                if (values.vk == "" || values.vk == "https://") {
-                    return
-                }
-                errors.vk = ' Invalid vk ';
-            }
-
-
-            //twitter
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.twitter)) {
-                if (values.twitter == "" || values.twitter == "https://") {
-                    return
-                }
-                errors.twitter = 'Invalid twitter';
-            }
-
-
-            //instagram
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.instagram)) {
-                if (values.instagram == "" || values.instagram == "https://") {
-                    return
-                }
-                errors.instagram = 'Invalid instagram';
-            }
-
-
-            //github
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.github)) {
-                if (values.github == "" || values.github == "https://") {
-                    return
-                }
-                errors.github = 'Invalid github';
-            }
-
-
-            //facebook
-            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.facebook)) {
-                if (values.facebook == "" || values.facebook == "https://") {
-                    return
-                }
-                errors.facebook = 'Invalid facebook';
-            }
-
-
-            return errors;
         },
         onSubmit: values => {
             let data = {
@@ -190,10 +102,106 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                     large: ProfilData.photos.large
                 }
             }
-            alert(formik.errors.website)
             debugger
             dispatch(profilChangeTK(data,ProfilData.userId))
-        }
+        },
+        validate: (values) => {
+            const errors: initialValues = {
+                EditModeName:null,
+                twitter:null,
+                About:null,
+                github:null,
+                website:null,
+                JobSearch:null,
+                ProfessionalSkills:null,
+                facebook:null,
+                instagram:null,
+                vk:null,
+                youtube:null,
+            };
+
+            if (!values.EditModeName) {
+                errors.EditModeName = "Required";
+            } else if (values.EditModeName.length > 30) {
+                errors.EditModeName = 'Must be 30 characters or less';
+            }
+            if (!values.About==null){
+            if (values.About.length > 100) {
+                errors.About = 'Must be 100 characters or less';
+            }}
+            if (!values.ProfessionalSkills==null){
+            if (values.ProfessionalSkills.length > 100) {
+                errors.About = 'Must be 100 characters or less';
+            }}
+            if (!values.EditModeName==null){
+            if (values.EditModeName.length > 100) {
+                errors.EditModeName = 'Must be 100 characters or less';
+            }}
+
+
+            //website
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.website)) {
+                errors.website = 'Invalid website';
+                if (values.website == "" || values.website == "https://") {
+                    errors.website = null;
+                }
+            }
+
+            //youtube
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.youtube)) {
+                errors.youtube = 'Invalid youtube';
+                if (values.youtube == "" || values.youtube == "https://") {
+                    errors.youtube = null;
+                }
+            }
+
+            //vk
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.vk)) {
+                errors.vk = ' Invalid vk ';
+                if (values.vk == "" || values.vk == "https://") {
+                    errors.vk = null;
+                }
+            }
+
+            //twitter
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.twitter)) {
+                errors.twitter = 'Invalid twitter';
+                if (values.twitter == "" || values.twitter == "https://") {
+                    errors.twitter=null
+                }
+
+            }
+
+            //instagram
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.instagram)) {
+                errors.instagram = 'Invalid instagram';
+                if (values.instagram == "" || values.instagram == "https://") {
+                    errors.instagram = null;
+                }
+
+            }
+
+            //github
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.github)) {
+                errors.github = 'Invalid github';
+                if (values.github == "" || values.github == "https://") {
+                    errors.github = null;
+                }
+            }
+
+            //facebook
+            if (!/^[https://]+[A-Z0-9._%+-]+\.[com]{3}$/i.test(values.facebook)) {
+                errors.facebook = 'Invalid facebook';
+                if (values.facebook == "" || values.facebook == "https://") {
+                    errors.facebook = null;
+                }
+            }
+
+
+
+            debugger
+            return errors;
+        },
     })
     useEffect(() => {
         formik.setValues({
@@ -279,7 +287,7 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                             <img onClick={() => changeSetObjectIconsState(website, "website")} src={website}
                                  alt="website"/>
                         </div>
-                        <p className={"InvalidP"}>{formik.errors[objectIconsState.stingName]}</p>
+                        <p id={"InvalidP"}>{formik.errors[objectIconsState.stingName]}</p>
                         <div className={"Edit-mode-social-inputs"}>
                             {/**/}
                             <input

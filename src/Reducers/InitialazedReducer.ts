@@ -6,7 +6,7 @@ const Initial: InitialazedType = {
     initialazUser: false,
     error: null,
     status: 'idle',
-    mainUserId: 0,
+    mainUserId: 16939,
     name: '',
     foto: '' || null
 }
