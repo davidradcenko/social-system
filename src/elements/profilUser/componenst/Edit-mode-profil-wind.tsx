@@ -16,7 +16,13 @@ import {ContaksType, photosType, UserProfilType} from "../../../API/api";
 import {useSelector} from "react-redux";
 import {profilChangeTK, SaveFotoTK} from "../../../Reducers/profilReducer";
 import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
-
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import DirectionsIcon from '@mui/icons-material/Directions';
 
 type EditModeProfilWindType = {
     EditModeProfil: boolean,
@@ -290,13 +296,14 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                         <p id={"InvalidP"}>{formik.errors[objectIconsState.stingName]}</p>
                         <div className={"Edit-mode-social-inputs"}>
                             {/**/}
-                            <input
-                                id={objectIconsState.stingName}
-                                onChange={formik.handleChange}
-                                value={formik.values[objectIconsState.stingName]}
-                                type="text"
-                            />
-                            <img src={objectIconsState.value} alt=""/>
+                            {/*<input*/}
+                            {/*    id={objectIconsState.stingName}*/}
+                            {/*    onChange={formik.handleChange}*/}
+                            {/*    value={formik.values[objectIconsState.stingName]}*/}
+                            {/*    type="text"*/}
+                            {/*/>*/}
+                            <CustomizedInputBase/>
+                            {/*<img src={objectIconsState.value} alt=""/>*/}
                         </div>
                     </div>
                     <input className={"SpecialClassButton"} type={"submit"} value={"Save"}/>
@@ -305,3 +312,24 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
         </div>
     )
 })
+
+
+
+export default function CustomizedInputBase() {
+    return (
+        <Paper
+            component="form"
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 600 }}
+        >
+            <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Search Google Maps"
+                inputProps={{ 'aria-label': 'search google maps' }}
+            />
+            <IconButton  color="primary" sx={{ p: '10px',display:'flex',alignItems:'center',justifyContent:'center' }} aria-label="directions">
+                <img src={github}  alt=""/>
+                {/*<DirectionsIcon/>*/}
+            </IconButton>
+        </Paper>
+    );
+}
