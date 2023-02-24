@@ -23,7 +23,17 @@ export const LoginApi = {
         return instance.get(`profile/${id}`)
     }
 }
-
+export type messageType={
+    body:string
+}
+export const ChatApi={
+    StartDialogs(IdUser:number){
+        return instance.put(`dialogs/${IdUser}`)
+    },
+    WriteMS(idUser:number,data:messageType){
+        return instance.post(`/dialogs/${idUser}/messages`,data)
+    }
+}
 export const ProfileApi = {
     profileGet(id: number) {
         return instance.get("/profile/" + id)

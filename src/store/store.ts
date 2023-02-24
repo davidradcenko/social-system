@@ -5,12 +5,14 @@ import {loginReducer} from "../Reducers/LoginReducer";
 import {initialazedReducer} from "../Reducers/InitialazedReducer";
 import {profilReducer} from "../Reducers/profilReducer";
 import {usersReducer} from "../Reducers/UsersReducer";
+import {ChatReducer} from "../Reducers/ChatReducer";
 
 const rootReducer= combineReducers({
     login:loginReducer,
     initialazed:initialazedReducer,
     profil:profilReducer,
-    users:usersReducer
+    users:usersReducer,
+    chat:ChatReducer
 })
 export const store=createStore(rootReducer,applyMiddleware(thunk))
 export type RootState= ReturnType<typeof store.getState>

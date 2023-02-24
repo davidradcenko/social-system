@@ -16,9 +16,15 @@ div{
 /*Chat-Navigation*/
 .Chat .Chat-Navigation{
     height: 100%;
-    max-width: 98px;
+    width: 98px;
 }
-
+.Icons-Navigation{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    align-items: center;
+    justify-content: center;
+}
 /*TOP-menu-Bar*/
 .Chat .TOP-menu-Bar{
     width: 100%;
