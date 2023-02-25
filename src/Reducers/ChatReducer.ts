@@ -18,7 +18,6 @@ export const StartDialogs = (idUser:number) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         ChatApi.StartDialogs(idUser).then(res => {
-            debugger
             dispatch(errorUserAC(res.data.error))
             dispatch(statusUserAC("succeeded"))
         }).catch((error) => {
@@ -32,7 +31,6 @@ export const ChatMS = (idUser:number,message:messageType) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         ChatApi.WriteMS(idUser,message).then(res => {
-           debugger
             dispatch(errorUserAC(res.data.error))
             dispatch(statusUserAC("succeeded"))
         }).catch((error) => {

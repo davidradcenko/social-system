@@ -1,4 +1,5 @@
 import "./ChatCSS.css"
+import "./ChatModuleCss.css"
 import Logo from '../../img/nav-icons/icons-sosial/common.png'
 import FotoTest from '../../img/nav-icons/icons-sosial/vk.png'
 
@@ -15,55 +16,92 @@ import IconButton from "@mui/material/IconButton";
 import {useAppDispatch} from "../../store/store";
 import {useEffect} from "react";
 import {ChatMS, StartDialogs} from "../../Reducers/ChatReducer";
-
+import ButtonMenuNavigation from "./UI-Components/ButtonMenu";
+import {IconsNavigation} from "./Chat-Componets/Icons-Navigation";
+import {StoryWay} from "./Chat-Componets/Story-Way";
+import SearchInput from "./UI-Components/Search-Input";
+import TableUsers from "./UI-Components/Table-Users";
+import Paginator from "./UI-Components/Paginator";
 
 
 export const Chat = () => {
     const dispatch = useAppDispatch()
-    useEffect(()=>{
-        // dispatch(ChatMS(27945,{body:'Hello'}))
-        // dispatch(StartDialogs(27945))
+    useEffect(() => {
+        // dispatch(ChatMS(24522,{body:'Hello'}))
+        //dispatch(StartDialogs(24522))
     })
     return (
         <div className={'Chat'}>
+
+
+            {/* Navigation */}
             <div className={'Chat-Navigation'}>
-                <div className="Icons-Navigation">
-                    <Avatar alt="Remy Sharp" sx={{ width: 50, height: 50 }}  src="/static/images/avatar/1.jpg" />
-
-                    <IconButton sx={{marginTop:20}} aria-label="delete">
-                        <HomeIcon color="primary" sx={{fontSize: 40}}/>
-                    </IconButton>
-                    <IconButton sx={{marginTop:10}} aria-label="delete">
-                        <PersonIcon color="primary" sx={{fontSize: 40}}/>
-                    </IconButton>
-
-                    <IconButton sx={{marginTop:10}} aria-label="delete">
-                        <Badge color="secondary" variant="dot">
-                            <FavoriteBorderIcon color="primary" sx={{fontSize: 40}}/>
-                        </Badge>
-                    </IconButton>
-
-                    <IconButton sx={{marginTop:10}} aria-label="delete">
-                        <PersonSearchIcon color="primary" sx={{fontSize: 40}}/>
-                    </IconButton>
-                    <IconButton sx={{marginTop:10}} aria-label="delete">
-                        <SettingsIcon color="primary" sx={{fontSize: 40}}/>
-                    </IconButton>
-
-
-                </div>
+                <IconsNavigation/>
             </div>
-            <div className={'TOP-menu-Bar'}>
-                <div className="logo">
-                    <img src={Logo} alt="Logo"/>
-                    <BasicBreadcrumbs/>
-                </div>
-                <div className="Information">
-                    <div className={'Chats-List'}></div>
-                    <div className={'Chat-Sittings'}>
-                        <div className={'Chat-List'}></div>
-                        <div className={'Profile-Chat-Component'}>
 
+
+            {/*Main content*/}
+            <div className={'TOP-menu-Bar'}>
+
+
+                {/*logo Top*/}
+                <div className="logo">
+                    <div className={'Logo-Nav'}>
+                        <img src={Logo} alt="Logo"/>
+                    </div>
+                    <div className={'Top-Nav'}>
+                        <div className={'ButtonMenu'}>
+                            <ButtonMenuNavigation/>
+                        </div>
+                        <StoryWay/>
+                    </div>
+                </div>
+
+
+                {/*Main block*/}
+                <div className="Information">
+
+
+                    {/*Chat list and search button*/}
+                    <div className={'Chats-List'}>
+                        <div className={'Chat-Search'}>
+                            <SearchInput/>
+                        </div>
+                        <div className={'Chat-List-of-Users'}>
+                            <TableUsers/>
+                        </div>
+                    </div>
+
+
+                    {/*Paginator / Chat / Profile*/}
+                    <div className={'Chat-Sittings'}>
+
+
+                        {/*Paginator / Navigation Way*/}
+                        <div className={'Paginator-Navigation'}>
+                            <div className={'Paginator-Way'}>
+                                <StoryWay/>
+                            </div>
+                            <Paginator/>
+                        </div>
+
+
+                        {/*Chat list / Profile User*/}
+                        <div className={'Chat-Profile'}>
+
+
+                            {/*Chat list / SMS*/}
+                            <div className={'Chat-List'}>
+                                <div className={'Active-Chatting-User'}>
+                                    <TableUsers/>
+                                    <p>Yesterday</p>
+                                </div>
+                                <div className={'Chatting'}></div>
+                            </div>
+
+
+                            {/*Profile User*/}
+                            <div className={'Profile-Chat-Component'}></div>
                         </div>
                     </div>
                 </div>

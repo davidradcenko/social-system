@@ -1,0 +1,40 @@
+@media (max-width: 1880px) {
+    .Chat-Navigation{
+        display: none;
+    }
+    .ButtonMenu{
+        display: block;
+    }
+    .logo{
+        justify-content: space-between;
+    }
+    .Logo-Nav{
+        padding-right: 30px;
+        order: 2;
+    }
+    .Top-Nav{
+        align-items: center;
+        display: flex;
+        padding-left: 30px;
+    }
+    .css-1hskriy{
+        width: 98px !important;
+    }
+    .Paginator-Way{
+        display: block;
+    }
+    .Paginator-Navigation{
+        justify-content: space-between;
+    }
+}
+@media (max-width: 680px) {
+    .Logo-Nav img{
+        width: 158px;
+        height: 14px;
+    }
+}
+@media (max-width: 438px) {
+    .StoryWay{
+        display: none;
+    }
+}
