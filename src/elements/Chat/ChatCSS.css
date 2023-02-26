@@ -4,111 +4,174 @@
     font-family: 'Roboto';
     box-sizing: border-box;
 }
-div{
+
+div {
     /*border: 1px solid black;*/
 }
+
 /*display:none*/
-.ButtonMenu{
+.ButtonMenu {
     display: none;
 }
+
 /*total Chat*/
-.Chat{
+.Chat {
     margin: 0 auto;
     max-width: 1980px;
     display: flex;
 }
+
 /*Chat-Navigation*/
-.Chat .Chat-Navigation{
+.Chat .Chat-Navigation {
     border: 1px solid #B5B2B2;
     height: 100%;
     width: 98px;
 }
-.Icons-Navigation{
+
+.Icons-Navigation {
     display: flex;
     flex-direction: column;
     padding-top: 20px;
     align-items: center;
     justify-content: center;
 }
+
 /*TOP-menu-Bar*/
-.Chat .TOP-menu-Bar{
+.Chat .TOP-menu-Bar {
     width: 100%;
     height: 70px;
 }
-.logo{
+
+.logo {
     border: 1px solid #B5B2B2;
     width: 100%;
     height: 70px;
     display: flex;
     align-items: center;
 }
-.logo img{
+
+.logo img {
     padding-left: 20px;
 }
-.Story-Navigation{
+
+.Story-Navigation {
     padding-left: 40px;
 }
 
 /*menu navigation*/
-.admin-foto{
+.admin-foto {
     width: 50px;
     height: 50px;
 }
-.Chats-List{
+
+.Chats-List {
     border-right: 1px solid #B5B2B2;
     border-bottom: 1px solid #B5B2B2;
     max-width: 420px;
     display: flex;
     flex-direction: column;
 }
-.Chat-Search{
+
+.Chat-Search {
     border-bottom: 1px solid #B5B2B2;
     height: 70px;
 }
-.Chat-List-of-Users{
+
+.Chat-List-of-Users {
     border-bottom: 1px solid #B5B2B2;
 }
-.Paginator-Navigation{
+
+.Paginator-Navigation {
     display: flex;
     align-items: center;
     height: 70px;
     border-right: 1px solid #B5B2B2;
     border-bottom: 1px solid #B5B2B2;
 }
-.Chat-Sittings{
+
+.Chat-Sittings {
     display: flex;
     width: 100%;
     flex-direction: column;
 }
-.Information{
+
+.Information {
     display: flex;
 }
-.Paginator-Way{
+
+.Paginator-Way {
     display: none;
 }
-.Chat-Profile{
+
+.Chat-Profile {
     display: flex;
     width: 100%;
 }
-.Chat-List{
+
+.Chat-List {
     width: 962px;
     display: flex;
     flex-direction: column;
 }
-.Active-Chatting-User{
+
+.Active-Chatting-User {
+    background: rgba(255, 255, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #B5B2B2;
     border-right: 1px solid #B5B2B2;
-    height: 90px;
+    height: 89px;
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
 }
-.Chatting{
+
+.Chatting {
+    display: flex;
+    /*flex-direction:column;*/
+    flex-wrap: wrap;
+    align-content: space-between;
     width: 100%;
     border-bottom: 1px solid #B5B2B2;
-    border-right:1px solid #B5B2B2 ;
+    border-right: 1px solid #B5B2B2;
     height: 600px;
+}
+
+.Send-SMS {
+    width: 100%;
+}
+
+.Messages {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.DivMeesage {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.DivMessage-content {
+    padding: 9px 5px 5px 15px;
+    background: #F1F0F0;
+    border-radius: 0px 15px 15px 15px;
+    margin-left: 23px;
+}
+
+.DivMessage-content-p1 {
+    text-align: left;
+}
+
+.DivMessage-content-p2 {
+    text-align: right;
+}
+.MyMessage{
+    justify-content: end;
+}
+.MyMessage .DivMessage-content{
+    background: #DBF6FF;
 }

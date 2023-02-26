@@ -14,8 +14,7 @@ export default function TableUsers() {
         <List
             sx={{
                 width: '100%',
-                maxWidth: 360,
-                bgcolor: 'background.paper',
+                maxWidth: 360
             }}
         >
             <ListItem>
