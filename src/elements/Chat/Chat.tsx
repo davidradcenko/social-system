@@ -1,26 +1,28 @@
 import "./ChatCSS.css"
 import "./ChatModuleCss.css"
-import Logo from '../../img/nav-icons/icons-sosial/common.png'
-import Sear from '../../img/Chat/Group 117.png'
-import NoSear from '../../img/Chat/Group 115.png'
-import BagroundIMG from '../../img/Chat/pexels-photo-2531608.jpeg'
+import {useAppDispatch} from "../../store/store";
+import React, {useEffect} from "react";
+import Logo from "../../img/nav-icons/icons-sosial/common.png";
+import ButtonMenuNavigation from "./UI-Components/ButtonMenu";
+import {StoryWay} from "./Chat-Componets/Story-Way";
+import TableUsers from "./UI-Components/Table-Users";
+import Paginator from "./UI-Components/Paginator";
+import {Avatar, Checkbox} from "@mui/material";
+import Sear from "../../img/Chat/Group 117.png";
+import NoSear from "../../img/Chat/Group 115.png";
+import FullWidthTextField from "./UI-Components/Send-SMS";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import ImageAvatars from "../profilUser/componenst/Main-Info-Social";
+import {ChatNavigation} from "./Components/Chat-Navigation";
+import {ChatSearchList} from "./Components/Chat-Search-List";
 
 
 //material UL
-import {Avatar} from "@mui/material";
-import {useAppDispatch} from "../../store/store";
-import {useEffect} from "react";
-import ButtonMenuNavigation from "./UI-Components/ButtonMenu";
-import {IconsNavigation} from "./Chat-Componets/Icons-Navigation";
-import {StoryWay} from "./Chat-Componets/Story-Way";
-import SearchInput from "./UI-Components/Search-Input";
-import TableUsers from "./UI-Components/Table-Users";
-import Paginator from "./UI-Components/Paginator";
-import FullWidthTextField from "./UI-Components/Send-SMS";
-
-
-export const Chat = () => {
+export const Chat = React.memo(() => {
+    console.log("Chat ")
     const dispatch = useAppDispatch()
+
+
     useEffect(() => {
         // dispatch(ChatMS(24522,{body:'Hello'}))
         //dispatch(StartDialogs(24522))
@@ -30,9 +32,7 @@ export const Chat = () => {
 
 
             {/* Navigation */}
-            <div className={'Chat-Navigation'}>
-                <IconsNavigation/>
-            </div>
+            <ChatNavigation/>
 
 
             {/*Main content*/}
@@ -53,18 +53,13 @@ export const Chat = () => {
                 </div>
 
 
+
                 {/*Main block*/}
                 <div className="Information">
 
-
                     {/*Chat list and search button*/}
                     <div className={'Chats-List'}>
-                        <div className={'Chat-Search'}>
-                            <SearchInput/>
-                        </div>
-                        <div className={'Chat-List-of-Users'}>
-                            <TableUsers/>
-                        </div>
+                        <ChatSearchList/>
                     </div>
 
 
@@ -84,11 +79,10 @@ export const Chat = () => {
                         {/*Chat list / Profile User*/}
                         <div className={'Chat-Profile'}>
 
-
                             {/*Chat list / SMS*/}
-                            <div  style={} className={'Chat-List'}>
+                            <div className={'Chat-List'}>
                                 <div className={'Active-Chatting-User'}>
-                                    <TableUsers/>
+                                    {/*<TableUsers/>*/}
                                     <p>Yesterday</p>
                                 </div>
                                 <div className={'Chatting'}>
@@ -98,23 +92,23 @@ export const Chat = () => {
                                     <div className={'Messages'}>
 
                                         <div className={'DivMeesage'}>
-                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
                                             <div className={'DivMessage-content'}>
                                                 <p className={'DivMessage-content-p1'}>Ok!asdfasfdasfafsaaasdf</p>
-                                                <p className={'DivMessage-content-p2'}>20:01 <img src={Sear} alt=""/></p>
+                                                <p className={'DivMessage-content-p2'}>20:01 <img src={Sear} alt=""/>
+                                                </p>
                                             </div>
                                         </div>
 
                                         <div className={'DivMeesage MyMessage'}>
                                             <div className={'DivMessage-content'}>
                                                 <p className={'DivMessage-content-p1'}>Ok!asdfasfdasfafsaaasdf</p>
-                                                <p className={'DivMessage-content-p2'}>20:01 <img src={NoSear} alt=""/></p>
+                                                <p className={'DivMessage-content-p2'}>20:01 <img src={NoSear} alt=""/>
+                                                </p>
                                             </div>
                                         </div>
 
                                     </div>
-
-
                                     <div className={'Send-SMS'}>
                                         <FullWidthTextField/>
                                     </div>
@@ -123,11 +117,28 @@ export const Chat = () => {
 
 
                             {/*Profile User*/}
-                            <div className={'Profile-Chat-Component'}></div>
+                            <div className={'Profile-Chat-Component'}>
+                                <div className={'ProfileChat'}>
+                                    <p className={'Profile-Chat-name'}>DAVID RADCHENKO</p>
+                                    <Avatar sx={{margin: 3, width: 200, height: 200}} alt="Remy Sharp"
+                                            src="/static/images/avatar/1.jpg"/>
+                                    <FormControlLabel label="Job search"
+                                                      control={<Checkbox color="success" checked={true} onChange={e => {
+                                                      }}/>}/>
+                                    <p className={'Profile-Chat-name'}>
+                                        <span className={'Profile-Chat-Frofessional'}>Frofessional skills:</span><br/>
+                                        React, Redux,CSS, My Sql,Oracle Databases,
+                                        JavaEE,JaирммSpring
+                                    </p>
+                                    <ImageAvatars/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     )
-}
+})

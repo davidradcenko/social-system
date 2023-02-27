@@ -27,6 +27,9 @@ export type messageType={
     body:string
 }
 export const ChatApi={
+    GetAllStartedDialogs(){
+        return instance.get("dialogs")
+    },
     StartDialogs(IdUser:number){
         return instance.put(`dialogs/${IdUser}`)
     },

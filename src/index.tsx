@@ -12,8 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <>
         <Provider store={store}>
-            <Chat/>
-            {/*<App/>*/}
+            <App/>
         </Provider>
     </>
 );

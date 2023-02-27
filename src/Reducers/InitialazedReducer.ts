@@ -35,6 +35,7 @@ export const initializeAppTC = () => {
     return (dispatch: Dispatch<actionTypes | SetIsLoginActionCreater>) => {
         dispatch(statusUserAC("loading"))
         LoginApi.authMe().then(res => {
+            debugger
             if (res.data.resultCode === 0) {
                 dispatch(initializedUserAC(true))
                 dispatch(mainUserIDAC(res.data.data.id, res.data.data.login))
@@ -42,7 +43,6 @@ export const initializeAppTC = () => {
 
                 LoginApi.getFotoAdmin(res.data.data.id).then(resA => {
                         dispatch(setAdminFotoAC(resA.data.photos.small))
-
                         dispatch(statusUserAC("succeeded"))
 
                 }).catch((error) => {

@@ -9,6 +9,7 @@ import {initializeAppTC, statusType} from "./Reducers/InitialazedReducer";
 import {LinearProgress} from "@mui/material";
 import {useSelector} from "react-redux";
 import {ProfileUser} from "./elements/profilUser/profileUser";
+import {Chat} from "./elements/Chat/Chat";
 
 function Hello() {
     const dispatch = useAppDispatch()
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/" element={<Hello/>}/>
                     <Route path="/Login" element={<Login/>}/>
                     <Route path="/Account" element={<ProfileUser/>}/>
+                    <Route path="/Chat" element={<Chat/>}/>
 
 
                     <Route path="/404" element={<h1>404. Page not found</h1>}/>

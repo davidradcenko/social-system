@@ -9,7 +9,12 @@ import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 
-export default function TableUsers() {
+type TableUsersType={
+    userName:string,
+    photos:string|null,
+    lastDialogActivityDate:string
+}
+export default function TableUsers(props:TableUsersType) {
     return (
         <List
             sx={{
@@ -19,11 +24,11 @@ export default function TableUsers() {
         >
             <ListItem>
                 <ListItemAvatar>
-                    <Avatar>
-                        <ImageIcon />
+                    <Avatar src={props.photos==null?"":props.photos}>
+                        <ImageIcon  />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+                <ListItemText primary={props.userName} secondary={"LastSMS"} />
             </ListItem>
         </List>
     );

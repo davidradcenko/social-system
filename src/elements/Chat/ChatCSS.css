@@ -109,7 +109,9 @@ div {
 }
 
 .Chat-List {
-    width: 962px;
+    background-image: url("../../img/Chat/pexels-photo-2531608.jpeg");
+    /*width: 962px;*/
+    width: 180%;
     display: flex;
     flex-direction: column;
 }
@@ -174,4 +176,46 @@ div {
 }
 .MyMessage .DivMessage-content{
     background: #DBF6FF;
+}
+.Profile-Chat-Component{
+    display: flex;
+    width: 100%;
+}
+.ProfileChat{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Profile-Chat-name{
+    font-family: 'Bruno Ace';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+    text-align: center;
+    color: #000000;
+}
+.Profile-Chat-name{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #0E0E0E;
+
+}
+.Profile-Chat-Frofessional{
+    padding-top: 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #201F1F;
 }

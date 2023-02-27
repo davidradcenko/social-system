@@ -1,27 +1,21 @@
-import ImgLogo from "../../../img/module-IMG/common.svg";
 import HomeIcon from "../../../img/nav-icons/home.png";
-import imgVector from "../../../img/nav-icons/Vector 1.jpg";
 import DialogsIcon from "../../../img/nav-icons/Frame.png";
 import MesengerIcon from "../../../img/nav-icons/heart.png";
-import SeachIcon from "../../../img/nav-icons/Group 43.png";
 import SetingsIcon from "../../../img/nav-icons/settings.png";
 import React, {useState} from "react";
-import SeachMobule from "../../../img/module-IMG/Group 72.png";
-import MoonModule from "../../../img/module-IMG/Moon.png";
-import SelectMobule from "../../../img/module-IMG/MeatballMenu.png";
-import moduleFotoTest from "../../../img/nav-icons/foroTest.png";
 import {GetMyProfilTK} from "../../../Reducers/profilReducer";
 import {RootState, useAppDispatch} from "../../../store/store";
 import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 import {useSelector} from "react-redux";
 import {InitialazedType} from "../../../Reducers/InitialazedReducer";
+import {Link} from "react-router-dom";
 
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
     changeSetEditModeProfil: () => void,
-    FullName:string
+    FullName: string
 
-    fotoUser:string | null
+    fotoUser: string | null
 }
 export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
     console.log("+++++++++++++NavigationBlock  ")
@@ -35,7 +29,7 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
         SetTextPapap(!TextPapap)
         SetVector(!Vector)
     }
-    const GoToProfil=()=>{
+    const GoToProfil = () => {
         dispatch(GetMyProfilTK(Number(AdminData.mainUserId)))
     }
 
@@ -44,8 +38,9 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
             <div className="all-elements-nav">
                 <div className="logo-profil">
                     <div className="profile">
-                        <img onClick={GoToProfil} src={props.fotoUser==null? testInfoBlockImg :props.fotoUser} alt="User img"/>
-                        <p onClick={GoToProfil} >{props.FullName}</p>
+                        <img onClick={GoToProfil} src={props.fotoUser == null ? testInfoBlockImg : props.fotoUser}
+                             alt="User img"/>
+                        <p onClick={GoToProfil}>{props.FullName}</p>
                     </div>
                     {/*<div className={'mobuleTypeIconNavigate'}>*/}
                     {/*    <img src={SeachMobule} alt="SeachMobule"/>*/}
@@ -69,14 +64,17 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                     </div>
                     <div className={"AlseIcons"}>
                         <img src={MesengerIcon} alt="MesengerIcon"/>
-                        <p>Message</p>
+                        <Link to={'/Chat'}>
+                            <p>Message</p>
+                        </Link>
                     </div>
                     <div className={"AlseIcons"}>
                         <img src={SetingsIcon} alt="SetingsIcon"/>
                         <p>Settings</p>
                     </div>
                     <div className={"MobuleNavigation"}>
-                        <img onClick={GoToProfil} src={props.fotoUser==null? testInfoBlockImg:props.fotoUser} alt="User img"/>
+                        <img onClick={GoToProfil} src={props.fotoUser == null ? testInfoBlockImg : props.fotoUser}
+                             alt="User img"/>
                         <div className={'NavigatedSeledNameMobule'}>
                             <p onClick={props.changeSetEditModeProfil}>Edit Profile</p>
                             <p>Chat</p>
