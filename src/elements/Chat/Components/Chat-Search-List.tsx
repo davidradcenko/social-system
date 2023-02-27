@@ -8,9 +8,9 @@ import {
     StartedUsersChatType,
     UsersStartedDialogsType
 } from "../../../Reducers/ChatReducer";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
-export const ChatSearchList = () => {
+export const ChatSearchList = React.memo(() => {
     const dispatch = useAppDispatch()
     const UsersStartedDialogs = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
 
@@ -23,4 +23,4 @@ export const ChatSearchList = () => {
             <ChatAccesListUser UsersStartedDialogs={UsersStartedDialogs}/>
         </>
     )
-}
+})
