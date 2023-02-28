@@ -1,15 +1,21 @@
 import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
+import {RootState, useAppDispatch} from "../../../store/store";
+import {useSelector} from "react-redux";
+import {GetMessage, StartedUsersChatType} from "../../../Reducers/ChatReducer";
 
 export default function Paginator() {
-    const [page, setPage] = React.useState(2);
+    const dispatch = useAppDispatch()
+    const CountItems = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.TotalCount)
+
+    const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-    ) => {
+        event: React.MouseEvent<HTMLButtonElement> | null, newPage: number,) => {
         setPage(newPage);
+        // dispatch(GetMessage())
+        console.log("New page == = ="+newPage)
     };
 
     const handleChangeRowsPerPage = (
@@ -22,11 +28,12 @@ export default function Paginator() {
     return (
         <TablePagination
             component="div"
-            count={100}
+            count={CountItems==0?-1:CountItems}
             page={page}
             onPageChange={handleChangePage}
-            rowsPerPage={rowsPerPage}
+            rowsPerPage={CountItems==0?-1:rowsPerPage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            // disabled={CountItems==0?true:false }
         />
     );
 }

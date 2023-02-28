@@ -148,7 +148,13 @@ div {
     width: 100%;
     margin: 0 auto;
     padding: 10px;
+    overflow: auto;
+    height: 520px;
 }
+.Messages::-webkit-scrollbar {
+    width: 0 !important;
+}
+
 
 .DivMeesage {
     margin-top: 10px;
@@ -198,6 +204,7 @@ div {
     text-align: center;
     color: #000000;
 }
+
 .Profile-Chat-name{
     font-family: 'Roboto';
     font-style: normal;

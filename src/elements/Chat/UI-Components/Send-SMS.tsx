@@ -6,10 +6,22 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import SendIcon from '@mui/icons-material/Send';
-export default function FullWidthTextField() {
+import {useAppDispatch} from "../../../store/store";
+import {WriteSMS} from "../../../Reducers/ChatReducer";
+import {useState} from "react";
+export default function FullWidthTextField(props:{IdUser:number}) {
+    const dispatch = useAppDispatch()
+    const [Value,SetValue]=useState<string>("")
+
+
+    const SendMEssage=()=>{
+        dispatch(WriteSMS(props.IdUser,{body:Value}))
+    }
+    const OnchengeValue=(e:any)=>{
+        SetValue(e)
+    }
     return (
         <Box
-
             sx={{
                 width: 1,
                 maxWidth: '100%',
@@ -20,8 +32,8 @@ export default function FullWidthTextField() {
                 component="form"
                 sx={{display: 'flex', alignItems: 'center', padding:1.1}}
             >
-             <InputBase   placeholder="Enter your message" fullWidth  id="fullWidth" />
-                <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+             <InputBase value={Value} onChange={(event)=>OnchengeValue(event.target.value)}   placeholder="Enter your message" fullWidth  id="fullWidth" />
+                <IconButton onClick={SendMEssage} type="button" sx={{ p: '10px' }} aria-label="search">
                     <SendIcon color={"primary"} />
                 </IconButton>
             </Paper>

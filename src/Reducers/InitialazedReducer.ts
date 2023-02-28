@@ -35,7 +35,6 @@ export const initializeAppTC = () => {
     return (dispatch: Dispatch<actionTypes | SetIsLoginActionCreater>) => {
         dispatch(statusUserAC("loading"))
         LoginApi.authMe().then(res => {
-            debugger
             if (res.data.resultCode === 0) {
                 dispatch(initializedUserAC(true))
                 dispatch(mainUserIDAC(res.data.data.id, res.data.data.login))

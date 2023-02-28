@@ -13,10 +13,6 @@ import React, {useEffect} from "react";
 export const ChatSearchList = React.memo(() => {
     const dispatch = useAppDispatch()
     const UsersStartedDialogs = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
-
-    useEffect(() => {
-        dispatch(GetAllStartedDialogs())
-    })
     return (
         <>
             <ChatSearchButton />

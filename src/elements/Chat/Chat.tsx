@@ -5,7 +5,6 @@ import React, {useEffect} from "react";
 import Logo from "../../img/nav-icons/icons-sosial/common.png";
 import ButtonMenuNavigation from "./UI-Components/ButtonMenu";
 import {StoryWay} from "./Chat-Componets/Story-Way";
-import TableUsers from "./UI-Components/Table-Users";
 import Paginator from "./UI-Components/Paginator";
 import {Avatar, Checkbox} from "@mui/material";
 import Sear from "../../img/Chat/Group 117.png";
@@ -15,6 +14,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import ImageAvatars from "../profilUser/componenst/Main-Info-Social";
 import {ChatNavigation} from "./Components/Chat-Navigation";
 import {ChatSearchList} from "./Components/Chat-Search-List";
+import {GetAllStartedDialogs} from "../../Reducers/ChatReducer";
+import {ChatMessages} from "./Components/Chat-Messages";
+import {ChatWind} from "./Components/Chat-Wind";
 
 
 //material UL
@@ -22,22 +24,20 @@ export const Chat = React.memo(() => {
     console.log("Chat ")
     const dispatch = useAppDispatch()
 
-
     useEffect(() => {
+        dispatch(GetAllStartedDialogs())
+
         // dispatch(ChatMS(24522,{body:'Hello'}))
         //dispatch(StartDialogs(24522))
     })
     return (
         <div className={'Chat'}>
 
-
             {/* Navigation */}
             <ChatNavigation/>
 
-
             {/*Main content*/}
             <div className={'TOP-menu-Bar'}>
-
 
                 {/*logo Top*/}
                 <div className="logo">
@@ -52,8 +52,6 @@ export const Chat = React.memo(() => {
                     </div>
                 </div>
 
-
-
                 {/*Main block*/}
                 <div className="Information">
 
@@ -62,10 +60,8 @@ export const Chat = React.memo(() => {
                         <ChatSearchList/>
                     </div>
 
-
                     {/*Paginator / Chat / Profile*/}
                     <div className={'Chat-Sittings'}>
-
 
                         {/*Paginator / Navigation Way*/}
                         <div className={'Paginator-Navigation'}>
@@ -75,46 +71,11 @@ export const Chat = React.memo(() => {
                             <Paginator/>
                         </div>
 
-
                         {/*Chat list / Profile User*/}
                         <div className={'Chat-Profile'}>
 
                             {/*Chat list / SMS*/}
-                            <div className={'Chat-List'}>
-                                <div className={'Active-Chatting-User'}>
-                                    {/*<TableUsers/>*/}
-                                    <p>Yesterday</p>
-                                </div>
-                                <div className={'Chatting'}>
-
-
-                                    {/*Main bloc info message*/}
-                                    <div className={'Messages'}>
-
-                                        <div className={'DivMeesage'}>
-                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
-                                            <div className={'DivMessage-content'}>
-                                                <p className={'DivMessage-content-p1'}>Ok!asdfasfdasfafsaaasdf</p>
-                                                <p className={'DivMessage-content-p2'}>20:01 <img src={Sear} alt=""/>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div className={'DivMeesage MyMessage'}>
-                                            <div className={'DivMessage-content'}>
-                                                <p className={'DivMessage-content-p1'}>Ok!asdfasfdasfafsaaasdf</p>
-                                                <p className={'DivMessage-content-p2'}>20:01 <img src={NoSear} alt=""/>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div className={'Send-SMS'}>
-                                        <FullWidthTextField/>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <ChatWind/>
 
                             {/*Profile User*/}
                             <div className={'Profile-Chat-Component'}>
@@ -136,8 +97,6 @@ export const Chat = React.memo(() => {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     )
