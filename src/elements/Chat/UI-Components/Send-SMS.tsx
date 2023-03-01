@@ -9,13 +9,22 @@ import SendIcon from '@mui/icons-material/Send';
 import {useAppDispatch} from "../../../store/store";
 import {WriteSMS} from "../../../Reducers/ChatReducer";
 import {useState} from "react";
-export default function FullWidthTextField(props:{IdUser:number}) {
+import {photosType} from "../../../API/api";
+
+type FullWidthTextField={
+    IdUser:number,
+    photoUser: photosType,
+    lastDialogActivityDate: string,
+    userName: string,
+}
+
+export default function FullWidthTextField(props:FullWidthTextField) {
     const dispatch = useAppDispatch()
     const [Value,SetValue]=useState<string>("")
 
 
     const SendMEssage=()=>{
-        dispatch(WriteSMS(props.IdUser,{body:Value}))
+        dispatch(WriteSMS(props.IdUser,{body:Value},props.photoUser,props.userName,props.lastDialogActivityDate))
     }
     const OnchengeValue=(e:any)=>{
         SetValue(e)

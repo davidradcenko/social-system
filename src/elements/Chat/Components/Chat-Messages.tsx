@@ -19,10 +19,8 @@ export const ChatMessages = (props: ChatMessageType) => {
     useEffect(() => {
 
         const element = document.getElementById('Messages')
-        debugger
         if (element != undefined) {
             element.scrollTop = element.scrollHeight
-            debugger
         }
 
     })
@@ -31,10 +29,10 @@ export const ChatMessages = (props: ChatMessageType) => {
             {props.Messages.map(el => {
 
                 return (
-                    <div>
+                    <div key={el.id}>
                         {MainUserId != el.senderId
                             ?
-                            <div key={el.id} className={'DivMeesage'}>
+                            <div  className={'DivMeesage'}>
                                 <Avatar alt="Remy Sharp" src={props.photoUser==null?"":props.photoUser}/>
                                 <div className={'DivMessage-content'}>
                                     <p className={'DivMessage-content-p1'}>{el.body}</p>
@@ -44,7 +42,7 @@ export const ChatMessages = (props: ChatMessageType) => {
                                 </div>
                             </div>
                             :
-                            <div key={el.id} className={'DivMeesage MyMessage'}>
+                            <div  className={'DivMeesage MyMessage'}>
                                 <div className={'DivMessage-content'}>
                                     <p className={'DivMessage-content-p1'}>{el.body}</p>
                                     <p className={'DivMessage-content-p2'}>{el.addedAt}<img src={NoSear} alt=""/>

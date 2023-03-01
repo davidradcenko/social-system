@@ -34,7 +34,7 @@ export const ChatWind = () => {
                 </div>
 
                 <div className={'Send-SMS'}>
-                    <FullWidthTextField IdUser={IdUser}/>
+                    <FullWidthTextField lastDialogActivityDate={lastDialogActivityDate} userName={userName} photoUser={{small: photoUser, large: null}}  IdUser={IdUser}/>
                 </div>
 
             </div>

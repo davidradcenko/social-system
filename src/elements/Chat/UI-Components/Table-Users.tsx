@@ -8,27 +8,37 @@ import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
-import {GetMessage} from "../../../Reducers/ChatReducer";
-import {useAppDispatch} from "../../../store/store";
+import {GetLastMessage, GetMessage, StartedUsersChatType} from "../../../Reducers/ChatReducer";
+import {RootState, useAppDispatch} from "../../../store/store";
 import {photosType} from "../../../API/api";
+import {useEffect} from "react";
+import {useSelector} from "react-redux";
 
-type TableUsersType={
-    userName:string,
-    photos:photosType,
-    lastDialogActivityDate:string,
-    idUser:number
+type TableUsersType = {
+    userName: string,
+    photos: photosType,
+    lastDialogActivityDate: string,
+    idUser: number
 }
-export default function TableUsers(props:TableUsersType) {
+export default function TableUsers(props: TableUsersType) {
     console.log("TableUser ++++")
     const dispatch = useAppDispatch()
-
-    const TakeMessage=(idUser:number)=>{
-       dispatch( GetMessage(idUser,props.photos,props.userName,props.lastDialogActivityDate))
+    const users = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
+    const TakeMessage = (idUser: number) => {
+        dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate))
+    }
+    let list=users.find(e=>e.id==props.idUser)
+    let v:string|null=''
+    if (list !=undefined){
+       v = list.lastMesasage
     }
 
+    useEffect(() => {
+        if (props.idUser!=0) dispatch(GetLastMessage(props.idUser))
+    },[props.idUser])
     return (
         <List
-            onClick={()=>TakeMessage(props.idUser)}
+            onClick={() => TakeMessage(props.idUser)}
             sx={{
                 width: '100%',
                 maxWidth: 360
@@ -36,11 +46,12 @@ export default function TableUsers(props:TableUsersType) {
         >
             <ListItem>
                 <ListItemAvatar>
-                    <Avatar src={props.photos.small==null?"":props.photos.small}>
-                        <ImageIcon  />
+                    <Avatar src={props.photos.small == null ? "" : props.photos.small}>
+                        <ImageIcon/>
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={props.userName} secondary={"LastSMS"} />
+
+                <ListItemText primary={props.userName} secondary={v}/>
             </ListItem>
         </List>
     );
