@@ -14,8 +14,10 @@ export const ChatWind = () => {
     const lastDialogActivityDate = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.lastDialogActivityDate)
     const userName = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.userName)
 
-    const inputRef = useRef();
+    useEffect(() => {
 
+        }
+        , [])
     return (
         <div className={'Chat-List'}>
 
@@ -28,7 +30,7 @@ export const ChatWind = () => {
             <div className={'Chatting'}>
 
                 <div id={"Messages"} className={'Messages'}>
-                    <ChatMessages Messages={Messages}/>
+                    <ChatMessages photoUser={photoUser} Messages={Messages}/>
                 </div>
 
                 <div className={'Send-SMS'}>

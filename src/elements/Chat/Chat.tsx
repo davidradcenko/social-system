@@ -17,6 +17,7 @@ import {ChatSearchList} from "./Components/Chat-Search-List";
 import {GetAllStartedDialogs} from "../../Reducers/ChatReducer";
 import {ChatMessages} from "./Components/Chat-Messages";
 import {ChatWind} from "./Components/Chat-Wind";
+import {ChatProfile} from "./Components/Chat-Profile";
 
 
 //material UL
@@ -33,13 +34,9 @@ export const Chat = React.memo(() => {
     return (
         <div className={'Chat'}>
 
-            {/* Navigation */}
             <ChatNavigation/>
 
-            {/*Main content*/}
             <div className={'TOP-menu-Bar'}>
-
-                {/*logo Top*/}
                 <div className="logo">
                     <div className={'Logo-Nav'}>
                         <img src={Logo} alt="Logo"/>
@@ -51,19 +48,14 @@ export const Chat = React.memo(() => {
                         <StoryWay/>
                     </div>
                 </div>
-
-                {/*Main block*/}
                 <div className="Information">
 
-                    {/*Chat list and search button*/}
                     <div className={'Chats-List'}>
                         <ChatSearchList/>
                     </div>
 
-                    {/*Paginator / Chat / Profile*/}
                     <div className={'Chat-Sittings'}>
 
-                        {/*Paginator / Navigation Way*/}
                         <div className={'Paginator-Navigation'}>
                             <div className={'Paginator-Way'}>
                                 <StoryWay/>
@@ -71,29 +63,9 @@ export const Chat = React.memo(() => {
                             <Paginator/>
                         </div>
 
-                        {/*Chat list / Profile User*/}
                         <div className={'Chat-Profile'}>
-
-                            {/*Chat list / SMS*/}
                             <ChatWind/>
-
-                            {/*Profile User*/}
-                            <div className={'Profile-Chat-Component'}>
-                                <div className={'ProfileChat'}>
-                                    <p className={'Profile-Chat-name'}>DAVID RADCHENKO</p>
-                                    <Avatar sx={{margin: 3, width: 200, height: 200}} alt="Remy Sharp"
-                                            src="/static/images/avatar/1.jpg"/>
-                                    <FormControlLabel label="Job search"
-                                                      control={<Checkbox color="success" checked={true} onChange={e => {
-                                                      }}/>}/>
-                                    <p className={'Profile-Chat-name'}>
-                                        <span className={'Profile-Chat-Frofessional'}>Frofessional skills:</span><br/>
-                                        React, Redux,CSS, My Sql,Oracle Databases,
-                                        JavaEE,JaирммSpring
-                                    </p>
-                                    <ImageAvatars/>
-                                </div>
-                            </div>
+                            <ChatProfile/>
                         </div>
                     </div>
                 </div>
