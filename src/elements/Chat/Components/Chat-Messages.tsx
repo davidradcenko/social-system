@@ -15,6 +15,7 @@ export const ChatMessages = (props: ChatMessageType) => {
     const MainUserId = useSelector<RootState, number>(state => state.initialazed.mainUserId)
     const photo = useSelector<RootState, number>(state => state.initialazed.mainUserId)
 
+    const lookMessages = useSelector<RootState, "Yes" | "No">(state => state.paginator.needsNavigate)
 
     useEffect(() => {
 
@@ -28,13 +29,16 @@ export const ChatMessages = (props: ChatMessageType) => {
 
     return (
         <>
-            <div className={'circular-Navigation'}>
-                <div className={'circular-width'}>
-                    <Skeleton variant="circular" width={20} height={20}/>
-                    <Skeleton variant="circular" width={20} height={20}/>
-                    <Skeleton variant="circular" width={20} height={20}/>
+            {lookMessages=="Yes"?
+                <div className={'circular-Navigation'}>
+                    <div className={'circular-width'}>
+                        <Skeleton variant="circular" width={20} height={20}/>
+                        <Skeleton variant="circular" width={20} height={20}/>
+                        <Skeleton variant="circular" width={20} height={20}/>
+                    </div>
                 </div>
-            </div>
+            :''}
+
             {props.Messages.map(el => {
 
                 return (

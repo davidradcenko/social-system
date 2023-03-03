@@ -3,7 +3,13 @@ import FullWidthTextField from "../UI-Components/Send-SMS";
 import React, {useEffect, useRef} from "react";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {useSelector} from "react-redux";
-import {Messages} from "../../../Reducers/ChatReducer";
+import {
+    GetMessage,
+    GetNextPageMessage,
+    Messages,
+    StartedUsersChatType,
+    UsersStartedDialogsType
+} from "../../../Reducers/ChatReducer";
 import TableUsers from "../UI-Components/Table-Users";
 
 export const ChatWind = () => {
@@ -13,15 +19,17 @@ export const ChatWind = () => {
     const IdUser = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.idUser)
     const lastDialogActivityDate = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.lastDialogActivityDate)
     const userName = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.userName)
+    const lookMessages = useSelector<RootState, "Yes" | "No">(state => state.paginator.needsNavigate)
 
 
 
     const element = document.getElementById('Messages')
     const ScrollMetod=()=>{
         if (element!=null){
-            if (element.scrollTop === 0){
-                debugger
-                alert("position")
+            if (lookMessages == "Yes"){
+                if (element.scrollTop === 0){
+                   dispatch(GetNextPageMessage(IdUser,{small: photoUser, large: null},userName,lastDialogActivityDate,10,2))
+                }
             }
         }
     }

@@ -1,6 +1,8 @@
 import {ChatApi, messageType, photosType, UserProfilType} from "../API/api";
 import {Dispatch} from "redux";
 import {errorUserAC, setErrorAC, statusUserAC, StatusUserActionType} from "./InitialazedReducer";
+import {ExporsNavigationsType, SetConditionNavigation, SetTotalCount} from "./PaginatorReducer";
+
 
 
 const initialState: UsersStartedDialogsType = {
@@ -38,8 +40,18 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
         case 'SET-ALL-STARTED-DIALOGS': {
             return {...state, StartedUsersChat: [...action.value]}
         }
+        case "SET-LAST-MESSAGE": {
+            let statyCopy = {...state}
+            statyCopy.StartedUsersChat = state.StartedUsersChat.map(el => el.id == action.idUser ? {
+                ...el,
+                lastMesasage: action.LastMessage
+            } : el)
+            return statyCopy
+        }
         case "SET-MESSAGE": {
-            return {...state,
+            // if (state.MessageCurrentUser.Message.length<)
+            return {
+                ...state,
                 MessageCurrentUser: {
                     Message: [...action.Messages],
                     TotalCount: action.totalCount,
@@ -50,10 +62,14 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
                 }
             }
         }
-        case "SET-LAST-MESSAGE":{
-            let statyCopy= {...state}
-            statyCopy.StartedUsersChat=state.StartedUsersChat.map(el=>el.id==action.idUser?{...el,lastMesasage:action.LastMessage}:el)
-           return statyCopy
+        case "SET-NEXT-PAGE-MESSAGE":{
+            return {
+                ...state,
+                MessageCurrentUser: {
+                    ...state.MessageCurrentUser,
+                    Message: [...state.MessageCurrentUser.Message,...action.Messages],
+                }
+            }
         }
         default:
             return state
@@ -68,9 +84,9 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
 export const GetLastMessage = (idUser: number) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
-        ChatApi.GetMessage(idUser, 1,1).then(res => {
-            if (res.data.error == null && res.data.items[0] !=undefined) {
-                dispatch(SetLastMessage(idUser,res.data.items[0].body))
+        ChatApi.GetMessage(idUser, 1, 1).then(res => {
+            if (res.data.error == null && res.data.items[0] != undefined) {
+                dispatch(SetLastMessage(idUser, res.data.items[0].body))
             } else {
                 dispatch(errorUserAC(res.data.error))
                 dispatch(statusUserAC("succeeded"))
@@ -85,11 +101,17 @@ export const GetLastMessage = (idUser: number) => {
 
 //take sms users and set value data from list to chat
 export const GetMessage = (idUser: number, photos: photosType, UserName: string, lastDialogActivityDate: string, count: number = 10) => {
-    return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
+    return (dispatch: Dispatch<ActionTypes | StatusUserActionType | ExporsNavigationsType>) => {
         dispatch(statusUserAC("loading"))
         ChatApi.GetMessage(idUser).then(res => {
             if (res.data.error == null) {
                 dispatch(SetMessages(res.data.items, res.data.totalCount, photos, idUser, UserName, lastDialogActivityDate))
+                if (res.data.totalCount > 10) {
+                    dispatch(SetConditionNavigation("Yes"))
+                    dispatch(SetTotalCount(res.data.totalCount))
+                }else {
+                    dispatch(SetConditionNavigation("No"))
+                }
             } else {
                 dispatch(errorUserAC(res.data.error))
                 dispatch(statusUserAC("succeeded"))
@@ -101,6 +123,30 @@ export const GetMessage = (idUser: number, photos: photosType, UserName: string,
         })
     }
 }
+export const GetNextPageMessage = (idUser: number, photos: photosType, UserName: string, lastDialogActivityDate: string, count: number = 10,PageNumber:number) => {
+    return (dispatch: Dispatch<ActionTypes | StatusUserActionType | ExporsNavigationsType>) => {
+        dispatch(statusUserAC("loading"))
+        ChatApi.GetMessage(idUser).then(res => {
+            if (res.data.error == null) {
+                dispatch(SetNextPageMessages(res.data.items, res.data.totalCount, photos, idUser, UserName, lastDialogActivityDate,PageNumber))
+                if (res.data.totalCount > 10) {
+                    dispatch(SetConditionNavigation("Yes"))
+                    dispatch(SetTotalCount(res.data.totalCount))
+                }else {
+                    dispatch(SetConditionNavigation("No"))
+                }
+            } else {
+                dispatch(errorUserAC(res.data.error))
+                dispatch(statusUserAC("succeeded"))
+            }
+        }).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
+            console.error(error, dispatch)
+        })
+    }
+}
+
 export const GetAllStartedDialogs = () => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
@@ -130,18 +176,18 @@ export const StartDialogs = (idUser: number) => {
 
 
 //chat requests
-export const WriteSMS = (idUser: number, message: messageType, photos: photosType,UserName: string, lastDialogActivityDate: string) => {
+export const WriteSMS = (idUser: number, message: messageType, photos: photosType, UserName: string, lastDialogActivityDate: string) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         ChatApi.WriteMS(idUser, message).then(res => {
             dispatch(errorUserAC(res.data.error))
             dispatch(statusUserAC("succeeded"))
 
-            ChatApi.GetMessage(idUser, 1,10).then(res1 => {
-                if (res1.data.error == null && res1.data.items[0] !=undefined) {
-                    let lastIndexArray=res1.data.items.length
+            ChatApi.GetMessage(idUser, 1, 10).then(res1 => {
+                if (res1.data.error == null && res1.data.items[0] != undefined) {
+                    let lastIndexArray = res1.data.items.length
                     debugger
-                    dispatch(SetLastMessage(idUser,res1.data.items[lastIndexArray-1].body))
+                    dispatch(SetLastMessage(idUser, res1.data.items[lastIndexArray - 1].body))
                     dispatch(SetMessages(
                         res1.data.items,
                         res1.data.totalCount,
@@ -174,6 +220,13 @@ export const SetAllStartedDialogs = (value: Array<StartedUsersChatType>) => ({
     type: "SET-ALL-STARTED-DIALOGS",
     value
 }) as const
+export const SetLastMessage = (idUser: number, LastMessage: string | null) => ({
+    type: "SET-LAST-MESSAGE",
+    idUser,
+    LastMessage
+}) as const
+
+//set messages
 export const SetMessages = (Messages: Array<Messages>, totalCount: number, photos: photosType, IdUser: number, userName: string, lastDialogActivityDate: string) => ({
     type: "SET-MESSAGE",
     Messages,
@@ -183,10 +236,15 @@ export const SetMessages = (Messages: Array<Messages>, totalCount: number, photo
     userName,
     lastDialogActivityDate
 }) as const
-export const SetLastMessage = (idUser:number,LastMessage: string | null) => ({
-    type: "SET-LAST-MESSAGE",
-    idUser,
-    LastMessage
+export const SetNextPageMessages = (Messages: Array<Messages>, totalCount: number, photos: photosType, IdUser: number, userName: string, lastDialogActivityDate: string,PageNumber:number) => ({
+    type: "SET-NEXT-PAGE-MESSAGE",
+    Messages,
+    totalCount,
+    photos,
+    IdUser,
+    userName,
+    lastDialogActivityDate,
+    PageNumber
 }) as const
 
 
@@ -228,4 +286,5 @@ type ActionTypes =
     | setErrorAC
     | ReturnType<typeof SetAllStartedDialogs>
     | ReturnType<typeof SetMessages>
+    | ReturnType<typeof SetNextPageMessages>
     | ReturnType<typeof SetLastMessage>
