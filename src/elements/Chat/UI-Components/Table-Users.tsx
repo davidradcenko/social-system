@@ -1,17 +1,14 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import Divider from '@mui/material/Divider';
 import {GetLastMessage, GetMessage, StartedUsersChatType} from "../../../Reducers/ChatReducer";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {photosType} from "../../../API/api";
-import {useEffect} from "react";
 import {useSelector} from "react-redux";
 
 type TableUsersType = {
@@ -50,7 +47,6 @@ export default function TableUsers(props: TableUsersType) {
                         <ImageIcon/>
                     </Avatar>
                 </ListItemAvatar>
-
                 <ListItemText primary={props.userName} secondary={v}/>
             </ListItem>
         </List>

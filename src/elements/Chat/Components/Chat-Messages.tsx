@@ -1,4 +1,4 @@
-import {Avatar} from "@mui/material";
+import {Avatar, Skeleton} from "@mui/material";
 import Sear from "../../../img/Chat/Group 117.png";
 import React, {useEffect} from "react";
 import NoSear from "../../../img/Chat/Group 115.png";
@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 
 type ChatMessageType = {
     Messages: Array<Messages>,
-    photoUser:string|null
+    photoUser: string | null
 }
 export const ChatMessages = (props: ChatMessageType) => {
     const dispatch = useAppDispatch()
@@ -20,20 +20,29 @@ export const ChatMessages = (props: ChatMessageType) => {
 
         const element = document.getElementById('Messages')
         if (element != undefined) {
+
             element.scrollTop = element.scrollHeight
         }
 
     })
+
     return (
         <>
+            <div className={'circular-Navigation'}>
+                <div className={'circular-width'}>
+                    <Skeleton variant="circular" width={20} height={20}/>
+                    <Skeleton variant="circular" width={20} height={20}/>
+                    <Skeleton variant="circular" width={20} height={20}/>
+                </div>
+            </div>
             {props.Messages.map(el => {
 
                 return (
                     <div key={el.id}>
                         {MainUserId != el.senderId
                             ?
-                            <div  className={'DivMeesage'}>
-                                <Avatar alt="Remy Sharp" src={props.photoUser==null?"":props.photoUser}/>
+                            <div className={'DivMeesage'}>
+                                <Avatar alt="Remy Sharp" src={props.photoUser == null ? "" : props.photoUser}/>
                                 <div className={'DivMessage-content'}>
                                     <p className={'DivMessage-content-p1'}>{el.body}</p>
                                     <p className={'DivMessage-content-p2'}>{el.addedAt}<img
@@ -42,7 +51,7 @@ export const ChatMessages = (props: ChatMessageType) => {
                                 </div>
                             </div>
                             :
-                            <div  className={'DivMeesage MyMessage'}>
+                            <div className={'DivMeesage MyMessage'}>
                                 <div className={'DivMessage-content'}>
                                     <p className={'DivMessage-content-p1'}>{el.body}</p>
                                     <p className={'DivMessage-content-p2'}>{el.addedAt}<img src={NoSear} alt=""/>

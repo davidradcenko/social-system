@@ -14,10 +14,17 @@ export const ChatWind = () => {
     const lastDialogActivityDate = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.lastDialogActivityDate)
     const userName = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.userName)
 
-    useEffect(() => {
 
+
+    const element = document.getElementById('Messages')
+    const ScrollMetod=()=>{
+        if (element!=null){
+            if (element.scrollTop === 0){
+                debugger
+                alert("position")
+            }
         }
-        , [])
+    }
     return (
         <div className={'Chat-List'}>
 
@@ -29,7 +36,7 @@ export const ChatWind = () => {
 
             <div className={'Chatting'}>
 
-                <div id={"Messages"} className={'Messages'}>
+                <div id={"Messages"} className={'Messages'} onScroll={ScrollMetod}>
                     <ChatMessages photoUser={photoUser} Messages={Messages}/>
                 </div>
 

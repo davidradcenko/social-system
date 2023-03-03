@@ -107,9 +107,19 @@ div {
     display: flex;
     width: 100%;
 }
-
+.circular-Navigation{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.circular-width{
+    width: 100px;
+    display: flex;
+    justify-content: space-around;
+}
 .Chat-List {
-    background-image: url("../../img/Chat/pexels-photo-2531608.jpeg");
+    /*background-image: url("../../img/Chat/pexels-photo-2531608.jpeg");*/
     /*width: 962px;*/
     width: 180%;
     display: flex;
