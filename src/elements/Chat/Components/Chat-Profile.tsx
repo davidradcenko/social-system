@@ -4,16 +4,17 @@ import ImageAvatars from "../../profilUser/componenst/Main-Info-Social";
 import React, {useEffect} from "react";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {useSelector} from "react-redux";
-import {Messages_AND_DATAofUSER_Type, StartedUsersChatType} from "../../../Reducers/ChatReducer";
-import {GetUsersProfilTK} from "../../../Reducers/UsersReducer";
+import {Messages_AND_DATAofUSER_Type} from "../../../Reducers/ChatReducer";
 import {GetMyProfilTK} from "../../../Reducers/profilReducer";
 import {UserProfilType} from "../../../API/api";
 
+//Profile of user
 export const ChatProfile=()=>{
     const dispatch = useAppDispatch()
     const UsersStartedDialogs = useSelector<RootState, Messages_AND_DATAofUSER_Type>(state => state.chat.MessageCurrentUser)
     const UserProfile = useSelector<RootState, UserProfilType>(state => state.profil)
 
+    //take data of user
     useEffect(()=>{
         if (UsersStartedDialogs.idUser!=0){
             dispatch(GetMyProfilTK(UsersStartedDialogs.idUser))

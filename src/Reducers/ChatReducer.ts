@@ -33,7 +33,6 @@ const initialState: UsersStartedDialogsType = {
         lastDialogActivityDate: '',
         currentList:1
     },
-
 }
 
 export const ChatReducer = (state: UsersStartedDialogsType = initialState, action: ActionTypes): UsersStartedDialogsType => {
@@ -185,7 +184,6 @@ export const StartDialogs = (idUser: number) => {
     }
 }
 
-
 //chat requests
 export const WriteSMS = (idUser: number, message: messageType, photos: photosType, UserName: string, lastDialogActivityDate: string) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
@@ -194,18 +192,11 @@ export const WriteSMS = (idUser: number, message: messageType, photos: photosTyp
             dispatch(errorUserAC(res.data.error))
             dispatch(statusUserAC("succeeded"))
 
-            ChatApi.GetMessage(idUser, 1, 10).then(res1 => {
+            ChatApi.GetMessage(idUser).then(res1 => {
                 if (res1.data.error == null && res1.data.items[0] != undefined) {
                     let lastIndexArray = res1.data.items.length
-                    debugger
                     dispatch(SetLastMessage(idUser, res1.data.items[lastIndexArray - 1].body))
-                    dispatch(SetMessages(
-                        res1.data.items,
-                        res1.data.totalCount,
-                        photos,
-                        idUser,
-                        UserName,
-                        lastDialogActivityDate,1))
+                    dispatch(SetMessages(res1.data.items, res1.data.totalCount, photos, idUser, UserName, lastDialogActivityDate,1))
                 } else {
                     dispatch(errorUserAC(res1.data.error))
                     dispatch(statusUserAC("succeeded"))
@@ -226,7 +217,10 @@ export const WriteSMS = (idUser: number, message: messageType, photos: photosTyp
 }
 
 
+
+
 //action
+//Actions for table started dialogs
 export const SetAllStartedDialogs = (value: Array<StartedUsersChatType>) => ({
     type: "SET-ALL-STARTED-DIALOGS",
     value
@@ -253,7 +247,9 @@ export const SetNextPageMessages = (Messages: Array<Messages>) => ({
     Messages
 }) as const
 
+//set current page list
 export const SetCurrentList=(CurrentList:number)=>({type:"SET-CURRENT-LIST",CurrentList})as const
+
 
 //types
 export type Messages = {
@@ -286,6 +282,8 @@ export type Messages_AND_DATAofUSER_Type = {
     lastDialogActivityDate: string
     currentList:number
 }
+
+//main type reducer
 export type UsersStartedDialogsType = {
     StartedUsersChat: Array<StartedUsersChatType>
     MessageCurrentUser: Messages_AND_DATAofUSER_Type

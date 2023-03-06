@@ -1,33 +1,28 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import SendIcon from '@mui/icons-material/Send';
 import {useAppDispatch} from "../../../store/store";
 import {WriteSMS} from "../../../Reducers/ChatReducer";
-import {useState} from "react";
 import {photosType} from "../../../API/api";
 
-type FullWidthTextField={
-    IdUser:number,
-    photoUser: photosType,
-    lastDialogActivityDate: string,
-    userName: string,
-}
-
+//send message
 export default function FullWidthTextField(props:FullWidthTextField) {
     const dispatch = useAppDispatch()
+
+    //state of value in input
     const [Value,SetValue]=useState<string>("")
-
-
-    const SendMEssage=()=>{
-        dispatch(WriteSMS(props.IdUser,{body:Value},props.photoUser,props.userName,props.lastDialogActivityDate))
-    }
     const OnchengeValue=(e:any)=>{
         SetValue(e)
+    }
+
+    //function send message
+    const SendMEssage=()=>{
+        dispatch(WriteSMS(props.IdUser,{body:Value},props.photoUser,props.userName,props.lastDialogActivityDate))
+        SetValue("")
     }
     return (
         <Box
@@ -48,4 +43,12 @@ export default function FullWidthTextField(props:FullWidthTextField) {
             </Paper>
         </Box>
     );
+}
+
+//types
+type FullWidthTextField={
+    IdUser:number,
+    photoUser: photosType,
+    lastDialogActivityDate: string,
+    userName: string,
 }

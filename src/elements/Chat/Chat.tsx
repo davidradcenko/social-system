@@ -5,31 +5,27 @@ import React, {useEffect} from "react";
 import Logo from "../../img/nav-icons/icons-sosial/common.png";
 import ButtonMenuNavigation from "./UI-Components/ButtonMenu";
 import {StoryWay} from "./Chat-Componets/Story-Way";
-import Paginator from "./UI-Components/Paginator";
 import {ChatNavigation} from "./Components/Chat-Navigation";
 import {ChatSearchList} from "./Components/Chat-Search-List";
 import {GetAllStartedDialogs} from "../../Reducers/ChatReducer";
 import {ChatWind} from "./Components/Chat-Wind";
 import {ChatProfile} from "./Components/Chat-Profile";
-import {Skeleton} from "@mui/material";
 
 
-//material UL
 export const Chat = React.memo(() => {
     console.log("Chat ")
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(GetAllStartedDialogs())
-
-        // dispatch(ChatMS(24522,{body:'Hello'}))
-        //dispatch(StartDialogs(24522))
     })
     return (
         <div className={'Chat'}>
 
+            {/* Navigation */}
             <ChatNavigation/>
 
+            {/* Main menu */}
             <div className={'TOP-menu-Bar'}>
                 <div className="logo">
                     <div className={'Logo-Nav'}>
@@ -44,19 +40,18 @@ export const Chat = React.memo(() => {
                 </div>
                 <div className="Information">
 
+                    {/* Search and ListOfUsers */}
                     <div className={'Chats-List'}>
                         <ChatSearchList/>
                     </div>
 
+                    {/* MainChat*/}
                     <div className={'Chat-Sittings'}>
-
                         <div className={'Paginator-Navigation'}>
                             <div className={'Paginator-Way'}>
                                 <StoryWay/>
                             </div>
-                            <Paginator/>
                         </div>
-
                         <div className={'Chat-Profile'}>
                             <ChatWind/>
                             <ChatProfile/>

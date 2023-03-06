@@ -151,8 +151,29 @@ div {
 }
 
 .Send-SMS {
+    position: relative;
     width: 100%;
 }
+
+.Navigate-to-botton{
+    position: absolute;
+    right: 0;
+    top: -60px;
+    transform-origin: 70% 70%;
+    animation: jump 1s linear alternate infinite;
+    border-radius: 100%;
+    background-color: rgb(218 230 221 / 71%);
+}
+.Navigate-to-botton:hover{
+
+}
+@keyframes jump {
+    0%   {transform: translate3d(0,0,0) scale3d(1,1,1);}
+    40%  {transform: translate3d(0,15%,0) scale3d(1,1,1);}
+    100% {transform: translate3d(0,20%,0) scale3d(1,1,1);}
+}
+
+
 
 .Messages {
     width: 100%;

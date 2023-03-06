@@ -11,25 +11,25 @@ import {RootState, useAppDispatch} from "../../../store/store";
 import {photosType} from "../../../API/api";
 import {useSelector} from "react-redux";
 
-type TableUsersType = {
-    userName: string,
-    photos: photosType,
-    lastDialogActivityDate: string,
-    idUser: number
-}
+
+//Set data of user in table dialogs started and take last message
 export default function TableUsers(props: TableUsersType) {
-    console.log("TableUser ++++")
     const dispatch = useAppDispatch()
     const users = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
+
+    //function get last message
     const TakeMessage = (idUser: number) => {
         dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate))
     }
+
+    //take last message from reducer
+    let LastMessage:string|null=''
     let list=users.find(e=>e.id==props.idUser)
-    let v:string|null=''
     if (list !=undefined){
-       v = list.lastMesasage
+       LastMessage = list.lastMesasage
     }
 
+    // useEffect get last message
     useEffect(() => {
         if (props.idUser!=0) dispatch(GetLastMessage(props.idUser))
     },[props.idUser])
@@ -47,8 +47,16 @@ export default function TableUsers(props: TableUsersType) {
                         <ImageIcon/>
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={props.userName} secondary={v}/>
+                <ListItemText primary={props.userName} secondary={LastMessage}/>
             </ListItem>
         </List>
     );
+}
+
+// types
+type TableUsersType = {
+    userName: string,
+    photos: photosType,
+    lastDialogActivityDate: string,
+    idUser: number
 }

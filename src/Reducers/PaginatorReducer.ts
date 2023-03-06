@@ -9,7 +9,6 @@ const initialState: NavigationType = {
     CurrentPage: 0,
     totalCount: 0
 }
-
 export const PaginatorReducer = (state: NavigationType = initialState, action: ActionTypes): NavigationType => {
     switch (action.type) {
         case "SET-CONDITION":{
@@ -63,7 +62,6 @@ type NavigationType = {
 export type ExporsNavigationsType=
     | ReturnType<typeof SetConditionNavigation>
     | ReturnType<typeof SetTotalCount>
-
 type ActionTypes =
     | setErrorAC
     | ReturnType<typeof SetConditionNavigation>

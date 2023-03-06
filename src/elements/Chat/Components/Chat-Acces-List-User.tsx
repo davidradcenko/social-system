@@ -1,19 +1,12 @@
 import TableUsers from "../UI-Components/Table-Users";
-import {GetLastMessage, GetMessage, StartedUsersChatType} from "../../../Reducers/ChatReducer";
+import {StartedUsersChatType} from "../../../Reducers/ChatReducer";
 import React from "react";
-import {RootState, useAppDispatch} from "../../../store/store";
-import {useSelector} from "react-redux";
 
-type ChatListUsersType = {
-    UsersStartedDialogs: Array<StartedUsersChatType>
-}
+//Take list of all started dialogs users
 export const ChatAccesListUser = React.memo((props: ChatListUsersType) => {
-    const dispatch = useAppDispatch()
-
     return (
         <div className={'Chat-List-of-Users'}>
             {props.UsersStartedDialogs.map((el,index )=> {
-
                 return <TableUsers
                     idUser={el.id}
                     key={el.id}
@@ -25,3 +18,8 @@ export const ChatAccesListUser = React.memo((props: ChatListUsersType) => {
         </div>
     )
 })
+
+// types
+type ChatListUsersType = {
+    UsersStartedDialogs: Array<StartedUsersChatType>
+}
