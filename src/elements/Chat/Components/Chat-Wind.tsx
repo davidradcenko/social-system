@@ -11,6 +11,7 @@ import {
     UsersStartedDialogsType
 } from "../../../Reducers/ChatReducer";
 import TableUsers from "../UI-Components/Table-Users";
+import {SetConditionNavigation} from "../../../Reducers/PaginatorReducer";
 
 export const ChatWind = () => {
     const dispatch = useAppDispatch()
@@ -20,6 +21,8 @@ export const ChatWind = () => {
     const lastDialogActivityDate = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.lastDialogActivityDate)
     const userName = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.userName)
     const lookMessages = useSelector<RootState, "Yes" | "No">(state => state.paginator.needsNavigate)
+    let currentListMessage = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.currentList)
+    let totalCount = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.TotalCount)
 
 
 
@@ -28,7 +31,7 @@ export const ChatWind = () => {
         if (element!=null){
             if (lookMessages == "Yes"){
                 if (element.scrollTop === 0){
-                   dispatch(GetNextPageMessage(IdUser,{small: photoUser, large: null},userName,lastDialogActivityDate,10,2))
+                   dispatch(GetNextPageMessage(IdUser,{small: photoUser, large: null},userName,lastDialogActivityDate,10,++currentListMessage))
                 }
             }
         }
