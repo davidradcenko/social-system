@@ -21,7 +21,7 @@ export default function FullWidthTextField(props:FullWidthTextField) {
 
     //function send message
     const SendMEssage=()=>{
-        dispatch(WriteSMS(props.IdUser,{body:Value},props.photoUser,props.userName,props.lastDialogActivityDate))
+        dispatch(WriteSMS(props.IdUser,{body:Value},props.photoUser,props.userName,props.lastDialogActivityDate,props.LastActiveUser))
         SetValue("")
     }
     return (
@@ -51,4 +51,5 @@ type FullWidthTextField={
     photoUser: photosType,
     lastDialogActivityDate: string,
     userName: string,
+    LastActiveUser:string
 }

@@ -19,7 +19,7 @@ export default function TableUsers(props: TableUsersType) {
 
     //function get last message
     const TakeMessage = (idUser: number) => {
-        dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate))
+        dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate,props.LastActiveUser))
     }
 
     //take last message from reducer
@@ -48,6 +48,7 @@ export default function TableUsers(props: TableUsersType) {
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={props.userName} secondary={LastMessage}/>
+                <p>{props.lastDialogActivityDate}</p>
             </ListItem>
         </List>
     );
@@ -58,5 +59,6 @@ type TableUsersType = {
     userName: string,
     photos: photosType,
     lastDialogActivityDate: string,
-    idUser: number
+    idUser: number,
+    LastActiveUser:string
 }

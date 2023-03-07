@@ -49,7 +49,7 @@ export const ChatMessages = (props: ChatMessageType) => {
                                 <Avatar alt="Remy Sharp" src={props.photoUser == null ? "" : props.photoUser}/>
                                 <div className={'DivMessage-content'}>
                                     <p className={'DivMessage-content-p1'}>{el.body}</p>
-                                    <p className={'DivMessage-content-p2'}>{el.addedAt}<img
+                                    <p className={'DivMessage-content-p2'}>{el.addedAt.MMHH}<img
                                         src={el.viewed == false ? Sear : NoSear} alt=""/>
                                     </p>
                                 </div>
@@ -58,7 +58,7 @@ export const ChatMessages = (props: ChatMessageType) => {
                             <div className={'DivMeesage MyMessage'}>
                                 <div className={'DivMessage-content'}>
                                     <p className={'DivMessage-content-p1'}>{el.body}</p>
-                                    <p className={'DivMessage-content-p2'}>{el.addedAt}<img src={NoSear} alt=""/>
+                                    <p className={'DivMessage-content-p2'}>{el.addedAt.MMHH}<img src={NoSear} alt=""/>
                                     </p>
                                 </div>
                             </div>
