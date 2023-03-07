@@ -188,12 +188,15 @@ div {
 
 
 .DivMeesage {
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
     display: flex;
     align-items: center;
 }
-
+.DataOfMessage{
+    padding-top: 20px;
+    opacity: 40%;
+}
 .DivMessage-content {
     padding: 9px 5px 5px 15px;
     background: #F1F0F0;

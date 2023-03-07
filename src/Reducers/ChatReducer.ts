@@ -63,16 +63,20 @@ export const ChangeTimeMMM=(data:string)=>{
 }
 
 
+export const ChangeDialogsDDD=(data:string)=>{
+    let time = new Date(data)
+    const date = new Date(time.getFullYear(), time.getMonth(), time.getDay(), time.getHours(), time.getMinutes(), time.getSeconds());
+
+    let hour=date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit",hour12:false})
+    return String(hour)
+}
 export const ChangeDialogsMMM=(data:string)=>{
-    let time=new Date(data)
-    const date = new Date(Date.UTC(time.getFullYear(), time.getMonth(), time.getUTCDate(), time.getHours(), time.getMinutes(), time.getSeconds()));
-    let minute=date.toLocaleString("en-US", {
-        minute: "2-digit",
-    })
-    let hour=date.toLocaleString("en-US", {
-        hour: "2-digit",
-    })
-    return String(minute+" "+hour)
+    let time = new Date(data)
+    const date = new Date(Date.UTC(time.getFullYear(), time.getMonth(), time.getDay(), time.getHours(), time.getMinutes(), time.getSeconds()));
+
+    let hour=date.toLocaleDateString("en-US", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+
+    return String(hour)
 }
 
 
@@ -95,15 +99,31 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
             return statyCopy
         }
         case "SET-MESSAGE": {
-            let LastActiveData=action.Messages
-            let newArray=LastActiveData.map(e=>{
-                return e.addedAt.MMHH=ChangeTimeYYY(e.addedAt.MMHH)
+
+
+            let newArray=action.Messages.map(e=>{
+                let DDMMYY=ChangeDialogsMMM(e.addedAt)
+                let MMHH=ChangeDialogsDDD(e.addedAt)
+                let n={
+                    id: e.id,
+                    body: e.body,
+                    translatedBody: e.translatedBody,
+                    addedAt: {
+                        DDMMYY:DDMMYY,
+                        MMHH:MMHH
+                    },
+                    senderId: e.senderId,
+                    senderName: e.senderName,
+                    recipientId: e.recipientId,
+                    viewed: e.viewed
+                }
+                return n
             })
 
             return {
                 ...state,
                 MessageCurrentUser: {
-                    Message: [...action.Messages],
+                    Message: [...newArray],
                     TotalCount: action.totalCount,
                     photos: {...action.photos},
                     idUser: action.IdUser,
@@ -115,16 +135,33 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
             }
         }
         case "SET-NEXT-PAGE-MESSAGE": {
+            let newArray=action.Messages.map(e=>{
+                let DDMMYY=ChangeDialogsMMM(e.addedAt)
+                let MMHH=ChangeDialogsDDD(e.addedAt)
+                let n={
+                    id: e.id,
+                    body: e.body,
+                    translatedBody: e.translatedBody,
+                    addedAt: {
+                        DDMMYY:DDMMYY,
+                        MMHH:MMHH
+                    },
+                    senderId: e.senderId,
+                    senderName: e.senderName,
+                    recipientId: e.recipientId,
+                    viewed: e.viewed
+                }
+                return n
+            })
             return {
                 ...state,
                 MessageCurrentUser: {
                     ...state.MessageCurrentUser,
-                    Message: [...action.Messages],
+                    Message: [...newArray],
                 }
             }
         }
         case "SET-CURRENT-LIST": {
-            debugger
             return {...state, MessageCurrentUser: {...state.MessageCurrentUser, currentList: action.CurrentList}}
         }
         default:
@@ -162,7 +199,7 @@ export const GetMessage = (idUser: number, photos: photosType, UserName: string,
         ChatApi.GetMessage(idUser).then(res => {
             if (res.data.error == null) {
                 dispatch(SetMessages(res.data.items, res.data.totalCount, photos, idUser, UserName, lastDialogActivityDate,lastUserActivityDate, 1))
-                if (res.data.totalCount > 10) {
+                if (res.data.totalCount > 20) {
                     dispatch(SetConditionNavigation("Yes"))
                     dispatch(SetTotalCount(res.data.totalCount))
                 } else {
@@ -182,12 +219,12 @@ export const GetMessage = (idUser: number, photos: photosType, UserName: string,
 export const GetNextPageMessage = (idUser: number, photos: photosType, UserName: string, lastDialogActivityDate: string, count: number = 10, PageNumber: number) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType | ExporsNavigationsType>) => {
         dispatch(statusUserAC("loading"))
-        ChatApi.GetMessage(idUser, 10, PageNumber).then(res => {
+        ChatApi.GetMessage(idUser, 20, PageNumber).then(res => {
             if (res.data.error == null) {
                 dispatch(SetNextPageMessages(res.data.items))
                 dispatch(SetCurrentList(PageNumber))
-                if (res.data.items.length == 10) {
-                    if (res.data.totalCount%10==0){
+                if (res.data.items.length == 20) {
+                    if (res.data.totalCount%20==0){
                         dispatch(SetConditionNavigation("No"))
                         dispatch(SetTotalCount(res.data.totalCount))
                     }else {
@@ -218,7 +255,7 @@ export const GetMessageBottomTS = (idUser: number) => {
                 dispatch(SetNextPageMessages(res.data.items))
                 dispatch(SetCurrentList(1))
 
-                if (res.data.totalCount > 10) {
+                if (res.data.totalCount > 20) {
                     dispatch(SetConditionNavigation("Yes"))
                     dispatch(SetTotalCount(res.data.totalCount))
                 } else {
@@ -308,7 +345,7 @@ export const SetLastMessage = (idUser: number, LastMessage: string | null) => ({
 }) as const
 
 //set messages
-export const SetMessages = (Messages: Array<Messages>, totalCount: number, photos: photosType, IdUser: number, userName: string, lastDialogActivityDate: string,lastUserActivityDate:string, currentList: number) => ({
+export const SetMessages = (Messages: Array<MessagesFromReques>, totalCount: number, photos: photosType, IdUser: number, userName: string, lastDialogActivityDate: string,lastUserActivityDate:string, currentList: number) => ({
     type: "SET-MESSAGE",
     Messages,
     totalCount,
@@ -319,7 +356,7 @@ export const SetMessages = (Messages: Array<Messages>, totalCount: number, photo
     lastUserActivityDate,
     currentList
 }) as const
-export const SetNextPageMessages = (Messages: Array<Messages>) => ({
+export const SetNextPageMessages = (Messages: Array<MessagesFromReques>) => ({
     type: "SET-NEXT-PAGE-MESSAGE",
     Messages
 }) as const
@@ -337,6 +374,16 @@ export type Messages = {
         DDMMYY:string,
         MMHH:string
     },
+    senderId: number,
+    senderName: string,
+    recipientId: number,
+    viewed: boolean
+}
+export type MessagesFromReques = {
+    id: string,
+    body: string,
+    translatedBody: null,
+    addedAt: string,
     senderId: number,
     senderName: string,
     recipientId: number,

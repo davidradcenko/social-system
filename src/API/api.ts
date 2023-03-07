@@ -30,7 +30,7 @@ export const ChatApi={
     GetAllStartedDialogs(){
         return instance.get("dialogs")
     },
-    GetMessage(userId:number,count:number=10,page:number=1){
+    GetMessage(userId:number,count:number=20,page:number=1){
         return instance.get(`dialogs/${userId}/messages?page=${page}&count=${count}`)
     },
     StartDialogs(IdUser:number){
