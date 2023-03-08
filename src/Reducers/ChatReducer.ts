@@ -39,19 +39,27 @@ const initialState: UsersStartedDialogsType = {
 export const ChangeTimeYYY=(data:string)=>{
     let time=new Date(data)
     const date = new Date(Date.UTC(time.getFullYear(), time.getMonth(), time.getUTCDate(), time.getHours(), time.getMinutes(), time.getSeconds()));
-
     let monse=date.toLocaleString("en-US", {
         month: "long",
     })
     let day=date.toLocaleString("en-US", {
         day: "2-digit",
     })
-
-    // return String(time.getDay()+" "+monse+" "+date.getFullYear())
+    let hour=date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit",hour12:false})
     return String(day+" "+monse+" "+date.getFullYear())
+
 }
 export const ChangeTimeMMM=(data:string)=>{
     let time=new Date(data)
+    let d0 = new Date(); //"now"
+
+    let d1 = new Date(d0.getFullYear(),d0.getMonth(),d0.getDay()); //"now"
+    let d2 = new Date(time.getFullYear(),time.getMonth(),time.getDay()); //"now"
+
+    //@ts-ignore
+    let result=(d1-d2)/(60*60*24*1000)
+
+
     const date = new Date(Date.UTC(time.getFullYear(), time.getMonth(), time.getUTCDate(), time.getHours(), time.getMinutes(), time.getSeconds()));
     let monse=date.toLocaleString("en-US", {
         month: "long",
@@ -59,7 +67,14 @@ export const ChangeTimeMMM=(data:string)=>{
     let day=date.toLocaleString("en-US", {
         day: "2-digit",
     })
-    return String(day+" "+monse+" "+date.getFullYear())
+
+    let hour=date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit",hour12:false})
+
+    if (result==1){
+        return String(" Today at "+hour)
+    }
+    return String(" "+day+" "+monse+" "+date.getFullYear())
+
 }
 
 

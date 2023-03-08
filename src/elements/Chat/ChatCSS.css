@@ -197,6 +197,14 @@ div {
     padding-top: 20px;
     opacity: 40%;
 }
+.Last-Message-date{
+display: flex;
+    align-items: start;
+    height: 56px;
+}
+.Last-message-br{
+    font-size: 12px;
+}
 .DivMessage-content {
     padding: 9px 5px 5px 15px;
     background: #F1F0F0;

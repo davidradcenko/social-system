@@ -12,10 +12,21 @@ type ChatMessageType = {
 }
 export const ChatMessages = (props: ChatMessageType) => {
     const dispatch = useAppDispatch()
+    //take data from initialazed reducer
     const MainUserId = useSelector<RootState, number>(state => state.initialazed.mainUserId)
     const photo = useSelector<RootState, number>(state => state.initialazed.mainUserId)
-
+    //take data from chat reducer
+    const currentList = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.currentList)
+    const TotalCount = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.TotalCount)
+    //take data from paginator reducer
     const lookMessages = useSelector<RootState, "Yes" | "No">(state => state.paginator.needsNavigate)
+
+
+    //natch nesesari data for show date
+    let objectMessagesMore20length: boolean = false
+    let match = currentList * 20
+    if (props.Messages.length != 20 || TotalCount % match == 0) objectMessagesMore20length = true
+
 
     useEffect(() => {
 
@@ -26,9 +37,9 @@ export const ChatMessages = (props: ChatMessageType) => {
         }
 
     })
-
     return (
         <>
+            {/*show loading,need or not*/}
             {lookMessages == "Yes" ?
                 <div className={'circular-Navigation'}>
                     <div className={'circular-width'}>
@@ -39,15 +50,31 @@ export const ChatMessages = (props: ChatMessageType) => {
                 </div>
                 : ''}
 
-            {props.Messages.map((el,index )=> {
+
+            {/*show messages*/}
+            {props.Messages.map((el, index) => {
                 return (
                     <div key={el.id}>
-                        {el.addedAt.DDMMYY == props.Messages[index==0?index:index-1].addedAt.DDMMYY
-                            ? ""
-                            : <div className={'circular-Navigation'}>
+
+                        {/*calculated nesesary or not show date*/}
+                        {el.addedAt.DDMMYY == props.Messages[index == 0 ? index : index - 1].addedAt.DDMMYY
+                            ?
+                            index == 0
+                                ?
+                                objectMessagesMore20length == true
+                                    ?
+                                    <div className={'circular-Navigation'}>
+                                        <p className={"DataOfMessage"}>{el.addedAt.DDMMYY}</p>
+                                    </div>
+                                    : ""
+                                : ""
+                            :
+                            <div className={'circular-Navigation'}>
                                 <p className={"DataOfMessage"}>{el.addedAt.DDMMYY}</p>
                             </div>
                         }
+
+                        {/*show message from me or user*/}
                         {MainUserId != el.senderId
                             ?
                             <div>
@@ -67,8 +94,8 @@ export const ChatMessages = (props: ChatMessageType) => {
 
                                     <div className={'DivMessage-content'}>
                                         <p className={'DivMessage-content-p1'}>{el.body}</p>
-                                        <p className={'DivMessage-content-p2'}>{el.addedAt.MMHH}<img src={NoSear}
-                                                                                                     alt=""/>
+                                        <p className={'DivMessage-content-p2'}>{el.addedAt.MMHH}<img
+                                            src={el.viewed == false ? Sear : NoSear} alt=""/>
                                         </p>
                                     </div>
                                 </div>
@@ -81,4 +108,3 @@ export const ChatMessages = (props: ChatMessageType) => {
     )
 }
 
-//my message

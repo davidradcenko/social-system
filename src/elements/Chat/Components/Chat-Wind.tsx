@@ -48,9 +48,11 @@ export const ChatWind = () => {
         <div className={'Chat-List'}>
             <div className={'Active-Chatting-User'}>
                 <TableUsers idUser={IdUser} photos={{small: photoUser, large: null}} userName={userName}
-                            lastDialogActivityDate={lastDialogActivityDate} LastActiveUser={LastActiveUser}/>
+                            lastDialogActivityDate={lastDialogActivityDate} LastActiveUser={LastActiveUser}
+                            versios={"headerChat"}
+                />
                 {IdUser==0?"":
-                    <p>User was online :{LastActiveUser}</p>
+                    <p>Was online :{LastActiveUser}</p>
                 }
             </div>
             <div className={'Chatting'}>
