@@ -76,6 +76,9 @@ export const UsersApi={
     getSearchNoFriendsUsers(Name:string){
         return instance.get("/users?friend=false&page=1&term="+Name)
     },
+    getSearchUsers(Name:string){
+        return instance.get("/users?page=1&term="+Name)
+    },
     follow(Iduser:number){
         return instance.post(`/follow/`+Iduser)
     },
