@@ -33,10 +33,11 @@ const initialState: UsersStartedDialogsType = {
         lastUserActivityDate: '',
         currentList: 1
     },
-    SearchUsers: [
-        {id:323,Name:"David"},
-        {id:313,Name:"Dasdvasdvas"}
-    ]
+    SearchUsers: {
+        users:[],
+        TypeOfUsersSearch:"Other"
+    }
+
 }
 
 // function for validate date for nesessary type
@@ -190,7 +191,7 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
                 }
                 return m
             })
-            return {...state, SearchUsers: {...mes}}
+            return {...state, SearchUsers:{...state.SearchUsers,users:[...mes] } }
         }
         default:
             return state
@@ -463,11 +464,16 @@ export type SearchUserType = {
     id: number
     Name: string
 }
+export type SearchUsersType={
+    users:Array<SearchUserType>
+    TypeOfUsersSearch:"Friends" | "No friends" | "Other"
+    LookingForJob:boolean
+}
 //main type reducer
 export type UsersStartedDialogsType = {
     StartedUsersChat: Array<StartedUsersChatType>
     MessageCurrentUser: Messages_AND_DATAofUSER_Type
-    SearchUsers: Array<SearchUserType>
+    SearchUsers:SearchUsersType
 }
 
 type ActionTypes =
