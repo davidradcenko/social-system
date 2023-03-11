@@ -29,6 +29,9 @@ export default function Asynchronous() {
     const topFilms = useSelector<RootState, Array<SearchUserType>>(state => state.chat.SearchUsers.users)
     const statusLoading = useSelector<RootState, statusType>(state => state.initialazed.status)
 
+    const SearchSize = useSelector<RootState, number>(state => state.chat.SearchUsers.SearchSize)
+    const TypeOfUsersSearch = useSelector<RootState, string>(state => state.chat.SearchUsers.TypeOfUsersSearch)
+    const LookingForJob = useSelector<RootState, boolean>(state => state.chat.SearchUsers.LookingForJob)
 
     const [open, setOpen] = React.useState(false);
     const [valueOfButton, SetvalueOfButton] = useState<string>("");
@@ -37,7 +40,7 @@ export default function Asynchronous() {
 
     const searchUser = (e:string) => {
         SetvalueOfButton(e)
-        dispatch(getSearchUsersTK(valueOfButton))
+        dispatch(getSearchUsersTK(valueOfButton,SearchSize,TypeOfUsersSearch,LookingForJob))
     }
 
     const loading = statusLoading == "loading" ? true : false
@@ -45,16 +48,17 @@ export default function Asynchronous() {
 
     React.useEffect(() => {
             setOptions([...topFilms]);
-
     }, [topFilms]);
     return (
         <Paper
             component="form"
             sx={{p: '2px 4px', height: 40, display: 'flex', alignItems: 'center', width: 324, margin: 2.20}}
         >
+
+
             <Autocomplete
                 id="Type name"
-                sx={{width: 300}}
+                sx={{width: 300,border:"none"}}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
@@ -90,6 +94,7 @@ export default function Asynchronous() {
             <IconButton  type="button" sx={{p: '10px'}} aria-label="search">
                 <SetingsForSearch/>
             </IconButton>
+
         </Paper>
     );
 }

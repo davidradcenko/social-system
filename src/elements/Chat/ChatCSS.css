@@ -185,7 +185,9 @@ div {
 .Messages::-webkit-scrollbar {
     width: 0 !important;
 }
-
+.css-xcvrez-MuiPaper-root{
+    box-shadow:none !important;
+}
 
 .DivMeesage {
     margin-top: 20px;

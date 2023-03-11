@@ -16,30 +16,46 @@ import TuneIcon from '@mui/icons-material/Tune';
 import {FormLabel} from "@mui/material";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
+import {RootState, useAppDispatch} from "../../../store/store";
+import {useSelector} from "react-redux";
+import {
+    SearchUserType,
+    SetSettingsLookingForJobAC,
+    SetSettingsSearchSizeAC,
+    SetSettingsTypeOfUsersSearchAC
+} from "../../../Reducers/ChatReducer";
 
 export default function SetingsForSearch() {
+    const dispatch = useAppDispatch()
+
+    const SearchSize = useSelector<RootState, number>(state => state.chat.SearchUsers.SearchSize)
+    const TypeOfUsersSearch = useSelector<RootState, string>(state => state.chat.SearchUsers.TypeOfUsersSearch)
+    const LookingForJob = useSelector<RootState, boolean>(state => state.chat.SearchUsers.LookingForJob)
+
+
     const [open, setOpen] = React.useState(false);
     const [fullWidth, setFullWidth] = React.useState(true);
-    const [maxWidth, setMaxWidth] = React.useState<string>("10");
+    // const [maxWidth, setMaxWidth] = React.useState<string>("10");
+    //
+    // const [StateTypeOfUsers, setTypeOfUsersSearch] = React.useState<string>(TypeOfUsersSearch);
+    // const [StateLookingForJob, setLookingForJob] = React.useState<boolean>(LookingForJob);
+    // const [StateSearchSize, setSearchSize] = React.useState<number>(SearchSize);
+
 
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = () => {
         setOpen(false);
     };
-
-    const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {
-        setMaxWidth(
-            event.target.value,
-        );
-    };
-
+    // const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {
+    //     setMaxWidth(
+    //         event.target.value,
+    //     );
+    // };
     const handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFullWidth(event.target.checked);
     };
-
     return (
         <React.Fragment>
             <Button sx={{width: 0.2}} variant="outlined" onClick={handleClickOpen}>
@@ -53,21 +69,23 @@ export default function SetingsForSearch() {
                 <DialogTitle>Search Settings</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                       Choose the optimal user search and start chatting. Good luck
+                        Choose the optimal user search and start chatting. Good luck
                     </DialogContentText>
 
                     <Box noValidate component="form" sx={{
-                        padding:2,
+                        padding: 2,
                         display: 'flex',
                         m: 'auto',
                         alignItems: "flex-start",
                         justifyContent: "space-between"
                     }}>
+
                         <FormControl>
                             <FormLabel id="demo-radio-buttons-group-label">Type of users</FormLabel>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Other"
+                                onChange={event => dispatch(SetSettingsTypeOfUsersSearchAC(event.target.value))}
+                                value={TypeOfUsersSearch}
                                 name="radio-buttons-group"
                             >
                                 <FormControlLabel value="Friends" control={<Radio/>} label="Friends"/>
@@ -79,8 +97,8 @@ export default function SetingsForSearch() {
                             <InputLabel htmlFor="max-width">maxWidth</InputLabel>
                             <Select
                                 autoFocus
-                                value={maxWidth}
-                                onChange={handleMaxWidthChange}
+                                value={SearchSize}
+                                onChange={event => dispatch(SetSettingsSearchSizeAC(Number(event.target.value)))}
                                 label="Search Size"
                                 inputProps={{
                                     name: 'Search Size',
@@ -95,7 +113,8 @@ export default function SetingsForSearch() {
                             </Select>
                         </FormControl>
                         <FormControlLabel sx={{mt: 1}}
-                                          control={<Switch checked={fullWidth} onChange={handleFullWidthChange}/>}
+                                          control={<Switch checked={LookingForJob} onChange={event => dispatch(SetSettingsLookingForJobAC(event.target.checked))}
+                                          />}
                                           label="Looking for a job"
                         />
 

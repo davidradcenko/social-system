@@ -76,8 +76,14 @@ export const UsersApi={
     getSearchNoFriendsUsers(Name:string){
         return instance.get("/users?friend=false&page=1&term="+Name)
     },
-    getSearchUsers(Name:string){
-        return instance.get("/users?page=1&term="+Name)
+    getSearchUsers(Name: string, SearchSize: number, TypeOfUsersSearch: string){
+        if (TypeOfUsersSearch=="Other") TypeOfUsersSearch=''
+
+        if (TypeOfUsersSearch=="Friends")TypeOfUsersSearch="true"
+        if (TypeOfUsersSearch=="No friends")TypeOfUsersSearch="false"
+        if (TypeOfUsersSearch=="Other")TypeOfUsersSearch=""
+        console.log("SearchSize  "+SearchSize+"    TypeOfUsersSearch"+TypeOfUsersSearch)
+        return instance.get(`/users?friend=${TypeOfUsersSearch}&page=1&term=${Name}&count=${SearchSize}`)
     },
     follow(Iduser:number){
         return instance.post(`/follow/`+Iduser)

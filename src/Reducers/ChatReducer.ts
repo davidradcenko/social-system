@@ -34,8 +34,10 @@ const initialState: UsersStartedDialogsType = {
         currentList: 1
     },
     SearchUsers: {
-        users:[],
-        TypeOfUsersSearch:"Other"
+        users: [],
+        LookingForJob: false,
+        TypeOfUsersSearch: "Other",
+        SearchSize:10
     }
 
 }
@@ -191,7 +193,17 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
                 }
                 return m
             })
-            return {...state, SearchUsers:{...state.SearchUsers,users:[...mes] } }
+            return {...state, SearchUsers: {...state.SearchUsers, users: [...mes]}}
+        }
+
+        case "SET-SEARCH-SETTINGS":{
+            return {...state,SearchUsers:{...state.SearchUsers,SearchSize:action.SearchSize}}
+        }
+        case "SET-SEARCH-SETTINGS-LookingForJob":{
+            return {...state,SearchUsers:{...state.SearchUsers,LookingForJob:action.LookingForJob}}
+        }
+        case "SET-SEARCH-SETTINGS-TypeOfUsersSearch":{
+            return {...state,SearchUsers:{...state.SearchUsers,TypeOfUsersSearch:action.TypeOfUsersSearch}}
         }
         default:
             return state
@@ -328,10 +340,12 @@ export const StartDialogs = (idUser: number) => {
         })
     }
 }
-export const getSearchUsersTK = (Name: string) => {
+
+//search users
+export const getSearchUsersTK = (Name: string, SearchSize: number, TypeOfUsersSearch: string, LookingForJob: boolean) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
-        UsersApi.getSearchUsers(Name).then(res => {
+        UsersApi.getSearchUsers(Name,SearchSize,TypeOfUsersSearch).then(res => {
             if (res.data.error == null) {
                 dispatch(SetChatSearchedUsersAC(res.data.items))
             }
@@ -344,7 +358,6 @@ export const getSearchUsersTK = (Name: string) => {
         })
     }
 }
-
 
 //chat requests
 export const WriteSMS = (idUser: number, message: messageType, photos: photosType, UserName: string, lastDialogActivityDate: string, lastUserActivityDate: string) => {
@@ -414,6 +427,20 @@ export const SetNextPageMessages = (Messages: Array<MessagesFromReques>) => ({
 //set current page list
 export const SetCurrentList = (CurrentList: number) => ({type: "SET-CURRENT-LIST", CurrentList}) as const
 
+//settings search
+export const SetSettingsSearchSizeAC = (SearchSize: number) => ({
+    type: "SET-SEARCH-SETTINGS",
+    SearchSize
+}) as const
+export const SetSettingsTypeOfUsersSearchAC = (TypeOfUsersSearch: string) => ({
+    type: "SET-SEARCH-SETTINGS-TypeOfUsersSearch",
+    TypeOfUsersSearch
+}) as const
+export const SetSettingsLookingForJobAC = (LookingForJob: boolean) => ({
+    type: "SET-SEARCH-SETTINGS-LookingForJob",
+    LookingForJob
+}) as const
+
 
 //types
 export type Messages = {
@@ -464,16 +491,17 @@ export type SearchUserType = {
     id: number
     Name: string
 }
-export type SearchUsersType={
-    users:Array<SearchUserType>
-    TypeOfUsersSearch:"Friends" | "No friends" | "Other"
-    LookingForJob:boolean
+export type SearchUsersType = {
+    users: Array<SearchUserType>
+    SearchSize: number,
+    TypeOfUsersSearch: string
+    LookingForJob: boolean
 }
 //main type reducer
 export type UsersStartedDialogsType = {
     StartedUsersChat: Array<StartedUsersChatType>
     MessageCurrentUser: Messages_AND_DATAofUSER_Type
-    SearchUsers:SearchUsersType
+    SearchUsers: SearchUsersType
 }
 
 type ActionTypes =
@@ -484,3 +512,7 @@ type ActionTypes =
     | ReturnType<typeof SetLastMessage>
     | ReturnType<typeof SetCurrentList>
     | ReturnType<typeof SetChatSearchedUsersAC>
+
+    | ReturnType<typeof SetSettingsSearchSizeAC>
+    | ReturnType<typeof SetSettingsTypeOfUsersSearchAC>
+    | ReturnType<typeof SetSettingsLookingForJobAC>
