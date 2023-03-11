@@ -1,27 +1,24 @@
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
 import * as React from 'react';
+import {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import {RootState, useAppDispatch} from "../../../store/store";
 import {getSearchUsersTK, SearchUserType} from "../../../Reducers/ChatReducer";
 import {useSelector} from "react-redux";
-import {UserProfilType} from "../../../API/api";
+import {photosType} from "../../../API/api";
 import {statusType} from "../../../Reducers/InitialazedReducer";
-import {useState} from "react";
 import SetingsForSearch from "./SetingsForSearch";
+import ImageIcon from "@mui/icons-material/Image";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
 
 interface Film {
     id: number
-    Name: string
-}
-
-function sleep(delay = 0) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, delay);
-    });
+    Name: string,
+    photos: photosType
 }
 
 export default function Asynchronous() {
@@ -34,19 +31,19 @@ export default function Asynchronous() {
 
     const [open, setOpen] = React.useState(false);
     const [valueOfButton, SetvalueOfButton] = useState<string>("");
-    const [options, setOptions] = React.useState<readonly Film[]>([...topFilms]);
+    const [options, setOptions] = React.useState<Film[]>([...topFilms]);
 
 
-    const searchUser = (e:string) => {
+    const searchUser = (e: string) => {
         SetvalueOfButton(e)
-        dispatch(getSearchUsersTK(valueOfButton,SearchSize,TypeOfUsersSearch))
+        dispatch(getSearchUsersTK(valueOfButton, SearchSize, TypeOfUsersSearch))
     }
 
     const loading = statusLoading == "loading" ? true : false
 
 
     React.useEffect(() => {
-            setOptions([...topFilms]);
+        setOptions([...topFilms]);
     }, [topFilms]);
     return (
         <Paper
@@ -57,7 +54,7 @@ export default function Asynchronous() {
 
             <Autocomplete
                 id="Type name"
-                sx={{width: 300,border:"none"}}
+                sx={{width: 300, border: "none"}}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
@@ -68,16 +65,25 @@ export default function Asynchronous() {
 
 
                 isOptionEqualToValue={(option, value) => option.Name === value.Name}
-                getOptionLabel={(option) => option.Name}
+                getOptionLabel={(option) =>option.Name}
 
                 options={options}
                 loading={loading}
+                renderOption={(props, option) => (
+                    <Box component="li" {...props}>
+                        <Avatar sx={{marginRight:2}} src={option.photos.small == null ? "" : option.photos.small}>
+                            <ImageIcon/>
+                        </Avatar>
+                        {option.Name}
+                    </Box>
+                )}
                 renderInput={(params) => (
+
                     <TextField
                         {...params}
                         label="Name of user"
                         value={valueOfButton}
-                        onChange={(e)=>searchUser(e.target.value)}
+                        onChange={(e) => searchUser(e.target.value)}
                         InputProps={{
                             ...params.InputProps,
                             endAdornment: (
@@ -88,9 +94,10 @@ export default function Asynchronous() {
                             ),
                         }}
                     />
+
                 )}
             />
-            <IconButton  type="button" sx={{p: '10px'}} aria-label="search">
+            <IconButton type="button" sx={{p: '10px'}} aria-label="search">
                 <SetingsForSearch/>
             </IconButton>
 

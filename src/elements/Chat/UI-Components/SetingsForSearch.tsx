@@ -21,20 +21,11 @@ import {SetSettingsSearchSizeAC, SetSettingsTypeOfUsersSearchAC} from "../../../
 
 export default function SetingsForSearch() {
     const dispatch = useAppDispatch()
-
     const SearchSize = useSelector<RootState, number>(state => state.chat.SearchUsers.SearchSize)
     const TypeOfUsersSearch = useSelector<RootState, string>(state => state.chat.SearchUsers.TypeOfUsersSearch)
 
-
-
     const [open, setOpen] = React.useState(false);
     const [fullWidth, setFullWidth] = React.useState(true);
-    // const [maxWidth, setMaxWidth] = React.useState<string>("10");
-    //
-    // const [StateTypeOfUsers, setTypeOfUsersSearch] = React.useState<string>(TypeOfUsersSearch);
-    // const [StateLookingForJob, setLookingForJob] = React.useState<boolean>(LookingForJob);
-    // const [StateSearchSize, setSearchSize] = React.useState<number>(SearchSize);
-
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -42,19 +33,15 @@ export default function SetingsForSearch() {
     const handleClose = () => {
         setOpen(false);
     };
-    // const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {
-    //     setMaxWidth(
-    //         event.target.value,
-    //     );
-    // };
     const handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFullWidth(event.target.checked);
     };
     return (
         <React.Fragment>
-            <Button sx={{width: 0.2}} variant="outlined" onClick={handleClickOpen}>
-                <TuneIcon/>
-            </Button>
+
+                <TuneIcon  onClick={handleClickOpen}/>
+
+
             <Dialog
                 fullWidth={true}
                 open={open}

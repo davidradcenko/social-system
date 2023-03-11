@@ -188,11 +188,15 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
                 let mes = action.ListOfUsers.map(el => {
                         let m = {
                             id: el.id,
-                            Name: el.name
+                            Name: el.name,
+                            photos:{
+                                small: el.photos.small,
+                                large: el.photos.large
+                            }
                         }
                     return m
                 })
-                return {...state, SearchUsers: {...state.SearchUsers, users: [...mes]}}
+                return {...state, SearchUsers: {...state.SearchUsers,users: [...mes]}}
         }
 
         case "SET-SEARCH-SETTINGS":{
@@ -481,7 +485,8 @@ export type Messages_AND_DATAofUSER_Type = {
 }
 export type SearchUserType = {
     id: number
-    Name: string
+    Name: string,
+    photos:photosType
 }
 export type SearchUsersType = {
     users: Array<SearchUserType>
