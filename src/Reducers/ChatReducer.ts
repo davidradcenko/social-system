@@ -35,7 +35,6 @@ const initialState: UsersStartedDialogsType = {
     },
     SearchUsers: {
         users: [],
-        LookingForJob: false,
         TypeOfUsersSearch: "Other",
         SearchSize:10
     }
@@ -186,21 +185,18 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
             return {...state, MessageCurrentUser: {...state.MessageCurrentUser, currentList: action.CurrentList}}
         }
         case "SET-CHAT-SEARCH-USERS": {
-            let mes = action.ListOfUsers.map(el => {
-                let m = {
-                    id: el.id,
-                    Name: el.name
-                }
-                return m
-            })
-            return {...state, SearchUsers: {...state.SearchUsers, users: [...mes]}}
+                let mes = action.ListOfUsers.map(el => {
+                        let m = {
+                            id: el.id,
+                            Name: el.name
+                        }
+                    return m
+                })
+                return {...state, SearchUsers: {...state.SearchUsers, users: [...mes]}}
         }
 
         case "SET-SEARCH-SETTINGS":{
             return {...state,SearchUsers:{...state.SearchUsers,SearchSize:action.SearchSize}}
-        }
-        case "SET-SEARCH-SETTINGS-LookingForJob":{
-            return {...state,SearchUsers:{...state.SearchUsers,LookingForJob:action.LookingForJob}}
         }
         case "SET-SEARCH-SETTINGS-TypeOfUsersSearch":{
             return {...state,SearchUsers:{...state.SearchUsers,TypeOfUsersSearch:action.TypeOfUsersSearch}}
@@ -342,7 +338,7 @@ export const StartDialogs = (idUser: number) => {
 }
 
 //search users
-export const getSearchUsersTK = (Name: string, SearchSize: number, TypeOfUsersSearch: string, LookingForJob: boolean) => {
+export const getSearchUsersTK = (Name: string, SearchSize: number, TypeOfUsersSearch: string) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         UsersApi.getSearchUsers(Name,SearchSize,TypeOfUsersSearch).then(res => {
@@ -436,10 +432,6 @@ export const SetSettingsTypeOfUsersSearchAC = (TypeOfUsersSearch: string) => ({
     type: "SET-SEARCH-SETTINGS-TypeOfUsersSearch",
     TypeOfUsersSearch
 }) as const
-export const SetSettingsLookingForJobAC = (LookingForJob: boolean) => ({
-    type: "SET-SEARCH-SETTINGS-LookingForJob",
-    LookingForJob
-}) as const
 
 
 //types
@@ -495,7 +487,6 @@ export type SearchUsersType = {
     users: Array<SearchUserType>
     SearchSize: number,
     TypeOfUsersSearch: string
-    LookingForJob: boolean
 }
 //main type reducer
 export type UsersStartedDialogsType = {
@@ -515,4 +506,3 @@ type ActionTypes =
 
     | ReturnType<typeof SetSettingsSearchSizeAC>
     | ReturnType<typeof SetSettingsTypeOfUsersSearchAC>
-    | ReturnType<typeof SetSettingsLookingForJobAC>

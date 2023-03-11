@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Dialog, {DialogProps} from '@mui/material/Dialog';
+import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -10,27 +10,21 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select, {SelectChangeEvent} from '@mui/material/Select';
-import Switch from '@mui/material/Switch';
+import Select from '@mui/material/Select';
 import TuneIcon from '@mui/icons-material/Tune';
 import {FormLabel} from "@mui/material";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {useSelector} from "react-redux";
-import {
-    SearchUserType,
-    SetSettingsLookingForJobAC,
-    SetSettingsSearchSizeAC,
-    SetSettingsTypeOfUsersSearchAC
-} from "../../../Reducers/ChatReducer";
+import {SetSettingsSearchSizeAC, SetSettingsTypeOfUsersSearchAC} from "../../../Reducers/ChatReducer";
 
 export default function SetingsForSearch() {
     const dispatch = useAppDispatch()
 
     const SearchSize = useSelector<RootState, number>(state => state.chat.SearchUsers.SearchSize)
     const TypeOfUsersSearch = useSelector<RootState, string>(state => state.chat.SearchUsers.TypeOfUsersSearch)
-    const LookingForJob = useSelector<RootState, boolean>(state => state.chat.SearchUsers.LookingForJob)
+
 
 
     const [open, setOpen] = React.useState(false);
@@ -112,11 +106,6 @@ export default function SetingsForSearch() {
                                 <MenuItem value="100">100</MenuItem>
                             </Select>
                         </FormControl>
-                        <FormControlLabel sx={{mt: 1}}
-                                          control={<Switch checked={LookingForJob} onChange={event => dispatch(SetSettingsLookingForJobAC(event.target.checked))}
-                                          />}
-                                          label="Looking for a job"
-                        />
 
                     </Box>
 

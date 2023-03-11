@@ -31,7 +31,6 @@ export default function Asynchronous() {
 
     const SearchSize = useSelector<RootState, number>(state => state.chat.SearchUsers.SearchSize)
     const TypeOfUsersSearch = useSelector<RootState, string>(state => state.chat.SearchUsers.TypeOfUsersSearch)
-    const LookingForJob = useSelector<RootState, boolean>(state => state.chat.SearchUsers.LookingForJob)
 
     const [open, setOpen] = React.useState(false);
     const [valueOfButton, SetvalueOfButton] = useState<string>("");
@@ -40,7 +39,7 @@ export default function Asynchronous() {
 
     const searchUser = (e:string) => {
         SetvalueOfButton(e)
-        dispatch(getSearchUsersTK(valueOfButton,SearchSize,TypeOfUsersSearch,LookingForJob))
+        dispatch(getSearchUsersTK(valueOfButton,SearchSize,TypeOfUsersSearch))
     }
 
     const loading = statusLoading == "loading" ? true : false
