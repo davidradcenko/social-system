@@ -83,7 +83,6 @@ export const ChangeTimeMMM = (data: string) => {
 
 }
 
-
 export const ChangeDialogsDDD = (data: string) => {
     let time = new Date(data)
     const date = new Date(time.getFullYear(), time.getMonth(), time.getDay(), time.getHours(), time.getMinutes(), time.getSeconds());
@@ -359,6 +358,24 @@ export const getSearchUsersTK = (Name: string, SearchSize: number, TypeOfUsersSe
     }
 }
 
+//Chek user follow or not
+//search users
+export const getResponsFollowTK = (idUser: number) => {
+    return  (
+        UsersApi.getResponstFollow(idUser).then(res => {
+            debugger
+            if (res.data == true) {
+                return true
+            }
+            if (res.data == false) {
+                return false
+            }
+        return "d"
+        }).catch((error) => {
+            console.error(error)
+        })
+    )
+}
 //chat requests
 export const WriteSMS = (idUser: number, message: messageType, photos: photosType, UserName: string, lastDialogActivityDate: string, lastUserActivityDate: string) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {

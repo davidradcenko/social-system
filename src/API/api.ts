@@ -78,7 +78,6 @@ export const UsersApi={
     },
     getSearchUsers(Name: string, SearchSize: number, TypeOfUsersSearch: string){
         if (TypeOfUsersSearch=="Other") TypeOfUsersSearch=''
-
         if (TypeOfUsersSearch=="Friends")TypeOfUsersSearch="true"
         if (TypeOfUsersSearch=="No friends")TypeOfUsersSearch="false"
         if (TypeOfUsersSearch=="Other")TypeOfUsersSearch=""
@@ -90,6 +89,9 @@ export const UsersApi={
     },
     unfollow(Iduser:number){
         return instance.delete(`/follow/`+Iduser)
+    },
+    getResponstFollow(Iduser:number){
+        return instance.get(`/follow/`+Iduser)
     }
 }
 

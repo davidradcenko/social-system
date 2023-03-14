@@ -14,6 +14,7 @@ import SetingsForSearch from "./SetingsForSearch";
 import ImageIcon from "@mui/icons-material/Image";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
+import {emails, SimpleDialog} from "./selectFunctionWhisUserUI";
 
 interface Film {
     id: number
@@ -34,12 +35,27 @@ export default function Asynchronous() {
     const [options, setOptions] = React.useState<Film[]>([...topFilms]);
 
 
+    //search users
     const searchUser = (e: string) => {
         SetvalueOfButton(e)
         dispatch(getSearchUsersTK(valueOfButton, SearchSize, TypeOfUsersSearch))
     }
-
     const loading = statusLoading == "loading" ? true : false
+
+    /////
+    //select what to do whis user
+    const [OptionWind, setOptionWind] = React.useState<{ positon: boolean, id: number,NameUse:string }>({positon: false, id: 0,NameUse:''});
+    const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+    const changeWindOptions = (positon: true, id: number,NameUse:string) => {
+        setOptionWind({positon, id,NameUse})
+    }
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (value: string) => {
+        setOptionWind({positon: false, id: 0,NameUse:''});
+    };
 
 
     React.useEffect(() => {
@@ -52,6 +68,17 @@ export default function Asynchronous() {
         >
 
 
+            <div>
+                <SimpleDialog
+                    NameUse={OptionWind.NameUse}
+                    idUser={OptionWind.id}
+                    key={1}
+                    selectedValue={selectedValue}
+                    open={OptionWind.positon}
+                    onClose={handleClose}
+                />
+            </div>
+
             <Autocomplete
                 id="Type name"
                 sx={{width: 300, border: "none"}}
@@ -62,16 +89,14 @@ export default function Asynchronous() {
                 onClose={() => {
                     setOpen(false);
                 }}
-
-
                 isOptionEqualToValue={(option, value) => option.Name === value.Name}
-                getOptionLabel={(option) =>option.Name}
+                getOptionLabel={(option) => option.Name}
 
                 options={options}
                 loading={loading}
                 renderOption={(props, option) => (
-                    <Box component="li" {...props}>
-                        <Avatar sx={{marginRight:2}} src={option.photos.small == null ? "" : option.photos.small}>
+                    <Box key={option.id} component="li" {...props} onClick={() => changeWindOptions(true, option.id,option.Name)}>
+                        <Avatar sx={{marginRight: 2}} src={option.photos.small == null ? "" : option.photos.small}>
                             <ImageIcon/>
                         </Avatar>
                         {option.Name}
