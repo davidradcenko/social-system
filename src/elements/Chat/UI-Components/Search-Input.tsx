@@ -125,7 +125,6 @@ export default function Asynchronous() {
             <IconButton type="button" sx={{p: '10px'}} aria-label="search">
                 <SetingsForSearch/>
             </IconButton>
-
         </Paper>
     );
 }

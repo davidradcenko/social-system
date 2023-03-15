@@ -17,7 +17,8 @@ const initialState: UsersStartedDialogsType = {
                 small: "https://social-network.samuraijs.com/activecontent/images/users/24522/user-small.jpg?v=1",
                 large: "https://social-network.samuraijs.com/activecontent/images/users/24522/user.jpg?v=1"
             },
-            lastMesasage: null
+            lastMesasage: null,
+            typeUser:"Other"
         }
     ],
     MessageCurrentUser: {
@@ -317,7 +318,23 @@ export const GetAllStartedDialogs = () => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         ChatApi.GetAllStartedDialogs().then(res => {
-            dispatch(SetAllStartedDialogs(res.data))
+            let copy:Array<StartedUsersChatType>=res.data
+            let NewCopy=copy.map(el=> {
+                    let respon = UsersApi.getResponstFollow(el.id).then(res => {
+                        debugger
+                        if (res.data == true) {
+                            return true
+                        }
+                        if (res.data == false) {
+                            return false
+                        }
+                        return "d"
+                    }).catch((error) => {
+                        console.error(error)
+                    })
+                }
+            )
+            dispatch(SetAllStartedDialogs())
             dispatch(statusUserAC("succeeded"))
         }).catch((error) => {
             dispatch(errorUserAC(error))
@@ -330,6 +347,19 @@ export const StartDialogs = (idUser: number) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         ChatApi.StartDialogs(idUser).then(res => {
+            if (res.data.resultCode==0){
+                ChatApi.GetAllStartedDialogs().then(res2 => {
+                    dispatch(SetAllStartedDialogs(res2.data))
+                    dispatch(statusUserAC("succeeded"))
+                }).catch((error) => {
+                    dispatch(errorUserAC(error))
+                    dispatch(statusUserAC("succeeded"))
+                    console.error(error, dispatch)
+                })
+
+
+
+            }
             dispatch(errorUserAC(res.data.error))
             dispatch(statusUserAC("succeeded"))
         }).catch((error) => {
@@ -488,7 +518,7 @@ export type StartedUsersChatType = {
     newMessagesCount: number,
     photos: photosType,
     lastMesasage: string | null,
-
+    typeUser:"Friend"|"Other"
 }
 export type Messages_AND_DATAofUSER_Type = {
     Message: Array<Messages>,

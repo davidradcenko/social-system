@@ -69,9 +69,22 @@ div {
     border-bottom: 1px solid #B5B2B2;
     max-width: 420px;
     display: flex;
+
     flex-direction: column;
 }
-
+.ListOfUsersAbsolute{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.Chat-List-of-Users{
+    position: relative;
+    max-height: 689px;
+    overflow: scroll;
+}
+.Chat-List-of-Users::-webkit-scrollbar {
+    width: 0 !important;
+}
 .Chat-Search {
     border-bottom: 1px solid #B5B2B2;
     height: 70px;

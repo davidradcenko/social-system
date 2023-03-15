@@ -15,10 +15,11 @@ import {blue} from '@mui/material/colors';
 import MailIcon from '@mui/icons-material/Mail';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import {useEffect, useState} from "react";
-import {getResponsFollowTK} from "../../../Reducers/ChatReducer";
+import {getResponsFollowTK, StartDialogs} from "../../../Reducers/ChatReducer";
 import {useAppDispatch} from "../../../store/store";
 import GroupRemoveIcon from '@mui/icons-material/GroupRemove';
 import {UsersApi} from "../../../API/api";
+import {FollowTK, UnFollowTK} from "../../../Reducers/UsersReducer";
 
 
 export const emails = ['username@gmail.com', 'user02@gmail.com'];
@@ -43,6 +44,51 @@ export function SimpleDialog(props: SimpleDialogProps) {
     const handleListItemClick = (value: string) => {
         onClose(value);
     };
+
+    const subscribe=()=>{
+        dispatch(FollowTK(props.idUser))
+        if (props.idUser!=0){
+            let m=false
+            UsersApi.getResponstFollow(props.idUser).then(res => {
+                if (res.data == true) {
+                    m=true
+                    setStateUser(m)
+                }
+                if (res.data == false) {
+                    m = false
+                    setStateUser(m)
+                }
+                return "d"
+            }).catch((error) => {
+                console.error(error)
+            })
+        }
+    }
+    const UnSubscribe=()=>{
+        dispatch(UnFollowTK(props.idUser))
+        if (props.idUser!=0){
+            let m=false
+            UsersApi.getResponstFollow(props.idUser).then(res => {
+                if (res.data == true) {
+                    m=true
+                    setStateUser(m)
+                }
+                if (res.data == false) {
+                    m = false
+                    setStateUser(m)
+                }
+                return "d"
+            }).catch((error) => {
+                console.error(error)
+            })
+        }
+    }
+    const StartChating=()=>{
+
+        dispatch(StartDialogs(props.idUser))
+    }
+
+
 
     useEffect(() => {
         if (props.idUser!=0){
@@ -69,7 +115,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
 
                 {StateUser==true
                     ?  <ListItem disableGutters>
-                        <ListItemButton onClick={() => handleListItemClick('0')}>
+                        <ListItemButton onClick={UnSubscribe}>
                             <ListItemAvatar>
                                 <Avatar sx={{bgcolor: blue[100], color: blue[600]}}>
                                     <GroupRemoveIcon/>
@@ -79,7 +125,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
                         </ListItemButton>
                     </ListItem>
                     :  <ListItem disableGutters>
-                        <ListItemButton onClick={() => handleListItemClick('0')}>
+                        <ListItemButton onClick={subscribe}>
                             <ListItemAvatar>
                                 <Avatar sx={{bgcolor: blue[100], color: blue[600]}}>
                                     <PersonAddAlt1Icon/>
@@ -92,7 +138,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
 
 
                 <ListItem disableGutters>
-                    <ListItemButton onClick={() => handleListItemClick('1')}>
+                    <ListItemButton onClick={StartChating}>
                         <ListItemAvatar>
                             <Avatar sx={{bgcolor: blue[100], color: blue[600]}}>
                                 <MailIcon/>

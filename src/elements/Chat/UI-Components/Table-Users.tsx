@@ -48,7 +48,7 @@ export default function TableUsers(props: TableUsersType) {
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={props.userName} secondary={LastMessage}/>
-                <div className={"Last-Message-date"}><p className={"Last-message-br"}><br/>{props.versios=="listOfuser"?props.lastDialogActivityDate:""}</p></div>
+                <div className={"Last-Message-date"}><p className={"Last-message-br"}><br/>{LastMessage!=undefined?props.versios=="listOfuser"?props.lastDialogActivityDate:"":""}</p></div>
             </ListItem>
         </List>
     );
