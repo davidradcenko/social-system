@@ -20,12 +20,19 @@ export const ChatAccesListUser = React.memo((props) => {
         dispatch(Currenst_Page_DialogsAC(type))
     }
 
-        let typeDialogsNEw = ""
-        if (typeOfDialogs == "Others") typeDialogsNEw = "Other"
-        if (typeOfDialogs == "Friends") typeDialogsNEw = "Friend"
+    let typeDialogsNEw = ""
+    if (typeOfDialogs == "Others") typeDialogsNEw = "Other"
+    if (typeOfDialogs == "Friends") typeDialogsNEw = "Friend"
 
-        let FiltredArray = UsersStartedDialogs.filter(el => el.typeUser == typeDialogsNEw)
+    let FiltredArray = UsersStartedDialogs.filter(el => el.typeUser == typeDialogsNEw)
 
+    // useEffect(() => {
+    //         let typeDialogsNEw = ""
+    //         if (typeOfDialogs == "Others") typeDialogsNEw = "Other"
+    //         if (typeOfDialogs == "Friends") typeDialogsNEw = "Friend"
+    //         let FiltredArray = UsersStartedDialogs.filter(el => el.typeUser == typeDialogsNEw)
+    //     }
+    //     , [UsersStartedDialogs])
 
     return (
         <div className={'Chat-List-of-Users'}>

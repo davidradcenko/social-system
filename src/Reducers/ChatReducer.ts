@@ -91,16 +91,16 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
         case 'SET-ALL-STARTED-DIALOGS': {
             let LastActiveData = action.value
             let newArray = LastActiveData.map(e => {
-                return e.lastDialogActivityDate = ChangeTimeYYY(e.lastDialogActivityDate), e.lastUserActivityDate = ChangeTimeMMM(e.lastUserActivityDate)
+                return e.lastDialogActivityDate = ChangeTimeYYY(e.lastDialogActivityDate), e.lastUserActivityDate = ChangeTimeMMM(e.lastUserActivityDate),e.typeUser="Other"
             })
             return {...state, StartedUsersChat: [...action.value]}
         }
         case 'SET-ALL-FOLLOW-USERS': {
             let arrayOfStartedDialogs = state.StartedUsersChat
-            let newArray = arrayOfStartedDialogs.find(e => {
+            let newArray = arrayOfStartedDialogs.map(e => {
                 if ( e.id==action.id) {
-                    let p = e.typeUser = action.typeUser
-                    return {...state, StartedUsersChat: {...state.StartedUsersChat, p}}
+                    let qvalati = e.typeUser = action.typeUser
+                    return {...state, StartedUsersChat: {...state.StartedUsersChat, qvalati}}
                 }
             })
             return {...state}
@@ -313,16 +313,16 @@ export const GetMessageBottomTS = (idUser: number) => {
     }
 }
 
+
+
 export const GetAllStartedDialogs = () => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
         ChatApi.GetAllStartedDialogs().then(res => {
             let copy:Array<StartedUsersChatType>=res.data
             dispatch(SetAllStartedDialogs(copy))
-            let NewCopy=copy.map(el=> {
 
-
-
+             let NewCopy=copy.map(el=> {
                     let respon = UsersApi.getResponstFollow(el.id).then(res => {
                         if (res.data == true) {
                             dispatch(SetAllFollowIdUsers(el.id,"Friend"))

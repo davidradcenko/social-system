@@ -78,6 +78,7 @@ div {
     right: 0;
 }
 .Chat-List-of-Users{
+    min-height: 100px;
     position: relative;
     max-height: 689px;
     overflow: scroll;
