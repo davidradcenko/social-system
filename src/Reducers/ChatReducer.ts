@@ -313,8 +313,6 @@ export const GetMessageBottomTS = (idUser: number) => {
     }
 }
 
-
-
 export const GetAllStartedDialogs = () => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
         dispatch(statusUserAC("loading"))
@@ -411,6 +409,7 @@ export const getResponsFollowTK = (idUser: number) => {
         })
     )
 }
+
 //chat requests
 export const WriteSMS = (idUser: number, message: messageType, photos: photosType, UserName: string, lastDialogActivityDate: string, lastUserActivityDate: string) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType>) => {
@@ -440,6 +439,41 @@ export const WriteSMS = (idUser: number, message: messageType, photos: photosTyp
         })
     }
 }
+export const DelMessageTK = (Idmessage: string,IdUser:number) => {
+    return (dispatch: Dispatch<ActionTypes | StatusUserActionType | ExporsNavigationsType>) => {
+        dispatch(statusUserAC("loading"))
+        ChatApi.DeleteMessage(Idmessage).then(res => {
+            ChatApi.GetMessage(IdUser).then(res2 => {
+                if (res2.data.error == null) {
+                    dispatch(SetNextPageMessages(res2.data.items))
+                    dispatch(SetCurrentList(1))
+
+                    if (res2.data.totalCount > 20) {
+                        dispatch(SetConditionNavigation("Yes"))
+                        dispatch(SetTotalCount(res2.data.totalCount))
+                    } else {
+                        dispatch(SetConditionNavigation("No"))
+                    }
+                } else {
+                    dispatch(errorUserAC(res2.data.error))
+                    dispatch(statusUserAC("succeeded"))
+                }
+            }).catch((error) => {
+                dispatch(errorUserAC(error))
+                dispatch(statusUserAC("succeeded"))
+                console.error(error, dispatch)
+            })
+            dispatch(errorUserAC(res.data.error))
+            dispatch(statusUserAC("succeeded"))
+        }).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
+            console.error(error, dispatch)
+        })
+    }
+}
+
+
 
 
 //action

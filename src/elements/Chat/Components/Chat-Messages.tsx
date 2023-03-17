@@ -5,10 +5,14 @@ import NoSear from "../../../img/Chat/Group 115.png";
 import {Messages} from "../../../Reducers/ChatReducer";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {useSelector} from "react-redux";
+import ButtonFunctional from "../UI-Components/Button-Functional";
+import IconButton from "@mui/material/IconButton";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 type ChatMessageType = {
     Messages: Array<Messages>,
-    photoUser: string | null
+    photoUser: string | null,
+    idUser:number
 }
 export const ChatMessages = (props: ChatMessageType) => {
     const dispatch = useAppDispatch()
@@ -86,6 +90,7 @@ export const ChatMessages = (props: ChatMessageType) => {
                                             src={el.viewed == false ? Sear : NoSear} alt=""/>
                                         </p>
                                     </div>
+                                    <ButtonFunctional idUser={props.idUser} idMessage={el.id}/>
                                 </div>
                             </div>
                             :
@@ -98,6 +103,7 @@ export const ChatMessages = (props: ChatMessageType) => {
                                             src={el.viewed == false ? Sear : NoSear} alt=""/>
                                         </p>
                                     </div>
+                                    <ButtonFunctional idUser={props.idUser} idMessage={el.id}/>
                                 </div>
                             </div>
                         }

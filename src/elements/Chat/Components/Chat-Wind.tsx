@@ -59,7 +59,7 @@ export const ChatWind = () => {
 
                 {/*table messages*/}
                 <div id={"Messages"} className={'Messages'} onScroll={ScrollMetod}>
-                    <ChatMessages photoUser={photoUser} Messages={Messages}/>
+                    <ChatMessages idUser={IdUser} photoUser={photoUser} Messages={Messages}/>
                 </div>
 
                 {/*input send message*/}

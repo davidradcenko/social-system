@@ -204,6 +204,7 @@ div {
 }
 
 .DivMeesage {
+    position: relative;
     margin-top: 20px;
     width: 100%;
     display: flex;

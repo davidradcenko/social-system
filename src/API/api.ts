@@ -38,6 +38,9 @@ export const ChatApi={
     },
     WriteMS(idUser:number,data:messageType){
         return instance.post(`/dialogs/${idUser}/messages`,data)
+    },
+    DeleteMessage(idMessage:string){
+        return instance.delete(`dialogs/messages/${idMessage}`)
     }
 }
 export const ProfileApi = {
