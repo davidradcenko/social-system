@@ -5,22 +5,7 @@ import {ExporsNavigationsType, SetConditionNavigation, SetTotalCount} from "./Pa
 
 
 const initialState: UsersStartedDialogsType = {
-    StartedUsersChat: [
-        {
-            id: 24522,
-            userName: "Renegan",
-            hasNewMessages: true,
-            lastDialogActivityDate: "2023-02-26T16:08:15.657",
-            lastUserActivityDate: "2023-02-26T19:37:48.857",
-            newMessagesCount: 10,
-            photos: {
-                small: "https://social-network.samuraijs.com/activecontent/images/users/24522/user-small.jpg?v=1",
-                large: "https://social-network.samuraijs.com/activecontent/images/users/24522/user.jpg?v=1"
-            },
-            lastMesasage: null,
-            typeUser:"Other"
-        }
-    ],
+    StartedUsersChat: [],
     MessageCurrentUser: {
         Message: [],
         TotalCount: 0,
@@ -37,9 +22,9 @@ const initialState: UsersStartedDialogsType = {
     SearchUsers: {
         users: [],
         TypeOfUsersSearch: "Other",
-        SearchSize:10
+        SearchSize:10,
+        Cage_StardetDialogs:"Others"
     }
-
 }
 
 // function for validate date for nesessary type
@@ -109,6 +94,16 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
                 return e.lastDialogActivityDate = ChangeTimeYYY(e.lastDialogActivityDate), e.lastUserActivityDate = ChangeTimeMMM(e.lastUserActivityDate)
             })
             return {...state, StartedUsersChat: [...action.value]}
+        }
+        case 'SET-ALL-FOLLOW-USERS': {
+            let arrayOfStartedDialogs = state.StartedUsersChat
+            let newArray = arrayOfStartedDialogs.find(e => {
+                if ( e.id==action.id) {
+                    let p = e.typeUser = action.typeUser
+                    return {...state, StartedUsersChat: {...state.StartedUsersChat, p}}
+                }
+            })
+            return {...state}
         }
         case "SET-LAST-MESSAGE": {
             let statyCopy = {...state}
@@ -204,6 +199,10 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
         }
         case "SET-SEARCH-SETTINGS-TypeOfUsersSearch":{
             return {...state,SearchUsers:{...state.SearchUsers,TypeOfUsersSearch:action.TypeOfUsersSearch}}
+        }
+
+        case "CURRENT-PAGE-DIALOGS":{
+            return {...state,SearchUsers:{...state.SearchUsers,Cage_StardetDialogs:action.typePage}}
         }
         default:
             return state
@@ -319,22 +318,28 @@ export const GetAllStartedDialogs = () => {
         dispatch(statusUserAC("loading"))
         ChatApi.GetAllStartedDialogs().then(res => {
             let copy:Array<StartedUsersChatType>=res.data
+            dispatch(SetAllStartedDialogs(copy))
             let NewCopy=copy.map(el=> {
+
+
+
                     let respon = UsersApi.getResponstFollow(el.id).then(res => {
-                        debugger
                         if (res.data == true) {
-                            return true
+                            dispatch(SetAllFollowIdUsers(el.id,"Friend"))
                         }
                         if (res.data == false) {
-                            return false
+                            dispatch(SetAllFollowIdUsers(el.id,"Other"))
+                            console.log( "false")
                         }
-                        return "d"
                     }).catch((error) => {
                         console.error(error)
                     })
-                }
-            )
-            dispatch(SetAllStartedDialogs())
+
+                })
+
+
+
+
             dispatch(statusUserAC("succeeded"))
         }).catch((error) => {
             dispatch(errorUserAC(error))
@@ -443,6 +448,11 @@ export const SetAllStartedDialogs = (value: Array<StartedUsersChatType>) => ({
     type: "SET-ALL-STARTED-DIALOGS",
     value
 }) as const
+export const SetAllFollowIdUsers = (id:number,typeUser:"Friend"|"Other") => ({
+    type: "SET-ALL-FOLLOW-USERS",
+    id,
+    typeUser
+}) as const
 export const SetLastMessage = (idUser: number, LastMessage: string | null) => ({
     type: "SET-LAST-MESSAGE",
     idUser,
@@ -484,6 +494,8 @@ export const SetSettingsTypeOfUsersSearchAC = (TypeOfUsersSearch: string) => ({
     TypeOfUsersSearch
 }) as const
 
+//change show page user
+export const Currenst_Page_DialogsAC=(typePage:"Friends"|"Others"|"Groups")=>({type:"CURRENT-PAGE-DIALOGS",typePage}) as const
 
 //types
 export type Messages = {
@@ -538,8 +550,10 @@ export type SearchUserType = {
 export type SearchUsersType = {
     users: Array<SearchUserType>
     SearchSize: number,
-    TypeOfUsersSearch: string
+    TypeOfUsersSearch: string,
+    Cage_StardetDialogs:"Friends"|"Others"|"Groups"
 }
+
 //main type reducer
 export type UsersStartedDialogsType = {
     StartedUsersChat: Array<StartedUsersChatType>
@@ -558,3 +572,5 @@ type ActionTypes =
 
     | ReturnType<typeof SetSettingsSearchSizeAC>
     | ReturnType<typeof SetSettingsTypeOfUsersSearchAC>
+    | ReturnType<typeof SetAllFollowIdUsers>
+    | ReturnType<typeof Currenst_Page_DialogsAC>

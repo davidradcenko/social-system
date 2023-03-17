@@ -16,6 +16,7 @@ export const Chat = React.memo(() => {
     console.log("Chat ")
     const dispatch = useAppDispatch()
 
+
     useEffect(() => {
         dispatch(GetAllStartedDialogs())
     })

@@ -53,7 +53,6 @@ export const ProfileUser = React.memo(() => {
 
 
     if (!isLoginIn) {
-        debugger
         return <Navigate to={'/Login'}/>
     }
     return (

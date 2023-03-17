@@ -5,12 +5,8 @@ import {getProfileAC} from "./profilReducer";
 
 
 const initialState:initialStateUsersType={
-    itemsFriends:[
-
-    ],
-    itemsNoFriends:[
-
-    ],
+    itemsFriends:[],
+    itemsNoFriends:[],
     totalFriendCount:0,
     totalNoFriendCount:0,
     error:null,
@@ -266,6 +262,9 @@ export const SetActivePageUsersProfileDataAC=(TypeUsers:"Friends"|"NoFriends",Ac
 //follow user,Unfollow
 export const FollowUserAC=(IdUser:number)=>({type:"FOLLOW-USER",IdUser}) as const
 export const UnFollowUserAC=(IdUser:number)=>({type:"UNFOLLOW-USER",IdUser}) as const
+
+
+
 
 
 

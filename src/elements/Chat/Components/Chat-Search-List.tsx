@@ -8,11 +8,12 @@ import React from "react";
 
 //return divs Search and ListUsers
 export const ChatSearchList = React.memo(() => {
-    const UsersStartedDialogs = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
+    console.log("ChatSearchList")
+
     return (
         <>
             <ChatSearchButton />
-            <ChatAccesListUser UsersStartedDialogs={UsersStartedDialogs}/>
+            <ChatAccesListUser/>
         </>
     )
 })
