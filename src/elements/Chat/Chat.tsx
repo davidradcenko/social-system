@@ -7,7 +7,7 @@ import ButtonMenuNavigation from "./UI-Components/ButtonMenu";
 import {StoryWay} from "./Chat-Componets/Story-Way";
 import {ChatNavigation} from "./Components/Chat-Navigation";
 import {ChatSearchList} from "./Components/Chat-Search-List";
-import {GetAllStartedDialogs} from "../../Reducers/ChatReducer";
+import {GetAllStartedDialogs, IfHaveNewMessageTK} from "../../Reducers/ChatReducer";
 import {ChatWind} from "./Components/Chat-Wind";
 import {ChatProfile} from "./Components/Chat-Profile";
 
@@ -19,6 +19,7 @@ export const Chat = React.memo(() => {
 
     useEffect(() => {
         dispatch(GetAllStartedDialogs())
+        dispatch( IfHaveNewMessageTK())
     })
     return (
         <div className={'Chat'}>
@@ -36,7 +37,6 @@ export const Chat = React.memo(() => {
                         <div className={'ButtonMenu'}>
                             <ButtonMenuNavigation/>
                         </div>
-                        <StoryWay/>
                     </div>
                 </div>
                 <div className="Information">
@@ -50,7 +50,6 @@ export const Chat = React.memo(() => {
                     <div className={'Chat-Sittings'}>
                         <div className={'Paginator-Navigation'}>
                             <div className={'Paginator-Way'}>
-                                <StoryWay/>
                             </div>
                         </div>
                         <div className={'Chat-Profile'}>

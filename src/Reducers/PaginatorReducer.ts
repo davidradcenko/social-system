@@ -7,7 +7,8 @@ import {SetLastMessage} from "./ChatReducer";
 const initialState: NavigationType = {
     needsNavigate: "No",
     CurrentPage: 0,
-    totalCount: 0
+    totalCount: 0,
+    NewMessageInformate:0
 }
 export const PaginatorReducer = (state: NavigationType = initialState, action: ActionTypes): NavigationType => {
     switch (action.type) {
@@ -16,6 +17,9 @@ export const PaginatorReducer = (state: NavigationType = initialState, action: A
         }
         case "SET-TOTAL-COUNT":{
             return {...state,totalCount:action.totalCount}
+        }
+        case "SET-Count-NewMesage":{
+            return {...state,NewMessageInformate:action.totalCount}
         }
         default:
             return state
@@ -53,8 +57,16 @@ export const SetTotalCount = (totalCount: number) => ({
     totalCount,
 }) as const
 
+export const SetNewMessageInformate = (totalCount: number) => ({
+    type: "SET-Count-NewMesage",
+    totalCount,
+}) as const
+
+export type SetNewMessageInformateAC= ReturnType<typeof SetNewMessageInformate>
+
 //types
 type NavigationType = {
+    NewMessageInformate:number
     needsNavigate: "Yes" | "No"
     CurrentPage: number,
     totalCount: number
@@ -66,3 +78,4 @@ type ActionTypes =
     | setErrorAC
     | ReturnType<typeof SetConditionNavigation>
     | ReturnType<typeof SetTotalCount>
+    | ReturnType<typeof SetNewMessageInformate>

@@ -36,9 +36,9 @@ export default function FullWidthTextField(props:FullWidthTextField) {
                 component="form"
                 sx={{display: 'flex', alignItems: 'center', padding:1.1}}
             >
-             <InputBase value={Value} onChange={(event)=>OnchengeValue(event.target.value)}   placeholder="Enter your message" fullWidth  id="fullWidth" />
-                <IconButton onClick={SendMEssage} type="button" sx={{ p: '10px' }} aria-label="search">
-                    <SendIcon color={"primary"} />
+             <InputBase disabled={props.IdUser==0?true:false} value={Value} onChange={(event)=>OnchengeValue(event.target.value)}   placeholder="Enter your message" fullWidth  id="fullWidth" />
+                <IconButton disabled={props.IdUser==0?true:false} onClick={SendMEssage} type="button" sx={{ p: '10px' }} aria-label="search">
+                    <SendIcon color={props.IdUser==0?"disabled":"primary"} />
                 </IconButton>
             </Paper>
         </Box>

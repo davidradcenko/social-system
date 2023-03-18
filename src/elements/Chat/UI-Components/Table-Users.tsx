@@ -10,6 +10,8 @@ import {GetLastMessage, GetMessage, StartedUsersChatType} from "../../../Reducer
 import {RootState, useAppDispatch} from "../../../store/store";
 import {photosType} from "../../../API/api";
 import {useSelector} from "react-redux";
+import ButtonFunctional from "./Button-Functional";
+import FunktionalUser from "./Funktional-User";
 
 
 //Set data of user in table dialogs started and take last message
@@ -49,7 +51,14 @@ export default function TableUsers(props: TableUsersType) {
                 </ListItemAvatar>
                 <ListItemText primary={props.userName} secondary={LastMessage}/>
                 <div className={"Last-Message-date"}><p className={"Last-message-br"}><br/>{LastMessage!=undefined?props.versios=="listOfuser"?props.lastDialogActivityDate:"":""}</p></div>
+                {props.idUser!=0
+                    ?
+                    <FunktionalUser idUser={props.idUser} typeOfUser={props.TypeOfUser}/>
+                    : ""
+                }
+
             </ListItem>
+
         </List>
     );
 }
@@ -61,5 +70,6 @@ type TableUsersType = {
     lastDialogActivityDate: string,
     idUser: number,
     LastActiveUser:string,
+    TypeOfUser:"Friend" | "Other",
     versios:"listOfuser" | "headerChat"
 }

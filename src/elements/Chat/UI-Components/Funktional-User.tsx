@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import {styled, alpha} from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import Menu, { MenuProps } from '@mui/material/Menu';
+import Menu, {MenuProps} from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
@@ -14,8 +14,14 @@ import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDou
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
-import {DelMessageTK, SetSettingsSearchSizeAC, SpamMessageTK} from "../../../Reducers/ChatReducer";
+import {
+    DelMessageTK,
+    GetAllStartedDialogs,
+    SetSettingsSearchSizeAC,
+    SpamMessageTK
+} from "../../../Reducers/ChatReducer";
 import {useAppDispatch} from "../../../store/store";
+import {FollowTK, UnFollowTK} from "../../../Reducers/UsersReducer";
 
 const StyledMenu = styled((props: MenuProps) => (
     <Menu
@@ -30,7 +36,7 @@ const StyledMenu = styled((props: MenuProps) => (
         }}
         {...props}
     />
-))(({ theme }) => ({
+))(({theme}) => ({
     '& .MuiPaper-root': {
         borderRadius: 6,
         marginTop: theme.spacing(1),
@@ -57,11 +63,11 @@ const StyledMenu = styled((props: MenuProps) => (
         },
     },
 }));
-type ButtonFunctionalType={
-    idMessage:string,
-    idUser:number
+type ButtonFunctionalType = {
+    typeOfUser: "Friend" | "Other",
+    idUser: number
 }
-export default function ButtonFunctional(props:ButtonFunctionalType) {
+export default function FunktionalUser(props: ButtonFunctionalType) {
     const dispatch = useAppDispatch()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -69,14 +75,17 @@ export default function ButtonFunctional(props:ButtonFunctionalType) {
         setAnchorEl(event.currentTarget);
     };
 
-    const DeleteMS = () => {
+    const SUbOrFollowMS = () => {
         setAnchorEl(null);
-        dispatch(DelMessageTK(props.idMessage,props.idUser))
+        if (props.typeOfUser=="Friend"){
+            dispatch(UnFollowTK(props.idUser))
+            dispatch(GetAllStartedDialogs())
+        }else {
+            dispatch(FollowTK(props.idUser))
+            dispatch(GetAllStartedDialogs())
+        }
     };
-    const SpamMS = () => {
-        setAnchorEl(null);
-        dispatch(SpamMessageTK(props.idMessage,props.idUser))
-    };
+
     const handleCloseNext = () => {
         setAnchorEl(null);
     };
@@ -85,11 +94,11 @@ export default function ButtonFunctional(props:ButtonFunctionalType) {
     return (
         <div>
 
-            <IconButton  id="demo-customized-button"
-                         aria-controls={open ? 'demo-customized-menu' : undefined}
-                         aria-haspopup="true"
-                         aria-expanded={open ? 'true' : undefined}
-                         onClick={handleClick}
+            <IconButton id="demo-customized-button"
+                        aria-controls={open ? 'demo-customized-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
             >
                 <MoreVertIcon fontSize="small"/>
             </IconButton>
@@ -104,14 +113,16 @@ export default function ButtonFunctional(props:ButtonFunctionalType) {
                 open={open}
                 onClose={handleCloseNext}
             >
-                <MenuItem onClick={DeleteMS} disableRipple>
-                    <DeleteIcon />
-                    Delete
+                {props.typeOfUser == "Friend"
+                    ? <MenuItem onClick={SUbOrFollowMS} disableRipple>
+                        <DeleteIcon/>
+                        Unsubscribe
                 </MenuItem>
-                <MenuItem onClick={SpamMS} disableRipple>
-                    <BookmarkRemoveIcon />
-                    Spam
-                </MenuItem>
+                    : <MenuItem onClick={SUbOrFollowMS} disableRipple>
+                        <DeleteIcon/>
+                        Subscribe
+                    </MenuItem>
+                }
             </StyledMenu>
         </div>
     );

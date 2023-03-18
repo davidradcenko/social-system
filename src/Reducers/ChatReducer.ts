@@ -1,7 +1,13 @@
 import {ChatApi, messageType, photosType, UserProfilType, UsersApi, UserType} from "../API/api";
 import {Dispatch} from "redux";
 import {errorUserAC, setErrorAC, statusUserAC, StatusUserActionType} from "./InitialazedReducer";
-import {ExporsNavigationsType, SetConditionNavigation, SetTotalCount} from "./PaginatorReducer";
+import {
+    ExporsNavigationsType,
+    SetConditionNavigation,
+    SetNewMessageInformate,
+    SetNewMessageInformateAC,
+    SetTotalCount
+} from "./PaginatorReducer";
 
 
 const initialState: UsersStartedDialogsType = {
@@ -472,7 +478,34 @@ export const DelMessageTK = (Idmessage: string,IdUser:number) => {
         })
     }
 }
+export const SpamMessageTK = (Idmessage: string,IdUser:number) => {
+    return (dispatch: Dispatch<ActionTypes | StatusUserActionType | ExporsNavigationsType>) => {
+        dispatch(statusUserAC("loading"))
+        ChatApi.SpamMessage(Idmessage).then(res => {
+            dispatch(errorUserAC(res.data.error))
+            dispatch(statusUserAC("succeeded"))
+        }).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
+            console.error(error, dispatch)
+        })
+    }
+}
 
+export const IfHaveNewMessageTK = () => {
+    return (dispatch: Dispatch<ActionTypes | StatusUserActionType | ExporsNavigationsType | SetNewMessageInformateAC>) => {
+        dispatch(statusUserAC("loading"))
+        ChatApi.IfHaveNeyMessage().then(res => {
+            dispatch(SetNewMessageInformate(res.data))
+            dispatch(errorUserAC(res.data.error))
+            dispatch(statusUserAC("succeeded"))
+        }).catch((error) => {
+            dispatch(errorUserAC(error))
+            dispatch(statusUserAC("succeeded"))
+            console.error(error, dispatch)
+        })
+    }
+}
 
 
 

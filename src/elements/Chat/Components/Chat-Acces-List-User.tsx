@@ -60,6 +60,7 @@ export const ChatAccesListUser = React.memo((props) => {
                     lastDialogActivityDate={el.lastDialogActivityDate}
                     LastActiveUser={el.lastUserActivityDate}
                     versios={"listOfuser"}
+                    TypeOfUser={el.typeUser}
                 />
 
             })}

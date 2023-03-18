@@ -6,8 +6,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import SettingsIcon from "@mui/icons-material/Settings";
 import * as React from "react";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store/store";
 
 export const IconsNavigation=()=>{
+    const NewMessasges = useSelector<RootState, number>(state => state.paginator.NewMessageInformate)
     return(
         <div className="Icons-Navigation">
 
@@ -21,7 +24,7 @@ export const IconsNavigation=()=>{
             </IconButton>
 
             <IconButton sx={{marginTop:10}} aria-label="delete">
-                <Badge color="secondary" variant="dot">
+                <Badge color="secondary" variant={NewMessasges==0?"standard":"dot"}>
                     <FavoriteBorderIcon color="primary" sx={{fontSize: 40}}/>
                 </Badge>
             </IconButton>

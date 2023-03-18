@@ -41,6 +41,12 @@ export const ChatApi={
     },
     DeleteMessage(idMessage:string){
         return instance.delete(`dialogs/messages/${idMessage}`)
+    },
+    SpamMessage(idMessage:string){
+        return instance.post(`dialogs/messages/${idMessage}/spam`)
+    },
+    IfHaveNeyMessage(){
+        return instance.get(`dialogs/messages/new/count`)
     }
 }
 export const ProfileApi = {
