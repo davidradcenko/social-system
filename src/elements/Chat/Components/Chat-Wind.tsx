@@ -1,13 +1,13 @@
 import {ChatMessages} from "./Chat-Messages";
 import FullWidthTextField from "../UI-Components/Send-SMS";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {useSelector} from "react-redux";
 import {GetNextPageMessage, GetMessageBottomTS, Messages, StartedUsersChatType} from "../../../Reducers/ChatReducer";
 import TableUsers from "../UI-Components/Table-Users";
 import IconButton from "@mui/material/IconButton";
 import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowDownOutlined';
-
+import ArrowBackIosNewSharpIcon from '@mui/icons-material/ArrowBackIosNewSharp';
 export const ChatWind = () => {
     const dispatch = useAppDispatch()
 
@@ -47,6 +47,10 @@ export const ChatWind = () => {
          dispatch(GetMessageBottomTS(IdUser))
     }
     let type:"Friend" | "Other"="Other"
+
+
+
+
     useEffect(()=>{
         let userType=UsersStartedDialogs.find(el=>el.id==IdUser)
         if (userType!=undefined){
@@ -57,6 +61,14 @@ export const ChatWind = () => {
     return (
         <div className={'Chat-List'}>
             <div className={'Active-Chatting-User'}>
+
+                <div   className={'OpenListStartedDialogs'}>
+                    <IconButton  color={"primary"}
+                                 aria-label="Go-to-bott" size="small">
+                        <ArrowBackIosNewSharpIcon fontSize="small"/>
+                    </IconButton>
+                </div>
+
                 <TableUsers idUser={IdUser} photos={{small: photoUser, large: null}} userName={userName}
                             lastDialogActivityDate={lastDialogActivityDate} LastActiveUser={LastActiveUser}
                             versios={"headerChat"}

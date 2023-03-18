@@ -27,6 +27,14 @@
         justify-content: space-between;
     }
 }
+@media (max-width: 1074px) {
+    .Profile-Chat-Component{
+        display: none;
+    }
+}
+.Paginator-Navigation{
+    display: none;
+}
 @media (max-width: 680px) {
     .Logo-Nav img{
         width: 158px;
@@ -36,5 +44,19 @@
 @media (max-width: 438px) {
     .StoryWay{
         display: none;
+    }
+}
+.menuDisplay{
+    display: none;
+}
+.OpenListStartedDialogs{
+    display: none;
+}
+@media (max-width: 870px) {
+    .Chats-List{
+        display: none;
+    }
+    .OpenListStartedDialogs{
+        display: block;
     }
 }
