@@ -8,26 +8,44 @@
 div {
     /*border: 1px solid black;*/
 }
-
+.Paginator-Navigation{
+    display: none;
+}
+.menuDisplay{
+    display: none;
+}
 /*display:none*/
 .ButtonMenu {
     display: none;
 }
-
+.OpenListStartedDialogs{
+    display: none;
+}
+.Viow-Frofile-adoptive{
+    display: none;
+}
 /*total Chat*/
 .Chat {
+    /*position: relative;*/
     margin: 0 auto;
     max-width: 1980px;
     display: flex;
 }
-
+.Menu-Users-Display{
+    display: none;
+}
 /*Chat-Navigation*/
 .Chat .Chat-Navigation {
-    border: 1px solid #B5B2B2;
+    /*border-bottom: 1px solid #B5B2B2;*/
     height: 100%;
     width: 98px;
 }
-
+.clozer-Search-Menu{
+    position: absolute;
+    top: 0;
+    right: -40px;
+    z-index: 10;
+}
 .Icons-Navigation {
     display: flex;
     flex-direction: column;
@@ -67,6 +85,8 @@ div {
 .Chats-List {
     border-right: 1px solid #B5B2B2;
     border-bottom: 1px solid #B5B2B2;
+    border-left: 1px solid #B5B2B2;
+
     max-width: 420px;
     display: flex;
 
@@ -74,6 +94,7 @@ div {
 }
 .ListOfUsersAbsolute{
     position: absolute;
+    top: 0;
     top: 0;
     right: 0;
 }

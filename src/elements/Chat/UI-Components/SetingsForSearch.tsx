@@ -20,13 +20,18 @@ import {useSelector} from "react-redux";
 import {SetSettingsSearchSizeAC, SetSettingsTypeOfUsersSearchAC} from "../../../Reducers/ChatReducer";
 
 export default function SetingsForSearch() {
+
+    //take from Reducer
     const dispatch = useAppDispatch()
+    //from chat
     const SearchSize = useSelector<RootState, number>(state => state.chat.SearchUsers.SearchSize)
     const TypeOfUsersSearch = useSelector<RootState, string>(state => state.chat.SearchUsers.TypeOfUsersSearch)
 
+
+    //local state
     const [open, setOpen] = React.useState(false);
     const [fullWidth, setFullWidth] = React.useState(true);
-
+    //change state
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -36,11 +41,11 @@ export default function SetingsForSearch() {
     const handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFullWidth(event.target.checked);
     };
+
     return (
         <React.Fragment>
 
                 <TuneIcon  onClick={handleClickOpen}/>
-
 
             <Dialog
                 fullWidth={true}
@@ -48,7 +53,9 @@ export default function SetingsForSearch() {
                 onClose={handleClose}
             >
                 <DialogTitle>Search Settings</DialogTitle>
+
                 <DialogContent>
+
                     <DialogContentText>
                         Choose the optimal user search and start chatting. Good luck
                     </DialogContentText>
@@ -74,6 +81,7 @@ export default function SetingsForSearch() {
                                 <FormControlLabel value="Other" control={<Radio/>} label="Other"/>
                             </RadioGroup>
                         </FormControl>
+
                         <FormControl sx={{mt: 2, minWidth: 120}}>
                             <InputLabel htmlFor="max-width">maxWidth</InputLabel>
                             <Select
@@ -95,11 +103,12 @@ export default function SetingsForSearch() {
                         </FormControl>
 
                     </Box>
-
                 </DialogContent>
+
                 <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
                 </DialogActions>
+
             </Dialog>
         </React.Fragment>
     );

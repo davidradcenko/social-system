@@ -24,20 +24,14 @@ import {FollowTK, UnFollowTK} from "../../../Reducers/UsersReducer";
 
 export const emails = ['username@gmail.com', 'user02@gmail.com'];
 
-export type SimpleDialogProps ={
-    NameUse:string
-    idUser:number,
-    open: boolean;
-    selectedValue: string;
-    onClose: (value: string) => void;
-}
-
 export function SimpleDialog(props: SimpleDialogProps) {
+    //take from Reducer
     const dispatch = useAppDispatch()
-    const {onClose, selectedValue, open} = props;
 
+    //local state
+    const {onClose, selectedValue, open} = props
     const [StateUser, setStateUser] = useState<boolean>();
-
+    //state change
     const handleClose = () => {
         onClose(selectedValue);
     };
@@ -45,6 +39,8 @@ export function SimpleDialog(props: SimpleDialogProps) {
         onClose(value);
     };
 
+
+    //Subscribe user , UnSubscribe
     const subscribe=()=>{
         dispatch(FollowTK(props.idUser))
         if (props.idUser!=0){
@@ -83,11 +79,12 @@ export function SimpleDialog(props: SimpleDialogProps) {
             })
         }
     }
-    const StartChating=()=>{
 
+
+    //Start chatting
+    const StartChating=()=>{
         dispatch(StartDialogs(props.idUser))
     }
-
 
 
     useEffect(() => {
@@ -113,6 +110,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
             <DialogTitle>User: {props.NameUse}</DialogTitle>
             <List sx={{pt: 0}}>
 
+                {/*-------------If user Unsubscribe or Subscribe-----------*/}
                 {StateUser==true
                     ?  <ListItem disableGutters>
                         <ListItemButton onClick={UnSubscribe}>
@@ -136,7 +134,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
                     </ListItem>
                 }
 
-
+                {/*---------------Start chatting-------------------*/}
                 <ListItem disableGutters>
                     <ListItemButton onClick={StartChating}>
                         <ListItemAvatar>
@@ -148,9 +146,19 @@ export function SimpleDialog(props: SimpleDialogProps) {
                     </ListItemButton>
                 </ListItem>
 
+
             </List>
         </Dialog>
     );
+}
+
+//types
+export type SimpleDialogProps ={
+    NameUse:string
+    idUser:number,
+    open: boolean;
+    selectedValue: string;
+    onClose: (value: string) => void;
 }
 
 

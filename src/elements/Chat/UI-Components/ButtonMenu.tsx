@@ -2,15 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import {Avatar, Badge} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from "@mui/icons-material/Person";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-import SettingsIcon from "@mui/icons-material/Settings";
 import MenuIcon from '@mui/icons-material/Menu';
 import {IconsNavigation} from "../Chat-Componets/Icons-Navigation";
+
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export default function ButtonMenuNavigation() {

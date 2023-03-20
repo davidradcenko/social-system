@@ -11,10 +11,11 @@ import {RootState} from "../../../store/store";
 
 export const IconsNavigation=()=>{
     const NewMessasges = useSelector<RootState, number>(state => state.paginator.NewMessageInformate)
+    const foto = useSelector<RootState, string | null>(state => state.initialazed.foto)
     return(
         <div className="Icons-Navigation">
 
-            <Avatar alt="Remy Sharp" sx={{ width: 50, height: 50 }}  src="/static/images/avatar/1.jpg" />
+            <Avatar alt="Remy Sharp" sx={{ width: 50, height: 50 }}  src={foto==null?"/static/images/avatar/1.jpg":foto} />
 
             <IconButton sx={{marginTop:20}} aria-label="delete">
                 <HomeIcon color="primary" sx={{fontSize: 40}}/>
@@ -27,13 +28,6 @@ export const IconsNavigation=()=>{
                 <Badge color="secondary" variant={NewMessasges==0?"standard":"dot"}>
                     <FavoriteBorderIcon color="primary" sx={{fontSize: 40}}/>
                 </Badge>
-            </IconButton>
-
-            <IconButton sx={{marginTop:10}} aria-label="delete">
-                <PersonSearchIcon color="primary" sx={{fontSize: 40}}/>
-            </IconButton>
-            <IconButton sx={{marginTop:10}} aria-label="delete">
-                <SettingsIcon color="primary" sx={{fontSize: 40}}/>
             </IconButton>
 
         </div>

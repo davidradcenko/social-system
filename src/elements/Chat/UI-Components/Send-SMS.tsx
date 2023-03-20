@@ -9,9 +9,11 @@ import {useAppDispatch} from "../../../store/store";
 import {WriteSMS} from "../../../Reducers/ChatReducer";
 import {photosType} from "../../../API/api";
 
-//send message
 export default function FullWidthTextField(props:FullWidthTextField) {
+
+    //take from Reducer
     const dispatch = useAppDispatch()
+
 
     //state of value in input
     const [Value,SetValue]=useState<string>("")
@@ -19,11 +21,13 @@ export default function FullWidthTextField(props:FullWidthTextField) {
         SetValue(e)
     }
 
+
     //function send message
     const SendMEssage=()=>{
         dispatch(WriteSMS(props.IdUser,{body:Value},props.photoUser,props.userName,props.lastDialogActivityDate,props.LastActiveUser))
         SetValue("")
     }
+
     return (
         <Box
             sx={{

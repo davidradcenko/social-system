@@ -13,16 +13,19 @@ import {useSelector} from "react-redux";
 import ButtonFunctional from "./Button-Functional";
 import FunktionalUser from "./Funktional-User";
 
-
-//Set data of user in table dialogs started and take last message
 export default function TableUsers(props: TableUsersType) {
+
+    //take from Reducer
     const dispatch = useAppDispatch()
+    //from chat
     const users = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
+
 
     //function get last message
     const TakeMessage = (idUser: number) => {
         dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate,props.LastActiveUser))
     }
+
 
     //take last message from reducer
     let LastMessage:string|null=''
@@ -31,13 +34,14 @@ export default function TableUsers(props: TableUsersType) {
        LastMessage = list.lastMesasage
     }
 
+
     // useEffect get last message
     useEffect(() => {
         if (props.idUser!=0) dispatch(GetLastMessage(props.idUser))
     },[props.idUser])
+
     return (
-        <List
-            onClick={() => TakeMessage(props.idUser)}
+        <List onClick={() => TakeMessage(props.idUser)}
             sx={{
                 width: '100%',
                 maxWidth: 360
@@ -45,12 +49,18 @@ export default function TableUsers(props: TableUsersType) {
         >
             <ListItem>
                 <ListItemAvatar>
+                    {props.idUser==0?"":
                     <Avatar src={props.photos.small == null ? "" : props.photos.small}>
-                        <ImageIcon/>
-                    </Avatar>
+                         <ImageIcon/>
+                    </Avatar>}
                 </ListItemAvatar>
                 <ListItemText primary={props.userName} secondary={LastMessage}/>
-                <div className={"Last-Message-date"}><p className={"Last-message-br"}><br/>{LastMessage!=undefined?props.versios=="listOfuser"?props.lastDialogActivityDate:"":""}</p></div>
+                <div className={"Last-Message-date"}>
+                    <p className={"Last-message-br"}>
+                        <br/>
+                        {LastMessage!=undefined?props.versios=="listOfuser"?props.lastDialogActivityDate:"":""}
+                    </p>
+                </div>
                 {props.idUser!=0
                     ?
                     <FunktionalUser idUser={props.idUser} typeOfUser={props.TypeOfUser}/>

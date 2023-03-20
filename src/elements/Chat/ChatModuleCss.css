@@ -1,3 +1,10 @@
+@keyframes example {
+    0%   {opacity: 0.65;}
+    25%  {opacity: 0.45;}
+    50%  {opacity: 0.65;}
+    100% {opacity: 1}
+}
+/*-----------------------------------------------------------------------------------*/
 @media (max-width: 1880px) {
     .Chat-Navigation{
         display: none;
@@ -27,13 +34,29 @@
         justify-content: space-between;
     }
 }
-@media (max-width: 1074px) {
-    .Profile-Chat-Component{
-        display: none;
+@media (max-width: 1214px) {
+    .css-1r5wa48-MuiList-root{
+        width: auto !important;
     }
 }
-.Paginator-Navigation{
-    display: none;
+@media (max-width: 1074px) {
+    .Viow-Frofile-normale{
+        display: none;
+    }
+    .Viow-Frofile-adoptive{
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        right: 0;
+        border: none;
+        animation-name: example;
+        animation-duration: 3s;
+        border-radius: 100%;
+        background-color: #DBF6FF;
+        animation-iteration-count: infinite;
+
+    }
 }
 @media (max-width: 680px) {
     .Logo-Nav img{
@@ -46,16 +69,30 @@
         display: none;
     }
 }
-.menuDisplay{
-    display: none;
-}
-.OpenListStartedDialogs{
-    display: none;
-}
+
+/*-----------------------start make adaptove for list mesages----------------------*/
 @media (max-width: 870px) {
-    .Chats-List{
+    .Paginator-Navigation{
         display: none;
     }
+    .Menu-Users-Normal{
+        display: none;
+    }
+    .Menu-Users-Display{
+        display: block;
+    }
+  .Chats-List{
+      position: absolute;
+      top: 50%;
+      border: none;
+      animation-name: example;
+      animation-duration: 3s;
+      z-index: 1;
+      border-radius: 100%;
+      background-color: #DBF6FF;
+      animation-iteration-count: infinite;
+  }
+
     .OpenListStartedDialogs{
         display: block;
     }

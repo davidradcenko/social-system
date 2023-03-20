@@ -6,23 +6,17 @@ import {Messages} from "../../../Reducers/ChatReducer";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {useSelector} from "react-redux";
 import ButtonFunctional from "../UI-Components/Button-Functional";
-import IconButton from "@mui/material/IconButton";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-type ChatMessageType = {
-    Messages: Array<Messages>,
-    photoUser: string | null,
-    idUser:number
-}
+
 export const ChatMessages = (props: ChatMessageType) => {
-    const dispatch = useAppDispatch()
-    //take data from initialazed reducer
+
+    //take from Reducer
+    //from initialazed
     const MainUserId = useSelector<RootState, number>(state => state.initialazed.mainUserId)
-    const photo = useSelector<RootState, number>(state => state.initialazed.mainUserId)
-    //take data from chat reducer
+    //from chat
     const currentList = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.currentList)
     const TotalCount = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.TotalCount)
-    //take data from paginator reducer
+    //from paginator
     const lookMessages = useSelector<RootState, "Yes" | "No">(state => state.paginator.needsNavigate)
 
 
@@ -33,10 +27,8 @@ export const ChatMessages = (props: ChatMessageType) => {
 
 
     useEffect(() => {
-
         const element = document.getElementById('Messages')
         if (element != undefined) {
-
             element.scrollTop = element.scrollHeight
         }
 
@@ -114,3 +106,9 @@ export const ChatMessages = (props: ChatMessageType) => {
     )
 }
 
+//types
+type ChatMessageType = {
+    Messages: Array<Messages>,
+    photoUser: string | null,
+    idUser:number
+}

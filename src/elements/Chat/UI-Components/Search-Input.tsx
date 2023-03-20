@@ -16,33 +16,27 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import {emails, SimpleDialog} from "./selectFunctionWhisUserUI";
 
-interface Film {
-    id: number
-    Name: string,
-    photos: photosType
-}
+
 
 export default function Asynchronous() {
-    const dispatch = useAppDispatch()
-    const topFilms = useSelector<RootState, Array<SearchUserType>>(state => state.chat.SearchUsers.users)
-    const statusLoading = useSelector<RootState, statusType>(state => state.initialazed.status)
 
+    //take from Reducer
+    const dispatch = useAppDispatch()
+    //from chat
+    const topFilms = useSelector<RootState, Array<SearchUserType>>(state => state.chat.SearchUsers.users)
     const SearchSize = useSelector<RootState, number>(state => state.chat.SearchUsers.SearchSize)
     const TypeOfUsersSearch = useSelector<RootState, string>(state => state.chat.SearchUsers.TypeOfUsersSearch)
+    //from initialazed
+    const statusLoading = useSelector<RootState, statusType>(state => state.initialazed.status)
 
+
+    //local state
     const [open, setOpen] = React.useState(false);
     const [valueOfButton, SetvalueOfButton] = useState<string>("");
     const [options, setOptions] = React.useState<Film[]>([...topFilms]);
-
-
-    //search users
-    const searchUser = (e: string) => {
-        SetvalueOfButton(e)
-        dispatch(getSearchUsersTK(valueOfButton, SearchSize, TypeOfUsersSearch))
-    }
     const loading = statusLoading == "loading" ? true : false
 
-    /////
+
     //select what to do whis user
     const [OptionWind, setOptionWind] = React.useState<{ positon: boolean, id: number,NameUse:string }>({positon: false, id: 0,NameUse:''});
     const [selectedValue, setSelectedValue] = React.useState(emails[1]);
@@ -52,21 +46,25 @@ export default function Asynchronous() {
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = (value: string) => {
         setOptionWind({positon: false, id: 0,NameUse:''});
     };
 
 
+    //search users
+    const searchUser = (e: string) => {
+        SetvalueOfButton(e)
+        dispatch(getSearchUsersTK(valueOfButton, SearchSize, TypeOfUsersSearch))
+    }
+
+
+    //set All fiend users
     React.useEffect(() => {
         setOptions([...topFilms]);
     }, [topFilms]);
     return (
-        <Paper
-            component="form"
-            sx={{p: '2px 4px', height: 40, display: 'flex', alignItems: 'center', width: 324, margin: 2.20}}
-        >
-
+        <Paper component="form"
+            sx={{p: '2px 4px', height: 40, display: 'flex', alignItems: 'center', width: 324, margin: 2.20}}>
 
             <div>
                 <SimpleDialog
@@ -83,12 +81,8 @@ export default function Asynchronous() {
                 id="Type name"
                 sx={{width: 300, border: "none"}}
                 open={open}
-                onOpen={() => {
-                    setOpen(true);
-                }}
-                onClose={() => {
-                    setOpen(false);
-                }}
+                onOpen={() => {setOpen(true);}}
+                onClose={() => {setOpen(false);}}
                 isOptionEqualToValue={(option, value) => option.Name === value.Name}
                 getOptionLabel={(option) => option.Name}
 
@@ -127,4 +121,11 @@ export default function Asynchronous() {
             </IconButton>
         </Paper>
     );
+}
+
+// types
+interface Film {
+    id: number
+    Name: string,
+    photos: photosType
 }

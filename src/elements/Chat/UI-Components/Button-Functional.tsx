@@ -1,20 +1,12 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Menu, { MenuProps } from '@mui/material/Menu';
+import {alpha, styled} from '@mui/material/styles';
+import Menu, {MenuProps} from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from "@mui/material/IconButton";
-import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
-import {DelMessageTK, SetSettingsSearchSizeAC, SpamMessageTK} from "../../../Reducers/ChatReducer";
+import {DelMessageTK, SpamMessageTK} from "../../../Reducers/ChatReducer";
 import {useAppDispatch} from "../../../store/store";
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -57,18 +49,26 @@ const StyledMenu = styled((props: MenuProps) => (
         },
     },
 }));
-type ButtonFunctionalType={
-    idMessage:string,
-    idUser:number
-}
+
+
 export default function ButtonFunctional(props:ButtonFunctionalType) {
+
+    //take from Reduser
     const dispatch = useAppDispatch()
+
+
+    //local state
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    //state change
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
+    const handleCloseNext = () => {
+        setAnchorEl(null);
+    };
 
+    //delete message or spam
     const DeleteMS = () => {
         setAnchorEl(null);
         dispatch(DelMessageTK(props.idMessage,props.idUser))
@@ -77,10 +77,6 @@ export default function ButtonFunctional(props:ButtonFunctionalType) {
         setAnchorEl(null);
         dispatch(SpamMessageTK(props.idMessage,props.idUser))
     };
-    const handleCloseNext = () => {
-        setAnchorEl(null);
-    };
-
 
     return (
         <div>
@@ -115,4 +111,10 @@ export default function ButtonFunctional(props:ButtonFunctionalType) {
             </StyledMenu>
         </div>
     );
+}
+
+//types
+type ButtonFunctionalType={
+    idMessage:string,
+    idUser:number
 }

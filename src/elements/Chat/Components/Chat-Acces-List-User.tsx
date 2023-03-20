@@ -8,31 +8,25 @@ import Diversity2SharpIcon from '@mui/icons-material/Diversity2Sharp';
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../../store/store";
 
-//Take list of all started dialogs users
-export const ChatAccesListUser = React.memo((props) => {
-    const dispatch = useAppDispatch()
 
+export const ChatAccesListUser = React.memo((props) => {
+
+    //take from Reducer
+    const dispatch = useAppDispatch()
+    //from chat
     const UsersStartedDialogs = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
     const typeOfDialogs = useSelector<RootState, "Friends" | "Others" | "Groups">(state => state.chat.SearchUsers.Cage_StardetDialogs)
 
-
+    //change Current list of users
     const ChangePage = (type: "Friends" | "Others" | "Groups") => {
         dispatch(Currenst_Page_DialogsAC(type))
     }
 
+    //make nessary type
     let typeDialogsNEw = ""
     if (typeOfDialogs == "Others") typeDialogsNEw = "Other"
     if (typeOfDialogs == "Friends") typeDialogsNEw = "Friend"
-
     let FiltredArray = UsersStartedDialogs.filter(el => el.typeUser == typeDialogsNEw)
-
-    // useEffect(() => {
-    //         let typeDialogsNEw = ""
-    //         if (typeOfDialogs == "Others") typeDialogsNEw = "Other"
-    //         if (typeOfDialogs == "Friends") typeDialogsNEw = "Friend"
-    //         let FiltredArray = UsersStartedDialogs.filter(el => el.typeUser == typeDialogsNEw)
-    //     }
-    //     , [UsersStartedDialogs])
 
     return (
         <div className={'Chat-List-of-Users'}>

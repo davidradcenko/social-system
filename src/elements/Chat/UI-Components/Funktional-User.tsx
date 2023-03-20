@@ -1,25 +1,11 @@
 import * as React from 'react';
-import {styled, alpha} from '@mui/material/styles';
-import Button from '@mui/material/Button';
+import {alpha, styled} from '@mui/material/styles';
 import Menu, {MenuProps} from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from "@mui/material/IconButton";
-import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
-import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
-import {
-    DelMessageTK,
-    GetAllStartedDialogs,
-    SetSettingsSearchSizeAC,
-    SpamMessageTK
-} from "../../../Reducers/ChatReducer";
+import {GetAllStartedDialogs} from "../../../Reducers/ChatReducer";
 import {useAppDispatch} from "../../../store/store";
 import {FollowTK, UnFollowTK} from "../../../Reducers/UsersReducer";
 
@@ -63,18 +49,26 @@ const StyledMenu = styled((props: MenuProps) => (
         },
     },
 }));
-type ButtonFunctionalType = {
-    typeOfUser: "Friend" | "Other",
-    idUser: number
-}
+
+
 export default function FunktionalUser(props: ButtonFunctionalType) {
+
+    //take from Reducer
     const dispatch = useAppDispatch()
+
+
+    //local state
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    //state change
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
+    const handleCloseNext = () => {
+        setAnchorEl(null);
+    };
 
+    //Unsubscribe User,Subscribe
     const SUbOrFollowMS = () => {
         setAnchorEl(null);
         if (props.typeOfUser=="Friend"){
@@ -85,11 +79,6 @@ export default function FunktionalUser(props: ButtonFunctionalType) {
             dispatch(GetAllStartedDialogs())
         }
     };
-
-    const handleCloseNext = () => {
-        setAnchorEl(null);
-    };
-
 
     return (
         <div>
@@ -113,6 +102,8 @@ export default function FunktionalUser(props: ButtonFunctionalType) {
                 open={open}
                 onClose={handleCloseNext}
             >
+
+                {/*----------------user Unsubscribe or Subscribe*/}
                 {props.typeOfUser == "Friend"
                     ? <MenuItem onClick={SUbOrFollowMS} disableRipple>
                         <DeleteIcon/>
@@ -123,7 +114,15 @@ export default function FunktionalUser(props: ButtonFunctionalType) {
                         Subscribe
                     </MenuItem>
                 }
+
             </StyledMenu>
+
         </div>
     );
+}
+
+// types
+type ButtonFunctionalType = {
+    typeOfUser: "Friend" | "Other",
+    idUser: number
 }

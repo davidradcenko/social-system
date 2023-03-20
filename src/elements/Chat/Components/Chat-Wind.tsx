@@ -9,9 +9,10 @@ import IconButton from "@mui/material/IconButton";
 import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowDownOutlined';
 import ArrowBackIosNewSharpIcon from '@mui/icons-material/ArrowBackIosNewSharp';
 export const ChatWind = () => {
-    const dispatch = useAppDispatch()
 
     //take data from chat reducer
+    const dispatch = useAppDispatch()
+    //from chat
     const Messages = useSelector<RootState, Array<Messages>>(state => state.chat.MessageCurrentUser.Message)
     const photoUser = useSelector<RootState, string | null>(state => state.chat.MessageCurrentUser.photos.small)
     const IdUser = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.idUser)
@@ -20,12 +21,11 @@ export const ChatWind = () => {
     let currentListMessage = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.currentList)
     let totalCount = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.TotalCount)
     let LastActiveUser = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.lastUserActivityDate)
-
     const UsersStartedDialogs = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
-
-    //take data from paginator reducer
+    //from paginator
     const lookMessages = useSelector<RootState, "Yes" | "No">(state => state.paginator.needsNavigate)
     const currentPage = useSelector<RootState, number>(state => state.paginator.CurrentPage)
+
 
     //function when end scroll div, give next table
     const element = document.getElementById('Messages')
@@ -46,9 +46,9 @@ export const ChatWind = () => {
     const GotoBottom=()=>{
          dispatch(GetMessageBottomTS(IdUser))
     }
+
+
     let type:"Friend" | "Other"="Other"
-
-
 
 
     useEffect(()=>{
@@ -58,26 +58,24 @@ export const ChatWind = () => {
         }
 
     },[])
+
     return (
         <div className={'Chat-List'}>
             <div className={'Active-Chatting-User'}>
-
-                <div   className={'OpenListStartedDialogs'}>
-                    <IconButton  color={"primary"}
-                                 aria-label="Go-to-bott" size="small">
-                        <ArrowBackIosNewSharpIcon fontSize="small"/>
-                    </IconButton>
-                </div>
 
                 <TableUsers idUser={IdUser} photos={{small: photoUser, large: null}} userName={userName}
                             lastDialogActivityDate={lastDialogActivityDate} LastActiveUser={LastActiveUser}
                             versios={"headerChat"}
                             TypeOfUser={type}
                 />
-                {IdUser==0?"":
-                    <p>Was online :{LastActiveUser}</p>
+
+                {IdUser==0
+                    ?""
+                    :<p>Was online :{LastActiveUser}</p>
                 }
+
             </div>
+
             <div className={'Chatting'}>
 
                 {/*table messages*/}
@@ -87,13 +85,13 @@ export const ChatWind = () => {
 
                 {/*input send message*/}
                 <div className={'Send-SMS'}>
+
                     <FullWidthTextField  lastDialogActivityDate={lastDialogActivityDate} userName={userName}
                                         photoUser={{small: photoUser, large: null}} IdUser={IdUser} LastActiveUser={LastActiveUser}/>
 
                     {/*button go to bottom*/}
                     {currentListMessage>=2
-                        ?
-                        <div  onClick={GotoBottom} className={'Navigate-to-botton'}>
+                        ? <div  onClick={GotoBottom} className={'Navigate-to-botton'}>
                             <IconButton  color={"primary"}
                                          aria-label="Go-to-bott" size="large">
                                 <KeyboardDoubleArrowDownOutlinedIcon fontSize="large"/>
@@ -102,7 +100,6 @@ export const ChatWind = () => {
                         : ""}
 
                 </div>
-
             </div>
         </div>
     )
