@@ -66,6 +66,7 @@ export const Chat = React.memo(() => {
                             </div>
                             <div className={"Viow-Frofile-adoptive"}>
                                 <ChatProfileAdoptive/>
+
                             </div>
 
 
