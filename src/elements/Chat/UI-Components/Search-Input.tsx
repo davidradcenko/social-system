@@ -64,6 +64,7 @@ export default function Asynchronous() {
     }, [topFilms]);
     return (
         <Paper component="form"
+               className={"form-List-ofUsrerAdoptive"}
             sx={{p: '2px 4px', height: 40, display: 'flex', alignItems: 'center', width: 324, margin: 2.20}}>
 
             <div>

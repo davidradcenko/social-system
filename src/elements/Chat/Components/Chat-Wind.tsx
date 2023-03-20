@@ -55,6 +55,7 @@ export const ChatWind = () => {
         let userType=UsersStartedDialogs.find(el=>el.id==IdUser)
         if (userType!=undefined){
             type=userType.typeUser
+            debugger
         }
 
     },[])

@@ -88,6 +88,7 @@ div {
     border-left: 1px solid #B5B2B2;
 
     max-width: 420px;
+
     display: flex;
 
     flex-direction: column;
