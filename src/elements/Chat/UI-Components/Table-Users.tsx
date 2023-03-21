@@ -22,48 +22,47 @@ export default function TableUsers(props: TableUsersType) {
 
     //function get last message
     const TakeMessage = (idUser: number) => {
-        dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate, props.LastActiveUser,1))
+        dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate,props.LastActiveUser))
     }
 
 
     //take last message from reducer
-    let LastMessage: string | null = ''
-    let list = users.find(e => e.id == props.idUser)
-    if (list != undefined) {
-        LastMessage = list.lastMesasage
+    let LastMessage:string|null=''
+    let list=users.find(e=>e.id==props.idUser)
+    if (list !=undefined){
+       LastMessage = list.lastMesasage
     }
 
 
     // useEffect get last message
     useEffect(() => {
-        if (props.idUser != 0) dispatch(GetLastMessage(props.idUser))
-    }, [props.idUser])
+        if (props.idUser!=0) dispatch(GetLastMessage(props.idUser))
+    },[props.idUser])
 
     return (
         <List onClick={() => TakeMessage(props.idUser)}
-              sx={{
-                  width: '100%',
-                  maxWidth: 360
-              }}
+            sx={{
+                width: '100%',
+                maxWidth: 360
+            }}
         >
             <ListItem>
                 <ListItemAvatar>
-                    {props.idUser == 0
-                        ? ""
-                        : <Avatar src={props.photos.small == null ? "" : props.photos.small}>
-                            <ImageIcon/>
-                        </Avatar>}
+                    {props.idUser==0?"":
+                    <Avatar src={props.photos.small == null ? "" : props.photos.small}>
+                         <ImageIcon/>
+                    </Avatar>}
                 </ListItemAvatar>
                 <ListItemText primary={props.userName} secondary={LastMessage}/>
                 <div className={"Last-Message-date"}>
                     <p className={"Last-message-br"}>
                         <br/>
-                        {LastMessage != undefined ? props.versios == "listOfuser" ? props.lastDialogActivityDate : "" : ""}
+                        {LastMessage!=undefined?props.versios=="listOfuser"?props.lastDialogActivityDate:"":""}
                     </p>
                 </div>
-                {props.idUser != 0
+                {props.idUser!=0
                     ?
-                    props.versios!="listOfuser"?<FunktionalUser idUser={props.idUser} typeOfUser={props.TypeOfUser}/>:""
+                    <FunktionalUser idUser={props.idUser} typeOfUser={props.TypeOfUser}/>
                     : ""
                 }
 
@@ -79,7 +78,7 @@ type TableUsersType = {
     photos: photosType,
     lastDialogActivityDate: string,
     idUser: number,
-    LastActiveUser: string,
-    TypeOfUser: "Friend" | "Other",
-    versios: "listOfuser" | "headerChat"
+    LastActiveUser:string,
+    TypeOfUser:"Friend" | "Other",
+    versios:"listOfuser" | "headerChat"
 }

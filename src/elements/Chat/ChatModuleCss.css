@@ -97,8 +97,3 @@
         display: block;
     }
 }
-@media (max-width: 410px) {
-    .form-List-ofUsrerAdoptive{
-        width: 220px !important;
-    }
-}

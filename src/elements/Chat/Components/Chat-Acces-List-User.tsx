@@ -30,6 +30,21 @@ export const ChatAccesListUser = React.memo((props) => {
 
     return (
         <div className={'Chat-List-of-Users'}>
+            <div className={"ListOfUsersAbsolute"}>
+                <Chip onClick={() => {
+                    ChangePage("Friends")
+                }} label="Friends" variant={typeOfDialogs == "Friends" ? "filled" : "outlined"} color="success"
+                      icon={<Diversity1SharpIcon/>}/>
+                <Chip onClick={() => {
+                    ChangePage("Others")
+                }} label="Others" variant={typeOfDialogs == "Others" ? "filled" : "outlined"} color="warning"
+                      icon={<GroupIcon/>}/>
+                <Chip onClick={() => {
+                    ChangePage("Groups")
+                }} label="Group" variant={typeOfDialogs == "Groups" ? "filled" : "outlined"}
+                      avatar={<Diversity2SharpIcon>F</Diversity2SharpIcon>}/>
+            </div>
+            <br/>
             {FiltredArray.map((el, index) => {
                 return <TableUsers
                     idUser={el.id}
