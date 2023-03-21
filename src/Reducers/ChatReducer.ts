@@ -252,6 +252,21 @@ export const GetMessage = (idUser: number, photos: photosType, UserName: string,
         dispatch(statusUserAC("loading"))
         ChatApi.GetMessage(idUser).then(res => {
             if (res.data.error == null) {
+
+
+                       let respon = UsersApi.getResponstFollow(idUser).then(r => {
+                           if (r.data == true) {
+                               dispatch(SetAllFollowIdUsers(idUser,"Friend"))
+                           }
+                           if (r.data == false) {
+                               dispatch(SetAllFollowIdUsers(idUser,"Other"))
+                               console.log( "false")
+                           }
+                       }).catch((error) => {
+                           console.error(error)
+                       })
+
+
                 dispatch(SetMessages(res.data.items, res.data.totalCount, photos, idUser, UserName, lastDialogActivityDate, lastUserActivityDate, 1))
                 if (res.data.totalCount > 20) {
                     dispatch(SetConditionNavigation("Yes"))
@@ -334,20 +349,20 @@ export const GetAllStartedDialogs = () => {
             let copy:Array<StartedUsersChatType>=res.data
             dispatch(SetAllStartedDialogs(copy))
 
-             let NewCopy=copy.map(el=> {
-                    let respon = UsersApi.getResponstFollow(el.id).then(res => {
-                        if (res.data == true) {
-                            dispatch(SetAllFollowIdUsers(el.id,"Friend"))
-                        }
-                        if (res.data == false) {
-                            dispatch(SetAllFollowIdUsers(el.id,"Other"))
-                            console.log( "false")
-                        }
-                    }).catch((error) => {
-                        console.error(error)
-                    })
-
-                })
+             // let NewCopy=copy.map(el=> {
+             //        let respon = UsersApi.getResponstFollow(el.id).then(res => {
+             //            if (res.data == true) {
+             //                dispatch(SetAllFollowIdUsers(el.id,"Friend"))
+             //            }
+             //            if (res.data == false) {
+             //                dispatch(SetAllFollowIdUsers(el.id,"Other"))
+             //                console.log( "false")
+             //            }
+             //        }).catch((error) => {
+             //            console.error(error)
+             //        })
+             //
+             //    })
 
 
 
@@ -373,9 +388,6 @@ export const StartDialogs = (idUser: number) => {
                     dispatch(statusUserAC("succeeded"))
                     console.error(error, dispatch)
                 })
-
-
-
             }
             dispatch(errorUserAC(res.data.error))
             dispatch(statusUserAC("succeeded"))

@@ -63,7 +63,7 @@ export default function TableUsers(props: TableUsersType) {
                 </div>
                 {props.idUser != 0
                     ?
-                    <FunktionalUser idUser={props.idUser} typeOfUser={props.TypeOfUser}/>
+                    props.versios!="listOfuser"?<FunktionalUser idUser={props.idUser} typeOfUser={props.TypeOfUser}/>:""
                     : ""
                 }
 
