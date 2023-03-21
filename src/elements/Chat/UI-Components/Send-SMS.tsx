@@ -55,5 +55,6 @@ type FullWidthTextField={
     photoUser: photosType,
     lastDialogActivityDate: string,
     userName: string,
-    LastActiveUser:string
+    LastActiveUser:string,
+    typeOfUser:"Other" | "Friend"
 }

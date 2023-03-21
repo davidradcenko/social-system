@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 
 export  const ChatSearchList=React.memo(()=> {
     const [state, setState] = React.useState({
-        left: true
+        left: false
     });
 
     const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {

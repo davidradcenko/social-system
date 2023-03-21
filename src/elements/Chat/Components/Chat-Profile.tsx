@@ -20,7 +20,7 @@ import {useEffect} from "react";
 //Adoptive
 export  const ChatProfileAdoptive=React.memo(()=> {
     const [state, setState] = React.useState({
-        right: true
+        right: false
     });
 
     const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {

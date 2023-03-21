@@ -14,7 +14,6 @@ import ButtonFunctional from "./Button-Functional";
 import FunktionalUser from "./Funktional-User";
 
 export default function TableUsers(props: TableUsersType) {
-
     //take from Reducer
     const dispatch = useAppDispatch()
     //from chat
@@ -23,7 +22,7 @@ export default function TableUsers(props: TableUsersType) {
 
     //function get last message
     const TakeMessage = (idUser: number) => {
-        dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate, props.LastActiveUser))
+        dispatch(GetMessage(idUser, props.photos, props.userName, props.lastDialogActivityDate, props.LastActiveUser,1))
     }
 
 

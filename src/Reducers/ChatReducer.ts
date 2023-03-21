@@ -23,7 +23,8 @@ const initialState: UsersStartedDialogsType = {
         userName: '',
         lastDialogActivityDate: '',
         lastUserActivityDate: '',
-        currentList: 1
+        currentList: 1,
+        typeOfUser:"Other"
     },
     SearchUsers: {
         users: [],
@@ -140,7 +141,13 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
                 }
                 return n
             })
+            let setType:"Other" | "Friend"="Other"
+            let type=state.StartedUsersChat.find(el=>el.id==action.IdUser)
+            if (type!=undefined){
+                if (type.typeUser=="Friend") setType="Friend"
+                if (type.typeUser=="Other") setType="Other"
 
+            }
             return {
                 ...state,
                 MessageCurrentUser: {
@@ -151,7 +158,8 @@ export const ChatReducer = (state: UsersStartedDialogsType = initialState, actio
                     userName: action.userName,
                     lastDialogActivityDate: action.lastDialogActivityDate,
                     lastUserActivityDate: action.lastUserActivityDate,
-                    currentList: action.currentList
+                    currentList: action.currentList,
+                    typeOfUser:setType
                 }
             }
         }
@@ -607,7 +615,8 @@ export type Messages_AND_DATAofUSER_Type = {
     userName: string,
     lastDialogActivityDate: string,
     lastUserActivityDate: string
-    currentList: number
+    currentList: number,
+    typeOfUser:"Other" | "Friend"
 }
 export type SearchUserType = {
     id: number

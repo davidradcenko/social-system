@@ -22,9 +22,12 @@ export const ChatWind = () => {
     let totalCount = useSelector<RootState, number>(state => state.chat.MessageCurrentUser.TotalCount)
     let LastActiveUser = useSelector<RootState, string>(state => state.chat.MessageCurrentUser.lastUserActivityDate)
     const UsersStartedDialogs = useSelector<RootState, Array<StartedUsersChatType>>(state => state.chat.StartedUsersChat)
+    const typeOfUser = useSelector<RootState, "Other" | "Friend">(state => state.chat.MessageCurrentUser.typeOfUser)
+
     //from paginator
     const lookMessages = useSelector<RootState, "Yes" | "No">(state => state.paginator.needsNavigate)
     const currentPage = useSelector<RootState, number>(state => state.paginator.CurrentPage)
+
 
 
     //function when end scroll div, give next table
@@ -48,17 +51,19 @@ export const ChatWind = () => {
     }
 
 
-    let type:"Friend" | "Other"="Other"
 
 
-    useEffect(()=>{
-        let userType=UsersStartedDialogs.find(el=>el.id==IdUser)
-        if (userType!=undefined){
-            type=userType.typeUser
-            debugger
-        }
 
-    },[])
+//     // useEffect(()=>{
+// let type
+//         let userType=UsersStartedDialogs.find(el=>el.id==IdUser)
+//         if (userType!=undefined){
+//
+//             let type=userType.typeUser
+//         }
+//
+//         debugger
+//     // },[])
 
     return (
         <div className={'Chat-List'}>
@@ -67,7 +72,9 @@ export const ChatWind = () => {
                 <TableUsers idUser={IdUser} photos={{small: photoUser, large: null}} userName={userName}
                             lastDialogActivityDate={lastDialogActivityDate} LastActiveUser={LastActiveUser}
                             versios={"headerChat"}
-                            TypeOfUser={type}
+                            TypeOfUser={typeOfUser}
+                            // TypeOfUser={type}
+
                 />
 
                 {IdUser==0
@@ -88,7 +95,7 @@ export const ChatWind = () => {
                 <div className={'Send-SMS'}>
 
                     <FullWidthTextField  lastDialogActivityDate={lastDialogActivityDate} userName={userName}
-                                        photoUser={{small: photoUser, large: null}} IdUser={IdUser} LastActiveUser={LastActiveUser}/>
+                                        photoUser={{small: photoUser, large: null}} IdUser={IdUser} LastActiveUser={LastActiveUser} typeOfUser={typeOfUser}/>
 
                     {/*button go to bottom*/}
                     {currentListMessage>=2
