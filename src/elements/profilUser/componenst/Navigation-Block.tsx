@@ -2,13 +2,15 @@ import HomeIcon from "../../../img/nav-icons/home.png";
 import DialogsIcon from "../../../img/nav-icons/Frame.png";
 import MesengerIcon from "../../../img/nav-icons/heart.png";
 import SetingsIcon from "../../../img/nav-icons/settings.png";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {GetMyProfilTK} from "../../../Reducers/profilReducer";
 import {RootState, useAppDispatch} from "../../../store/store";
 import testInfoBlockImg from "../../../img/icons-profel/Ellipse 17.png";
 import {useSelector} from "react-redux";
 import {InitialazedType} from "../../../Reducers/InitialazedReducer";
 import {Link} from "react-router-dom";
+import Button from "@mui/material/Button";
+import {LoginOut} from "../../../Reducers/LoginReducer";
 
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
@@ -32,7 +34,9 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
     const GoToProfil = () => {
         dispatch(GetMyProfilTK(Number(AdminData.mainUserId)))
     }
-
+    const logoutHandler = useCallback(() => {
+        dispatch(LoginOut())
+    }, [])
     return (
         <div className={"Navigation-block"}>
             <div className="all-elements-nav">
@@ -40,7 +44,11 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                     <div className="profile">
                         <img onClick={GoToProfil} src={props.fotoUser == null ? testInfoBlockImg : props.fotoUser}
                              alt="User img"/>
-                        <p onClick={GoToProfil}>{props.FullName}</p>
+                        <div>
+                            <p onClick={GoToProfil}>{props.FullName}</p>
+                            <Button onClick={logoutHandler} className={"BattonLogout"} variant="contained">Sign Out</Button>
+                        </div>
+
                     </div>
                     {/*<div className={'mobuleTypeIconNavigate'}>*/}
                     {/*    <img src={SeachMobule} alt="SeachMobule"/>*/}
@@ -49,29 +57,25 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                     {/*</div>*/}
                 </div>
                 <div className="main-navi">
+
                     <div className={"ProfilIcon"}>
                         <img src={HomeIcon} alt="HomeIcon"/>
                         <div onClick={GoToProfil} className={"ProfilIcon-text"}>
                             <p onClick={props.changeSetEditModeProfil}>Edit profile</p>
                         </div>
                     </div>
+
                     <div className={"AlseIcons-HomeIcon AlseIcons"}>
                         <img onClick={props.changeSetEditModeProfil} src={HomeIcon} alt="HomeIcon"/>
                     </div>
-                    <div className={"AlseIcons"}>
-                        <img src={DialogsIcon} alt="DialogsIcon"/>
-                        <p>Dialogs</p>
-                    </div>
+
                     <div className={"AlseIcons"}>
                         <img src={MesengerIcon} alt="MesengerIcon"/>
                         <Link to={'/Chat'}>
                             <p>Message</p>
                         </Link>
                     </div>
-                    <div className={"AlseIcons"}>
-                        <img src={SetingsIcon} alt="SetingsIcon"/>
-                        <p>Settings</p>
-                    </div>
+
                     <div className={"MobuleNavigation"}>
                         <img onClick={GoToProfil} src={props.fotoUser == null ? testInfoBlockImg : props.fotoUser}
                              alt="User img"/>

@@ -50,13 +50,11 @@ export const initializeAppTC = () => {
                 })
                 dispatch(statusUserAC("succeeded"))
             } else {
-                console.error(res.data, dispatch)
                 dispatch(errorUserAC(res.data))
                 dispatch(statusUserAC("succeeded"))
             }
         }).catch((error) => {
             dispatch(errorUserAC(error))
-            console.error(error, dispatch)
         })
     }
 }

@@ -22,7 +22,6 @@ function Hello() {
 }
 
 function App() {
-    console.log("+++++++++++++App  ")
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -33,9 +32,9 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Hello/>}/>
+                    {/*<Route path="/" element={<Hello/>}/>*/}
+                    <Route path="/" element={<ProfileUser/>}/>
                     <Route path="/Login" element={<Login/>}/>
-                    <Route path="/Account" element={<ProfileUser/>}/>
                     <Route path="/Chat" element={<Chat/>}/>
 
 

@@ -6,20 +6,33 @@ import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {useFormik} from "formik";
 import {loginIn} from "../../Reducers/LoginReducer";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import {Checkbox, FormGroup, Input, InputAdornment} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import IconButton from "@mui/material/IconButton";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+import Button from "@mui/material/Button";
 
 
 function Login() {
+
+    const dispatch = useAppDispatch()
+    const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
+    const TypeOfError = useSelector<RootState, string | null>(state => state.initialazed.error)
+
+    const [showPassword, setShowPassword] = React.useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
 
     type FormikErrorType = {
         email?: string
         password?: string
         rememberMe?: boolean
     }
-
-    const dispatch = useAppDispatch()
-    const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
-
-
     const formik = useFormik({
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -30,7 +43,6 @@ function Login() {
             }
             return errors;
         },
-
         initialValues: {
             email: '',
             password: '',
@@ -41,43 +53,67 @@ function Login() {
         },
     })
 
-
-    if (isLoginIn){
-return <Navigate to={'/Account'} />
+    if (isLoginIn) {
+        return <Navigate to={'/'}/>
     }
     return (<>
-        <HeaderHtml/>
+
         <div className={"Mainblok"}>
-            <div className={"MainLoginForm"}>
-                <div className={"ButtonNav"}>
-                    <input className={"SelectMetodINSIGIN"} type={"button"} value={"LOGIN"}/>
-                    <input type={"button"} value={"REGISTER"}/>
-                </div>
-                <div className={"FormLog"}>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className={"LoginMetad"}>
-                            <div>
-                                <p>Sign in with:</p>
-                                <p>or:</p>
-                            </div>
-                        </div>
-                        <div className={"ButtionsLogin"}>
-
-                            <input  {...formik.getFieldProps("email")}  type="text" placeholder={"Email or username"}/>
-                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-
-                            <input  {...formik.getFieldProps("password")} type="text" placeholder={"Password"}/>
-                            {formik.errors.password ? <div>{formik.errors.password}</div> : null}
 
 
-                            <label form={"Ckeked"}>Remember?</label>
-                            <input {...formik.getFieldProps("rememberMe")}  id={"Ckeked"} type={"checkbox"}/>
+            <div className={"FormLog"}>
 
-                            <input type={'submit'}  value={"SIGN IN"}/>
-                        </div>
-                        <p className={"LinkForRegist"}>Not a member? <a href="#">Register</a></p>
-                    </form>
-                </div>
+                <form onSubmit={formik.handleSubmit}>
+
+                    <TextField
+                        {...formik.getFieldProps("email")}
+                        helperText={formik.errors.email ? `${formik.errors.email} `: null}
+                        id="demo-helper-text-aligned"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        label="Email"
+                    />
+                    <br/>
+                    <br/>
+                    <FormControl sx={{m: 1, width: '25ch'}} variant="standard">
+                        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                        <Input
+                            {...formik.getFieldProps("password")}
+                            id="standard-adornment-password"
+                            type={showPassword ? 'text' : 'password'}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+
+                    <br/>
+                    <br/>
+
+                    <FormGroup>
+                        <FormControlLabel
+                            {...formik.getFieldProps("rememberMe")}
+                            id={"Ckeked"}
+                            control={<Checkbox defaultChecked/>} label="Remember?"/>
+                    </FormGroup>
+
+                    <br/>
+
+                    <Button className={"button"}  type={'submit'} variant="contained" disableElevation>
+                        SIGN IN
+                    </Button>
+
+                </form>
+
             </div>
         </div>
     </>)

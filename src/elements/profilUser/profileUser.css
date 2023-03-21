@@ -7,7 +7,11 @@
 body {
 
 }
-
+a:-webkit-any-link {
+    color: black !important;
+    cursor: pointer;
+    text-decoration: none ;
+}
 .Main-block {
     max-width: 1980px;
 
@@ -37,10 +41,12 @@ body {
     background-size: 100%;
     background-repeat: no-repeat;
     z-index: 6;
+    border: none;
     background-color: white;
 }
 .ChangeCurrentTable2 {
     width: 24px;
+    border: none;
     height: 24px;
     margin-right: 15px;
     font-size: 15px;
@@ -58,6 +64,7 @@ body {
 .ChangeCurrentTable3 {
     width: 24px;
     height: 24px;
+    border: none;
     margin-right: 15px;
     background-color: white;
     font-size: 15px;
@@ -72,6 +79,7 @@ body {
 .ChangeCurrentTable4 {
     width: 24px;
     height: 24px;
+    border: none;
     margin-right: 15px;
     background-color: white;
     font-size: 15px;
@@ -96,11 +104,13 @@ body {
 
 .Navigation-block {
     border: 1px solid #B5B2B2;
-    width: 509px;
+    width: 409px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
-
+.BattonLogout{
+    margin-left: 12px !important;
+}
 .all-elements-nav {
     padding-left: 61px;
     padding-top: 71px;
@@ -389,7 +399,7 @@ body {
 .social-InfoProffil img {
     padding-top: 15px;
     margin-right: 10px;
-    height: 38px;
+    /*height: 38px;*/
     width: 38px;
 }
 

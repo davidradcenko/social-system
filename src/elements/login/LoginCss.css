@@ -1,82 +1,18 @@
-* {
-    padding: 0;
-    margin: 0;
-    border: none;
-}
 .Mainblok{
-}
-.MainLoginForm {
-    width: 500px;
-    margin: 0 auto;
-}
-
-.MainLoginForm .ButtonNav {
-    margin-top: 40px;
     width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-around;
-}
-
-.MainLoginForm .ButtonNav input {
-    width: 130px;
-    height: 40px;
-    border-radius: 10%;
-}
- .SelectMetodINSIGIN{
-    background-color: dodgerblue;
-     color: aliceblue;
-}
-.MainLoginForm .FormLog {
-
-}
-
-.MainLoginForm .FormLog .LoginMetad {
-    width: 100%;
-    display: flex;
+    align-items: center;
     justify-content: center;
 }
-
-.MainLoginForm .FormLog .LoginMetad div {
+.FormLog{
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    margin-top: 20px;
-    font-size: 18px;
+    width: 500px;
+    align-items: center;
+    margin-top: 100px;
 }
-.MainLoginForm .FormLog .LoginMetad div p{
-    font-size: 18px;
-}
-.MainLoginForm .FormLog .LoginMetad div p:last-child {
-    margin: 0 auto;
-}
-
-.MainLoginForm .FormLog .ButtionsLogin {
-}
-
-.MainLoginForm .FormLog .ButtionsLogin input {
-    height: 30px;
-    display: block;
+.button{
     width: 100%;
-    margin-top: 20px;
-}
-.MainLoginForm .FormLog .ButtionsLogin input:not([type="submit"]){
-border: 1px solid darkgrey;
-}
-
-.MainLoginForm .FormLog .ButtionsLogin input:not([type="text"]) {
-    background-color: dodgerblue;
-    color: aliceblue;
-    border: none;
-}
-.MainLoginForm .FormLog .ButtionsLogin input:not([type="text"]):hover {
-    box-shadow: 5px 5px 5px 2px darkgrey;
-}
-.MainLoginForm  .FormLog .LinkForRegist{
-    margin-top: 40px;
-    display: flex;
-    font-size: 18px;
-    justify-content: center;
-}
-.MainLoginForm  .FormLog .LinkForRegist a{
-    font-size: 18px;
+    text-align: center;
 }
