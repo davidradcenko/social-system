@@ -101,7 +101,7 @@ div {
 .Chat-List-of-Users{
     min-height: 100px;
     position: relative;
-    max-height: 689px;
+    max-height: 601px;
     overflow: scroll;
 }
 .Chat-List-of-Users::-webkit-scrollbar {

@@ -16,3 +16,12 @@
     width: 100%;
     text-align: center;
 }
+.Namefun{
+    text-align: center;
+    color: #57BAD9;
+}
+#Redist a{
+
+    text-decoration: none;
+    color: #00F536 !important;
+}

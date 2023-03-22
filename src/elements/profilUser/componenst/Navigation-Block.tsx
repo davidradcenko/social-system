@@ -40,22 +40,20 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
     return (
         <div className={"Navigation-block"}>
             <div className="all-elements-nav">
+
                 <div className="logo-profil">
                     <div className="profile">
                         <img onClick={GoToProfil} src={props.fotoUser == null ? testInfoBlockImg : props.fotoUser}
                              alt="User img"/>
                         <div>
                             <p onClick={GoToProfil}>{props.FullName}</p>
-                            <Button onClick={logoutHandler} className={"BattonLogout"} variant="contained">Sign Out</Button>
+
                         </div>
 
                     </div>
-                    {/*<div className={'mobuleTypeIconNavigate'}>*/}
-                    {/*    <img src={SeachMobule} alt="SeachMobule"/>*/}
-                    {/*    <img src={MoonModule} alt="MoonModule"/>*/}
-                    {/*    <img src={SelectMobule} alt="SelectMobule"/>*/}
-                    {/*</div>*/}
                 </div>
+                <Button onClick={logoutHandler} className={"BattonLogoutd"} variant="contained">Out</Button>
+                <Button onClick={logoutHandler} className={"BattonLogout"} variant="contained">Sign Out</Button>
                 <div className="main-navi">
 
                     <div className={"ProfilIcon"}>
@@ -81,8 +79,10 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
                              alt="User img"/>
                         <div className={'NavigatedSeledNameMobule'}>
                             <p onClick={props.changeSetEditModeProfil}>Edit Profile</p>
-                            <p>Chat</p>
-                            <p>Login-out</p>
+                            <Link to={'/Chat'}>
+                                <p>Chat</p>
+                            </Link>
+                            <p onClick={logoutHandler}>Login-out</p>
                         </div>
                     </div>
                 </div>

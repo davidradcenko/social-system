@@ -36,7 +36,7 @@ export default function TableUsers(props: TableUsersType) {
 
     // useEffect get last message
     useEffect(() => {
-        if (props.idUser!=0) dispatch(GetLastMessage(props.idUser))
+        if (props.idUser!=0 && props.index<10) dispatch(GetLastMessage(props.idUser))
     },[props.idUser])
 
     return (
@@ -76,6 +76,7 @@ export default function TableUsers(props: TableUsersType) {
 type TableUsersType = {
     userName: string,
     photos: photosType,
+    index:number,
     lastDialogActivityDate: string,
     idUser: number,
     LastActiveUser:string,

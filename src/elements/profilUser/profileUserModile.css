@@ -1,6 +1,14 @@
+
+
 @media (max-width: 1860px) {
     .Navigation-block {
         width: 98px !important;
+    }
+    .BattonLogoutd{
+        display: block !important;
+    }
+    .BattonLogout {
+        display: none !important;
     }
 
     .all-elements-nav {
@@ -228,6 +236,9 @@
 }
 
 @media (max-width: 725px) {
+    .BattonLogoutd{
+        display: none !important;
+    }
     .all-elements-nav {
         width: auto;
         background: #57BAD9;
@@ -530,45 +541,56 @@
         margin-right: 25px;
     }
 }
+
 @media (max-width: 676px) {
-    .Edit-profil-menu{
-        left:15px;
+    .Edit-profil-menu {
+        left: 15px;
     }
 }
+
 @media (max-width: 602px) {
-    .Edit-profil-menu{
+    .Edit-profil-menu {
         width: 100%;
         left: 0;
     }
-    .Edit-mode-Inputs input{
+
+    .Edit-mode-Inputs input {
         width: 100%;
         max-width: 436px;
     }
-    .VectopCloseEditWindow{
-        right:10px
+
+    .VectopCloseEditWindow {
+        right: 10px
     }
-    .Edit-profil-menu{
-    border: none;
+
+    .Edit-profil-menu {
+        border: none;
     }
 }
+
 @media (max-width: 479px) {
-    .Edit-mode-Inputs{
+    .Edit-mode-Inputs {
         width: 100%;
     }
-    .Edit-mode-Inputs input{
+
+    .Edit-mode-Inputs input {
         padding: 0px;
     }
-    #About{
+
+    #About {
         padding: 0px;
     }
-    .Edit-mode-Frofil form{
+
+    .Edit-mode-Frofil form {
         width: 100%;
     }
-    .Edit-mode-social-inputs{
+
+    .Edit-mode-social-inputs {
         width: 100%;
     }
 }
-.LoagingDIv{
+
+.LoagingDIv {
     padding: 0px;
     position: fixed;
     z-index: 10001;
@@ -580,7 +602,8 @@
     justify-content: center;
     background: rgba(27, 15, 15, 0.5);
 }
-.Loaging{
+
+.Loaging {
     width: 150px;
     height: 150px;
 }

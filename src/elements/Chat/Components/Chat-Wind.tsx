@@ -72,6 +72,7 @@ export const ChatWind = () => {
                             lastDialogActivityDate={lastDialogActivityDate} LastActiveUser={LastActiveUser}
                             versios={"headerChat"}
                             TypeOfUser={typeOfUser}
+                            index={0}
                             // TypeOfUser={type}
 
                 />

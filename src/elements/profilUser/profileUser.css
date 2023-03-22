@@ -101,7 +101,9 @@ a:-webkit-any-link {
 .MainblockCouter div button {
     margin-right: 10px;
 }
-
+.BattonLogoutd{
+    display: none !important;
+}
 .Navigation-block {
     border: 1px solid #B5B2B2;
     width: 409px;

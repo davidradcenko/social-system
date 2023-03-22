@@ -64,10 +64,17 @@ function Login() {
             <div className={"FormLog"}>
 
                 <form onSubmit={formik.handleSubmit}>
-
+                    <p className={"Namefun"}>Test Email and Password</p>
+                    <br/>
+                    <p>Email: free@samuraijs.com
+                        <br/>
+                        Password: free</p>
+                    <br/>
+                    <p style={{textAlign:'center', color:'#57BAD9'}}>or you can registering <span id={"Redist"}><a  href="https://social-network.samuraijs.com/signUp">here</a></span></p>
+                    <br/>
                     <TextField
                         {...formik.getFieldProps("email")}
-                        helperText={formik.errors.email ? `${formik.errors.email} `: null}
+                        helperText={formik.errors.email ? `${formik.errors.email} ` : null}
                         id="demo-helper-text-aligned"
                         InputLabelProps={{
                             shrink: true,
@@ -108,7 +115,7 @@ function Login() {
 
                     <br/>
 
-                    <Button className={"button"}  type={'submit'} variant="contained" disableElevation>
+                    <Button className={"button"} type={'submit'} variant="contained" disableElevation>
                         SIGN IN
                     </Button>
 

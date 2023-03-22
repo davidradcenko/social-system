@@ -178,7 +178,6 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
             youtube: ""
         },
         onSubmit: values => {
-            debugger
             let data = {
                 userId: ProfilData.userId,
                 lookingForAJob: values.JobSearch,

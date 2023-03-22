@@ -32,7 +32,6 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    {/*<Route path="/" element={<Hello/>}/>*/}
                     <Route path="/" element={<ProfileUser/>}/>
                     <Route path="/Login" element={<Login/>}/>
                     <Route path="/Chat" element={<Chat/>}/>

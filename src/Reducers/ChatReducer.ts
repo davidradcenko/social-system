@@ -349,7 +349,8 @@ export const GetAllStartedDialogs = () => {
             let copy:Array<StartedUsersChatType>=res.data
             dispatch(SetAllStartedDialogs(copy))
 
-             let NewCopy=copy.map(el=> {
+             let NewCopy=copy.map((el,index)=> {
+                 if (index<10){
                     let respon = UsersApi.getResponstFollow(el.id).then(res => {
                         if (res.data == true) {
                             dispatch(SetAllFollowIdUsers(el.id,"Friend"))
@@ -361,7 +362,7 @@ export const GetAllStartedDialogs = () => {
                     }).catch((error) => {
                         console.error(error)
                     })
-
+                 }
                 })
 
 
