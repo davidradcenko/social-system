@@ -229,6 +229,10 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                  src={VectopCloseEditWindow} alt="VectopCloseEditWindow"/>
             {/*Edit Menu start*/}
             <div className="Edit-mode-Frofil">
+
+
+
+
                 <form onSubmit={formik.handleSubmit}>
                     <p>Edit profile</p>
                     <div className={"IMGCenter"}>
@@ -295,7 +299,11 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
                         </div>
                     </div>
                     <input className={"SpecialClassButton"} type={"submit"} value={"Save"}/>
+
+
                 </form>
+
+
             </div>
         </div>
     )
@@ -312,7 +320,7 @@ type CustomizedInputBaseType = {
 export const CustomizedInputBase = (props: CustomizedInputBaseType) => {
     return (
         <Paper
-            component="form"
+            // component="form"
             sx={{p: '0px 0px', display: 'flex', alignItems: 'center', width: 600}}
         >
             <TextField
