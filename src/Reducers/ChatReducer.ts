@@ -285,6 +285,7 @@ export const GetMessage = (idUser: number, photos: photosType, UserName: string,
         })
     }
 }
+
 export const GetNextPageMessage = (idUser: number, photos: photosType, UserName: string, lastDialogActivityDate: string, count: number = 10, PageNumber: number) => {
     return (dispatch: Dispatch<ActionTypes | StatusUserActionType | ExporsNavigationsType>) => {
         dispatch(statusUserAC("loading"))
