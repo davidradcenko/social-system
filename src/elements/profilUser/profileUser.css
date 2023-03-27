@@ -752,9 +752,9 @@ a:-webkit-any-link {
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    background: conic-gradient(from 149.25deg at 50% 50%, #00F536 -109.67deg, #3ED1FF 29.46deg, #FC037B 171.8deg, #00F536 250.33deg, #3ED1FF 389.46deg);
-    box-shadow: -1px 9px 9px 0px rgba(0, 0, 0, 0.25);
-    filter: drop-shadow(-1px 9px 9px rgba(0, 0, 0, 0.25));
+    /*background: conic-gradient(from 149.25deg at 50% 50%, #00F536 -109.67deg, #3ED1FF 29.46deg, #FC037B 171.8deg, #00F536 250.33deg, #3ED1FF 389.46deg);*/
+    /*box-shadow: -1px 9px 9px 0px rgba(0, 0, 0, 0.25);*/
+    /*filter: drop-shadow(-1px 9px 9px rgba(0, 0, 0, 0.25));*/
 }
 
 .Edit-mode-Frofil img {
@@ -841,8 +841,9 @@ a:-webkit-any-link {
     box-shadow: 10px 10px 10px 0px #00000066;
     transition: 1s;
 }
-.HovwrImgDounload:before{
-
+.HovwrImgDounload{
+    width: 100px;
+    height: 100px;
 }
 .Edit-mode-social-inputs {
     display: flex;

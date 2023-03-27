@@ -103,7 +103,7 @@ export const SaveFotoTK=(file:any)=>{
 export const getProfileAC = (value:UserProfilType) => ({type: "GET-PROFILE",value}) as const
 export const setFotoAC = (value:any) => ({type: "SET-FOTO-PROFILE",value}) as const
 
-
+export type GetProfileAC=ReturnType<typeof getProfileAC>
 //types
 
 export type profilChangeType={

@@ -62,9 +62,9 @@ let n=0
 
 export const TableFriend = React.memo((props: ttt) => {
     const dispatch = useAppDispatch()
-    useEffect(() => {
-        dispatch(GetUsersProfilTK("Friends", props.tl.id))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(GetUsersProfilTK("Friends", props.tl.id))
+    // }, [])
     let CurrentPage = useSelector<RootState, number>(state => state.users.CurrentPageFriends)
     const unFollowUser=()=>{
         dispatch(UnFollowTK(props.tl.id))
@@ -107,9 +107,9 @@ export const TableNoFriend=React.memo((props:any)=>{
     const GoToProfil=()=>{
         dispatch(GetMyProfilTK(props.tl.id))
     }
-    useEffect(() => {
-        dispatch(GetUsersProfilTK("NoFriends", props.tl.id))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(GetUsersProfilTK("NoFriends", props.tl.id))
+    // }, [])
     return(
         <div className="two-pass-info-block">
             <div className={"one-pas-info"}>

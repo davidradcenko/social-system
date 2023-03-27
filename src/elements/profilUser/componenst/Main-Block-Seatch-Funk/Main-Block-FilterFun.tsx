@@ -10,10 +10,7 @@ export const MainBlockFilterFun = React.memo((props: MainBlockFilterFunType) => 
     console.log("+++++++++++++MainBlockFilterFun  ")
     return (<>
 
-        <EditModeProfilWind
-            EditModeProfil={props.EditModeProfil}
-            changeSetEditModeProfil={props.changeSetEditModeProfil}
-        />
+        <EditModeProfilWind/>
 
         <div className={props.EditModeProfil == true ? "boground-Shadow" : "boground-Shadow-none"}></div>
     </>)

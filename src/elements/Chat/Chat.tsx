@@ -17,7 +17,7 @@ export const Chat = React.memo(() => {
 
     useEffect(() => {
         dispatch(GetAllStartedDialogs())
-        dispatch(IfHaveNewMessageTK())
+
     })
 
     return (

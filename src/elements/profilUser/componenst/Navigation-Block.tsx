@@ -11,25 +11,26 @@ import {InitialazedType} from "../../../Reducers/InitialazedReducer";
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {LoginOut} from "../../../Reducers/LoginReducer";
+import EditProfileFormUI from "./UI-components/Edit-ProfileFormUI";
+import EditProfileImg from "./UI-components/Edit-ProfileImg";
 
 type NavigationBlockTypes = {
     EditModeProfil: boolean,
     changeSetEditModeProfil: () => void,
-    FullName: string
-
-    fotoUser: string | null
 }
-export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
+export const NavigationBlock = React.memo(() => {
     console.log("+++++++++++++NavigationBlock  ")
     const dispatch = useAppDispatch()
+
     const AdminData = useSelector<RootState, InitialazedType>(state => state.initialazed)
     const [Vector, SetVector] = useState(true)
+
     const [TextPapap, SetTextPapap] = useState(false)
 
+    const [OpenEdit, CloseEdit] = useState<boolean>(false)
 
     const changeSettextPapap = () => {
-        SetTextPapap(!TextPapap)
-        SetVector(!Vector)
+        CloseEdit(!TextPapap)
     }
     const GoToProfil = () => {
         dispatch(GetMyProfilTK(Number(AdminData.mainUserId)))
@@ -41,44 +42,38 @@ export const NavigationBlock = React.memo((props: NavigationBlockTypes) => {
         <div className={"Navigation-block"}>
             <div className="all-elements-nav">
 
+
                 <div className="logo-profil">
                     <div className="profile">
-                        <img onClick={GoToProfil} src={props.fotoUser == null ? testInfoBlockImg : props.fotoUser}
+                        <img onClick={GoToProfil} src={AdminData.foto == null ? testInfoBlockImg : AdminData.foto}
                              alt="User img"/>
                         <div>
-                            <p onClick={GoToProfil}>{props.FullName}</p>
-
+                            <p onClick={GoToProfil}>{AdminData.name}</p>
                         </div>
 
                     </div>
                 </div>
                 <Button onClick={logoutHandler} className={"BattonLogoutd"} variant="contained">Out</Button>
                 <Button onClick={logoutHandler} className={"BattonLogout"} variant="contained">Sign Out</Button>
+
                 <div className="main-navi">
 
-                    <div className={"ProfilIcon"}>
-                        <img src={HomeIcon} alt="HomeIcon"/>
-                        <div onClick={GoToProfil} className={"ProfilIcon-text"}>
-                            <p onClick={props.changeSetEditModeProfil}>Edit profile</p>
-                        </div>
-                    </div>
+                    <EditProfileImg/>
 
-                    <div className={"AlseIcons-HomeIcon AlseIcons"}>
-                        <img onClick={props.changeSetEditModeProfil} src={HomeIcon} alt="HomeIcon"/>
-                    </div>
 
                     <div className={"AlseIcons"}>
-                        <img src={MesengerIcon} alt="MesengerIcon"/>
                         <Link to={'/Chat'}>
+                        <img src={MesengerIcon} alt="MesengerIcon"/>
+                        {/*<Link to={'/Chat'}>*/}
                             <p>Message</p>
                         </Link>
                     </div>
 
                     <div className={"MobuleNavigation"}>
-                        <img onClick={GoToProfil} src={props.fotoUser == null ? testInfoBlockImg : props.fotoUser}
+                        <img onClick={GoToProfil} src={AdminData.foto == null ? testInfoBlockImg : AdminData.foto}
                              alt="User img"/>
                         <div className={'NavigatedSeledNameMobule'}>
-                            <p onClick={props.changeSetEditModeProfil}>Edit Profile</p>
+                            <EditProfileFormUI OpenCloseWindEdit={TextPapap}/>
                             <Link to={'/Chat'}>
                                 <p>Chat</p>
                             </Link>

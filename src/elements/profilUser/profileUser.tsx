@@ -19,38 +19,31 @@ import {
 } from "../../Reducers/UsersReducer";
 import {InitialazedType} from "../../Reducers/InitialazedReducer";
 import {CircularProgress} from "@mui/material";
+import {IfHaveNewMessageTK} from "../../Reducers/ChatReducer";
 
 export const ProfileUser = React.memo(() => {
     console.log("__________________________ProfileUser")
     const dispatch = useAppDispatch()
     const isLoginIn = useSelector<RootState, boolean>(state => state.login.isLoginIn)
-    const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
-    const AdminData = useSelector<RootState, InitialazedType>(state => state.initialazed)
+
 
 
     //FormStates
-    const [EditModeProfil, SetEditModeProfil] = useState<boolean>(false)
     const [StateResultTable, SetStateResultTable] = useState<"Followers" | "Recommendations">("Followers")
     const chengeStateResultTable = () => {
         SetStateResultTable(StateResultTable == "Followers" ? "Recommendations" : "Followers")
     }
-    const changeSetEditModeProfil = () => {
-        SetEditModeProfil(!EditModeProfil)
-    }
 
-    useEffect(() => {
-        //take my profile
-        dispatch(GetMyProfilTK(Number(AdminData.mainUserId)))
+if (isLoginIn) {
+    // useEffect(() => {
 
         //take active page users
+        dispatch(IfHaveNewMessageTK())
         dispatch(GetActivePageNoFriendTC(1))
         dispatch(GetActivePageFriendTC(1))
 
-        //set total count users
-        dispatch(GetTotalFriendCountTC())
-        dispatch(GetTotalNoFriendCountTC())
-    }, [])
-
+    // }, [])
+}
 
     if (!isLoginIn) {
         return <Navigate to={'/Login'}/>
@@ -58,39 +51,26 @@ export const ProfileUser = React.memo(() => {
     return (
         <div className={"Main-block"}>
 
-            {AdminData.status=='loading'
-                ?
-                <div className={"LoagingDIv"}>
-                    <CircularProgress size={100} />
-                </div>
-                :null}
+            {/*{AdminData.status=='loading'*/}
+            {/*    ?*/}
+            {/*    <div className={"LoagingDIv"}>*/}
+            {/*        <CircularProgress size={100} />*/}
+            {/*    </div>*/}
+            {/*    :null}*/}
 
 
 
-            <NavigationBlock
-                EditModeProfil={EditModeProfil}
-                changeSetEditModeProfil={changeSetEditModeProfil}
-                FullName={AdminData.name}
-                fotoUser={AdminData.foto}
-            />
+            <NavigationBlock/>
 
             <div className={"Main-content"}>
 
-                <MainBlockFilterFun
-                    EditModeProfil={EditModeProfil}
-                    changeSetEditModeProfil={changeSetEditModeProfil}
-                />
+                {/*<MainBlockFilterFun*/}
+                {/*    EditModeProfil={EditModeProfil}*/}
+                {/*    changeSetEditModeProfil={changeSetEditModeProfil}*/}
+                {/*/>*/}
 
                 <div className="mainChaend">
-                    <MainInfo
-                        FullName={ProfilData.fullName}
-                        ProfesionSkils={ProfilData.lookingForAJobDescription}
-                        AboutUser={ProfilData.aboutMe}
-                        lokingForAJab={ProfilData.lookingForAJob}
-                        contacts={ProfilData.contacts}
-                        photos={ProfilData.photos}
-
-                    />
+                    <MainInfo/>
                     <MainBlockFilters chengeStateResultTable={chengeStateResultTable}
                                       StateResultTable={StateResultTable}/>
                 </div>

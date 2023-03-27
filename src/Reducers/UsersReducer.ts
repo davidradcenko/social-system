@@ -133,6 +133,7 @@ export const GetActivePageFriendTC=(IdPage:number)=>{
         UsersApi.getCurrentPageFriend(IdPage).then(res => {
                 if (res.data.error==null){
                     dispatch(GetActivePageFriendsAC(res.data.items))
+                    dispatch(SetTotalFriendCountAC(res.data.totalCount))
                     dispatch(statusUserAC("succeeded"))
                 } else{
                     dispatch(errorUserAC(res.data.error))
@@ -152,6 +153,7 @@ export const GetActivePageNoFriendTC=(IdPage:number)=>{
         UsersApi.getCurrentPageNoFriend(IdPage).then(res => {
                 if (res.data.error==null){
                     dispatch(GetActivePageNoFriendsAC(res.data.items))
+                    dispatch(SetTotalNoFriendCountAC(res.data.totalCount))
                     dispatch(statusUserAC("succeeded"))
                 }else {
                     dispatch(errorUserAC(res.data.error))

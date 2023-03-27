@@ -1,6 +1,7 @@
 import {LoginApi} from "../API/api";
 import {Dispatch} from "redux";
 import {setIsLogin, SetIsLoginActionCreater} from "./LoginReducer";
+import {getProfileAC, GetProfileAC} from "./profilReducer";
 
 const Initial: InitialazedType = {
     initialazUser: false,
@@ -32,7 +33,7 @@ export const initialazedReducer = (state: InitialazedType = Initial, action: act
 
 //thunks
 export const initializeAppTC = () => {
-    return (dispatch: Dispatch<actionTypes | SetIsLoginActionCreater>) => {
+    return (dispatch: Dispatch<actionTypes | SetIsLoginActionCreater | GetProfileAC>) => {
         dispatch(statusUserAC("loading"))
         LoginApi.authMe().then(res => {
             if (res.data.resultCode === 0) {
@@ -41,6 +42,7 @@ export const initializeAppTC = () => {
                 dispatch(setIsLogin(true))
 
                 LoginApi.getFotoAdmin(res.data.data.id).then(resA => {
+                        dispatch(getProfileAC(resA.data))
                         dispatch(setAdminFotoAC(resA.data.photos.small))
                         dispatch(statusUserAC("succeeded"))
 
@@ -48,6 +50,9 @@ export const initializeAppTC = () => {
                     dispatch(errorUserAC(error))
                     console.error(error, dispatch)
                 })
+
+
+
                 dispatch(statusUserAC("succeeded"))
             } else {
                 dispatch(errorUserAC(res.data))

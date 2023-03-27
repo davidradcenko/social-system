@@ -40,7 +40,7 @@ export type typeIcons =
     | typeof website
     | typeof youtube;
 
-export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => {
+export const EditModeProfilWind = React.memo(() => {
     console.log("+++++++++EditModeProfilWind")
     const dispatch = useAppDispatch()
     const ProfilData = useSelector<RootState, UserProfilType>(state => state.profil)
@@ -223,91 +223,93 @@ export const EditModeProfilWind = React.memo((props: EditModeProfilWindType) => 
 
 
     return (
-        <div className={props.EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
-
-            <img onClick={props.changeSetEditModeProfil} className={"VectopCloseEditWindow"}
-                 src={VectopCloseEditWindow} alt="VectopCloseEditWindow"/>
-            {/*Edit Menu start*/}
-            <div className="Edit-mode-Frofil">
-
-
-
-
-                <form onSubmit={formik.handleSubmit}>
-                    <p>Edit profile</p>
-                    <div className={"IMGCenter"}>
-                        <div className="EditMode-classfotoFrofel-gradient">
-                            <img className={"HovwrImgDounload"}
-                                 src={ProfilData.photos.small == null ? testInfoBlockImg : ProfilData.photos.small}
-                                 alt="testForo"/>
-                            <input onChange={onMainFotoSelection} id={"downloadImg"} type="file"/>
-                        </div>
-                    </div>
-                    <div className="Edit-mode-Inputs">
-                        <p>Name:</p>
-                        <input
-                            name={"EditModeName"}
-                            id={"EditModeName"}
-                            onChange={formik.handleChange}
-                            value={formik.values.EditModeName}
-                            type="text"
-                        />
-                        <p className={"Edit-mode-looking-for-job"}>Job search:
-                            <input
-                                onChange={formik.handleChange}
-                                checked={formik.values.JobSearch}
-                                id={"JobSearch"}
-                                type="checkbox"
-                            />
-                        </p>
-                        <p>Professional skills:</p>
-                        <input
-                            onChange={formik.handleChange}
-                            value={formik.values.ProfessionalSkills}
-                            id={"ProfessionalSkills"}
-                            type="text"
-                        />
-                        <p>About:</p>
-                        <textarea
-                            id={"About"}
-                            onChange={formik.handleChange}
-                            value={formik.values.About}>
-                        </textarea>
-                        <p>Choose:</p>
-                        <div className={"Edit-mode-sosial"}>
-                            <img onClick={() => changeSetObjectIconsState(twiter, "twitter")} src={twiter}
-                                 alt="twiter"/>
-                            <img onClick={() => changeSetObjectIconsState(facebook, "facebook")} src={facebook}
-                                 alt="facebook"/>
-                            <img onClick={() => changeSetObjectIconsState(vk, "vk")} src={vk} alt="vk"/>
-                            <img onClick={() => changeSetObjectIconsState(instagram, "instagram")} src={instagram}
-                                 alt="instagram"/>
-                            <img onClick={() => changeSetObjectIconsState(youtube, "youtube")} src={youtube}
-                                 alt="youtube"/>
-                            <img onClick={() => changeSetObjectIconsState(github, "github")} src={github} alt="github"/>
-                            <img onClick={() => changeSetObjectIconsState(website, "website")} src={website}
-                                 alt="website"/>
-                        </div>
-                        <div id={"Edit-mode-social-inputs"} className={"Edit-mode-social-inputs"}>
-                            <CustomizedInputBase
-                                id={objectIconsState.stingName}
-                                onChange={formik.handleChange}
-                                value={formik.values[objectIconsState.stingName]}
-                                img={objectIconsState.value}
-                                error={formik.errors[objectIconsState.stingName]}
-                            />
-                        </div>
-                    </div>
-                    <input className={"SpecialClassButton"} type={"submit"} value={"Save"}/>
-
-
-                </form>
-
-
-            </div>
-        </div>
-    )
-})
+        <></>
+    //     <div className={props.EditModeProfil == true ? "Edit-profil-menu" : "Edit-profil-menu-none"}>
+    //
+    //         <img onClick={props.changeSetEditModeProfil} className={"VectopCloseEditWindow"}
+    //              src={VectopCloseEditWindow} alt="VectopCloseEditWindow"/>
+    //         {/*Edit Menu start*/}
+    //         <div className="Edit-mode-Frofil">
+    //
+    //
+    //
+    //
+    //             <form onSubmit={formik.handleSubmit}>
+    //                 <p>Edit profile</p>
+    //                 <div className={"IMGCenter"}>
+    //                     <div className="EditMode-classfotoFrofel-gradient">
+    //                         <img className={"HovwrImgDounload"}
+    //                              src={ProfilData.photos.small == null ? testInfoBlockImg : ProfilData.photos.small}
+    //                              alt="testForo"/>
+    //                         <input onChange={onMainFotoSelection} id={"downloadImg"} type="file"/>
+    //                     </div>
+    //                 </div>
+    //                 <div className="Edit-mode-Inputs">
+    //                     <p>Name:</p>
+    //                     <input
+    //                         name={"EditModeName"}
+    //                         id={"EditModeName"}
+    //                         onChange={formik.handleChange}
+    //                         value={formik.values.EditModeName}
+    //                         type="text"
+    //                     />
+    //                     <p className={"Edit-mode-looking-for-job"}>Job search:
+    //                         <input
+    //                             onChange={formik.handleChange}
+    //                             checked={formik.values.JobSearch}
+    //                             id={"JobSearch"}
+    //                             type="checkbox"
+    //                         />
+    //                     </p>
+    //                     <p>Professional skills:</p>
+    //                     <input
+    //                         onChange={formik.handleChange}
+    //                         value={formik.values.ProfessionalSkills}
+    //                         id={"ProfessionalSkills"}
+    //                         type="text"
+    //                     />
+    //                     <p>About:</p>
+    //                     <textarea
+    //                         id={"About"}
+    //                         onChange={formik.handleChange}
+    //                         value={formik.values.About}>
+    //                     </textarea>
+    //                     <p>Choose:</p>
+    //                     <div className={"Edit-mode-sosial"}>
+    //                         <img onClick={() => changeSetObjectIconsState(twiter, "twitter")} src={twiter}
+    //                              alt="twiter"/>
+    //                         <img onClick={() => changeSetObjectIconsState(facebook, "facebook")} src={facebook}
+    //                              alt="facebook"/>
+    //                         <img onClick={() => changeSetObjectIconsState(vk, "vk")} src={vk} alt="vk"/>
+    //                         <img onClick={() => changeSetObjectIconsState(instagram, "instagram")} src={instagram}
+    //                              alt="instagram"/>
+    //                         <img onClick={() => changeSetObjectIconsState(youtube, "youtube")} src={youtube}
+    //                              alt="youtube"/>
+    //                         <img onClick={() => changeSetObjectIconsState(github, "github")} src={github} alt="github"/>
+    //                         <img onClick={() => changeSetObjectIconsState(website, "website")} src={website}
+    //                              alt="website"/>
+    //                     </div>
+    //                     <div id={"Edit-mode-social-inputs"} className={"Edit-mode-social-inputs"}>
+    //                         <CustomizedInputBase
+    //                             id={objectIconsState.stingName}
+    //                             onChange={formik.handleChange}
+    //                             value={formik.values[objectIconsState.stingName]}
+    //                             img={objectIconsState.value}
+    //                             error={formik.errors[objectIconsState.stingName]}
+    //                         />
+    //                     </div>
+    //                 </div>
+    //                 <input className={"SpecialClassButton"} type={"submit"} value={"Save"}/>
+    //
+    //
+    //             </form>
+    //
+    //
+    //         </div>
+    //     </div>
+     )
+ }
+ )
 
 
 type CustomizedInputBaseType = {
