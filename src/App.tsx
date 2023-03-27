@@ -30,7 +30,7 @@ function App() {
 
     return (
         <div className="App">
-            <BrowserRouter>
+
                 <Routes>
                     <Route path="/" element={<ProfileUser/>}/>
                     <Route path="/Login" element={<Login/>}/>
@@ -40,7 +40,7 @@ function App() {
                     <Route path="/404" element={<h1>404. Page not found</h1>}/>
                     <Route path="*" element={<Navigate to="/404"/>}/>
                 </Routes>
-            </BrowserRouter>
+
         </div>
     );
 }
