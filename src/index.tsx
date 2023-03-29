@@ -4,8 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./store/store";
-import {Chat} from "./elements/Chat/Chat";
-import { HashRouter as Router } from "react-router-dom";
+import {HashRouter as Router} from "react-router-dom";
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );

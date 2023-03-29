@@ -712,7 +712,9 @@ a:-webkit-any-link {
 .BlackOnCliked {
     font-weight: 500;
 }
-
+.DisplayforLink{
+    display: flex;
+}
 .Edit-mode-Frofil {
     display: flex;
     flex-direction: column;

@@ -62,9 +62,8 @@ export const NavigationBlock = React.memo(() => {
 
 
                     <div className={"AlseIcons"}>
-                        <Link to={'/Chat'}>
+                        <Link className={"DisplayforLink"} to={'/Chat'}>
                         <img src={MesengerIcon} alt="MesengerIcon"/>
-                        {/*<Link to={'/Chat'}>*/}
                             <p>Message</p>
                         </Link>
                     </div>
