@@ -37,20 +37,21 @@ export const initializeAppTC = () => {
         dispatch(statusUserAC("loading"))
         LoginApi.authMe().then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(initializedUserAC(true))
-                dispatch(mainUserIDAC(res.data.data.id, res.data.data.login))
-                dispatch(setIsLogin(true))
+
 
                 LoginApi.getFotoAdmin(res.data.data.id).then(resA => {
-                        dispatch(getProfileAC(resA.data))
-                        dispatch(setAdminFotoAC(resA.data.photos.small))
-                        dispatch(statusUserAC("succeeded"))
+                    dispatch(getProfileAC(resA.data))
+                    dispatch(setAdminFotoAC(resA.data.photos.small))
+
+                    dispatch(initializedUserAC(true))
+                    dispatch(mainUserIDAC(res.data.data.id, res.data.data.login))
+                    dispatch(setIsLogin(true))
+                    dispatch(statusUserAC("succeeded"))
 
                 }).catch((error) => {
                     dispatch(errorUserAC(error))
                     console.error(error, dispatch)
                 })
-
 
 
                 dispatch(statusUserAC("succeeded"))

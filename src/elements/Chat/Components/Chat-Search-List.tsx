@@ -6,14 +6,17 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import IconButton from "@mui/material/IconButton";
-
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CloseIcon from '@mui/icons-material/Close';
 
 
 export  const ChatSearchList=React.memo(()=> {
     const [state, setState] = React.useState({
         left: false
     });
-
+let chandeOpenClose=()=>{
+    setState({left: false})
+}
     const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
         if (
             event.type === 'keydown' &&
@@ -34,6 +37,11 @@ export  const ChatSearchList=React.memo(()=> {
         >
             <List>
                 <>
+                    <div className={"close-module-versior-wind"}>
+                        <IconButton onClick={chandeOpenClose}>
+                            <CloseIcon fontSize="small"/>
+                        </IconButton>
+                    </div>
                     <ChatSearchButton />
                     <ChatAccesListUser/>
                 </>

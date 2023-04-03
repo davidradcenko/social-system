@@ -77,9 +77,10 @@ type TableUsersType = {
     userName: string,
     photos: photosType,
     index:number,
+
     lastDialogActivityDate: string,
     idUser: number,
     LastActiveUser:string,
     TypeOfUser:"Friend" | "Other",
-    versios:"listOfuser" | "headerChat"
+    versios:"listOfuser" | "headerChat",
 }

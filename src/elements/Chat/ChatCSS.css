@@ -173,7 +173,11 @@ div {
     padding-left: 10px;
     padding-right: 10px;
 }
-
+.close-module-versior-wind{
+    display: none;
+    align-items: center;
+    justify-content: end;
+}
 .Chatting {
     display: flex;
     /*flex-direction:column;*/

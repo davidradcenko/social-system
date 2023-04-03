@@ -53,8 +53,7 @@ export const Chat = React.memo(() => {
                     {/* MainChat*/}
                     <div className={'Chat-Sittings'}>
                         <div className={'Paginator-Navigation'}>
-                            <div className={'Paginator-Way'}>
-                            </div>
+                            <div className={'Paginator-Way'}></div>
                         </div>
                         <div className={'Chat-Profile'}>
 
